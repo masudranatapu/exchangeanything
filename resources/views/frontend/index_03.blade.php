@@ -20,20 +20,25 @@
 
 @section('content')
     <!-- Banner section start  -->
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat; height: 550px !important; padding-top:130px; padding-bottom: 0px !important;">
+    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
         <div class="container">
             <!-- <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span> -->
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
                 {{ $cms->index3_title }}
             </div>
+            {{--  
             <h4 style="color: white;">
                 {!! $cms->index3_short_title !!}
             </h4>
+            --}}
             <!-- Search Box -->
-            <div class="home_banner">
-                <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-7">
+                    <div class="home_banner">
+                        <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
     <!-- Banner section end   -->
@@ -46,10 +51,12 @@
                 @foreach ($topCategories as $category)
                     <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6">
                         <div class="category-card">
+                            {{--
                             <div class="category-card__icon">
                                 <i class="{{ $category->icon }}" style="font-size: 40px"></i>
                             </div>
-                            {{-- Filter Form --}}
+                             --}}
+                              
                             <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm"
                                 class="d-none">
                                 <input type="hidden" name="category" value="" id="adFilterInput">
@@ -60,13 +67,13 @@
                             <div class="category-card__view">
                                 <span class="first view-number"> {{ $category->ad_count ?? 0 }}
                                     {{ __('ads') }}</span>
-                                <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')"
+                                <!-- <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')"
                                     class="second view-btn">
                                     {{ __('view_ads') }}
                                     <span class="icon">
-                                        <x-svg.right-arrow-icon stroke="#bb9645" />
+                                        <x-svg.right-arrow-icon stroke="#06D7A0" />
                                     </span>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -90,9 +97,9 @@
                     <div class="recent-post__btn">
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
-                            <span class="icon--right">
+                           <!--  <span class="icon--right">
                                 <x-svg.right-arrow-icon />
-                            </span>
+                            </span> -->
                         </a>
                     </div>
                 @endif
@@ -115,9 +122,9 @@
                     <div class="recent-post__btn">
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
-                            <span class="icon--right">
+                            <!-- <span class="icon--right">
                                 <x-svg.right-arrow-icon />
-                            </span>
+                            </span> -->
                         </a>
                     </div>
                 @endif
@@ -136,9 +143,9 @@
             <h2 class="text--heading-1 section__title">
                 {{ __('popular_location') }}
             </h2>
-            <div class="row">
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
                 @foreach ($topCities as $city)
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col">
                         <x-frontend.location.single-popular-location :city="$city">
                         </x-frontend.location.single-popular-location>
                     </div>

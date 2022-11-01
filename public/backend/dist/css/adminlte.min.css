@@ -18,7 +18,7 @@
     font-size: 15px;
 }
 
-.admin_login_btn .btn.btn-primary.btn-block {border-radius: 2px;padding: 10px 10px;text-transform: uppercase;background: #bb9645;border: none !important;font-weight: 500;}
+.admin_login_btn .btn.btn-primary.btn-block {border-radius: 2px;padding: 10px 10px;text-transform: uppercase;background: #108AB1;border: none !important;font-weight: 500;}
 
 .admin_login_btn .btn.btn-primary.btn-block:hover {background: #896311;}
 
@@ -82,17 +82,17 @@
     -ms-transform: translate(7.75px,4.5px) rotate(45deg);
 }
 .sidebar-dark-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active {
-    border-color: #bb9645 !important;
+    border-color: #108AB1 !important;
 }
 
 
 .sidebar-dark-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link {
-    background: #bb96453d !important;
+    background: #108AB13d !important;
 }
 
 
 [class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus{
-    background: #bb96453d !important;
+    background: #108AB13d !important;
 }
 
 

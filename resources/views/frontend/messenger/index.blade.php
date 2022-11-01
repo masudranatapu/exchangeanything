@@ -21,13 +21,14 @@
 @section('content')
     
     <!-- Banner section start  -->
+    {{-- 
     <div class="banner banner--three" style="background:url('https://adlisting.templatecookie.com/frontend/default_images/index3_search_filter_background.png') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
     <!-- Banner section end   -->
-
+ --}}
     <!-- dashboard section start  -->
     <section class="section dashboard">
         <div class="container">

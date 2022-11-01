@@ -37,7 +37,7 @@
                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
                         <a href="https://barrrter.com"
                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
-                            Barrrter
+                            ExchangeAnything
                         </a>
                     </td>
                 </tr>
@@ -54,7 +54,7 @@
                                 <td class="content-cell"
                                     style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
                                     <h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">
-                                        Thank you for signing up to Barrrter! We are checking for receipt of your membership fees and will send you another email to confirm that your account has been activated.
+                                        Thank you for signing up to ExchangeAnything! We are checking for receipt of your membership fees and will send you another email to confirm that your account has been activated.
                                     </h1>
                                 </td>
                             </tr>
@@ -86,7 +86,7 @@
                             <tr>
                                 <td style="padding-left: 20px">
                                     Thanks,<br>
-                                    Barrrter
+                                    ExchangeAnything
                                 </td>
                             </tr>
                         </table>

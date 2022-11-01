@@ -70,7 +70,7 @@
                     @php
                         $msg_count = App\Models\Messenger::where('to_id',Auth::user()->id)->where('status',0)->count()
                     @endphp
-                    {{ __('message') }}@if($msg_count)<span style="color:chocolate">({{$msg_count}})</span>@endif
+                    {{ __('message') }}@if($msg_count)<span style="    color: #06D7A0; padding-left: 7px;">({{$msg_count}})</span>@endif
                 </a>
             </li>
             <li class="dashboard__nav-item">

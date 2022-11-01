@@ -13,6 +13,7 @@ use App\Models\PaymentSetting;
 use Illuminate\Support\Facades\Mail;
 use Modules\Currency\Entities\Currency;
 use Modules\Language\Entities\Language;
+use File;
 use DB;
 
 class SettingsController extends Controller
@@ -546,10 +547,9 @@ class SettingsController extends Controller
             $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
             $adminadsimage = DB::table('admin_ads')->where('id', $id)->first();
-            if ($adminadsimage->ads_img) {
-                unlink($adminadsimage->ads_img);
+            if(File::exists(public_path('media/adminads/'.$adminadsimage->ads_img))){
+               File::delete();
             }
-
             $image_url = $upload_path.$admin_ads_image_name;
 
             DB::table('admin_ads')->where('id', $id)->update([

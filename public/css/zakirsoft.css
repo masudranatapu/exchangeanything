@@ -82,22 +82,22 @@ a.navigation-bar__logo,
     margin-top: 58px;
 } */
 
-@media (max-width: 731px) {
+/*@media (max-width: 731px) {
     .wraning-show_hide .header {
         margin-top: 82px;
     }
     .wraning-show_hide .breedcrumb {
         padding: 252px 0 60px !important;
     }
-}
-@media (max-width: 416px) {
+}*/
+/*@media (max-width: 416px) {
     .wraning-show_hide .header {
         margin-top: 106px;
     }
     .wraning-show_hide .breedcrumb {
         padding: 265px 0 60px !important;
     }
-}
+}*/
 
 .slick-list {
     direction: rtl;

@@ -41,9 +41,9 @@
                     <div class="recent-post__btn">
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
-                            <span class="icon--right">
+                           <!--  <span class="icon--right">
                                 <x-svg.right-arrow-icon />
-                            </span>
+                            </span> -->
                         </a>
                     </div>
                 @endif
@@ -69,9 +69,9 @@
                     <div class="recent-post__btn">
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
-                            <span class="icon--right">
+                            <!-- <span class="icon--right">
                                 <x-svg.right-arrow-icon />
-                            </span>
+                            </span> -->
                         </a>
                     </div>
                 @endif

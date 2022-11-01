@@ -47,7 +47,7 @@ class NewMessageNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('You have received a message from a fellow Barrrter member. Please log in to respond.')
+            ->subject('You have received a message from a fellow ExchangeAnything member. Please log in to respond.')
             ->line("@{$this->customer->username} user sent a message.")
             ->line("You have received a new message, log on to reply.")
             ->action('Respond Now', route('frontend.message', $this->customer->username));

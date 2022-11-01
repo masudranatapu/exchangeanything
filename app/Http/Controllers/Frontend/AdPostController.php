@@ -33,7 +33,9 @@ class AdPostController extends Controller
             $categories = Category::active()->latest('id')->get();
             $brands = Brand::latest('id')->get();
             $ad = session('ad');
-            return view('frontend.postad.step1', compact('categories', 'brands', 'ad'));
+            $citis = City::latest('id')->get();
+            $authUser = auth('customer')->user();
+            return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
         } else {
             return redirect()->route('frontend.post');
         }

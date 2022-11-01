@@ -5,10 +5,10 @@
             @if ($lists->count() > 4)
             <div class="slider-btn">
                 <button class="slider-btn--prev">
-                    <x-svg.left-arrow-icon stroke="#bb9645" />
+                    <x-svg.left-arrow-icon stroke="#06D7A0" />
                 </button>
                 <button class="slider-btn--next">
-                    <x-svg.right-arrow-icon stroke="#bb9645" />
+                    <x-svg.right-arrow-icon stroke="#06D7A0" />
                 </button>
             </div>
             @endif

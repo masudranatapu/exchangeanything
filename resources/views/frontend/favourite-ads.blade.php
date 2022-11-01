@@ -19,12 +19,14 @@
 @endsection
 
 @section('content')
+{{--  
     <!-- Banner section start  -->
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
+--}}    
     <!-- Banner section end   -->
     <!-- dashboard section start  -->
     <section class="section dashboard">
@@ -93,7 +95,7 @@
                                         @endif
                                         <button type="submit" class="btn btn--bg btn--fav">
                                             <span class="icon">
-                                                <x-svg.heart-icon fill="#bb9645" strokeWidth="0.5" />
+                                                <x-svg.heart-icon fill="#06D7A0" strokeWidth="0.5" />
                                             </span>
                                         </button>
                                     </form>
@@ -108,7 +110,7 @@
                                         @endif
                                         <button type="submit" class="btn btn--bg btn--fav">
                                             <span class="icon">
-                                                <x-svg.heart-icon fill="#bb9645" strokeWidth="0.5" />
+                                                <x-svg.heart-icon fill="#06D7A0" strokeWidth="0.5" />
                                             </span>
                                         </button>
                                     </form>

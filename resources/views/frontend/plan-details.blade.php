@@ -130,7 +130,7 @@
                             <br>
                             <p>When you have sent the payment press the ‘I have paid’ button.</p>
                             <p> You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).</p>
-                            <p>Thank you for joining the Barrrter Pirate Chain Community!</p>
+                            <p>Thank you for joining the ExchangeAnything Pirate Chain Community!</p>
                        
                         <button onclick="openPaymentModal()" class="btn btn-success btn-sm">I have paid</button>
                         @endif

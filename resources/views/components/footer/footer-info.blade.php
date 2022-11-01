@@ -28,7 +28,7 @@ $cms = App\Models\Cms::first();
 
     {{-- <div class="footer__loc-info">
                         <p class="text--body-3 email text-lowercase">
-                        {!! Illuminate\Support\Str::limit($cms->about_body, 100) !!} <a target="_blank" href="{{route('frontend.about')}}" style="color:#bb9645">Read More ></a>
+                        {!! Illuminate\Support\Str::limit($cms->about_body, 100) !!} <a target="_blank" href="{{route('frontend.about')}}" style="color:#06D7A0">Read More ></a>
                         </p>
                     </div> --}}
 </div>

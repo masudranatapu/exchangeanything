@@ -37,9 +37,9 @@
                                 </div>
                                 <button class="btn btn--lg w-100 registration-form__btns" type="submit">
                                     {{ __('send_password_reset_link') }}
-                                    <span class="icon--right">
+                                   <!--  <span class="icon--right">
                                         <x-svg.right-arrow-icon stroke="#fff"/>
-                                    </span>
+                                    </span> -->
                                 </button>
                             </form>
                         </div>

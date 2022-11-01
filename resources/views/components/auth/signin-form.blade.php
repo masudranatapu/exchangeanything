@@ -32,9 +32,9 @@
 
                 <button class="btn btn--lg w-100 registration-form__btns" type="submit">
                     {{ __('sign_in') }}
-                    <span class="icon--right">
+                    <!-- <span class="icon--right">
                         <x-svg.right-arrow-icon stroke="#fff" />
-                    </span>
+                    </span> -->
                 </button>
 
                 <p class="text--body-3 registration-form__redirect">{{ __('dont_have_account') }} ? <a href="{{ route('frontend.signup') }}">{{ __('sign_up') }}</a></p>

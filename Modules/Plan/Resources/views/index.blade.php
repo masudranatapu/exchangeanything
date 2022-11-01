@@ -180,11 +180,11 @@
     }
     .card_footer-bg {
         background-color: #e8f7ff;
-        color: #bb9645;
+        color: #06D7A0;
         width: 100%;
     }
     .card_footer-bg button {
-        color: #bb9645;
+        color: #06D7A0;
     }
     .card_footer-bg:hover button {
         color: #0088cc;
@@ -211,7 +211,7 @@
     }
 
     .plan-card--active {
-        border: 2px solid #bb9645;
+        border: 2px solid #06D7A0;
     }
 
     .plan-card__top {
@@ -261,7 +261,7 @@
     }
     .plan-card__package-list.active .icon {
         color: #fff;
-        background-color: #bb9645;
+        background-color: #06D7A0;
     }
     .plan-card__package-list .icon {
         display: flex;

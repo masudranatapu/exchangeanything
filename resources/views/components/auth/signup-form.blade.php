@@ -85,9 +85,9 @@
                 </div>
                 <button class="btn btn--lg w-100 registration-form__btns" type="submit">
                     {{ __('sign_up') }}
-                    <span class="icon--right">
+                    <!-- <span class="icon--right">
                         <x-svg.right-arrow-icon stroke="#fff" />
-                    </span>
+                    </span> -->
                 </button>
                 <p class="text--body-3 registration-form__redirect">{{ __('have_account') }} ? <a href="{{ route('customer.login') }}">{{ __('sign_in') }}</a></p>
             </form>

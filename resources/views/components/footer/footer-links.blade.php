@@ -10,13 +10,14 @@
             <li class="footer-menu__item">
                 <a href="{{ route('frontend.about') }}" class="footer-menu__link text--body-3">{{ __('about') }}</a>
             </li>
-        --}}
+        
 
         @if ($blog_enable)
             <li class="footer-menu__item">
                 <a href="{{ route('frontend.blog') }}" class="footer-menu__link text--body-3">{{ __('blog') }}</a>
             </li>
         @endif
+        --}}
         @if ($priceplan_enable)
             <li class="footer-menu__item">
                 <a href="{{ route('frontend.priceplan') }}" class="footer-menu__link text--body-3">{{ __('pricing_plan') }}</a>

@@ -20,11 +20,13 @@
 
 @section('content')
     <!-- Banner section start  -->
+    {{--  
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat;">
         <div class="container">
              @include('frontend.user-search-filter')
         </div>
     </div>
+    --}}
     <!-- Banner section end   -->
     <!-- dashboard section start  -->
     <section class="section dashboard dashboard--user">
@@ -213,7 +215,7 @@
 
                 <p>When you have sent the payment press the ‘I have paid’ button.</p>
                 <p> You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).</p>
-                <p>Thank you for joining the Barrrter Pirate Chain Community!</p>
+                <p>Thank you for joining the ExchangeAnything Pirate Chain Community!</p>
 
  </div>
                 
@@ -398,7 +400,7 @@
                     datasets: [{
                         label: '',
                         data: {{ json_encode($bar_chart_datas) }},
-                        backgroundColor: '#bb9645',
+                        backgroundColor: '#06D7A0',
                         borderWidth: 0,
                         barThickness: 28,
                         borderRadius: 100,

@@ -20,11 +20,13 @@
 
 @section('content')
     <!-- Banner section start  -->
+    {{--  
     <div class="banner banner--three" style="background:url('https://adlisting.templatecookie.com/frontend/default_images/index3_search_filter_background.png') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
+    --}}
     <!-- Banner section end   -->
     <!-- dashboard section start  -->
     <section class="section dashboard">
@@ -36,7 +38,8 @@
                 </div>
                 <div class="col-xl-9">
                     <div class="dashboard-post">
-                        <ul class="nav dashboard-post__nav mb-3">
+                        
+                        <!-- <ul class="nav dashboard-post__nav mb-3">
                             {{-- Step 1  --}}
                             @if (request()->route()->getName() === "frontend.post")
                                 <a href="{{ route('frontend.post') }}">
@@ -70,6 +73,7 @@
                                 </button>
                             @endif
                         </ul>
+                         -->
                         <div class="tab-content dashboard-post__content" id="pills-tabContent">
                             @yield('post-ad-content')
                         </div>

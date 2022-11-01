@@ -51,7 +51,7 @@
 
 <style>
     .resend{
-        color: #bb9645;
+        color: #06D7A0;
     }
     .resend:hover {
         text-decoration: underline;

@@ -569,7 +569,7 @@ if (galleryVeno) {
 if (youtubeVeno) {
     $(".yplayer").venobox({
         spinner: "wave",
-        spinColor: "#bb9645",
+        spinColor: "#108AB1",
     })
 }
 
@@ -623,7 +623,7 @@ if (ctx) {
             datasets: [{
                 label: "",
                 data: [277, 138, 109, 171, 215, 120, 245],
-                backgroundColor: "#bb9645",
+                backgroundColor: "#108AB1",
                 borderWidth: 0,
                 barThickness: 28,
                 borderRadius: 100,

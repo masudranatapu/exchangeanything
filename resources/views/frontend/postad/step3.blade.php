@@ -26,12 +26,12 @@
                 <x-forms.label name="features" for="features" />
                 <div id="multiple_feature_part">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-11">
                              <div class="input-field">
                                  <input name="features[]" type="text" placeholder="{{ __('features') }}" id="adname" class="@error('title') border-danger @enderror"/>
                              </div>
                         </div>
-                        <div class="col-lg-2 mt-10 add_feature">
+                        <div class="col-lg-1 mt-10 add_feature">
                          <a role="button" onclick="add_features_field()"
                          class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
                         </div>
@@ -74,7 +74,6 @@
             maxFiles: 10,
             multiple: true,
         });
-
     </script>
     <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/fileinput.min.js') }}" type="text/javascript"></script>

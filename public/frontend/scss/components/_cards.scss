@@ -384,7 +384,7 @@
     .categorylist-card__icon {
       color: #fff;
       background-color: color(primary-4);
-      box-shadow: 0px 8px 32px 0px #bb964566;
+      box-shadow: 0px 8px 32px 0px #108AB166;
       @include trans(0.3s, ease-in-out);
     }
   }
@@ -564,7 +564,7 @@
       &__icon {
         color: #fff;
         background-color: color(primary-4);
-        box-shadow: 0px 8px 32px 0px #bb964566;
+        box-shadow: 0px 8px 32px 0px #108AB166;
         @include trans(0.3s, ease-in-out);
       }
 
@@ -641,7 +641,7 @@
 
   &--active {
     &.plan-card {
-      border: 2px solid #bb9645;
+      border: 2px solid #108AB1;
     }
     .plan-card {
       &__top {

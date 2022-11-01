@@ -15,7 +15,7 @@ class MessageIcon extends Component
      *
      * @return void
      */
-    public function __construct($width = '18', $height = '18', $stroke = '#bb9645', $strokeWidth = '1.3')
+    public function __construct($width = '18', $height = '18', $stroke = '#06D7A0', $strokeWidth = '1.3')
     {
         $this->width = $width;
         $this->height = $height;

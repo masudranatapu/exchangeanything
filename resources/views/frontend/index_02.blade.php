@@ -35,7 +35,7 @@
                                     class="second view-btn">
                                     {{ __('view_ads') }}
                                     <span class="icon">
-                                        <x-svg.right-arrow-icon stroke="#bb9645" />
+                                        <x-svg.right-arrow-icon stroke="#06D7A0" />
                                     </span>
                                 </a>
                             </div>

@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.galleryView').venobox();
     $('.yplayer').venobox({
         spinner: 'wave',
-        spinColor: '#bb9645',
+        spinColor: '#108AB1',
     });
 });
 

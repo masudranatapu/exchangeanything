@@ -14,7 +14,7 @@ class InvoiceIcon extends Component
      *
      * @return void
      */
-    public function __construct($width = '32', $height = '32', $stroke = '#bb9645')
+    public function __construct($width = '32', $height = '32', $stroke = '#06D7A0')
     {
         $this->width = $width;
         $this->height = $height;

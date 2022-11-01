@@ -1,3 +1,4 @@
+{{--  
 <div class="location-card">
     <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="location-card__img-wrapper">
         <img class="rounded" src="{{ $city->image }}" alt="location">
@@ -9,9 +10,26 @@
             <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="second view-btn">
                 {{ __('view_ads') }}
                 <span class="icon">
-                    <x-svg.right-arrow-icon stroke="#bb9645"/>
+                    <x-svg.right-arrow-icon stroke="#06D7A0"/>
                 </span>
             </a>
         </div>
     </h2></div>
 </div>
+--}}
+
+ <div class="location_card text-center">
+     <div class="country_flag mb-4">
+         <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}">
+            <img class="rounded" src="{{ $city->image }}" alt="location">
+        </a>
+     </div>
+     <div class="country_name">
+         <h3>{{ $city->name }} <span> ({{ $city->ad_count }}) </span></h3>
+         
+         <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}">
+            {{ __('view_ads') }}
+            
+        </a>
+     </div>
+ </div>

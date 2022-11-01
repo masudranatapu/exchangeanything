@@ -53,7 +53,7 @@
                                             @error('password')
                                             style="margin-top: -25px;"
                                             @enderror>
-                                            <rect width="20" height="20" rx="10" fill="#bb9645" />
+                                            <rect width="20" height="20" rx="10" fill="#06D7A0" />
                                             <path d="M14 7L8.5 12.5L6 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </span>
@@ -94,7 +94,7 @@
                                             @error('password_confirmation')
                                             style="margin-top: -25px;"
                                             @enderror>
-                                            <rect width="20" height="20" rx="10" fill="#bb9645" />
+                                            <rect width="20" height="20" rx="10" fill="#06D7A0" />
                                             <path d="M14 7L8.5 12.5L6 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </span>
@@ -114,12 +114,12 @@
                                 </div>
                                 <button class="btn btn--lg w-100 registration-form__btns" type="submit">
                                     {{ __('reset_password') }}
-                                    <span class="icon--right">
+                                    <!-- <span class="icon--right">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M3.75 12H20.25" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M13.5 5.25L20.25 12L13.5 18.75" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
-                                    </span>
+                                    </span> -->
                                 </button>
                             </form>
                         </div>

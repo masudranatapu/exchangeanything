@@ -20,11 +20,13 @@
 
 @section('content')
     <!-- Banner section start  -->
+    {{--  
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
+    --}}
     <!-- Banner section end   -->
 
     <!-- dashboard section start  -->

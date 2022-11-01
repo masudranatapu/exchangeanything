@@ -14693,10 +14693,10 @@ fieldset:disabled .btn {
     color: #1f9b00;
 }
 .bgcolor--success-4 {
-    background-color: #bb9645 !important;
+    background-color: #108AB1 !important;
 }
 .textColor--success-4 {
-    color: #bb9645;
+    color: #108AB1;
 }
 .bgcolor--success-5 {
     background-color: #52ce33 !important;
@@ -14801,10 +14801,10 @@ fieldset:disabled .btn {
     color: #cc3f3f;
 }
 .bgcolor--danger-4 {
-    background-color: #ff4f4f !important;
+    background-color: #108AB1 !important;
 }
 .textColor--danger-4 {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .bgcolor--danger-5 {
     background-color: #ff7272 !important;
@@ -15345,7 +15345,7 @@ a {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background-color: #ff4f4f;
+    background-color: #108AB1;
     border: 2px solid #fff;
 }
 .header--three .navigation-bar__buttons .user {
@@ -16026,7 +16026,7 @@ a {
     margin-bottom: 28px;
     border-radius: 5px;
     display: inline-block;
-    background-color: #bb9645;
+    background-color: #108AB1;
 }
 .banner--three .banner__title {
     color: #fff;
@@ -17925,7 +17925,7 @@ a {
     }
 }
 .dashboard-setting .delete-account .btn {
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 .dashboard-setting .delete-account .btn:hover {
     background-color: #cc3f3f;
@@ -18014,7 +18014,7 @@ a {
 }
 .dashboard-post__link .icon--success {
     display: none;
-    background-color: #bb9645 !important;
+    background-color: #108AB1 !important;
 }
 .dashboard-post__link .step-info {
     text-align: left;
@@ -18361,7 +18361,7 @@ a {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #bb9645;
+    background-color: #108AB1;
     margin-right: 6px;
 }
 .dashboard__message-user .message-header .action-btn {
@@ -18375,7 +18375,7 @@ a {
     background-color: transparent;
 }
 .dashboard__message-user .message-header .action-btn:hover {
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 .dashboard__message-user .message-header .action-btn:hover button svg {
     transition: all 0.3s ease-in-out;
@@ -18538,7 +18538,7 @@ a {
     .user-message
     .drafts-item
     .draft-price {
-    color: #ff4f4f;
+    color: #108AB1;
     margin-top: 20px;
     margin-bottom: 0;
 }
@@ -18958,7 +18958,7 @@ a {
     height: 76px;
     border-radius: 50%;
     border: 2px solid #fff;
-    background-color: #ff4f4f;
+    background-color: #108AB1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19536,7 +19536,7 @@ a {
     color: #fff;
     text-transform: uppercase;
     transform: rotate(-45deg);
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 .cards__caption-title {
     color: #191f33;
@@ -19586,10 +19586,10 @@ a {
     align-items: center;
 }
 .cards--one .cards__info-status .tag-status--active {
-    color: #bb9645;
+    color: #108AB1;
 }
 .cards--one .cards__info-status .tag-status--expire {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .cards--one .cards__info-status .tag-status .icon {
     margin-right: 8px;
@@ -19609,7 +19609,7 @@ a {
     color: #767e94;
 }
 .cards--one .cards__price-title {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .cards--two {
     display: flex;
@@ -19654,7 +19654,7 @@ a {
     color: #fff;
     text-transform: uppercase;
     transform: rotate(-45deg);
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 .cards--two .cards__info {
     width: 70%;
@@ -19720,7 +19720,7 @@ a {
     margin-bottom: 20px;
 }
 .cards--two .cards__price-title {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .cards--two .cards__user-details {
     padding-bottom: 22px;
@@ -19752,7 +19752,7 @@ a {
     border-radius: 8px 8px 0 0;
 }
 .cards--three .cards__price-title {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .cards--three .cards__user-details {
     flex-wrap: wrap;
@@ -19824,7 +19824,7 @@ a {
 .categorylist-card:hover .categorylist-card__icon {
     color: #fff;
     background-color: #0af;
-    box-shadow: 0 8px 32px 0 #bb964566;
+    box-shadow: 0 8px 32px 0 #108AB166;
     transition: all 0.3s ease-in-out;
 }
 .categorylist-card__top {
@@ -19974,7 +19974,7 @@ a {
 .category-card:hover .category-card__icon {
     color: #fff;
     background-color: #0af;
-    box-shadow: 0 8px 32px 0 #bb964566;
+    box-shadow: 0 8px 32px 0 #108AB166;
     transition: all 0.3s ease-in-out;
 }
 .category-card:hover .category-card__view .first {
@@ -20424,7 +20424,7 @@ a {
     justify-content: space-between;
 }
 .template__demo-card-price {
-    color: #ff4f4f;
+    color: #108AB1;
     font-weight: 600;
 }
 .template__demo-card__buttons .btn {
@@ -20487,7 +20487,7 @@ a {
     margin-bottom: 0;
 }
 .dashboard-card--recent__activity-item.success .icon {
-    color: #bb9645;
+    color: #108AB1;
     background-color: #e4f9e0;
 }
 .dashboard-card--recent__activity-item.primary .icon {
@@ -20499,7 +20499,7 @@ a {
     background-color: #fff8e0;
 }
 .dashboard-card--recent__activity-item.danger .icon {
-    color: #ff4f4f;
+    color: #108AB1;
     background-color: #ffe5e5;
 }
 .dashboard-card--recent__activity-item .icon {
@@ -20669,7 +20669,7 @@ a {
     padding: 12px;
     background-color: #fff;
     transition: all 0.3s linear;
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .dashboard-card--payment-method .dashobard-card--action .delete:hover {
     background-color: #ffe5e5;
@@ -20809,10 +20809,10 @@ a {
     align-items: center;
 }
 .card-edit__item.product-status .tag-status--active {
-    color: #bb9645;
+    color: #108AB1;
 }
 .card-edit__item.product-status .tag-status--expire {
-    color: #ff4f4f;
+    color: #108AB1;
 }
 .card-edit__item.product-status .tag-status .icon {
     margin-right: 8px;
@@ -20926,7 +20926,7 @@ a {
     margin-bottom: 16px;
 }
 .input-field.success input {
-    border-color: #bb9645;
+    border-color: #108AB1;
 }
 .input-field.success .icon--alart,
 .input-field.success .icon--eye {
@@ -20936,7 +20936,7 @@ a {
     display: block;
 }
 .input-field.alart input {
-    border-color: #ff4f4f;
+    border-color: #108AB1;
 }
 .input-field.alart .icon--eye,
 .input-field.alart .icon--success {
@@ -21721,7 +21721,7 @@ a {
     height: 48px;
     border-radius: 50%;
     border: 2px solid #fff;
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 @media (max-width: 420px) {
     .single-blog__blog-promo .blog-promo__btns .reg-btn .tag {
@@ -21884,7 +21884,7 @@ a {
     border-radius: 50%;
     overflow: hidden;
     transform: rotate(15deg);
-    background-color: #ff4f4f;
+    background-color: #108AB1;
 }
 .blog-promo__content .promo-text .h2,
 .blog-promo__content .promo-text h2 {

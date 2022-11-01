@@ -1,4 +1,5 @@
 <form action="{{ route('frontend.adlist.search') }}" method="GET">
+    
     <div class="ad-list__search-box" @if($marginTop) style="margin-top : {{$marginTop}}px; @endif">
         <div class="container">
             <!-- Search Box -->
@@ -8,12 +9,13 @@
                     <div class="search__content-item">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
                             <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..."
-                                name="keyword" value="{{ request('keyword', '') }}" />
+                                name="keyword" value="{{ request('keyword', '') }}" required />
                             <span class="icon icon--left">
                                 <x-svg.search-icon />
                             </span>
                         </div>
                     </div>
+                    {{--
                     <!-- Search By location -->
                     <div class="search__content-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
@@ -26,7 +28,7 @@
                               @else
                               <span class="by_location" style="width: calc(100% - 60px);">By Location</span>
                               @endif
-                             {{--
+                             
                                 <select name="country"  style="width: calc(100% - 60px);">
                                      <option value="" class="d-none">By Location</option>
                                         @foreach ($countries as $country)
@@ -35,13 +37,13 @@
                                             </option>
                                         @endforeach
                                 </select>
-                            --}}
-
+                           
                             <span class="icon icon--left">
                                 <x-svg.search-location-icon />
                             </span>
                         </div>
                     </div>
+                   --}}  
                     <!-- Search By location -->
                  {{--   <div class="search__content-item">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
@@ -62,13 +64,15 @@
                     </div>
                      --}}
 
+                    {{--
+
                     <!-- Select Category temprorary disable -->
                     <div class="search__content-item" data-bs-toggle="modal" data-bs-target="#staticBackdropCat">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
                             <input type="hidden" name="country" value="{{request()->get('country')}}" id="selected_country">
                             <input type="hidden" name="town" value="{{request()->get('town')}}" id="selected_town">
                             <span class="by_location" style="width: calc(100% - 60px);">{{ request()->get('category') ?? 'By Category' }} </span>
-                            {{--
+                            
                             <select name="category" id="category" style="width: calc(100% - 60px);">
                                 @php
                                     $categories_slug = explode(',', request('category'));
@@ -84,13 +88,13 @@
                                     </option>
                                 @endforeach
                             </select>
-                            --}}
+                            
                             <span class="icon icon--left">
                                 <x-svg.category-icon />
                             </span>
                         </div>
                     </div>
-
+                    --}}
                     <!-- Search Btn -->
                     <div class="search__content-item">
                         <button class="btn btn--lg" type="submit">
@@ -115,9 +119,9 @@
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
-                                stroke="#bb9645" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                stroke="#06D7A0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                             </path>
-                            <path d="M17.5 17.5L13.875 13.875" stroke="#bb9645" stroke-width="1.6"
+                            <path d="M17.5 17.5L13.875 13.875" stroke="#06D7A0" stroke-width="1.6"
                                 stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </span>

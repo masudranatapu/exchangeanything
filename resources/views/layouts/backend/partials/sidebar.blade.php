@@ -3,7 +3,7 @@
                 padding: 12px 0px;
                 color: #fff;
                 font-weight: 500;
-                font-size: 26px;
+                font-size: 20px;
                 border-bottom: 1px solid #2b2828;
                 margin-bottom: 29px;
             }
@@ -16,7 +16,7 @@
     </a> --}}
 
       <a href="{{ route('home') }}" class="brand_logo">
-        <h4 class="text-center site_name">Barrrter.com</h4>
+        <h4 class="text-center site_name">ExchangeAnything</h4>
      </a> 
        
     <!-- Sidebar -->

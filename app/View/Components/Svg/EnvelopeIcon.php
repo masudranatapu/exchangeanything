@@ -12,7 +12,7 @@ class EnvelopeIcon extends Component
      *
      * @return void
      */
-    public function __construct($stroke = '#bb9645')
+    public function __construct($stroke = '#06D7A0')
     {
         $this->stroke = $stroke;
     }
