@@ -49,7 +49,7 @@
 @section('content')
 
     <!-- Banner section start  -->
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat;">
+    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
             {{--<span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
@@ -66,33 +66,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8">
-                    @if(auth('customer')->user())
-                        @php
-                            $id = auth('customer')->user()->id;
-                            $userplan = App\Models\UserPlan::where('customer_id', $id)->first();
-                            $plan = Modules\Plan\Entities\Plan::where('id', $userplan->plans_id)->latest()->first();
-                        @endphp
-                        @if($plan->browse_without_banner_ads == 0)
-                            @if($admin_ads)
-                                <div class="card mb-3">
-                                    <a href="{{ $admin_ads->ads_link ?? '' }}" target="_blank">
-                                        <img style="height: 125px;" src="{{asset($admin_ads->ads_img)}}" class="card-img-top" alt="{{ $admin_ads->ads_name }}">
-                                    </a>
-                                </div>
-                            @endif
-                        @else
-
-                        @endif
-                    @else
-                        @if($admin_ads)
-                            <div class="card mb-3">
-                                <a href="{{ $admin_ads->ads_link ?? '' }}" target="_blank">
-                                    <img style="height: 125px;" src="{{asset($admin_ads->ads_img)}}" class="card-img-top" alt="{{ $admin_ads->ads_name }}">
-                                </a>
-                            </div>
-                        @endif
-                    @endif
-                    
                     {{-- ad info --}}
                     <x-ad-details.ad-info :ad="$ad" />
                     {{-- ad gallery --}}

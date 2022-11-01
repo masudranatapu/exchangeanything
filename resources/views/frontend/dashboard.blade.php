@@ -21,7 +21,7 @@
 @section('content')
     <!-- Banner section start  -->
     {{--  
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.png') }}') center center/cover no-repeat;">
+    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
              @include('frontend.user-search-filter')
         </div>
@@ -83,14 +83,14 @@
                     <div class="row dashboard__ads-activity">
                         <div class="col-lg-7">
                             <div class="dashboard-card dashboard-card--benefits">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-8" >
                                         <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
                                     </div>
                                     <div class="col-md-4" >
                                         <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{$plan_info->is_active == 1 ? 'Active' :'Pending' }}</span></p>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <ul class="dashboard__benefits">
                                     <li class="dashboard__benefits-left">
