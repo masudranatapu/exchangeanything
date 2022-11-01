@@ -35,16 +35,18 @@
     </div>
 </form>
 <!-- Banner section start  -->
+ {{--
 <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 232px !important;">
     <div class="container">
-        {{--<span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
+       <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
         <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
             {{ $cms->index3_title }}
-        </div>--}}
-        <!-- Search Box -->
+        </div>
+        
         <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="75" />
     </div>
 </div>
+--}}
 <!-- Banner section end   -->
 
 <section class="section benefits bgcolor--gray-10">

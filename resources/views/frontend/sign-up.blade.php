@@ -37,22 +37,24 @@
 
 @section('content')
     <!-- Banner section start  -->
+    {{-- 
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
-            {{--<span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
+            <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
                 {{ $cms->index3_title }}
-            </div>--}}
-            <!-- Search Box -->
+            </div>
+            
             <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
         </div>
     </div>
+    --}}
     <!-- Banner section end   -->
     
     <!-- registration section start   -->
     <section class="section registration">
         <div class="container">
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 {{-- Signup Content  --}}
                 <x-auth.content :verifiedusers="$verified_users"/>
 

@@ -43,11 +43,11 @@
 
 @section('content')
     <!-- Banner section start  -->
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
+ <!--    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
             <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
         </div>
-    </div>
+    </div> -->
     <!-- Banner section end   -->
     <section class="section single-blog">
         <div class="container">

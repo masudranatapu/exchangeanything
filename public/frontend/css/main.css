@@ -6184,7 +6184,7 @@ h2.text--heading-1.section__title {
     .banner--three .banner__title {
         font-size: 28px;
         line-height: 42px;
-        margin-bottom: 50px;
+        margin-bottom: 0px;
     }
 }
 
@@ -24827,7 +24827,7 @@ h2.price-plan__title.text--heading-1 {
 }
 
 section.section.price-plan {
-    padding-top: 0px !important;
+    padding-top: 80px !important;
 }
 
 .popular-location .location-card {
@@ -29095,7 +29095,7 @@ section.section.recent-post {
 }
 
 .mobile-search-filed {
-    padding-top: 143px;
+    padding-top: 43px;
     display: none;
 }
 
@@ -29887,3 +29887,42 @@ span.category_name i {
     margin: 0 auto;
     text-align: center;
 }
+
+
+
+.faq.section {
+    margin-top: 100px;
+}
+
+
+.section.about-us {
+    margin-top: 100px;
+}
+
+.section.ad-list {
+    margin-top: 100px;
+}
+
+.product-item.section {
+    margin-top: 100px;
+}
+
+
+
+.section.registration {
+    margin-top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

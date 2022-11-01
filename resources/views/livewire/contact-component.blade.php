@@ -1,5 +1,5 @@
 
-<section class="section contact">
+<section class="section contact mt-5">
     <div class="container">
         <div class="contact-form d-flex justify-content-center">
             <div class="contact-form__right">
