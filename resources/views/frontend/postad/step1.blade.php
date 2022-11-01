@@ -140,14 +140,6 @@
                 $plan = Modules\Plan\Entities\Plan::find($user_plan->plans_id);
                 
                 @endphp
-                @if($plan->embed_yt_video_and_links==1)
-                <div class="col-md-6">
-                    <div class="input-field">
-                        <x-forms.label name="web" for="website url" />
-                        <input name="web" id="web" type="text" placeholder="{{ __('web') }}" value="{{ old('web') }}" class="@error('web') border-danger @enderror"/>
-                    </div>
-                </div>
-                @endif
             </div>
             <div class="input-field--textarea">
                 <x-forms.label name="ad_description" for="description" required="true"/>

@@ -100,14 +100,6 @@
                 $plan = Modules\Plan\Entities\Plan::find($user_plan->plans_id);
                
             @endphp
-                @if($plan->embed_yt_video_and_links==1)
-                <div class="col-md-6">
-                    <div class="input-field">
-                        <x-forms.label name="website_url" for="website url" />
-                        <input name="web" id="web" type="text" placeholder="{{ __('website_url') }}" value="{{ $ad->web ?? '' }}" class="@error('web') border-danger @enderror"/>
-                    </div>
-                </div>
-                @endif
             </div>
             <div class="dashboard-post__action-btns">
                 <a href="{{ route('frontend.post.step1.back', $ad->slug) }}" class="btn btn--lg btn--outline">
