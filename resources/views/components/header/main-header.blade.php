@@ -1,3 +1,10 @@
+<style>
+    .menu__item {
+        margin-right: 18px;
+        position: relative;
+        display: inline-block;
+    }
+</style>
 <header class="header header--home-three header--four">
     <div class="container navigation-bar">
         <div class="d-flex align-items-center ">
@@ -11,6 +18,8 @@
                 <img src="{{ $settings->logo_image_url }}"  alt="brand-logo" class="logo-dark">
             </a>
         </div>
+
+
         <!-- Menu -->
         <ul class="menu">
             {{--  
@@ -20,32 +29,31 @@
             <li class="menu__item">
                 <a href="{{ route('frontend.about') }}" class="menu__link {{ Route::is('frontend.about') ? 'active' : '' }}">{{ __('About Us') }}</a>
             </li>
-            --}}
-            <li class="menu__item">
-                <a href="{{ route('frontend.ad-list') }}" class="menu__link {{ Route::is('frontend.ad-list') ? 'active' : '' }}">{{ __('ads') }}</a>
-            </li>
-            {{--  
             @if ($blog_enable)
             <li class="menu__item">
                 <a href="{{ route('frontend.blog') }}" class="menu__link {{ Route::is('frontend.blog') ? 'active' : '' }}">{{ __('blog') }}</a>
             </li>
             @endif
-            --}}
-            @if ($priceplan_enable)
-                <li class="menu__item">
-                    <a href="{{ route('frontend.priceplan') }}" class="menu__link {{ Route::is('frontend.priceplan') ? 'active' : '' }}">{{ __('pricing') }}</a>
-                </li>
-            @endif
-            {{-- 
             <li class="menu__item">
                 <a href="{{ route('frontend.contact') }}" class="menu__link {{ Route::is('frontend.contact') ? 'active' : '' }}">{{ __('contact') }}</a>
             </li>
-             --}}
+            --}}
         </ul>
         <!-- Action Buttons -->
         <div class="navigation-bar__buttons">
             @if (auth('customer')->check())
-                
+                <div class="d-none d-xl-block">
+                    <li class="menu__item">
+                        <a href="{{ route('frontend.ad-list') }}" class="menu__link {{ Route::is('frontend.ad-list') ? 'active' : '' }}">{{ __('ads') }}</a>
+                    </li>
+
+                    @if ($priceplan_enable)
+                        <li class="menu__item">
+                            <a href="{{ route('frontend.priceplan') }}" class="menu__link {{ Route::is('frontend.priceplan') ? 'active' : '' }}">{{ __('pricing') }}</a>
+                        </li>
+                    @endif
+                </div>
+
                 <a href="{{ route('frontend.message') }}" class="user">
                     @php
                         $msg_count = App\Models\Messenger::where('to_id', auth('customer')->user()->id)->where('status',0)->count()
@@ -69,6 +77,17 @@
                     {{ __('post_ads') }}
                 </a>
             @else
+                <div class="d-none d-xl-block me-5">
+                    <li class="menu__item">
+                        <a href="{{ route('frontend.ad-list') }}" class="menu__link {{ Route::is('frontend.ad-list') ? 'active' : '' }}">{{ __('ads') }}</a>
+                    </li>
+
+                    @if ($priceplan_enable)
+                        <li class="menu__item">
+                            <a href="{{ route('frontend.priceplan') }}" class="menu__link {{ Route::is('frontend.priceplan') ? 'active' : '' }}">{{ __('pricing') }}</a>
+                        </li>
+                    @endif
+                </div>
                 <a href="{{ route('customer.login') }}" class="btn btn--bg {{ Route::is('customer.login') ? 'active' : '' }}">
                      <span class="icon--left">
                         <x-svg.user-login-icon />

@@ -20,18 +20,18 @@
 
 @section('content')
     <!-- Banner section start  -->
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
+ <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
         <div class="container">
-            <!-- <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span> -->
+          <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
                 {{ $cms->index3_title }}
             </div>
-            {{--  
-            <h4 style="color: white;">
+             
+          <!--   <h4 style="color: white;">
                 {!! $cms->index3_short_title !!}
-            </h4>
-            --}}
-            <!-- Search Box -->
+            </h4> -->
+             
+            
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-7">
                     <div class="home_banner">
@@ -40,7 +40,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+
+
+    
     <!-- Banner section end   -->
 
     <!-- Poupular category Section start  -->

@@ -73,11 +73,13 @@
                 <li class="menu--sm__item">
                     <a href="{{ route('frontend.adlist') }}" class="menu--sm__link">{{ __('ads') }}</a>
                 </li>
+                {{--  
                 @if ($blog_enable)
                 <li class="menu--sm__item">
                     <a href="{{ route('frontend.blog') }}" class="menu--sm__link">{{ __('blog') }}</a>
                 </li>
                 @endif
+                --}}
                 @if ($priceplan_enable)
                 <li class="menu--sm__item">
                     <a href="{{ route('frontend.priceplan') }}" class="menu--sm__link">{{ __('Membership') }}</a>
