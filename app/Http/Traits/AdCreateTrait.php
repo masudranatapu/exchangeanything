@@ -124,6 +124,11 @@ trait AdCreateTrait
             'authenticity' => $ad->authenticity,
             'negotiable' => $ad->negotiable,
             'featured' => $ad->featured,
+            'city_id'=>$ad->city_id,
+            'description'=>$ad->description,
+            'features' => $ad->adFeatures,
+            'galleries' => $ad->galleries,
+            'thumbnail' => $ad->thumbnail,
         ];
     }
 
