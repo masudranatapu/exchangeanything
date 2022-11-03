@@ -185,41 +185,7 @@
 
         {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-        <script>
-            // location modal
-            $(document).on('click', '.city_list .nav-link', function(){
-                $('.city_list').hide();
-                $('.area_list').show();
-                $('.go_back').show();
-                // $('.backcategory').show();
-            });
-            $(document).on('click', '.go_back', function(){
-                $('.city_list').show();
-                $('.area_list').hide();
-                $('.city_name').hide();
-                $("#city_show").empty();
-                $("#country_name").empty();
-                $('.go_back').hide();
-            });
-        </script>
 
-
-        <script>
-            // category modal
-            $(document).on('click', '.category_list .nav-link', function(){
-                $('.category_list').hide();
-                $('.subcat_list').show();
-                $('.back_catlist').show();
-            });
-            $(document).on('click', '.back_catlist', function(){
-                $('.category_list').show();
-                $('.subcat_list').hide();
-                $('.category_name').hide();
-                $("#subcat_show").empty();
-                $("#cat_name").empty();
-                $('.back_catlist').hide();
-            });
-        </script>
 
         <!-- footer section start  -->
         <x-footer.footer-top />
@@ -266,8 +232,8 @@
         </script> --}}
 
         <script>
-            $(document).ready(function () {
-/*
+   /*         $(document).ready(function () {
+
                 //Image loader var to use when you need a function from object
                 var auctionImages = null;
 
@@ -277,9 +243,9 @@
                 , minSelect: 1
                 , imagesToLoad: auctionImages
                 });
-                */
 
-            });
+            }); */
+
         </script>
         <!-- <script>
         $('#country').on('change', function(){
@@ -356,6 +322,43 @@
                         $("#cat_name").text(data.category_name.name);
                     }
                 });
+            });
+        </script>
+
+        <script></script>
+          <script>
+            // location modal
+            $(document).on('click', '.city_list .nav-link', function(){
+                $('.city_list').hide();
+                $('.area_list').show();
+                $('.go_back').show();
+                // $('.backcategory').show();
+            });
+            $(document).on('click', '.go_back', function(){
+                $('.city_list').show();
+                $('.area_list').hide();
+                $('.city_name').hide();
+                $("#city_show").empty();
+                $("#country_name").empty();
+                $('.go_back').hide();
+            });
+        </script>
+
+
+        <script>
+            // category modal
+            $(document).on('click', '.category_list .nav-link', function(){
+                $('.category_list').hide();
+                $('.subcat_list').show();
+                $('.back_catlist').show();
+            });
+            $(document).on('click', '.back_catlist', function(){
+                $('.category_list').show();
+                $('.subcat_list').hide();
+                $('.category_name').hide();
+                $("#subcat_show").empty();
+                $("#cat_name").empty();
+                $('.back_catlist').hide();
             });
         </script>
     </body>

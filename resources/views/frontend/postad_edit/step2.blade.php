@@ -18,7 +18,7 @@
         </div>
     @endif
         <form id="step2_edit_form" action="{{ route('frontend.post.step2.update',$ad->slug) }}" method="POST">
-            
+
             @csrf
             @method('PUT')
             <div class="row">
@@ -98,7 +98,7 @@
                 @php
                 $user_plan =  App\Models\UserPlan::where('customer_id',Auth::user()->id)->first();
                 $plan = Modules\Plan\Entities\Plan::find($user_plan->plans_id);
-               
+
             @endphp
             </div>
             <div class="dashboard-post__action-btns">

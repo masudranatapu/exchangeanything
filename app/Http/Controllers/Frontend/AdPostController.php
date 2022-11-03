@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Ad\Entities\AdGallery;
 use Modules\Location\Entities\City;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Modules\Category\Entities\Category;
 use Modules\Category\Entities\SubCategory;
@@ -28,17 +29,15 @@ class AdPostController extends Controller
      */
     public function postStep1()
     {
-        $this->stepCheck();
-        if (session('step1')) {
+
+
             $categories = Category::active()->latest('id')->get();
             $brands = Brand::latest('id')->get();
             $ad = session('ad');
             $citis = City::latest('id')->get();
             $authUser = auth('customer')->user();
             return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
-        } else {
-            return redirect()->route('frontend.post');
-        }
+
     }
 
     public function getSubcategory($id)
@@ -85,37 +84,94 @@ class AdPostController extends Controller
      */
     public function storePostStep1(Request $request)
     {
-        // return session('ad');
-        $validatedData = $request->validate([
+
+        $request->validate([
             'title' => 'required|min:30|unique:ads,title',
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'required',
             'featured' => 'sometimes',
+            'brand_id' => 'sometimes',
+            'authenticity' => 'sometimes',
             'model' => 'sometimes',
+            'web' => 'sometimes',
             'category_id' => 'required',
             'subcategory_id' => 'required',
-        ]);
+            'city_id' => 'required',
+            'town_id'  => 'required',
+            'description' => 'required|min:150',
+            'images.*' => 'required|max:2048',
 
+            // 'estimate_calling_time' => 'required',
+        ],[
+        'city_id.required' => 'The Country is required',
+         'town_id.required' => 'The Region is required',
+    ]);
+
+
+    DB::beginTransaction();
         try {
-            if (empty(session('ad'))) {
-                $ad = new Ad();
-                $ad['slug'] = Str::slug($request->title);
-                $ad['brand_id'] = $request->brand_id;
-                $ad->fill($validatedData);
-                $request->session()->put('ad', $ad);
-            } else {
-                $ad = session('ad');
-                $ad['slug'] = Str::slug($request->title);
-                $ad->fill($validatedData);
-                $request->session()->put('ad', $ad);
-            }
 
-            $this->step1Success();
-            return redirect()->route('frontend.post.step2');
-        } catch (\Throwable $th) {
-            $this->forgetStepSession();
-            return redirect()->back()->with('error', 'Something went wrong while saving your ad.Please try again.');
+                $ad = new Ad();
+                $ad->title = $request->title;
+                $ad->slug = Str::slug($request->title);
+                $ad->price = $request->price;
+                $ad->condition = $request->condition;
+                $ad->negotiable = $request->negotiable;
+                $ad->featured = $request->featured;
+                $ad->brand_id = $request->brand_id;
+                $ad->authenticity = $request->authenticity;
+                $ad->model = $request->model;
+                $ad->customer_id = Auth::id();
+                $ad->web = $request->web;
+                $ad->category_id = $request->category_id;
+                $ad->subcategory_id = $request->subcategory_id;
+                $ad->city_id = $request->city_id;
+                $ad->town_id = $request->town_id;
+                $ad->description = $request->description;
+                $ad->status = setting('ads_admin_approval') ? 'pending': 'active';
+                $ad->save();
+
+
+
+                $images = $request->images;
+
+
+                $files = [];
+                foreach ($images as $key => $image) {
+                    if($image){
+                        if ($key == 0 && $image ) {
+                            $name = uploadImage($image,'thumbnail');
+
+                            $ad->update(['thumbnail' => $name]);
+                        }
+                        if ($image && $key > 0) {
+                            $name = uploadImage($image,'thumbnail');
+                            $ad->galleries()->create(['image' => $name]);
+                        }
+                    }
+                }
+
+
+                // feature inserting
+                $features = $request->features;
+                foreach ($features as $feature) {
+                    if($feature){
+                        $ad->adFeatures()->create(['name' => $feature]);
+                    }
+                }
+                $this->adNotification($ad);
+                !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
+
+                DB::commit();
+                return view('frontend.postad.postsuccess', [
+                    'ad_slug' => $ad->slug,
+                    'mode' => 'create'
+                ]);
+
+        } catch (\Exception $th) {
+            DB::rollback();
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 
@@ -203,9 +259,7 @@ class AdPostController extends Controller
             }
         }
 
-        // $ad->galleries()->update(['image' => $files]);
-            // dd($data);
-        // feature inserting
+
         $features = $request->features;
         foreach ($features as $feature) {
             if($feature){
@@ -241,8 +295,10 @@ class AdPostController extends Controller
                 $ad = collectionToResource($this->setAdEditStep1Data($ad));
                 $categories = Category::latest('id')->get();
                 $brands = Brand::latest('id')->get();
+                $citis = City::orderBy('name')->get();
 
-                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands'));
+
+                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands','citis'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
@@ -310,30 +366,79 @@ class AdPostController extends Controller
             'negotiable' => 'sometimes',
             'category_id' => 'required',
             'subcategory_id' => 'required',
+            'city_id' => 'required',
+            'town_id' => 'required',
+            'description' => 'required',
+
+        ],
+        [
+            'city_id.required' => 'The Country is required',
+            'town_id.required' => 'Region is required'
         ]);
 
         $ad->update([
             'title' => $request->title,
+            'price' => $request->price,
             'slug' => Str::slug($request->title),
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'brand_id' => $request->brand_id,
-            'price' => $request->price,
             'model' => $request->model,
             'condition' => $request->condition,
             'authenticity' => $request->authenticity,
             'negotiable' => $request->negotiable,
             'featured' => $request->featured,
+            'web' => $request->web,
+            'city_id' => $request->city_id,
+            'town_id' => $request->town_id,
+            'description' => $request->description
         ]);
 
 
-        if ($request->cancel_edit) {
-            $this->forgetStepSession();
-            return redirect()->route('frontend.dashboard');
-        } else {
-            $this->step1Success();
-            return redirect()->route('frontend.post.edit.step2', $ad->slug);
-        }
+         // feature inserting
+         $ad->adFeatures()->delete();
+         foreach ($request->features as $feature) {
+             if ($feature) {
+                 $ad->adFeatures()->create(['name' => $feature]);
+             }
+         }
+
+         // image uploading
+         $image = $request->file('thumbnail');
+         $old_thumb = $request->old_thumbnail;
+         if ($image && $image->isValid()) {
+             $name = $image->hashName();
+             $thumbnail = 'uploads/addds_images/'.$name;
+             $ad->update(['thumbnail' => $thumbnail]);
+             Image::make($image->path())
+             ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
+             ->save($thumbnail);
+             if ($old_thumb) {
+                 @unlink($old_thumb);
+              }
+         }
+         $images = $request->file('images');
+         if ($images) {
+             foreach ($images as $image) {
+                 if ($image && $image->isValid()) {
+                     $name = $image->hashName();
+                     $image_path = 'uploads/adds_multiple/'.$name;
+                     Image::make($image->path())
+                     ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
+                     ->save($image_path);
+                     $ad->galleries()->create(['image' => $image_path]);
+                 }
+             }
+         }
+
+
+
+         $this->adNotification($ad, 'update');
+
+         return view('frontend.postad.postsuccess', [
+             'ad_slug' => $ad->slug,
+             'mode' => 'update',
+         ]);
     }
 
     /**
@@ -344,14 +449,8 @@ class AdPostController extends Controller
     public function updatePostStep2(Request $request, Ad $ad)
     {
         $request->validate([
-            // 'phone' => 'required',
-            'phone_2' => 'sometimes',
-            'city_id' => 'required',
-            'town_id' => 'required',
-        ],
-        [
-            'city_id.required' => 'The Country is required',
-            'town_id.required' => 'Region is required'
+
+
         ]);
 
         if($request->phone_number_showing_permission==1){
@@ -388,7 +487,6 @@ class AdPostController extends Controller
     public function updatePostStep3(Request $request, Ad $ad)
     {
         $request->validate([
-            'description' => 'required',
         ]);
 
         $ad->update(['description' => $request->description]);
