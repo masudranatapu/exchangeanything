@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2022 at 03:14 PM
+-- Generation Time: Nov 05, 2022 at 12:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -42,8 +42,8 @@ CREATE TABLE `admin_ads` (
 --
 
 INSERT INTO `admin_ads` (`id`, `ads_name`, `ads_link`, `ads_img`, `status`, `created_at`, `created_by`) VALUES
-(7, 'Pirate wallet', 'https://coinmarketcap.com/currencies/pirate-chain/', 'media/adminads/ads-image-62d54a78c4602.png', 1, '2022-07-18 11:56:40', NULL),
-(8, 'Pirate', 'https://coinmarketcap.com/currencies/pirate-chain/', 'media/adminads/ads-image-62d54aa007854.png', 1, '2022-07-18 11:57:20', NULL);
+(7, 'Pirate wallet', 'https://coinmarketcap.com/currencies/pirate-chain/', 'media/adminads/ads-image-635e78646c2e9.jpg', 1, '2022-07-18 11:56:40', NULL),
+(8, 'Pirate', 'https://coinmarketcap.com/currencies/pirate-chain/', 'media/adminads/ads-image-635e79053ceeb.jpg', 1, '2022-07-18 11:57:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -88,18 +88,18 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`id`, `title`, `slug`, `customer_id`, `category_id`, `subcategory_id`, `brand_id`, `city_id`, `town_id`, `model`, `condition`, `authenticity`, `negotiable`, `price`, `description`, `phone`, `phone_2`, `web`, `phone_number_showing_permission`, `thumbnail`, `status`, `featured`, `total_reports`, `total_views`, `is_blocked`, `estimate_calling_time`, `drafted_at`, `created_at`, `updated_at`) VALUES
-(24, 'best bucket of fish you ever did see', 'best-bucket-of-fish-you-ever-did-see', 47, 5, NULL, NULL, 193, NULL, NULL, 'new', NULL, 0, 25.00, 'fresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chips', '44+447552168658', NULL, NULL, 1, 'uploads/addds_images/Mivdi5aqfkMr78cEn92QA3HlwV4honH1z21ADfHl.jpg', 'active', 0, 0, 18, 0, 'Any', NULL, '2022-07-09 23:21:46', '2022-07-19 02:07:04'),
-(25, 'pease and carrots carrots and peas', 'pease-and-carrots-carrots-and-peas', 47, 5, 29, NULL, 193, 11, NULL, 'new', 'original', 0, 8.00, 'how many peas weigh the same as a carrot ?\r\nhow many peas weigh the same as a carrot ?\r\nhow many peas weigh the same as a carrot ?\r\nhow many peas weigh the same as a carrot ?', '44+447552168658', NULL, NULL, 1, 'uploads/addds_images/TiMZs1xw0kDZYAlBa0OoQvuwKPE4imPc92ydPKio.jpg', 'active', 0, 0, 21, 0, 'Morning', NULL, '2022-07-09 23:28:38', '2022-07-24 13:17:25'),
-(26, 'football crazy football mad up the arsenal', 'football-crazy-football-mad-up-the-arsenal', 51, 6, NULL, NULL, 194, NULL, NULL, 'new', NULL, 0, 10.00, 'Jesus saves but George Best scores on the rebound!!!\r\nJesus saves but George Best scores on the rebound!!!\r\nJesus saves but George Best scores on the rebound!!!', '447552168658', NULL, NULL, 1, 'uploads/addds_images/nseaZWSbfFr3gWHTQ8JI6D8CnhINN5kYiG7r0dlQ.png', 'active', 0, 0, 12, 0, 'Any', NULL, '2022-07-09 23:34:19', '2022-07-23 02:48:07'),
-(27, 'TUTOTUTOTUTOTTOTUTOTUTTTTTTTTTT', 'tutotutotutottotutotutttttttttt', 52, 5, 29, 10, 16, 274, NULL, 'new', 'original', 1, 55.00, 'THE BROOKLYN BRIDGE IS FOR SALE\r\nTHE BROOKLYN BRIDGE IS FOR SALE\r\nTHE BROOKLYN BRIDGE IS FOR SALE\r\nTHE BROOKLYN BRIDGE IS FOR SALE\r\nTHE BROOKLYN BRIDGE IS FOR SALE', '44+447552168658', NULL, NULL, 1, 'uploads/addds_images/JpNWpAxsDCGxuxrOYMrOpncj7qdoq4c2M4iTmHvr.jpg', 'active', 1, 0, 30, 0, 'Morning', NULL, '2022-07-10 01:10:55', '2022-07-25 09:12:51'),
-(28, 'hot pants and leg warmers are cool', 'hot-pants-and-leg-warmers-are-cool', 47, 2, NULL, NULL, 193, NULL, NULL, 'new', NULL, 0, 5.00, 'n fafjkvnfdjknv;afdvna;fdokvn;sfdakjlvn;fjkvn;okfjvnafj n;lkfjn ;lkjafdn ;fjvn;ofvnofvivnav o;favnaofvn;f nsd;kvn;sfdlk vnsdfok nfdal;kn fsknv;afsdnvoasfdinv\'asd', '44+447552168658', NULL, NULL, 1, 'uploads/addds_images/wDM4LKHYSfzCxE600d8saIuBnS65jMkrJbShZ2fO.png', 'active', 0, 0, 15, 0, 'Evening', NULL, '2022-07-10 20:17:46', '2022-07-21 03:42:16'),
-(29, 'Hp Elitebook Core i5 8Gb-Ram 256-SSD', 'hp-elitebook-core-i5-8gb-ram-256-ssd', 30, 5, 29, NULL, 11, 191, NULL, 'new', 'original', 0, 250.00, 'Description\r\nProcessor Intel ® Core i5 \r\n\r\n★ RAM – 8GB DDR4 PC3L\r\n\r\n★ SSD – 256GB M.2\r\n\r\n★ Intel ® HD Graphics share 4 GB.\r\n\r\n★ Display ultra 14.1″ Ful HD (1920×1080)\r\n\r\n★ Battery standby 100% 4 hours+\r\n\r\n★ Backlit keyboard, full HD display (1920×1080), dual hardix storage, Dual Ram slot.', NULL, NULL, NULL, 0, 'uploads/addds_images/15u9jjfRnasU1PSOdklEOpVVKNXioq1dR3ls3PXd.jpg', 'active', 0, 0, 15, 0, 'Evening', NULL, '2022-07-17 20:33:01', '2022-07-24 21:38:33'),
-(31, 'Hp core-i3 6th gen,4GB Ram 1000GB Hdd', 'hp-core-i3-6th-gen4gb-ram-1000gb-hdd', 57, 4, NULL, NULL, 193, NULL, NULL, 'new', NULL, 0, 350.00, 'আসসালামুআলাইকুম____\r\n\r\n🟥🟧🟨A-R laptop Zone এ আপনাকে স্বাগতম 》》আগেই বলি, আমরা কোনো সারভিসিং করা এবং রিফারবিসড মাল বিক্রি করি না। আমাদের সব ল্যাপটপ বিদেশ থেকে সরাসরি ইমপোট করা ফ্রেশ ল্যাপটপ। ধন্যবাদ। \r\n\r\n🟥✔️✔️1 Year Service Warranty\r\n\r\n---------------------------------------------------\r\n\r\n✅Processor: Core-i3 6th genaretion🔥\r\n\r\n✅Ram: 4 GB Ram ddr4 \r\n\r\n✅HDD: 1000 GB HDD \r\n\r\n✅Display: 14\" HD Display\r\n\r\n✅Graphics: Intel Hd Series 4Gb Graphics.     \r\n\r\n✅Battery with 2/3 hour \r\n\r\n✅Others: Windows 10 installed, HD Webcame For Zoom Class', '01990572321', NULL, NULL, 1, 'uploads/addds_images/KgdMkX5u5GTY96E9aVQlpvCEGFqTNc4aNyEgbNOz.jpg', 'active', 0, 0, 13, 0, 'Evening', NULL, '2022-07-19 09:31:29', '2022-07-21 16:10:01'),
-(32, 'Nail polish of the highest quality', 'nail-polish-of-the-highest-quality', 62, 2, 8, NULL, 11, 191, NULL, 'new', 'original', 0, 19.99, 'jjjjjjjjjjjjjjjjjjjjdddddddddddddpppppppppppppppppppprrrrrrrrrrrrrrrrrriiiiiiiiiiiiiiiiiiiiiiiiiddddddddddddddddddddddddddllllllllllllllleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '+447552168658', NULL, 'www.barrrter.com', 1, 'uploads/addds_images/PfgepNORgnhj2yy7GWSH7FtK0K2sFlwYfTyZro3y.jpg', 'active', 0, 0, 9, 0, 'Evening', NULL, '2022-07-20 16:56:01', '2022-07-24 16:41:55'),
-(33, 'Plenty of fish to shoot in this barrel!', 'plenty-of-fish-to-shoot-in-this-barrel', 62, 4, NULL, NULL, 193, NULL, NULL, 'new', NULL, 1, 63.25, 'HaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddock', '+447552168658', NULL, NULL, 1, 'uploads/addds_images/y35BvvljKYclNst6rkOSL7EyFKk5Q6e5HWByo5gu.jpg', 'active', 1, 0, 8, 0, 'Evening', NULL, '2022-07-20 17:11:12', '2022-07-24 20:04:22'),
-(34, 'Continental drift is the best beach front', 'continental-drift-is-the-best-beach-front', 56, 3, 18, NULL, 130, 646, NULL, 'used', 'original', 1, 50000.00, 'Top speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mph', NULL, NULL, NULL, 0, 'uploads/addds_images/Z6V2CD60pTMPUknbC207w97Bw4gISPeI28FU1VnG.jpg', 'active', 0, 0, 5, 0, 'Evening', NULL, '2022-07-21 16:15:00', '2022-07-23 16:19:09'),
-(35, 'Bank Used Core2dou Pc 250gb HDD & 2gb Ram', 'bank-used-core2dou-pc-250gb-hdd-2gb-ram', 63, 4, NULL, NULL, 21, 111, NULL, 'new', NULL, 0, 250.00, 'Condition:\r\nUsed\r\nBrand:\r\nDell\r\nModel:\r\nCore2dou\r\nDescription\r\nDell  Bank Used Brand pc with \r\n\r\n2gb Ram, \r\n\r\n250gb Harddisk, \r\n\r\nIntel Core2dou Processor. \r\n\r\nIntegrated Speaker.', NULL, NULL, NULL, 0, 'uploads/addds_images/tqDpO36eaYIkUSVtEny35k6sr4FJ3TYIy4J2ObUC.jpg', 'active', 0, 0, 8, 0, 'Evening', NULL, '2022-07-22 20:39:43', '2022-07-24 21:38:17'),
-(36, 'Lorem Ipsum is simply dummy text', 'lorem-ipsum-is-simply-dummy-text', 68, 2, NULL, NULL, 8, 139, NULL, 'new', NULL, 0, 333.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL, NULL, 0, 'uploads/addds_images/DELdZwI2LDvk0HUoO8ddXhWkaz6uMicZ5ZDbmAXB.jpg', 'active', 0, 0, 6, 0, 'Evening', NULL, '2022-07-24 21:44:15', '2022-07-25 14:50:23');
+(24, 'best bucket of fish you ever did see', 'best-bucket-of-fish-you-ever-did-see', 47, 5, 25, 1, 193, 11, 'TVS', 'new', 'original', 0, 25.00, '<p>fresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chipsfresh fish where\'s the chips</p>', '44+447552168658', NULL, NULL, 1, 'uploads/addss\\bpjCDE8XP5gVyGTbDzShZbMetJvL7cTglduMIdct.jpg', 'active', 1, 0, 26, 0, 'Any', NULL, '2022-07-09 23:21:46', '2022-11-03 03:00:55'),
+(25, 'pease and carrots carrots and peas', 'pease-and-carrots-carrots-and-peas', 47, 5, 29, 1, 193, 11, 'ss', 'new', 'original', 0, 8.00, '<p>how many peas weigh the same as a carrot ? how many peas weigh the same as a carrot ? how many peas weigh the same as a carrot ? how many peas weigh the same as a carrot ?</p>', '44+447552168658', NULL, NULL, 1, 'uploads/addss\\vsM5sKqFZPb5CkSB1XUFAsgzK2JTgtQzsIvViAwn.jpg', 'active', 1, 0, 25, 0, 'Morning', NULL, '2022-07-09 23:28:38', '2022-11-05 04:54:59'),
+(26, 'football crazy football mad up the arsenal', 'football-crazy-football-mad-up-the-arsenal', 51, 6, 30, 1, 194, 61, 'New', 'new', 'original', 0, 10.00, '<p>Jesus saves but George Best scores on the rebound!!! Jesus saves but George Best scores on the rebound!!! Jesus saves but George Best scores on the rebound!!!</p>', '447552168658', NULL, NULL, 1, 'uploads/addss\\902UnvXCscTkYrBxREolzCVCcRn9Lpu1jzkvrg6H.jpg', 'active', 0, 0, 12, 0, 'Any', NULL, '2022-07-09 23:34:19', '2022-10-30 06:53:48'),
+(27, 'football crazy football mad up the a', 'football-crazy-football-mad-up-the-a', 52, 5, 29, 10, 16, 274, '33', 'new', 'original', 1, 55.00, '<p>THE BROOKLYN BRIDGE IS FOR SALE THE BROOKLYN BRIDGE IS FOR SALE THE BROOKLYN BRIDGE IS FOR SALE THE BROOKLYN BRIDGE IS FOR SALE THE BROOKLYN BRIDGE IS FOR SALE</p>', '44+447552168658', NULL, NULL, 1, 'uploads/addss\\5FftNK0LyR7H93oZGEQDCdZc5AFPAmSe2gS9wmW4.jpg', 'active', 1, 0, 30, 0, 'Morning', NULL, '2022-07-10 01:10:55', '2022-10-30 06:53:09'),
+(28, 'hot pants and leg warmers are cool', 'hot-pants-and-leg-warmers-are-cool', 47, 2, 5, 1, 193, 11, 'New', 'new', 'original', 0, 5.00, '<p>n fafjkvnfdjknv;afdvna;fdokvn;sfdakjlvn;fjkvn;okfjvnafj n;lkfjn ;lkjafdn ;fjvn;ofvnofvivnav o;favnaofvn;f nsd;kvn;sfdlk vnsdfok nfdal;kn fsknv;afsdnvoasfdinv\'asd</p>', '44+447552168658', NULL, NULL, 1, 'uploads/addss\\o67xmn7EP7v1fUUaUFuLW7IjLIcAl2DMHEhaeDD8.jpg', 'active', 0, 0, 15, 0, 'Evening', NULL, '2022-07-10 20:17:46', '2022-10-30 06:54:03'),
+(29, 'Hp Elitebook Core i5 8Gb-Ram 256-SSD', 'hp-elitebook-core-i5-8gb-ram-256-ssd', 30, 5, 29, 1, 11, 191, 'New', 'new', 'original', 0, 250.00, '<p>Description Processor Intel ® Core i5 ★ RAM – 8GB DDR4 PC3L ★ SSD – 256GB M.2 ★ Intel ® HD Graphics share 4 GB. ★ Display ultra 14.1″ Ful HD (1920×1080) ★ Battery standby 100% 4 hours+ ★ Backlit keyboard, full HD display (1920×1080), dual hardix storage, Dual Ram slot.</p>', '0124578457', NULL, NULL, 0, 'uploads/addss\\evJBFRmw9EmsyG2mCfDk4CFczZB9Xn8pK2ptOKUM.jpg', 'active', 0, 0, 16, 0, 'Evening', NULL, '2022-07-17 20:33:01', '2022-11-01 07:52:59'),
+(31, 'Hp core-i3 6th gen,4GB Ram 1000GB Hdd', 'hp-core-i3-6th-gen4gb-ram-1000gb-hdd', 57, 4, 19, 1, 193, 11, 'new', 'new', 'original', 0, 350.00, '<p>আসসালামুআলাইকুম____ 🟥🟧🟨A-R laptop Zone এ আপনাকে স্বাগতম 》》আগেই বলি, আমরা কোনো সারভিসিং করা এবং রিফারবিসড মাল বিক্রি করি না। আমাদের সব ল্যাপটপ বিদেশ থেকে সরাসরি ইমপোট করা ফ্রেশ ল্যাপটপ। ধন্যবাদ। 🟥✔️✔️1 Year Service Warranty --------------------------------------------------- ✅Processor: Core-i3 6th genaretion🔥 ✅Ram: 4 GB Ram ddr4 ✅HDD: 1000 GB HDD ✅Display: 14\" HD Display ✅Graphics: Intel Hd Series 4Gb Graphics. ✅Battery with 2/3 hour ✅Others: Windows 10 installed, HD Webcame For Zoom Class</p>', '01990572321', NULL, NULL, 1, 'uploads/addss\\YAjrYeMdqTdATrwdBT4VmLKenflWkatttRu6MrOC.jpg', 'active', 0, 0, 18, 0, 'Evening', NULL, '2022-07-19 09:31:29', '2022-10-30 07:23:13'),
+(32, 'Nail polish of the highest quality', 'nail-polish-of-the-highest-quality', 62, 2, 8, 1, 11, 191, 'New', 'new', 'original', 0, 19.99, '<p>jjjjjjjjjjjjjjjjjjjjdddddddddddddpppppppppppppppppppprrrrrrrrrrrrrrrrrriiiiiiiiiiiiiiiiiiiiiiiiiddddddddddddddddddddddddddllllllllllllllleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>', '+447552168658', NULL, 'www.barrrter.com', 1, 'uploads/addss\\qCmDnxWkO9r9p0VbXFZB1OWRQhI4RzX8B5ltsx61.jpg', 'active', 1, 0, 12, 0, 'Evening', NULL, '2022-07-20 16:56:01', '2022-11-03 03:02:50'),
+(33, 'Plenty of fish to shoot in this barrel!', 'plenty-of-fish-to-shoot-in-this-barrel', 62, 4, NULL, NULL, 193, NULL, NULL, 'new', NULL, 1, 63.25, 'HaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddockHaddock', '+447552168658', NULL, NULL, 1, 'uploads/addss\\Wl4hgF9RxoyLzvRNgpBLjCFbu0nxLuxGCvs35ieH.jpg', 'active', 1, 0, 12, 0, 'Evening', NULL, '2022-07-20 17:11:12', '2022-11-01 07:52:50'),
+(34, 'Continental drift is the best beach front', 'continental-drift-is-the-best-beach-front', 56, 3, 18, 1, 130, 646, 'New', 'new', 'original', 1, 50000.00, '<p>Top speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mphTop speed 290 mph</p>', '0124578457', NULL, NULL, 0, 'uploads/addss\\Wl4hgF9RxoyLzvRNgpBLjCFbu0nxLuxGCvs35ieH.jpg', 'active', 1, 0, 6, 0, 'Evening', NULL, '2022-07-21 16:15:00', '2022-10-30 06:56:29'),
+(35, 'Bank Used Core2dou Pc 250gb HDD & 2gb Ram', 'bank-used-core2dou-pc-250gb-hdd-2gb-ram', 63, 4, 19, 1, 21, 111, 'New', 'new', 'original', 0, 250.00, '<p>Condition: Used Brand: Dell Model: Core2dou Description Dell Bank Used Brand pc with 2gb Ram, 250gb Harddisk, Intel Core2dou Processor. Integrated Speaker.</p>', '0124578457', NULL, NULL, 0, 'uploads/addss\\naMc6pZOXTmrbJAFWyi62ivSyisdoWGI91k2LpJ4.jpg', 'active', 1, 0, 10, 0, 'Evening', NULL, '2022-07-22 20:39:43', '2022-10-30 07:03:58'),
+(36, 'Lorem Ipsum is simply dummy text', 'lorem-ipsum-is-simply-dummy-text', 68, 2, 5, 1, 8, 139, 'New', 'new', 'original', 1, 333.00, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', '0124578457', NULL, NULL, 0, 'uploads/addss\\CnQDHfqispp8xuJOAvvBMguhv3lpff3aharu6Xby.jpg', 'active', 1, 0, 8, 0, 'Evening', NULL, '2022-07-24 21:44:15', '2022-11-01 05:59:12');
 
 -- --------------------------------------------------------
 
@@ -131,13 +131,13 @@ INSERT INTO `ad_features` (`id`, `ad_id`, `name`, `created_at`, `updated_at`) VA
 (20, 21, 'demo', '2022-07-06 23:42:36', '2022-07-06 23:42:36'),
 (21, 22, 'new', '2022-07-07 14:31:01', '2022-07-07 14:31:01'),
 (23, 23, 'Large middle', '2022-07-07 18:36:33', '2022-07-07 18:36:33'),
-(24, 24, 'scales', '2022-07-09 23:21:46', '2022-07-09 23:21:46'),
-(26, 26, 'a puncture', '2022-07-09 23:34:19', '2022-07-09 23:34:19'),
-(27, 27, 'Bricks', '2022-07-10 01:10:55', '2022-07-10 01:10:55'),
-(28, 25, 'pods and skins', '2022-07-10 14:39:46', '2022-07-10 14:39:46'),
 (29, 30, 'hand crafted', '2022-07-18 16:51:21', '2022-07-18 16:51:21'),
-(32, 32, 'fbsa', '2022-07-20 17:01:04', '2022-07-20 17:01:04'),
-(33, 33, 'scaly', '2022-07-20 17:11:12', '2022-07-20 17:11:12');
+(33, 33, 'scaly', '2022-07-20 17:11:12', '2022-07-20 17:11:12'),
+(35, 25, 'pods and skins', '2022-10-30 06:52:50', '2022-10-30 06:52:50'),
+(37, 26, 'a puncture', '2022-10-30 06:53:48', '2022-10-30 06:53:48'),
+(38, 32, 'fbsa', '2022-10-30 06:55:06', '2022-10-30 06:55:06'),
+(39, 27, 'Bricks', '2022-10-30 07:03:21', '2022-10-30 07:03:21'),
+(40, 24, 'scales', '2022-10-30 07:16:57', '2022-10-30 07:16:57');
 
 -- --------------------------------------------------------
 
@@ -203,7 +203,11 @@ INSERT INTO `ad_galleries` (`id`, `ad_id`, `image`, `created_at`, `updated_at`) 
 (60, 32, 'uploads/adds_multiple/esBlqcnWFsyn2hnnE9H03rZumKKUNEoXjx3Q9VNW.jpg', '2022-07-20 17:01:04', '2022-07-20 17:01:04'),
 (61, 35, 'uploads/adds_multiple/3xUNxZmahQAX9ufH1ajg2ZN2jA1ciSKRBSIaZN0d.jpg', '2022-07-22 20:39:43', '2022-07-22 20:39:43'),
 (62, 36, 'uploads/adds_multiple/HN8iCUTYf58JI3ktGvp0sQdJ7Xnrnu4vx5SJsyhm.jpg', '2022-07-24 21:44:15', '2022-07-24 21:44:15'),
-(63, 36, 'uploads/adds_multiple/vR4jvyxRknwIXwlDqGxou2BoFvcirFn750xioasL.jpg', '2022-07-24 21:44:15', '2022-07-24 21:44:15');
+(63, 36, 'uploads/adds_multiple/vR4jvyxRknwIXwlDqGxou2BoFvcirFn750xioasL.jpg', '2022-07-24 21:44:15', '2022-07-24 21:44:15'),
+(64, 31, 'uploads/adds_multiple\\NqKAYq8szzBvwrweIB84eUzX54PWZJ7dLgOual8r.jpg', '2022-10-30 07:03:51', '2022-10-30 07:03:51'),
+(65, 31, 'uploads/adds_multiple\\1hi6DSnDjfWJW1NOHWx8yzH8k2vbih6g6wMRu0F9.jpg', '2022-10-30 07:03:51', '2022-10-30 07:03:51'),
+(66, 31, 'uploads/adds_multiple\\UG0rygLcxg2Uny79jJl0qBAiOIgFez6BwvracntN.jpg', '2022-10-30 07:03:51', '2022-10-30 07:03:51'),
+(67, 31, 'uploads/adds_multiple\\pvc3l8ZBx6sXhKHlsyC8gGnIELWqkNScz9Orio3r.jpg', '2022-10-30 07:03:51', '2022-10-30 07:03:51');
 
 -- --------------------------------------------------------
 
@@ -582,7 +586,7 @@ CREATE TABLE `cms` (
 --
 
 INSERT INTO `cms` (`id`, `index1_main_banner`, `index1_counter_background`, `index1_mobile_app_banner`, `index2_search_filter_background`, `index2_get_membership_background`, `index3_search_filter_background`, `index1_title`, `index3_title`, `index3_short_title`, `index1_description`, `download_app`, `newsletter_content`, `membership_content`, `create_account`, `post_ads`, `start_earning`, `terms_background`, `terms_body`, `about_heading`, `about_video_thumb`, `about_background`, `about_body`, `privacy_background`, `privacy_body`, `cookie_body`, `cookie_background`, `contact_background`, `get_membership_background`, `get_membership_image`, `pricing_plan_background`, `faq_background`, `ads_background`, `blog_background`, `dashboard_messenger_background`, `dashboard_favorite_ads_background`, `faq_content`, `manage_ads_content`, `chat_content`, `verified_user_content`, `dashboard_overview_background`, `dashboard_post_ads_background`, `dashboard_my_ads_background`, `dashboard_plan_background`, `dashboard_account_setting_background`, `posting_rules_background`, `posting_rules_body`, `created_at`, `updated_at`) VALUES
-(1, 'uploads/banners\\COKktanu1DW77InNKh5hyqNUOg2826YGlXrmZP3q.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 'Exchangeanything is the Largest Classifieds Portal', '<p>Sell/Buy Used anything here</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p>', 'We ARRR all about using Pirate Chain!', 'https://youtu.be/s7wmiS2mSXY', 'uploads/banners/TpgdLdHrdRiNKGkq9GwlvAfJnI7QCPhRBZiifVGh.jpg', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p>', NULL, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p>', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p>', '', NULL, 'uploads/banners/nua8bMvP7I9NAlVqjnDb6p7MRRAg9Sxjf3e3gzem.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'You can solve most problems instantly by using our online help system. \r\n\r\nIf you cannot find the answer here, please use the contact form.', 'To place and manage adverts or contact fellow Pirates, you must become a member of Barrrter. Please choose the appropriate package to suit your needs. \r\nBeware of scammers, do your business locally if possible.', 'Send messages to sellers and negotiate your deal. For totally anonymous messaging, use your Pirate wallet memo field.  Do not send ARRR unless you completely trust your counterpart. A Barrrter escrow service for safe long distance trading is coming soon!', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p>', '2022-04-02 06:06:48', '2022-10-29 04:19:44');
+(1, 'uploads/banners\\COKktanu1DW77InNKh5hyqNUOg2826YGlXrmZP3q.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 'Exchangeanything is the Largest Classifieds Portal', '<p>Sell/Buy Used anything here</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p><strong>Terms &amp; Condition</strong></p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p><br>&nbsp;</p>', 'About Us', 'https://youtu.be/s7wmiS2mSXY', 'uploads/banners/TpgdLdHrdRiNKGkq9GwlvAfJnI7QCPhRBZiifVGh.jpg', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p>', NULL, '<p><strong>Privacy Policy</strong></p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p><br>&nbsp;</p>', '<p><strong>Cookie Policy</strong></p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p><p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p><br>&nbsp;</p>', '', NULL, 'uploads/banners/nua8bMvP7I9NAlVqjnDb6p7MRRAg9Sxjf3e3gzem.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'You can solve most problems instantly by using our online help system. \r\n\r\nIf you cannot find the answer here, please use the contact form.', 'To place and manage adverts or contact fellow Pirates, you must become a member of Barrrter. Please choose the appropriate package to suit your needs. \r\nBeware of scammers, do your business locally if possible.', 'Send messages to sellers and negotiate your deal. For totally anonymous messaging, use your Pirate wallet memo field.  Do not send ARRR unless you completely trust your counterpart. A Barrrter escrow service for safe long distance trading is coming soon!', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><br>&nbsp;</p><p>&nbsp;</p>', '2022-04-02 06:06:48', '2022-11-01 07:52:04');
 
 -- --------------------------------------------------------
 
@@ -680,9 +684,9 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `username`, `email`, `iso2`, `country_code`, `phone`, `country_id`, `region_id`, `web`, `email_verified_at`, `password`, `image`, `token`, `last_seen`, `remember_token`, `created_at`, `updated_at`, `provider`, `provider_id`, `code`, `subscribe`, `plan_purcase_image`, `payment_note`) VALUES
 (24, 'Julfikar', 'julfikar', 'julfikar@gmail.com', NULL, NULL, '01990572321', NULL, NULL, NULL, NULL, '$2y$10$mr9JLEaSt.btuDikG8LTo.7vAvlmP4HWxKzfsr2Hikpk/bY68nk.e', 'backend/image/default.png', NULL, '2022-06-13 10:28:24', NULL, '2022-06-13 13:09:18', '2022-06-13 14:28:24', NULL, NULL, '22000021', NULL, NULL, 'i have paid'),
-(25, 'Rony', 'ronymia22', 'ronymia.tech22@gmail.com', NULL, NULL, '01990572321', NULL, NULL, NULL, NULL, '$2y$10$1vtjXZWSI6wIKuie2tJSqerushdMPSKIpvptC9OonDvmBL1zaEFby', 'uploads/customer/pPrNMdOaYrdD6HGtaiQ9FQzyYQBoAqrU6TnsBjRY.jpg', NULL, '2022-07-17 17:15:17', NULL, '2022-06-16 20:54:14', '2022-07-17 21:15:17', NULL, NULL, NULL, '0', NULL, 'Hello'),
-(30, 'Rony', 'ronymia', 'ronymia.tech@gmail.com', NULL, NULL, '01990572321', NULL, NULL, 'webdevs4u.com', NULL, '$2y$10$RGKXEzEJdTBSbgLyTcGnMexjx/WFDYUzknY.wuzzu.v87XtSA7QXG', 'backend/image/default.png', NULL, '2022-07-24 17:52:46', NULL, '2022-06-28 13:42:03', '2022-07-24 21:52:46', NULL, NULL, '22000005', '1', NULL, NULL),
-(31, 'Rakib', 'rakib', 'ronymia2211@gmail.com', NULL, NULL, '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$rw5mcnqN3t54P/YLXrIDJO1VYHjsJjvXOUoXAVNUSWZQOW7xOlb0W', 'backend/image/default.png', NULL, '2022-06-28 19:18:28', NULL, '2022-06-28 23:03:41', '2022-06-28 23:18:28', NULL, NULL, '22000006', NULL, NULL, NULL),
+(25, 'Rony', 'ronymia22', 'ronymia.tech22@gmail.com', NULL, NULL, '01990572321', NULL, NULL, NULL, NULL, '$2y$10$1vtjXZWSI6wIKuie2tJSqerushdMPSKIpvptC9OonDvmBL1zaEFby', 'uploads/customer/pPrNMdOaYrdD6HGtaiQ9FQzyYQBoAqrU6TnsBjRY.jpg', NULL, '2022-10-30 12:47:58', NULL, '2022-06-16 20:54:14', '2022-10-30 06:47:58', NULL, NULL, NULL, '0', NULL, 'Hello'),
+(30, 'Rony', 'ronymia', 'ronymia.tech@gmail.com', NULL, NULL, '01990572321', NULL, NULL, 'webdevs4u.com', NULL, '$2y$10$RGKXEzEJdTBSbgLyTcGnMexjx/WFDYUzknY.wuzzu.v87XtSA7QXG', 'backend/image/default.png', NULL, '2022-11-05 10:56:52', NULL, '2022-06-28 13:42:03', '2022-11-05 04:56:52', NULL, NULL, '22000005', '1', NULL, NULL),
+(31, 'Rakib', 'rakib', 'ronymia2211@gmail.com', NULL, NULL, '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$rw5mcnqN3t54P/YLXrIDJO1VYHjsJjvXOUoXAVNUSWZQOW7xOlb0W', 'backend/image/default.png', NULL, '2022-10-30 10:17:43', NULL, '2022-06-28 23:03:41', '2022-10-30 04:17:43', NULL, NULL, '22000006', NULL, NULL, NULL),
 (34, 'Rony', 'ronymia33', 'asiaphtlbd@gmail.com', NULL, NULL, '88001990572321', NULL, NULL, NULL, NULL, '$2y$10$lIrquVhpMSR/XqMPaACQ2uJbXAAAyp7HZUVU6zDcvhCsD0Av0U0ci', 'backend/image/default.png', NULL, '2022-06-30 06:46:31', NULL, '2022-06-30 10:34:19', '2022-06-30 10:46:31', NULL, NULL, '22000008', NULL, NULL, NULL),
 (35, 'Md Omit Hasan', 'omit', 'omithasan4524@gmail.com', NULL, NULL, '8801916962118', NULL, NULL, 'omithasan.com', NULL, '$2y$10$I7BQTSHmN/UYlitrepUVy.TxCf5oL5cjMh0TvG6OrJTLYyEl3KS/y', 'backend/image/default.png', NULL, '2022-07-19 18:11:14', NULL, '2022-06-30 10:36:21', '2022-07-19 22:11:14', NULL, NULL, '22000009', NULL, NULL, NULL),
 (36, 'Rony', 'ronymia2', 'ronymia111333@gmail.com', NULL, NULL, '88001990572321', NULL, NULL, NULL, NULL, '$2y$10$WuJG.Rj2fCdsYDYFC.s8h.MG5lkdnrkgcwQx5B5bZVo/VOTQwHcFO', 'backend/image/default.png', NULL, '2022-07-01 17:58:41', NULL, '2022-06-30 10:46:01', '2022-07-01 21:58:41', NULL, NULL, '22000010', NULL, NULL, NULL),
@@ -699,13 +703,14 @@ INSERT INTO `customers` (`id`, `name`, `username`, `email`, `iso2`, `country_cod
 (54, 'JP', 'BARRRTERER', 'barrrter@protonmail.com', NULL, NULL, '4407552168658', NULL, NULL, 'www.barrrter.com', NULL, '$2y$10$XqCE9EXi7VYRPPPdc/XOSumc6H/VBo2n1rtJWycf7lHm34DnINgS6', 'backend/image/default.png', NULL, '2022-07-24 12:23:53', NULL, '2022-07-11 01:56:59', '2022-07-24 16:23:53', NULL, NULL, '22000019', NULL, NULL, NULL),
 (55, 'Phil McKraken', 'Bendoon', 'philocifer@gmail.com', NULL, NULL, '4407552168658', NULL, NULL, NULL, NULL, '$2y$10$BEzezHGWr9GCQT2yvJwwXutgU6Y0SDGXTmIj2o6XngUlGKX1uclYu', 'backend/image/default.png', NULL, '2022-07-21 12:18:05', NULL, '2022-07-16 00:09:29', '2022-07-21 16:18:05', NULL, NULL, '22000020', NULL, NULL, NULL),
 (56, 'Jon P', 'QuarterMaster', 'jonathanpriddle@gmail.com', NULL, NULL, '4407552168658', NULL, NULL, 'WWW.SAFEGUARRRD.COM', NULL, '$2y$10$VYLdw4HbjJTOnZRezO6TBu4KX7jWezV8rsPaj3Tf9FUMdMSqzRwhS', 'backend/image/default.png', NULL, '2022-07-24 12:23:12', NULL, '2022-07-16 19:09:58', '2022-07-24 16:23:12', NULL, NULL, '22000020', NULL, NULL, NULL),
-(57, 'yeasin', 'yeasin', 'yeasin@gmail.com', 'bd', '880', '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$0TJ.jUPqtR.D2OtIuMKzx.ZwIPD9CCu3UxKkeff57YWyso3MylfKy', 'backend/image/default.png', NULL, '2022-07-19 06:07:37', NULL, '2022-07-19 09:29:41', '2022-07-19 10:07:37', NULL, NULL, '22000021', NULL, NULL, NULL),
-(58, 'Sufi', 'sufi', 'sufi@gmail.com', 'bd', '880', '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$Zk1.lRiJNArPVquk9/Ca0OG9glsLm8K1oLD6UysHm553LIjDBVMO.', 'backend/image/default.png', NULL, '2022-07-19 19:54:12', NULL, '2022-07-19 09:35:19', '2022-07-19 23:54:12', NULL, NULL, '22000022', NULL, NULL, NULL),
+(57, 'yeasin', 'yeasin', 'yeasin@gmail.com', 'bd', '880', '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$0TJ.jUPqtR.D2OtIuMKzx.ZwIPD9CCu3UxKkeff57YWyso3MylfKy', 'backend/image/default.png', NULL, '2022-11-05 10:59:00', NULL, '2022-07-19 09:29:41', '2022-11-05 04:59:00', NULL, NULL, '22000021', NULL, NULL, NULL),
+(58, 'Sufi', 'sufi', 'sufi@gmail.com', 'bd', '880', '01990572321', NULL, NULL, 'https://webdevs4u.com/', NULL, '$2y$10$Zk1.lRiJNArPVquk9/Ca0OG9glsLm8K1oLD6UysHm553LIjDBVMO.', 'backend/image/default.png', NULL, '2022-11-05 10:58:36', NULL, '2022-07-19 09:35:19', '2022-11-05 04:58:36', NULL, NULL, '22000022', NULL, NULL, NULL),
 (59, 'rabin mia', 'rabin', 'rabinmia@gmail.com', NULL, NULL, '01984594919', NULL, NULL, NULL, NULL, '$2y$10$xEF6xkiFKRdvOkX7Zgmx0Odx6xuDkivGbASvCkFQAkX0mNgi/.AWK', 'backend/image/default.png', NULL, '2022-07-19 16:45:48', NULL, '2022-07-19 20:43:47', '2022-07-19 20:45:48', NULL, NULL, '22000023', NULL, NULL, NULL),
 (62, 'Jonathan Priddle', 'even more testing', 'jonphilosopher@gmail.com', 'gb', '44', '+447552168658', NULL, NULL, NULL, NULL, '$2y$10$ZGe7dU4aBrXKA6ig6tyQpeZURXbo1GCW9NvmXF/jAzR7ObkpNai.i', 'backend/image/default.png', NULL, '2022-07-25 11:13:41', NULL, '2022-07-20 16:22:10', '2022-07-25 15:13:41', NULL, NULL, '22000024', NULL, NULL, NULL),
-(63, 'Rajib Khan', 'rajib', 'rajib@gmail.com', 'bd', '880', '01990572321', 21, 111, 'https://webdevs4u.com/', NULL, '$2y$10$i1D5Dlu0jTAqI6gJoXUt3OmEdgeC/alAjyaDLmFVltcyPQ5Pgu4Uq', 'backend/image/default.png', NULL, '2022-07-24 17:42:24', NULL, '2022-07-22 20:36:59', '2022-07-24 21:42:24', NULL, NULL, '2200063', NULL, NULL, NULL),
+(63, 'Rajib Khan', 'rajib', 'rajib@gmail.com', 'bd', '880', '01990572321', 21, 111, 'https://webdevs4u.com/', NULL, '$2y$10$i1D5Dlu0jTAqI6gJoXUt3OmEdgeC/alAjyaDLmFVltcyPQ5Pgu4Uq', 'backend/image/default.png', NULL, '2022-11-05 10:54:42', NULL, '2022-07-22 20:36:59', '2022-11-05 04:54:42', NULL, NULL, '2200063', NULL, NULL, NULL),
 (67, 'user4', 'user4', 'user4@gmail.com', 'us', '1', '01990572321', 23, 411, NULL, NULL, '$2y$10$TqRYZ0CgS1To/yhrG5MmvOozxPiOKAPMDtgN/K1r2hGJd1xw5I.Ni', 'backend/image/default.png', NULL, '2022-07-24 09:16:38', NULL, '2022-07-24 13:09:49', '2022-07-24 13:16:38', NULL, NULL, '2200064', NULL, NULL, NULL),
-(68, 'user5', 'rabinuser5', 'user5@gmail.com', 'us', '1', '01984594919', 8, 139, NULL, NULL, '$2y$10$k1.BM4GO1Ee2GTx003d6l.QRBCRRlo2wrqPev8Lar3Hfh0vP348im', 'backend/image/default.png', NULL, '2022-07-24 17:55:19', NULL, '2022-07-24 21:21:01', '2022-07-24 21:55:19', NULL, NULL, '2200068', NULL, NULL, NULL);
+(68, 'user5', 'rabinuser5', 'user5@gmail.com', 'us', '1', '01984594919', 8, 139, NULL, NULL, '$2y$10$k1.BM4GO1Ee2GTx003d6l.QRBCRRlo2wrqPev8Lar3Hfh0vP348im', 'backend/image/default.png', NULL, '2022-07-24 17:55:19', NULL, '2022-07-24 21:21:01', '2022-07-24 21:55:19', NULL, NULL, '2200068', NULL, NULL, NULL),
+(69, 'Lamya', 'lami', 'lami@gmial.com', 'bd', '880', '01665875412', 21, 111, NULL, NULL, '$2y$10$4DR.OpYLxRxeJ59KGr3siuFBAiaZxZiBGef.GDaVIVERS5PJl9IgC', 'backend/image/default.png', NULL, '2022-11-05 11:05:35', NULL, '2022-11-05 05:01:45', '2022-11-05 05:05:35', NULL, NULL, '2200069', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -730,7 +735,9 @@ INSERT INTO `emails` (`id`, `email`, `created_at`, `updated_at`) VALUES
 (6, 'rabinmia7578@gmail.com', '2022-07-01 08:40:52', '2022-07-01 08:40:52'),
 (7, 'ronymia.tech@gmail.com', '2022-07-01 20:50:30', '2022-07-01 20:50:30'),
 (8, 'japers@protonmail.com', '2022-07-02 00:39:02', '2022-07-02 00:39:02'),
-(9, 'mahfujkhan017@gmail.com', '2022-07-05 19:32:12', '2022-07-05 19:32:12');
+(9, 'mahfujkhan017@gmail.com', '2022-07-05 19:32:12', '2022-07-05 19:32:12'),
+(10, 'Khan@gmail.com', '2022-11-03 03:02:20', '2022-11-03 03:02:20'),
+(11, 'lami@gmial.com', '2022-11-05 05:01:45', '2022-11-05 05:01:45');
 
 -- --------------------------------------------------------
 
@@ -778,7 +785,8 @@ INSERT INTO `faqs` (`id`, `faq_category_id`, `question`, `answer`, `created_at`,
 (9, 6, 'test', '<p>setes</p>', '2022-06-27 00:01:58', '2022-06-27 00:01:58'),
 (10, 6, 'estest', '<p>sfds</p>', '2022-06-27 00:02:24', '2022-06-27 00:02:24'),
 (11, 5, 'tes', '<p>sfdsf</p>', '2022-06-28 13:17:03', '2022-06-28 13:17:03'),
-(15, 9, 'Question One', '<p>hello</p>', '2022-07-01 22:39:42', '2022-07-01 22:39:42');
+(15, 9, 'Question One', '<p>hello</p>', '2022-07-01 22:39:42', '2022-07-01 22:39:42'),
+(16, 14, 'How to post an ads', '<p>You need to create an account Firstly.</p>', '2022-11-01 07:48:44', '2022-11-01 07:48:44');
 
 -- --------------------------------------------------------
 
@@ -801,10 +809,6 @@ CREATE TABLE `faq_categories` (
 --
 
 INSERT INTO `faq_categories` (`id`, `name`, `slug`, `icon`, `order`, `created_at`, `updated_at`) VALUES
-(8, 'Membership Basics', 'membership-basics', 'far fa-question-circle', 2, '2022-06-28 21:28:16', '2022-06-28 21:28:16'),
-(9, 'Upgrading Your Membership', 'upgrading-your-membership', 'far fa-question-circle', 1, '2022-06-28 21:28:53', '2022-06-28 21:28:53'),
-(10, 'Placing Adverts', 'placing-adverts', 'far fa-question-circle', 3, '2022-06-28 21:29:20', '2022-06-28 21:29:20'),
-(11, 'Replying to Adverts', 'replying-to-adverts', 'far fa-question-circle', 4, '2022-06-28 21:29:47', '2022-06-28 21:29:47'),
 (12, 'Searching', 'searching', 'far fa-question-circle', 5, '2022-06-28 21:30:22', '2022-06-28 21:30:22'),
 (13, 'Email Subscriptions', 'email-subscriptions', 'far fa-question-circle', 6, '2022-06-28 21:30:46', '2022-07-01 09:55:27'),
 (14, 'Problems', 'problems', 'far fa-question-circle', 7, '2022-06-28 21:31:08', '2022-06-28 21:31:08');
@@ -875,21 +879,21 @@ INSERT INTO `messengers` (`id`, `from_id`, `to_id`, `body`, `ad_id`, `status`, `
 (4, 35, 30, '.', 29, 1, '2022-07-19 22:09:52', '2022-07-19 22:59:17'),
 (5, 35, 30, 'hello', 29, 1, '2022-07-19 22:10:12', '2022-07-19 22:59:17'),
 (6, 30, 35, 'hello omit', 29, 1, '2022-07-19 22:10:12', '2022-07-19 22:11:14'),
-(7, 58, 30, '.', 29, 1, '2022-07-19 22:40:51', '2022-07-19 22:59:17'),
-(8, 58, 30, 'hello rony, i am sufi', 29, 1, '2022-07-19 22:41:01', '2022-07-19 22:59:17'),
+(7, 58, 30, '.', 29, 1, '2022-07-19 22:40:51', '2022-11-01 07:54:24'),
+(8, 58, 30, 'hello rony, i am sufi', 29, 1, '2022-07-19 22:41:01', '2022-11-01 07:54:24'),
 (9, 30, 58, 'yes, sufi, i am rony', 29, 1, '2022-07-19 22:41:21', '2022-07-19 23:54:12'),
-(10, 58, 30, 'hi, thanks, ronymia', 29, 1, '2022-07-19 22:42:20', '2022-07-19 22:59:17'),
+(10, 58, 30, 'hi, thanks, ronymia', 29, 1, '2022-07-19 22:42:20', '2022-11-01 07:54:24'),
 (11, 30, 58, 'you are welcome, rony', 29, 1, '2022-07-19 22:42:41', '2022-07-19 23:54:12'),
 (12, 30, 58, 'hello sufi, thanks', 29, 1, '2022-07-19 22:43:40', '2022-07-19 23:54:12'),
 (13, 30, 58, 'hello sufi,nice to meet you', 29, 1, '2022-07-19 22:53:12', '2022-07-19 23:54:12'),
-(14, 58, 30, 'oh no what happend', 29, 1, '2022-07-19 22:53:58', '2022-07-19 22:59:17'),
-(15, 58, 30, 'hello bro', 29, 1, '2022-07-19 22:54:22', '2022-07-19 22:59:17'),
+(14, 58, 30, 'oh no what happend', 29, 1, '2022-07-19 22:53:58', '2022-11-01 07:54:24'),
+(15, 58, 30, 'hello bro', 29, 1, '2022-07-19 22:54:22', '2022-11-01 07:54:24'),
 (16, 30, 58, 'hey what\'s up', 29, 1, '2022-07-19 22:54:54', '2022-07-19 23:54:12'),
-(17, 58, 30, 'hello rony what up', 29, 1, '2022-07-19 22:57:07', '2022-07-19 22:59:17'),
+(17, 58, 30, 'hello rony what up', 29, 1, '2022-07-19 22:57:07', '2022-11-01 07:54:24'),
 (18, 30, 58, 'i am fine.what\'s about you', 29, 1, '2022-07-19 22:57:47', '2022-07-19 23:54:12'),
-(19, 58, 30, 'hlw, i am sufi', 29, 1, '2022-07-19 22:58:49', '2022-07-19 22:59:17'),
+(19, 58, 30, 'hlw, i am sufi', 29, 1, '2022-07-19 22:58:49', '2022-11-01 07:54:24'),
 (20, 30, 58, 'hlw', 29, 1, '2022-07-19 22:59:17', '2022-07-19 23:54:12'),
-(21, 58, 30, 'hi', 29, 0, '2022-07-19 22:59:52', '2022-07-19 22:59:52'),
+(21, 58, 30, 'hi', 29, 1, '2022-07-19 22:59:52', '2022-11-01 07:54:24'),
 (22, 62, 47, '.', 28, 1, '2022-07-20 17:19:43', '2022-07-24 16:42:33'),
 (23, 62, 47, 'Hi Japers', 28, 1, '2022-07-20 17:22:20', '2022-07-24 16:42:33'),
 (24, 47, 62, 'Hi can I help you?', 28, 1, '2022-07-20 17:32:53', '2022-07-20 18:00:52'),
@@ -907,14 +911,15 @@ INSERT INTO `messengers` (`id`, `from_id`, `to_id`, `body`, `ad_id`, `status`, `
 (36, 52, 47, 'd', 25, 1, '2022-07-24 13:18:55', '2022-07-24 16:42:37'),
 (37, 52, 47, 'a', 25, 1, '2022-07-24 13:18:58', '2022-07-24 16:42:37'),
 (38, 47, 62, '.', 32, 0, '2022-07-24 16:42:14', '2022-07-24 16:42:14'),
-(39, 68, 63, '.', 35, 1, '2022-07-24 21:22:29', '2022-07-24 21:22:29'),
-(40, 68, 63, 'hlw', 35, 0, '2022-07-24 21:22:44', '2022-07-24 21:22:44'),
-(41, 68, 63, '.', 35, 0, '2022-07-24 21:38:21', '2022-07-24 21:38:21'),
+(39, 68, 63, '.', 35, 1, '2022-07-24 21:22:29', '2022-11-05 04:53:54'),
+(40, 68, 63, 'hlw', 35, 1, '2022-07-24 21:22:44', '2022-11-05 04:53:54'),
+(41, 68, 63, '.', 35, 1, '2022-07-24 21:38:21', '2022-11-05 04:53:54'),
 (42, 68, 30, '.', 29, 1, '2022-07-24 21:38:37', '2022-07-24 21:52:46'),
 (43, 68, 30, 'hlw', 29, 1, '2022-07-24 21:38:54', '2022-07-24 21:52:46'),
 (44, 30, 68, '.', 36, 0, '2022-07-24 21:51:32', '2022-07-24 21:51:32'),
 (45, 30, 68, '.', 36, 0, '2022-07-24 21:52:07', '2022-07-24 21:52:07'),
-(46, 30, 68, 'hi', 29, 0, '2022-07-24 21:52:45', '2022-07-24 21:52:45');
+(46, 30, 68, 'hi', 29, 0, '2022-07-24 21:52:45', '2022-07-24 21:52:45'),
+(47, 63, 68, 'good', 35, 0, '2022-11-05 04:53:36', '2022-11-05 04:53:36');
 
 -- --------------------------------------------------------
 
@@ -1431,7 +1436,22 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('a74dcaa3-bd8a-43f7-a77d-2fc10a32faac', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 68, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-07-24 21:49:01', '2022-07-24 21:49:01'),
 ('7953f21f-d069-46ba-aa59-1f9de28efd5a', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-07-24 21:49:06', '2022-07-24 21:49:06'),
 ('eb0370c0-ac9c-40f2-ad6f-dc6e75f6ba97', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 68, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-07-24 21:53:03', '2022-07-24 21:53:03'),
-('55c28346-8b80-4001-943b-a045efd6fb9f', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 62, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-07-25 14:51:22', '2022-07-25 14:51:22');
+('55c28346-8b80-4001-943b-a045efd6fb9f', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 62, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-07-25 14:51:22', '2022-07-25 14:51:22'),
+('692685dd-f100-4d74-9af8-d26160ef280a', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-10-30 02:38:51', '2022-10-30 02:38:51'),
+('a225b394-94d1-4d06-b38e-f4f8e72992c7', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 31, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-10-30 04:13:54', '2022-10-30 04:13:54'),
+('b17c0d1e-2f97-4f5b-8535-f1ebf160cbf0', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 25, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-10-30 04:40:54', '2022-10-30 04:40:54'),
+('0a3f771b-f36f-4f90-9640-0a919a0cff90', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-10-30 07:23:12', '2022-10-30 07:23:12'),
+('18e41570-5191-42ab-9a3a-2176d19d3191', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-01 06:04:30', '2022-11-01 06:04:30'),
+('e59487dc-d587-43c2-8e13-5e466e694591', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-11-01 07:54:49', '2022-11-01 07:54:49'),
+('9f0d9862-6ae3-46c7-a0f1-90f1c5349fc6', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-05 04:50:03', '2022-11-05 04:50:03'),
+('82bbbd8c-af78-4494-b8e9-ef3b3946d44f', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 63, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-05 04:50:41', '2022-11-05 04:50:41'),
+('5fbcd9ca-35e3-44da-ac41-1e92871ec8c4', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 63, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-11-05 04:54:42', '2022-11-05 04:54:42'),
+('df3d970f-dcac-4592-b146-470231c85030', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-05 04:55:43', '2022-11-05 04:55:43'),
+('e1e09d1f-5ff3-42fd-8735-a3f8876744f9', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 30, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-11-05 04:56:52', '2022-11-05 04:56:52'),
+('db6b231c-f277-47e6-a1a3-24c5c316fcd4', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 58, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-05 04:57:15', '2022-11-05 04:57:15'),
+('306cdcf9-1e13-44f7-9a8d-f0622f5af0a8', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 58, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-11-05 04:58:36', '2022-11-05 04:58:36'),
+('7a5440be-c896-4aa4-8e4e-c8b238c4c0dd', 'App\\Notifications\\LoginNotification', 'App\\Models\\Customer', 57, '{\"msg\":\"You\'re loggedin successfully\",\"type\":\"loggedin\"}', NULL, '2022-11-05 04:58:44', '2022-11-05 04:58:44'),
+('ba728ec1-6070-4ba8-8de5-e32d988a3838', 'App\\Notifications\\LogoutNotification', 'App\\Models\\Customer', 57, '{\"msg\":\"You\'re loggedout successfully\",\"type\":\"loggedout\"}', NULL, '2022-11-05 04:59:00', '2022-11-05 04:59:00');
 
 -- --------------------------------------------------------
 
@@ -1620,9 +1640,7 @@ CREATE TABLE `plans` (
 --
 
 INSERT INTO `plans` (`id`, `label`, `price`, `ad_limit`, `featured_limit`, `customer_support`, `multiple_image`, `badge`, `join_community_chat`, `immediate_access_to_new_ads`, `priority_situation`, `embed_yt_video_and_links`, `browse_without_banner_ads`, `recommended`, `package_duration`, `new_featured`, `order`, `created_at`, `updated_at`) VALUES
-(1, 'Crew', 10.00, 0, 999, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, '[]', 1, NULL, '2022-07-01 23:34:33'),
-(2, 'Deck Hand', 20.00, 0, 75, 1, 1, 0, 1, 1, 0, 0, 0, 0, 2, '[]', 2, NULL, '2022-07-01 23:34:17'),
-(6, 'Buccaneer', 30.00, 0, 100, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2, '[]', 3, '2022-05-20 04:24:32', '2022-07-11 01:53:41');
+(1, 'Basic', 0.00, 10, 999, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, '[]', 1, NULL, '2022-11-05 04:48:44');
 
 -- --------------------------------------------------------
 
@@ -1848,7 +1866,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `email`, `phone`, `address`, `map_address`, `facebook`, `twitter`, `instagram`, `youtube`, `telegam`, `linkdin`, `android`, `ios`, `discord`, `whatsapp`, `logo_image`, `logo_image2`, `favicon_image`, `header_css`, `header_script`, `body_script`, `free_featured_ad_limit`, `regular_ads_homepage`, `featured_ads_homepage`, `customer_email_verification`, `ads_admin_approval`, `free_ad_limit`, `sidebar_color`, `nav_color`, `dark_mode`, `default_layout`, `website_loader`, `loader_image`, `created_at`, `updated_at`, `seo_meta_title`, `seo_meta_description`, `seo_meta_keywords`, `ads_expire_day`, `ads_expire_notify`) VALUES
-(1, 'info@exchangeanything.com', 'no phone', 'no address', 'no map', 'https://facebook.com', 'https://twitter.com', NULL, 'https://www.youtube.com', NULL, NULL, 'https://play.google.com/store/apps/details?id=com.zakirsoft', 'https://play.google.com/store/apps/details?id=com.zakirsoft', NULL, NULL, 'uploads/website\\osBLm5jJ9t6diAI4beyJXbJCzXx2tXEOBC8tielP.png', 'uploads/website\\V4F6z3KCL0nzU3BwaBVytGaD9NFidmfTPN3XL4Js.png', 'uploads/website\\2X5jsVEbJg86kVfOZ68Nob5Er5EMVdIjZB9CWTO7.png', NULL, NULL, NULL, 1, 0, 1, 0, 0, 3, 'rgba(14, 3, 41, 1)', 'rgba(255, 255, 255, 1)', 0, 1, 0, NULL, '2022-04-02 06:06:48', '2022-10-29 04:18:02', 'test', 'set', 'est', 15, 1);
+(1, 'info@exchangeanything.com', 'no phone', 'no address', 'no map', 'https://facebook.com', 'https://twitter.com', NULL, 'https://www.youtube.com', NULL, NULL, 'https://play.google.com/store/apps/details?id=com.zakirsoft', 'https://play.google.com/store/apps/details?id=com.zakirsoft', NULL, NULL, 'uploads/website\\Ohgw8gqIcxG6e06XLTJpu689SnblOexzY7UY7nlf.png', 'uploads/website\\2zvQj73RDHSOImsKDUTiqpVTlFJ8XgcUHDRLhFGQ.png', 'uploads/website\\UMx4UYOpcPh1imctJwDOPyFDl532lZE06VDNBL8h.png', NULL, NULL, NULL, 1, 0, 1, 0, 0, 3, 'rgba(14, 3, 41, 1)', 'rgba(255, 255, 255, 1)', 0, 1, 0, NULL, '2022-04-02 06:06:48', '2022-10-29 22:27:21', 'test', 'set', 'est', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -1953,7 +1971,7 @@ CREATE TABLE `super_admins` (
 --
 
 INSERT INTO `super_admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'help@barrrter.com', '2022-04-02 06:06:48', '$2y$10$7PUPYRCD1uuMAlK4u5aNvOpnsCKavjTJXTLvxutD1uRkiKPwfWs2.', 'uploads/user\\gq2slWOxn0HYo8e8isVvg6QLnGncNle1N4VJs8JP.png', 'CBTnDvllbg31RMHMLsEdZhzTcv8mJGkC3uR8N45uM2AwMXdqMaZ0nDDFI45d', '2022-04-02 06:06:48', '2022-07-06 18:54:16');
+(1, 'Admin', 'admin@gmail.com', '2022-04-02 06:06:48', '$2y$10$7PUPYRCD1uuMAlK4u5aNvOpnsCKavjTJXTLvxutD1uRkiKPwfWs2.', 'uploads/user\\gq2slWOxn0HYo8e8isVvg6QLnGncNle1N4VJs8JP.png', '21asjLL1x5UgOIrFo6vk0fYquKD1ftzscZHHegeoM2M3wbvR5kEHlstd9zUG', '2022-04-02 06:06:48', '2022-07-06 18:54:16');
 
 -- --------------------------------------------------------
 
@@ -3810,7 +3828,8 @@ INSERT INTO `transactions` (`id`, `payment_id`, `payment_type`, `plan_id`, `cust
 (42, '1', 'Manual', 1, 67, '10.00', '2022-07-24 13:10:54', '2022-07-24 13:10:54'),
 (43, '1', 'Manual', 6, 68, '30.00', '2022-07-24 21:22:03', '2022-07-24 21:22:03'),
 (44, '1', 'Manual', 6, 68, '30.00', '2022-07-24 21:48:51', '2022-07-24 21:48:51'),
-(45, '1', 'Manual', 6, 30, '30.00', '2022-07-24 21:51:22', '2022-07-24 21:51:22');
+(45, '1', 'Manual', 6, 30, '30.00', '2022-07-24 21:51:22', '2022-07-24 21:51:22'),
+(46, '1', 'Manual', 1, 69, '0', '2022-11-05 05:04:48', '2022-11-05 05:04:48');
 
 -- --------------------------------------------------------
 
@@ -3837,47 +3856,48 @@ CREATE TABLE `user_plans` (
 --
 
 INSERT INTO `user_plans` (`id`, `plans_id`, `customer_id`, `ad_limit`, `featured_limit`, `customer_support`, `multiple_image`, `badge`, `is_active`, `created_at`, `updated_at`) VALUES
-(50, 2, 24, 400, 150, 1, 1, 0, 1, '2022-06-13 13:09:18', '2022-06-13 13:10:35'),
-(51, 2, 25, 0, 150, 1, 1, 0, 1, '2022-06-16 20:54:14', '2022-06-16 20:56:20'),
+(50, 1, 24, 400, 150, 1, 1, 0, 1, '2022-06-13 13:09:18', '2022-06-13 13:10:35'),
+(51, 1, 25, 0, 150, 1, 1, 0, 1, '2022-06-16 20:54:14', '2022-06-16 20:56:20'),
 (54, 1, 28, 0, 1998, 1, 0, 0, 2, '2022-06-18 16:42:12', '2022-06-29 01:25:36'),
 (55, 1, 29, 0, 1998, 1, 0, 0, 1, '2022-06-25 17:20:43', '2022-06-25 17:42:31'),
-(56, 6, 30, 0, 10, 1, 1, 1, 1, '2022-06-28 13:42:03', '2022-07-24 21:51:22'),
+(56, 1, 30, 0, 10, 1, 1, 1, 1, '2022-06-28 13:42:03', '2022-07-24 21:51:22'),
 (57, 1, 31, 0, 0, 1, 1, 1, 1, '2022-06-28 23:03:41', '2022-06-28 23:12:58'),
-(58, 2, 32, 0, 0, 1, 1, 0, 1, '2022-06-29 02:16:30', '2022-07-01 01:36:34'),
-(59, 2, 33, 0, 0, 1, 1, 0, 1, '2022-06-29 03:51:06', '2022-06-29 03:51:57'),
-(60, 2, 34, 0, 0, 1, 1, 0, 3, '2022-06-30 10:34:19', '2022-06-30 10:34:19'),
-(61, 6, 35, 0, 10, 1, 1, 1, 1, '2022-06-30 10:36:21', '2022-07-06 23:46:39'),
-(62, 2, 36, 0, 0, 1, 1, 0, 1, '2022-06-30 10:46:01', '2022-07-06 18:50:22'),
-(63, 2, 37, 0, 0, 1, 1, 0, 3, '2022-06-30 14:58:22', '2022-06-30 14:58:22'),
-(64, 2, 38, 0, 0, 1, 1, 0, 0, '2022-06-30 20:41:20', '2022-06-30 20:41:24'),
-(65, 6, 41, 0, 10, 1, 1, 1, 1, '2022-07-01 16:51:33', '2022-07-01 20:00:15'),
-(66, 2, 42, 0, 0, 1, 1, 0, 1, '2022-07-01 21:02:15', '2022-07-01 21:52:51'),
-(67, 2, 43, 0, 0, 1, 1, 0, 1, '2022-07-02 17:20:50', '2022-07-02 17:23:31'),
-(68, 6, 44, 0, 9, 1, 1, 1, 1, '2022-07-05 14:29:10', '2022-07-05 21:17:13'),
-(69, 2, 45, 0, 0, 1, 1, 0, 2, '2022-07-05 16:15:16', '2022-07-05 16:19:05'),
-(70, 2, 46, 0, 0, 1, 1, 0, 1, '2022-07-05 16:35:38', '2022-07-05 16:37:54'),
-(71, 2, 47, 0, 0, 1, 1, 0, 1, '2022-07-05 17:11:52', '2022-07-05 17:28:26'),
-(72, 2, 48, 0, 0, 1, 1, 0, 1, '2022-07-06 06:40:46', '2022-07-06 06:41:50'),
+(58, 1, 32, 0, 0, 1, 1, 0, 1, '2022-06-29 02:16:30', '2022-07-01 01:36:34'),
+(59, 1, 33, 0, 0, 1, 1, 0, 1, '2022-06-29 03:51:06', '2022-06-29 03:51:57'),
+(60, 1, 34, 0, 0, 1, 1, 0, 3, '2022-06-30 10:34:19', '2022-06-30 10:34:19'),
+(61, 1, 35, 0, 10, 1, 1, 1, 1, '2022-06-30 10:36:21', '2022-07-06 23:46:39'),
+(62, 1, 36, 0, 0, 1, 1, 0, 1, '2022-06-30 10:46:01', '2022-07-06 18:50:22'),
+(63, 1, 37, 0, 0, 1, 1, 0, 3, '2022-06-30 14:58:22', '2022-06-30 14:58:22'),
+(64, 1, 38, 0, 0, 1, 1, 0, 0, '2022-06-30 20:41:20', '2022-06-30 20:41:24'),
+(65, 1, 41, 0, 10, 1, 1, 1, 1, '2022-07-01 16:51:33', '2022-07-01 20:00:15'),
+(66, 1, 42, 0, 0, 1, 1, 0, 1, '2022-07-01 21:02:15', '2022-07-01 21:52:51'),
+(67, 1, 43, 0, 0, 1, 1, 0, 1, '2022-07-02 17:20:50', '2022-07-02 17:23:31'),
+(68, 1, 44, 0, 9, 1, 1, 1, 1, '2022-07-05 14:29:10', '2022-07-05 21:17:13'),
+(69, 1, 45, 0, 0, 1, 1, 0, 2, '2022-07-05 16:15:16', '2022-07-05 16:19:05'),
+(70, 1, 46, 0, 0, 1, 1, 0, 1, '2022-07-05 16:35:38', '2022-07-05 16:37:54'),
+(71, 1, 47, 0, 0, 1, 1, 0, 1, '2022-07-05 17:11:52', '2022-07-05 17:28:26'),
+(72, 1, 48, 0, 0, 1, 1, 0, 1, '2022-07-06 06:40:46', '2022-07-06 06:41:50'),
 (73, 1, 49, 0, 0, 1, 0, 0, 1, '2022-07-06 18:02:18', '2022-07-07 18:48:17'),
-(74, 2, 50, 0, 0, 1, 1, 0, 1, '2022-07-07 14:21:16', '2022-07-07 14:26:03'),
+(74, 1, 50, 0, 0, 1, 1, 0, 1, '2022-07-07 14:21:16', '2022-07-07 14:26:03'),
 (75, 1, 51, 0, 0, 1, 0, 0, 1, '2022-07-07 19:17:28', '2022-07-07 19:28:53'),
-(76, 6, 52, 0, 19, 1, 1, 1, 1, '2022-07-09 23:38:32', '2022-07-10 01:10:55'),
+(76, 1, 52, 0, 19, 1, 1, 1, 1, '2022-07-09 23:38:32', '2022-07-10 01:10:55'),
 (77, 1, 53, 0, 0, 1, 0, 0, 1, '2022-07-10 17:07:38', '2022-07-10 17:50:04'),
-(78, 6, 54, 0, 20, 1, 1, 1, 1, '2022-07-11 01:56:59', '2022-07-11 01:58:52'),
-(79, 6, 55, 0, 20, 1, 1, 1, 1, '2022-07-16 00:09:29', '2022-07-18 17:33:14'),
+(78, 1, 54, 0, 20, 1, 1, 1, 1, '2022-07-11 01:56:59', '2022-07-11 01:58:52'),
+(79, 1, 55, 0, 20, 1, 1, 1, 1, '2022-07-16 00:09:29', '2022-07-18 17:33:14'),
 (80, 1, 56, 0, 0, 1, 0, 0, 1, '2022-07-16 19:09:58', '2022-07-16 19:17:15'),
-(81, 2, 57, 0, 0, 1, 1, 0, 1, '2022-07-19 09:29:41', '2022-07-19 09:30:07'),
-(82, 6, 58, 0, 10, 1, 1, 1, 1, '2022-07-19 09:35:19', '2022-07-19 09:35:26'),
-(83, 2, 59, 0, 0, 1, 1, 0, 1, '2022-07-19 20:43:47', '2022-07-19 20:44:51'),
+(81, 1, 57, 0, 0, 1, 1, 0, 1, '2022-07-19 09:29:41', '2022-07-19 09:30:07'),
+(82, 1, 58, 0, 10, 1, 1, 1, 1, '2022-07-19 09:35:19', '2022-07-19 09:35:26'),
+(83, 1, 59, 0, 0, 1, 1, 0, 1, '2022-07-19 20:43:47', '2022-07-19 20:44:51'),
 (84, 1, 60, 0, 0, 1, 0, 0, 0, '2022-07-20 16:14:48', '2022-07-20 16:15:24'),
-(85, 2, 61, 0, 0, 1, 1, 0, 0, '2022-07-20 16:18:31', '2022-07-20 16:19:13'),
-(86, 6, 62, 0, 19, 1, 1, 1, 1, '2022-07-20 16:22:10', '2022-07-20 17:11:12'),
-(87, 6, 63, 0, 20, 1, 1, 1, 1, '2022-07-22 20:36:59', '2022-07-22 20:37:45'),
-(88, 6, 64, 0, 10, 1, 1, 1, 3, '2022-07-23 22:59:10', '2022-07-23 22:59:10'),
+(85, 1, 61, 0, 0, 1, 1, 0, 0, '2022-07-20 16:18:31', '2022-07-20 16:19:13'),
+(86, 1, 62, 0, 19, 1, 1, 1, 1, '2022-07-20 16:22:10', '2022-07-20 17:11:12'),
+(87, 1, 63, 0, 20, 1, 1, 1, 1, '2022-07-22 20:36:59', '2022-07-22 20:37:45'),
+(88, 1, 64, 0, 10, 1, 1, 1, 3, '2022-07-23 22:59:10', '2022-07-23 22:59:10'),
 (89, 1, 65, 0, 0, 1, 0, 0, 0, '2022-07-23 23:31:17', '2022-07-23 23:31:21'),
 (90, 1, 66, 0, 0, 1, 0, 0, 0, '2022-07-24 13:07:44', '2022-07-24 13:07:53'),
 (91, 1, 67, 0, 0, 1, 0, 0, 1, '2022-07-24 13:09:49', '2022-07-24 13:10:54'),
-(92, 6, 68, 0, 30, 1, 1, 1, 1, '2022-07-24 21:21:01', '2022-07-24 21:48:51');
+(92, 1, 68, 0, 30, 1, 1, 1, 1, '2022-07-24 21:21:01', '2022-07-24 21:48:51'),
+(93, 1, 69, 20, 0, 1, 0, 0, 1, '2022-11-05 05:01:45', '2022-11-05 05:04:48');
 
 -- --------------------------------------------------------
 
@@ -4084,13 +4104,13 @@ ALTER TABLE `ads`
 -- AUTO_INCREMENT for table `ad_features`
 --
 ALTER TABLE `ad_features`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `ad_galleries`
 --
 ALTER TABLE `ad_galleries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `blog_comments`
@@ -4126,19 +4146,19 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `emails`
 --
 ALTER TABLE `emails`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `faqs`
 --
 ALTER TABLE `faqs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `faq_categories`
@@ -4150,7 +4170,7 @@ ALTER TABLE `faq_categories`
 -- AUTO_INCREMENT for table `messengers`
 --
 ALTER TABLE `messengers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `plans`
@@ -4198,13 +4218,13 @@ ALTER TABLE `towns`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `user_plans`
 --
 ALTER TABLE `user_plans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
