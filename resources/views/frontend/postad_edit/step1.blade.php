@@ -72,7 +72,6 @@
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="model" for="modell" />
@@ -94,47 +93,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
 
+
+                    <div class="row">
                         <div class="col-md-6">
-                            <div class="input-select">
+                            <div class="input-field">
                                 <x-forms.label name="authenticity" for="authenticityy" />
-                                <select name="authenticity" id="authenticityy"
-                                    class="form-control select-bg @error('authenticity') border-danger @enderror">
-                                    <option {{ $ad->authenticity == 'original' ? 'selected' : '' }} value="original">
-                                        {{ __('original') }}</option>
-                                    <option {{ $ad->authenticity == 'refurbished' ? 'selected' : '' }} value="refurbished">
-                                        {{ __('refurbished') }}</option>
+                                <select name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
+                                    @isset($ad->condition)
+                                    <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
+                                    <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
+                                    @else
+                                    <option value="original">{{ __('original') }}</option>
+                                    <option value="refurbished">{{ __('refurbished') }}</option>
+                                    @endisset
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+
+                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
-                                <input required value="{{ $ad->price ?? '' }}" name="price" type="number" min="1"
-                                    placeholder="{{ __('price') }}" id="price"
-                                    class="@error('price') border-danger @enderror"/ step="any">
+                                <input value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price"  class="@error('price') border-danger @enderror"/ step="any">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-check">
-                                <input name="negotiable" type="hidden" value="0">
-                                <input {{ $ad->negotiable == 1 ? 'checked' : '' }} value="1" name="negotiable"
-                                    type="checkbox" class="form-check-input" id="checkme" />
-                                <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-check">
-                                <input name="featured" type="hidden" value="0">
-                                <input {{ $ad->featured == 1 ? 'checked' : '' }} value="1" name="featured"
-                                    type="checkbox" class="form-check-input" id="featured" />
-                                <x-forms.label name="featured" for="featured" class="form-check-label" />
-                            </div>
-                        </div>
-                    </div>
+
+                    
 
                     <div class="row">
                         <div class="col-md-6">
@@ -182,35 +167,34 @@
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description"
-                        class="@error('description') border-danger @enderror">{{ $ad->description }}</textarea>
-                    <p style="display: none;" id="charNum">0 characters</p>
+                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description" class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
+                  
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="feature" for="feature" />
                     <div id="multiple_feature_part">
                         <div class="row">
-                            <div class="col-lg-10">
+                            <div class="col-9 col-md-10 col-lg-11">
                                 <div class="input-field">
                                     <input name="features[]" type="text" placeholder="{{ __('feature') }}"
                                         id="adname" class="@error('title') border-danger @enderror" />
                                 </div>
                             </div>
-                            <div class="col-lg-2 mt-10">
+                            <div class="col-3 col-md-2 col-lg-1">
                                 <a role="button" onclick="add_features_field()"
                                     class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
                             </div>
                         </div>
                         @foreach ($ad->features as $feature)
                             <div class="row">
-                                <div class="col-lg-10">
+                                <div class="col-9 col-md-10 col-lg-11">
                                     <div class="input-field">
                                         <input value="{{ $feature->name }}" name="features[]" type="text"
                                             placeholder="{{ __('feature') }}" id="adname"
                                             class="@error('title') border-danger @enderror" />
                                     </div>
                                 </div>
-                                <div class="col-lg-2 mt-10">
+                                <div class="col-3 col-md-2 col-lg-1">
                                     <button onclick="remove_single_field()" id="remove_item"
                                         class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
                                 </div>
@@ -219,14 +203,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 upload-wrapper">
-                        <h3>{{ __('Thumbnail Image') }} <span class="text-danger">*</span></h3>
-                        <div class="input-field">
-                            <input type="file" name="thumbnail"
-                                class="form-control @error('title') border-danger @enderror" onchange="readURL(this);">
-                            <input type="hidden" name="old_thumbnail" value="{{ $ad->thumbnail ?? '' }}">
-                        </div>
-                    </div>
+                     <label class="active mb-2">{{ __('Photos') }}</label>
                     <div class="col-lg-6 col-md-6">
                         <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail"
                             style="height: 100px;width: 80px;float: right;margin-right: 46%;">
@@ -234,7 +211,6 @@
                 </div>
                 <div class="col-12 mb-4 mt-4">
                     <div class="row">
-                        <label class="active mb-2">{{ __('Photos') }}</label>
                         @foreach ($ad->galleries as $gallery)
                             <div class="col-md-3" id="photo_div_{{ $gallery->id }}" class="gallery_sec">
                                 <div class="form-group">
@@ -278,10 +254,10 @@
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn btn--lg text-light">
-                        {{ __('update_next_step') }}
-                        <span class="icon--right">
+                        {{ __('Update') }}
+                       <!--  <span class="icon--right">
                             <x-svg.right-arrow-icon />
-                        </span>
+                        </span> -->
                     </button>
                 </div>
                 <input type="hidden" id="cancel_edit_input" name="cancel_edit" value="0">
@@ -307,6 +283,26 @@
     });
 
 </script>
+<script type="text/javascript">
+        // feature field
+        function add_features_field() {
+            $("#multiple_feature_part").append(`
+                    <div class="row">
+                        <div class="col-9 col-md-10 col-lg-11">
+                            <div class="input-field">
+                                <input name="features[]" type="text" placeholder="Feature" id="adname" class="@error('title') border-danger @enderror"/>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-2 col-lg-1 mt-10">
+                            <button onclick="remove_single_field()" id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    `);
+        }
+        $("#remove_item").click(function() {
+            $(this).parent().parent('div').remove();
+        });
+    </script>
     <script>
 
         // ad update and cancel edit

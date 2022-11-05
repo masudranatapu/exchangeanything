@@ -108,48 +108,12 @@
                                                 </p>
                                             </li>
 
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->join_community_chat == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('join_community_chat') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->immediate_access_to_new_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('immediate_access_to_new_ads') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->multiple_image == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('unlimited_photos') }}</span>
-                                                </p>
-                                            </li>
+                                           
+                                           
+                                           
                                         </ul>
                                     </li>
-                                    <li class="dashboard__benefits-right">
-                                        <ul>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->priority_situation == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('priority_situation_of_ads') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->embed_yt_video_and_links == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('embed_youtube_videos_and_add_links_to_your_adverts') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->browse_without_banner_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('browse_without_banner_ads') }}</span>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                 
                                 </ul>
                             </div>
                         </div>
@@ -196,43 +160,9 @@
     $payment_setting = App\Models\PaymentSetting::first();
     @endphp
 
-    @if($userPlan->is_active == 3)
-    <div class="plans_text">
-        
-   
-                <p class="blinking">Thank you for choosing the <strong>{{$plans->label}}</strong>   membership package. </p>
 
-                <p>Your membership ID is <strong>{{@$unique_id}}</strong> .</p>
-
-                <p> Please send your ARRR equivalent payment of <strong>${{$plans->price}}</strong>  to: <br> <strong>{{$payment_setting->pay_to}}</strong></p>
-
-                <p>You <strong>MUST</strong> include your membership ID in the MEMO FIELD so we can confirm payment and activate your account.</p>
-                <p><strong> Please use the converter below for the current exchange rate.</strong></p>
-
-                <br>
-                <div style="width: 250px; height:335px; background-color: #FAFAFA; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:335px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;margin: 0;width: 250px;padding:1px;padding: 0px; margin: 0px;"><div style="height:315px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=converter&theme=light" width="250" height="310px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div> 
-                <br>
-
-                <p>When you have sent the payment press the ‘I have paid’ button.</p>
-                <p> You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).</p>
-                <p>Thank you for joining the ExchangeAnything Pirate Chain Community!</p>
-
- </div>
-                
-                <button onclick="openPaymentModal()" class="btn btn-success btn-sm">I have paid</button>
-            @endif
-
-            @if($userPlan->is_active == 2)
-                    <p class="blinking">You Are Rejected From Admin</p> <br>
-                            
-            @endif
-
-            @if($userPlan->is_active == 0)
-                <div class="alert alert-info blinking">Your request is pending approval, please wait for activation.</div>  
-                @if (Session::has('message'))
-                <div class="alert alert-info blinking">{{ Session::get('message') }}</div>
-                @endif           
-            @endif
+                   
+            
 
                     
                     @if ($recent_ads->count() > 0)

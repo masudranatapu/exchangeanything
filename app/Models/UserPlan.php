@@ -12,7 +12,7 @@ class UserPlan extends Model
 
 
     protected $fillable = [
-        'customer_id', 'plans_id', 'ad_limit', 'featured_limit', 'customer_support', 'multiple_image', 'badge','is_active'];
+        'customer_id', 'plans_id', 'ad_limit', 'featured_limit', 'customer_support', 'badge','is_active'];
 
     /**
      * Undocumented variable
@@ -21,7 +21,7 @@ class UserPlan extends Model
      */
     protected $casts = [
         'customer_support'  =>  'boolean',
-        'multiple_image'  =>  'boolean',
+        // 'multiple_image'  =>  'boolean',
         'badge'  =>  'boolean',
     ];
 
