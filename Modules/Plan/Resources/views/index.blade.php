@@ -55,19 +55,26 @@
                                 <h5 class="text--body-3">@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif  </h5>
                             </div>
 
-                            <!-- <div class="plan-card__package-list active">
+                             <div class="plan-card__package-list active">
                                 <span class="icon">
                                     <x-svg.check-icon/>
                                 </span>
                                 <h5 class="text--body-3">{{ __('featured_ads_limit') }} : {{ $plan->featured_limit }}</h5>
-                            </div> -->
+                            </div> 
 
-                            <!-- <div class="plan-card__package-list {{ $plan->badge == true ? 'active' : '' }}">
+                             <div class="plan-card__package-list {{ $plan->badge == true ? 'active' : '' }}">
+                                @if($plan->badge == true)
                                 <span class="icon">
                                     <x-svg.check-icon/>
                                 </span>
+                                @else
+                                 <span class="icon text-danger">
+                                     <i class="fa fa-times"></i>
+                                </span>
+                                @endif
+
                                 <h5 class="text--body-3">{{ __('badge') }}</h5>
-                            </div> -->
+                            </div>
 
                             
                             @if(is_array($plan->new_featured))
@@ -151,11 +158,11 @@
     }
     .card_footer-bg {
         background-color: #e8f7ff;
-        color: #06D7A0;
+        color: #0088cc;
         width: 100%;
     }
     .card_footer-bg button {
-        color: #06D7A0;
+        color: #0088cc;
     }
     .card_footer-bg:hover button {
         color: #0088cc;
@@ -182,7 +189,7 @@
     }
 
     .plan-card--active {
-        border: 2px solid #06D7A0;
+        border: 2px solid #0088cc;
     }
 
     .plan-card__top {
@@ -232,7 +239,7 @@
     }
     .plan-card__package-list.active .icon {
         color: #fff;
-        background-color: #06D7A0;
+        background-color: #0088cc;
     }
     .plan-card__package-list .icon {
         display: flex;

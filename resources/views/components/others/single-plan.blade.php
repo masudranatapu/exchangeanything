@@ -32,51 +32,30 @@
         </div>
         <div class="plan-card__bottom">
             <div class="plan-card__package">
-
-                <div class="plan-card__package-list">
-                    <i class="fas fa-check-circle" style="color:#06D7A0; margin-right: 5px; font-size: 21px;"></i>
-                    <h5 class="text--body-3">@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif</h5>
-                </div>
-               
-
-                <div class="plan-card__package-list">
-                    @if($plan->multiple_image == true) <i class="fas fa-check-circle" style="color:#06D7A0; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                    <h5 class="text--body-3">{{ __('unlimited_photos') }}</h5>
-                </div>
-                
-
-                <div class="plan-card__package-list {{ $plan->featured_limit ? 'active':'' }}">
+                <div class="plan-card__package-list active">
                     <span class="icon">
-                        <x-svg.check-icon/>
+                        <x-svg.check-icon />
+                    </span>
+                    <h5 class="text--body-3">{{ __('post') }} {{ $plan->ad_limit }} {{ __('ads') }}</h5>
+                </div>
+                <div class="plan-card__package-list {{ $plan->featured_limit ? 'active' : '' }}">
+                    <span class="icon">
+                        <x-svg.check-icon />
                     </span>
                     <h5 class="text--body-3">{{ $plan->featured_limit }} {{ __('featured_ads') }}</h5>
                 </div>
-
-                <div class="plan-card__package-list {{ $plan->customer_support ? 'active':'' }} ">
-                    <span class="icon">
-                        <x-svg.check-icon/>
-                    </span>
-                    <h5 class="text--body-3">{{ __('basic_customer_support') }}</h5>
-                </div> 
-
-                 <div class="plan-card__package-list {{ $plan->badge? 'active':'' }} ">
-                    <span class="icon">
-                        <x-svg.check-icon/>
-                    </span>
+                <div class="plan-card__package-list {{ $plan->badge ? 'active' : '' }} ">
+                    @if($plan->badge == true)
+                        <span class="icon">
+                            <x-svg.check-icon/>
+                        </span>
+                    @else
+                         <span class="icon">
+                             <i class="fa fa-times text-white"></i>
+                        </span>
+                    @endif
                     <h5 class="text--body-3">{{ __('special_membership_badge') }}</h5>
                 </div>
-
-                @foreach($plan->new_featured ?? [] as $subitem)
-                    @if(empty($subitem))
-                        @continue
-                    @endif
-                    <div class="plan-card__package-list {{ $subitem ? 'active':'' }} ">
-                    <span class="icon">
-                        <x-svg.check-icon/>
-                    </span>
-                        <h5 class="text--body-3">{{ $subitem }}</h5>
-                    </div>
-                @endforeach
             </div>
         </div>
     </div>

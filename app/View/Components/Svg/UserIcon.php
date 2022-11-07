@@ -14,7 +14,7 @@ class UserIcon extends Component
      *
      * @return void
      */
-    public function __construct($height = 18, $width = 18, $stroke = '#06D7A0')
+    public function __construct($height = 18, $width = 18, $stroke = '#0088cc')
     {
         $this->height = $height;
         $this->width = $width;

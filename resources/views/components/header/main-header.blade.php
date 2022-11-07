@@ -62,7 +62,7 @@
                         <span class="icon">
                             <x-svg.message-icon width="24" height="24" stroke="currentColor" />
                         </span>
-                        @if($msg_count)<span style="color:#06D7A0">({{$msg_count}})</span>@endif
+                        @if($msg_count)<span style="color:#0088cc">({{$msg_count}})</span>@endif
                     </div>
                 </a>
                 <a href="{{ route('frontend.dashboard') }}" class="user">

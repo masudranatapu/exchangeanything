@@ -10,7 +10,7 @@
             <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="second view-btn">
                 {{ __('view_ads') }}
                 <span class="icon">
-                    <x-svg.right-arrow-icon stroke="#06D7A0"/>
+                    <x-svg.right-arrow-icon stroke="#0088cc"/>
                 </span>
             </a>
         </div>

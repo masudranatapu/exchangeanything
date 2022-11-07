@@ -10,8 +10,8 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'label', 'price', 'ad_limit', 'featured_limit', 'customer_support', 'multiple_image', 'badge', 'recommended', 'new_featured','package_duration','order'
+     protected $fillable = [
+        'label', 'price', 'ad_limit', 'featured_limit', 'badge', 'recommended'
     ];
 
     protected $casts = [
@@ -21,11 +21,11 @@ class Plan extends Model
     ];
 
 
-    public function setNewFeaturedAttribute($value)
-    {
+    // public function setNewFeaturedAttribute($value)
+    // {
 
-        $this->attributes['new_featured'] = json_encode($value);
-    }
+    //     $this->attributes['new_featured'] = json_encode($value);
+    // }
 
 
     protected static function newFactory()

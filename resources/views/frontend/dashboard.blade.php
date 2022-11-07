@@ -108,9 +108,19 @@
                                                 </p>
                                             </li>
 
-                                           
-                                           
-                                           
+                                            <li class="dashboard__benefits-item">
+                                                <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
+                                                 <p class="text--body-3">{{ $plan->featured_limit }} {{ __('featured_ads') }}</p>
+                                            </li>
+
+                                            <li class="dashboard__benefits-item">
+                                                 @if($plan->badge == true)
+                                                        <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
+                                                    @else
+                                                         <i class="fas fa-times" style="color:red; margin-right: 5px; font-size: 21px;"></i>
+                                                    @endif
+                                                 <p class="text--body-3">{{ __('special_membership_badge') }}</p>
+                                            </li>
                                         </ul>
                                     </li>
                                  
@@ -330,7 +340,7 @@
                     datasets: [{
                         label: '',
                         data: {{ json_encode($bar_chart_datas) }},
-                        backgroundColor: '#06D7A0',
+                        backgroundColor: '#0088cc',
                         borderWidth: 0,
                         barThickness: 28,
                         borderRadius: 100,

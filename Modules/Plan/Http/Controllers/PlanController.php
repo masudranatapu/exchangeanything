@@ -49,7 +49,7 @@ class PlanController extends Controller
             return abort(403);
         }
 
-
+        // dd($request->all());
 
         Plan::create($request->all());
 

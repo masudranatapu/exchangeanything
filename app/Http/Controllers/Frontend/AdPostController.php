@@ -232,14 +232,14 @@ class AdPostController extends Controller
         $ad->save();
 
         $user_plan = UserPlan::where('customer_id', $ad['customer_id'])->first();
-        $multiple_image = $user_plan->multiple_image;
+        //$multiple_image = $user_plan->multiple_image;
 
         // image uploading
         $images = $request->file('images');
-        if($multiple_image == false && count($images) > 1){
-            return
-             redirect()->back()->with('error', 'Your package not support multiple image');
-        }
+        // if($multiple_image == false && count($images) > 1){
+        //     return
+        //      redirect()->back()->with('error', 'Your package not support multiple image');
+        // }
 
         $files = [];
         foreach ($images as $key => $image) {

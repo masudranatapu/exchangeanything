@@ -63,6 +63,19 @@
                                     <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
                                     <p class="text--body-4">@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif</p>
                                 </li>
+                                <li class="dashboard__benefits-item">
+                                    <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
+                                     <p class="text--body-3">{{ $plan->featured_limit }} {{ __('featured_ads') }}</p>
+                                </li>
+
+                                <li class="dashboard__benefits-item">
+                                     @if($plan->badge == true)
+                                        <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
+                                    @else
+                                         <i class="fas fa-times" style="color:red; margin-right: 5px; font-size: 21px;"></i>
+                                    @endif
+                                    <p class="text--body-3">{{ __('special_membership_badge') }}</p>
+                                </li>
                               
                             </ul>
                         </li>

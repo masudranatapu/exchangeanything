@@ -23,7 +23,7 @@
             <div class="cards__info-bottom">
                 <h6 class="cards__location text--body-4">
                     <span class="icon">
-                        <x-svg.location-icon width="20" height="20" stroke="#06D7A0" />
+                        <x-svg.location-icon width="20" height="20" stroke="#0088cc" />
                     </span>
                     @if($ad->town) {{$ad->town->name}} ,@endif{{ $ad->city->name }}
                 </h6>
@@ -68,7 +68,7 @@
                 <div class="cards__info-bottom">
                     <h5 class="cards__location text--body-4">
                         <span class="icon">
-                            <x-svg.location-icon width="20" height="20" stroke="#06D7A0" />
+                            <x-svg.location-icon width="20" height="20" stroke="#0088cc" />
                         </span>
                         {{ $ad->city->name }}
                     </h5>
