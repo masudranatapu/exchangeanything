@@ -43,10 +43,10 @@
 
             <div class="input-group subscribe__input mb-3">
                 <span class="input-group-text"><x-svg.envelope-icon /></span>
-                <input type="email" placeholder="{{ __('email_address') }}" name="email" id="email" />
+                <input type="email" placeholder="{{ __('email_address') }}" name="sub_email" id="sub_email" />
                 <button class="btn">{{ __('subscribe') }}</button>
             </div>
-            @error('email')
+            @error('sub_email')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
 

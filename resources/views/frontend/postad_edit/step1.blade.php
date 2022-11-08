@@ -17,7 +17,7 @@
                     </ul>
                 </div>
             @endif
-            <form id="step1_edit_form" action="{{ route('frontend.post.update', $ad->slug) }}" method="POST">
+            <form action="{{ route('frontend.post.update', $ad->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="dashboard-post__information-form">
@@ -203,12 +203,17 @@
                     </div>
                 </div>
                 <div class="row">
-                     <label class="active mb-2">{{ __('Photos') }}</label>
-                    <div class="col-lg-6 col-md-6">
-                        <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail"
-                            style="height: 100px;width: 80px;float: right;margin-right: 46%;">
+                <div class="col-lg-6 col-md-6 upload-wrapper">
+                    <h3>{{ __('Thumbnail Image') }} <span class="text-danger">*</span></h3>
+                    <div class="input-field">
+                        <input type="file" name="thumbnail" class="form-control @error('title') border-danger @enderror" onchange="readURL(this);">
+                        <input type="hidden" name="old_thumbnail" value="{{ $ad->thumbnail ?? '' }}">
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-6">
+                    <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail" style="height: 100px;width: 80px;float: right;margin-right: 46%;">
+                </div>
+            </div>
                 <div class="col-12 mb-4 mt-4">
                     <div class="row">
                         @foreach ($ad->galleries as $gallery)
@@ -243,14 +248,23 @@
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="form-check">
-                            <input name="featured" type="hidden" value="0">
-                            <input {{ $ad->featured == 1 ? 'checked' : '' }} value="1" name="featured"
-                                type="checkbox" class="form-check-input" id="featured" />
-                            <x-forms.label name="featured" for="featured" class="form-check-label" />
-                        </div>
-                    </div>
+                   @if (session('user_plan')->featured_limit)
+                        @if (session('user_plan')->featured_limit > $ad)
+                            <div class="col-6 col-md-3">
+                                <div class="form-check">
+                                    <input name="featured" type="hidden" value="0">
+                                    @isset($ad->featured)
+                                        <input {{ $ad->featured == 1 ? 'checked' : '' }} value="1" name="featured"
+                                            type="checkbox" class="form-check-input" id="featured" />
+                                    @else
+                                        <input value="1" name="featured" type="checkbox" class="form-check-input"
+                                            id="featured" />
+                                    @endisset
+                                    <x-forms.label name="featured" class="form-check-label" for="featured" />
+                                </div>
+                            </div>
+                        @endif
+                    @endif
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn btn--lg text-light">

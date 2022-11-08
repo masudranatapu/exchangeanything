@@ -4,128 +4,6 @@
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="subcategory" for="subcategory" required="true" />
-                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                <option value="" selected>{{ __('select_subcategory') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                   <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="brand" for="brand" />
-                            <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                <option value="">{{ __('select_brand') }}</option>
-                                @foreach ($brands as $brand)
-                                <option {{ old('brand_id') == $brand->id ? 'selected':'' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="model" for="modell" />
-                            <input value="{{ old('model') }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="condition" for="conditionss" required="true" />
-                            <select name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
-                                @isset($ad->condition)
-                                <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
-                                <option {{ $ad->condition == 'used' ? 'selected':'' }} value="used">{{ __('used') }}</option>
-                                @else
-                                <option value="new">{{ __('new') }}</option>
-                                <option value="used">{{ __('used') }}</option>
-                                @endisset
-                            </select>
-                        </div>
-                    </div>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="authenticity" for="authenticityy" />
-                            <select name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
-                                @isset($ad->condition)
-                                <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
-                                <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
-                                @else
-                                <option value="original">{{ __('original') }}</option>
-                                <option value="refurbished">{{ __('refurbished') }}</option>
-                                @endisset
-                            </select>
-                        </div>
-                    </div>
-                     <div class="col-md-6">
-                        <div class="input-field">
-                            <x-forms.label name="price" for="price" required="true" />($)
-                            <input value="@if(@error('price'))asdfff{{old('price')}}@endif" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price"  class="@error('price') border-danger @enderror"/ step="any">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 phone_input" style="display: none">
-                    <div class="input-field">
-                        <input type="hidden" id="code" value="" name="countrycode">
-                        <input type="phone_number" name="phone" value="{{ $ad->phone ?? $authUser->phone }}"  class="input form-control">
-                    </div>
-                </div>
-                
-                
-                <div class="col-md-6">
-                    <div class="input-select">
-                        <x-forms.label name="country" required="true" for="cityy" />
-                        <select required name="city_id" id="country" class="form-control select-bg @error('city_id') border-danger @enderror">
-                            <option class="d-none" value="" selected>{{ __('select_city') }}</option>
-                            @foreach ($citis as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-select">
-                        <x-forms.label  required="true" name="region" for="townn" />
-                        <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
-                            <option value="" hidden>{{ __('select_town') }}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <input type="hidden" value="{{$authUser->country_id ?? ''}}" name="city_id">
-                <input type="hidden" value="{{$authUser->region_id ?? ''}}" name="town_id">
-                @php
-                $user_plan =  App\Models\UserPlan::where('customer_id',Auth::user()->id)->first();
-                $plan = Modules\Plan\Entities\Plan::find($user_plan->plans_id);
-                
-                @endphp
-            </div>
-            <div class="input-field--textarea">
-                <x-forms.label name="ad_description" for="description" required="true"/>
-                <textarea  onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
-                <p style="display: none;" id="charNum">0 characters</p>
-            </div>
-            <div class="input-field--textarea">
-                <x-forms.label name="features" for="features" />
-                <div id="multiple_feature_part">
-            @endif
             <form action="{{ route('frontend.post.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="dashboard-post__information-form">
@@ -136,14 +14,14 @@
                                 <input onkeyup="countChars(this);"
                                     value="{{ old('title') }}"
                                     name="title" type="text" placeholder="{{ __('title') }}" id="adname"
-                                    class="@error('title') border-danger @enderror" />
+                                    class="@error('title') border-danger @enderror" / required>
                                 <p style="display: none;" id="charNum">0 characters</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="category" for="allCategory" required="true" />
-                                <select name="category_id" id="ad_category"
+                                <select required name="category_id" id="ad_category"
                                     class="form-control select-bg @error('category_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_category') }}</option>
                                     @foreach ($categories as $category)
@@ -158,7 +36,7 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="subcategory" for="subcategory" required="true" />
-                                <select name="subcategory_id" id="ad_subcategory"
+                                <select required name="subcategory_id" id="ad_subcategory"
                                     class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                     <option value="" selected>{{ __('select_subcategory') }}</option>
                                 </select>
@@ -190,7 +68,7 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="condition" for="conditionss" required="true" />
-                                <select name="condition" id="conditionss"
+                                <select required name="condition" id="conditionss"
                                     class="form-control select-bg @error('condition') border-danger @enderror">
                                     @isset($ad->condition)
                                         <option {{ $ad->condition == 'new' ? 'selected' : '' }} value="new">
@@ -227,7 +105,7 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
-                                <input value="{{ old('price')}}"
+                                <input required value="{{ old('price')}}"
                                     name="price" type="number" min="1" placeholder="{{ __('price') }}"
                                     id="price" class="@error('price') border-danger @enderror"/ step="any">
                             </div>
@@ -286,7 +164,7 @@
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description"
+                    <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description"
                         class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
                     <p style="display: none;" id="charNum">0 characters</p>
                 </div>
@@ -309,7 +187,7 @@
                 </div>
                 <div class="input-field">
                     <label class="active">{{ __('upload_photos') }}</label>
-                    <div id="multiple_image_upload" class="input-images-2" style="padding-top: .5rem;" multiple></div>
+                    <div id="multiple_image_upload" class="input-images-2"  style="padding-top: .5rem;" multiple></div>
                 </div>
                 <div class="row mt-1">
                     <div class="col-6 col-md-3">
@@ -329,7 +207,7 @@
                         $ad = Modules\Ad\Entities\Ad::where('customer_id', Auth::user()->id)
                             ->where(['featured' => 1, 'status' => 'active'])
                             ->count();
-                        // dd(session('user_plan')->featured_limit>$ad);
+                        
                     @endphp
                     @if (session('user_plan')->featured_limit)
                         @if (session('user_plan')->featured_limit > $ad)

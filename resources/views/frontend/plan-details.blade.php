@@ -104,7 +104,7 @@
                         $payment_setting = App\Models\PaymentSetting::first();
                         @endphp
 
-                        @if($userPlan->is_active == 1)
+                        {{--  @if($userPlan->is_active == 1)
                         <p class="blinking">Thank you for choosing the <strong>{{$plan->label}}</strong>   membership package. </p>
 
                         <p>Your membership ID is <strong>{{ auth('customer')->user()->code  }}</strong> .</p>
@@ -122,6 +122,7 @@
                        
                         <button onclick="openPaymentModal()" class="btn btn-success btn-sm">I have paid</button>
                         @endif
+                        --}}
                         {{-- <form action="{{route('frontend.planPurchase')}}" method="post"
                             enctype="multipart/form-data" onsubmit="return formValidation()" id="step2Form">
                             @csrf
