@@ -74,49 +74,9 @@
                                                     <span>@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif</span>
                                                 </p>
                                             </li>
-
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->join_community_chat == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('join_community_chat') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->immediate_access_to_new_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('immediate_access_to_new_ads') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->multiple_image == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('unlimited_photos') }}</span>
-                                                </p>
-                                            </li>
                                         </ul>
                                     </li>
-                                    <li class="dashboard__benefits-right">
-                                        <ul>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->priority_situation == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('priority_situation_of_ads') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->embed_yt_video_and_links == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('embed_youtube_videos_and_add_links_to_your_adverts') }}</span>
-                                                </p>
-                                            </li>
-                                            <li class="dashboard__benefits-item">
-                                                @if($plan->browse_without_banner_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                                <p class="text--body-4">
-                                                    <span>{{ __('browse_without_banner_ads') }}</span>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                         </div>

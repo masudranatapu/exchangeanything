@@ -97,14 +97,14 @@ class AdPostController extends Controller
             'web' => 'sometimes',
             'category_id' => 'required',
             'subcategory_id' => 'required',
-            'city_id' => 'required',
+            'country' => 'required',
             'town_id'  => 'required',
             'description' => 'required|min:150',
             'images.*' => 'required|max:2048',
 
             // 'estimate_calling_time' => 'required',
         ],[
-        'city_id.required' => 'The Country is required',
+        'country.required' => 'The Country is required',
          'town_id.required' => 'The Region is required',
     ]);
 
@@ -126,7 +126,7 @@ class AdPostController extends Controller
                 $ad->web = $request->web;
                 $ad->category_id = $request->category_id;
                 $ad->subcategory_id = $request->subcategory_id;
-                $ad->city_id = $request->city_id;
+                $ad->city_id = $request->country;
                 $ad->town_id = $request->town_id;
                 $ad->description = $request->description;
                 $ad->status = setting('ads_admin_approval') ? 'pending': 'active';
@@ -137,7 +137,11 @@ class AdPostController extends Controller
                 $images = $request->images;
 
 
+
                 $files = [];
+                if($images){
+
+
                 foreach ($images as $key => $image) {
                     if($image){
                         if ($key == 0 && $image ) {
@@ -151,15 +155,17 @@ class AdPostController extends Controller
                         }
                     }
                 }
+            }
 
 
                 // feature inserting
-                $features = $request->features;
-                foreach ($features as $feature) {
-                    if($feature){
-                        $ad->adFeatures()->create(['name' => $feature]);
-                    }
-                }
+                if($request->features){
+                    foreach ($request->features as $feature) {
+                         if ($feature) {
+                             $ad->adFeatures()->create(['name' => $feature]);
+                         }
+                     }
+                 }
                 $this->adNotification($ad);
                 !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
@@ -232,14 +238,14 @@ class AdPostController extends Controller
         $ad->save();
 
         $user_plan = UserPlan::where('customer_id', $ad['customer_id'])->first();
-        $multiple_image = $user_plan->multiple_image;
+        //$multiple_image = $user_plan->multiple_image;
 
         // image uploading
         $images = $request->file('images');
-        if($multiple_image == false && count($images) > 1){
-            return
-             redirect()->back()->with('error', 'Your package not support multiple image');
-        }
+        // if($multiple_image == false && count($images) > 1){
+        //     return
+        //      redirect()->back()->with('error', 'Your package not support multiple image');
+        // }
 
         $files = [];
         foreach ($images as $key => $image) {
@@ -359,21 +365,18 @@ class AdPostController extends Controller
      */
     public function UpdatePostStep1(Request $request, Ad $ad)
     {
+
+        // dd($request->all());
+
         $request->validate([
             'title' => "required|unique:ads,title,$ad->id",
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'sometimes',
             'category_id' => 'required',
-            'subcategory_id' => 'required',
-            'city_id' => 'required',
-            'town_id' => 'required',
+            // 'subcategory_id' => 'required',
             'description' => 'required',
 
-        ],
-        [
-            'city_id.required' => 'The Country is required',
-            'town_id.required' => 'Region is required'
         ]);
 
         $ad->update([
@@ -397,11 +400,16 @@ class AdPostController extends Controller
 
          // feature inserting
          $ad->adFeatures()->delete();
-         foreach ($request->features as $feature) {
-             if ($feature) {
-                 $ad->adFeatures()->create(['name' => $feature]);
+
+         if($request->features){
+            foreach ($request->features as $feature) {
+                 if ($feature) {
+                     $ad->adFeatures()->create(['name' => $feature]);
+                 }
              }
          }
+
+         
 
          // image uploading
          $image = $request->file('thumbnail');
@@ -417,19 +425,21 @@ class AdPostController extends Controller
                  @unlink($old_thumb);
               }
          }
-         $images = $request->file('images');
-         if ($images) {
-             foreach ($images as $image) {
-                 if ($image && $image->isValid()) {
-                     $name = $image->hashName();
-                     $image_path = 'uploads/adds_multiple/'.$name;
-                     Image::make($image->path())
-                     ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
-                     ->save($image_path);
-                     $ad->galleries()->create(['image' => $image_path]);
-                 }
-             }
-         }
+
+         
+        $images = $request->file('images');
+        if ($images) {
+            foreach ($images as $image) {
+                if ($image && $image->isValid()) {
+                    $name = $image->hashName();
+                    $image_path = 'uploads/adds_multiple/'.$name;
+                    Image::make($image->path())
+                    ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
+                    ->save($image_path);
+                    $ad->galleries()->create(['image' => $image_path]);
+                }
+            }
+        }
 
 
 

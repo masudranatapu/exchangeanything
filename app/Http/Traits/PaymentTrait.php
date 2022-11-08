@@ -29,9 +29,9 @@ trait PaymentTrait
         if (!$userplan->customer_support) {
             $userplan->customer_support = $plan->customer_support ? true : false;
         }
-        if (!$userplan->multiple_image) {
-            $userplan->multiple_image = $plan->multiple_image ? true : false;
-        }
+        // if (!$userplan->multiple_image) {
+        //     $userplan->multiple_image = $plan->multiple_image ? true : false;
+        // }
         if (!$userplan->badge) {
             $userplan->badge = $plan->badge ? true : false;
         }

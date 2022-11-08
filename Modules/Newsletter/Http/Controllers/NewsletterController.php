@@ -19,23 +19,27 @@ class NewsletterController extends Controller
             abort(404);
         }
         $request->validate([
-            'email' => 'required|email|unique:emails,email'
+            'sub_email' => 'required|email|unique:emails,email'
+        ],
+        [
+            'sub_email.required' => 'Email field is required!',
+            'sub_email.unique' => 'The email has already been taken.',
         ]);
 
-        $usersubscribe = Customer::where('email', $request->email)->first();
+        $usersubscribe = Customer::where('email', $request->sub_email)->first();
         if($usersubscribe){
             if($usersubscribe->subscribe == NULL){
-                Customer::where('email', $request->email)->update([
+                Customer::where('email', $request->sub_email)->update([
                     'subscribe' => 1,
                 ]);
-                Email::create(['email' => $request->email]);
+                Email::create(['email' => $request->sub_email]);
                 return redirect()->back()->with('success', 'Your subscription successfully!');
             }else {
-                Email::create(['email' => $request->email]);
+                Email::create(['email' => $request->sub_email]);
                 return redirect()->back()->with('success', 'Your subscription successfully!');
             }
         }else{
-            Email::create(['email' => $request->email]);
+            Email::create(['email' => $request->sub_email]);
             return redirect()->back()->with('success', 'Your subscription added successfully! ');
         }
     }

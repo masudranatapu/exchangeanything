@@ -26890,7 +26890,7 @@ section.section.recent-post {
 
 .ad-list .list-sidebar__accordion-inner-icon {
     margin-right: 8px;
-    color: #06D7A0;
+    color: #0088cc;
 }
 
 @media -sass-debug-info {
@@ -29765,7 +29765,7 @@ span.category_name i {
     position: absolute;
     top: 7px;
     left: -9px;
-    background: #06D7A0;
+    background: #0088cc;
     color: #fff;
     z-index: 1;
     padding: 3px 12px;
@@ -29780,7 +29780,7 @@ span.category_name i {
 .featured_tag span:before {
     content: "";
     border: 5px solid;
-    border-color: #06D7A0 #06D7A0 transparent transparent;
+    border-color: #0088cc #0088cc transparent transparent;
     bottom: -14px;
     height: 0;
     left: -12px;
@@ -29801,7 +29801,7 @@ span.category_name i {
 .card_content {}
 
 .card_content h6 i {
-    color: #06D7A0;
+    color: #0088cc;
     margin-right: 4px;
 }
 
@@ -29878,9 +29878,9 @@ span.category_name i {
     padding-bottom: 41px;
 }
 
-.section.dashboard{
+/*.section.dashboard{
     padding-top: 146px !important;
-}
+}*/
 
 .search.search-no-borders.border-0 {
     width: 650px;

@@ -20039,6 +20039,7 @@ a {
     border-radius: 12px;
     background-color: #fff;
     overflow: hidden;
+
 }
 .plan-card--active.plan-card {
     border: 2px solid #0af;
@@ -22612,4 +22613,12 @@ a {
     .bv_mainselect
     .bv_atual.bv_background {
     color: #464d61;
+}
+
+.plan-card {
+    position: relative;
+    border-radius: 12px;
+    background-color: #fff;
+    overflow: hidden;
+    height: 100%;
 }

@@ -60,7 +60,7 @@
                         <ul class="single-blog__info">
                             <li class="single-blog__info-item">
                                 <span class="icon">
-                                    <i class="{{ $blog->category->icon }}" style="color: #06D7A0"></i>
+                                    <i class="{{ $blog->category->icon }}" style="color: #0088cc"></i>
                                 </span>
                                 <p class="text--body-3">{{ $blog->category->name }}</p>
                             </li>

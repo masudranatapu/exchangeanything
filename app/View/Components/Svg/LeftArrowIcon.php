@@ -12,7 +12,7 @@ class LeftArrowIcon extends Component
      *
      * @return void
      */
-    public function __construct($stroke = '#06D7A0')
+    public function __construct($stroke = '#0088cc')
     {
         $this->stroke = $stroke;
     }

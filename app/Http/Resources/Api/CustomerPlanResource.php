@@ -18,7 +18,7 @@ class CustomerPlanResource extends JsonResource
             'ad_limit' => $this->ad_limit,
             'featured_limit' => $this->featured_limit,
             'customer_support' => $this->customer_support,
-            'multiple_image' => $this->multiple_image,
+            // 'multiple_image' => $this->multiple_image,
             'badge' => $this->badge,
         ];
     }

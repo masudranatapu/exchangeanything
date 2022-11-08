@@ -418,6 +418,8 @@ class FrontendController extends Controller
                 flashError('Your package id invalid.Please try again');
                 return redirect()->route('frontend.dashboard');
             }
+
+            
             if($plan->priority_situation==1){
                 $featured_limit = 10;
             }else{
@@ -430,7 +432,7 @@ class FrontendController extends Controller
                 'ad_limit' => $plan->ad_limit,
                 'featured_limit' => $featured_limit,
                 'customer_support' => $plan->customer_support,
-                'multiple_image' => $plan->multiple_image,
+                // 'multiple_image' => $plan->multiple_image,
                 'badge' => $plan->badge,
                 'is_active' => 3,
                 'created_at' => now()

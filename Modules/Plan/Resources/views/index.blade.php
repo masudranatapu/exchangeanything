@@ -55,49 +55,27 @@
                                 <h5 class="text--body-3">@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif  </h5>
                             </div>
 
-                            <!-- <div class="plan-card__package-list active">
+                             <div class="plan-card__package-list active">
                                 <span class="icon">
                                     <x-svg.check-icon/>
                                 </span>
                                 <h5 class="text--body-3">{{ __('featured_ads_limit') }} : {{ $plan->featured_limit }}</h5>
-                            </div> -->
+                            </div> 
 
-                            <!-- <div class="plan-card__package-list {{ $plan->badge == true ? 'active' : '' }}">
+                             <div class="plan-card__package-list {{ $plan->badge == true ? 'active' : '' }}">
+                                @if($plan->badge == true)
                                 <span class="icon">
                                     <x-svg.check-icon/>
                                 </span>
+                                @else
+                                 <span class="icon text-danger">
+                                     <i class="fa fa-times"></i>
+                                </span>
+                                @endif
+
                                 <h5 class="text--body-3">{{ __('badge') }}</h5>
-                            </div> -->
-
-                            <div class="plan-card__package-list">
-                                @if($plan->join_community_chat == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('join_community_chat') }}</h5>
                             </div>
 
-                            <div class="plan-card__package-list">
-                                @if($plan->immediate_access_to_new_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('immediate_access_to_new_ads') }}</h5>
-                            </div>
-
-                            <div class="plan-card__package-list">
-                                @if($plan->multiple_image == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('unlimited_photos') }}</h5>
-                            </div>
-
-                            <div class="plan-card__package-list">
-                                @if($plan->priority_situation == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('priority_situation_of_ads') }}</h5>
-                            </div>
-
-                            <div class="plan-card__package-list">
-                                @if($plan->embed_yt_video_and_links == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('embed_youtube_videos_and_add_links_to_your_adverts') }}</h5>
-                            </div>
-
-                            <div class="plan-card__package-list">
-                                @if($plan->browse_without_banner_ads == true) <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i> @else <i class="fas fa-times-circle" style="color:red; margin-right: 5px; font-size: 21px;"></i> @endif
-                                <h5 class="text--body-3">{{ __('browse_without_banner_ads') }}</h5>
-                            </div>
                             
                             @if(is_array($plan->new_featured))
                                 @foreach($plan->new_featured as $value)
@@ -180,11 +158,11 @@
     }
     .card_footer-bg {
         background-color: #e8f7ff;
-        color: #06D7A0;
+        color: #0088cc;
         width: 100%;
     }
     .card_footer-bg button {
-        color: #06D7A0;
+        color: #0088cc;
     }
     .card_footer-bg:hover button {
         color: #0088cc;
@@ -211,7 +189,7 @@
     }
 
     .plan-card--active {
-        border: 2px solid #06D7A0;
+        border: 2px solid #0088cc;
     }
 
     .plan-card__top {
@@ -261,7 +239,7 @@
     }
     .plan-card__package-list.active .icon {
         color: #fff;
-        background-color: #06D7A0;
+        background-color: #0088cc;
     }
     .plan-card__package-list .icon {
         display: flex;

@@ -53,7 +53,7 @@
                                             @error('password')
                                             style="margin-top: -25px;"
                                             @enderror>
-                                            <rect width="20" height="20" rx="10" fill="#06D7A0" />
+                                            <rect width="20" height="20" rx="10" fill="#0088cc" />
                                             <path d="M14 7L8.5 12.5L6 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </span>
@@ -94,7 +94,7 @@
                                             @error('password_confirmation')
                                             style="margin-top: -25px;"
                                             @enderror>
-                                            <rect width="20" height="20" rx="10" fill="#06D7A0" />
+                                            <rect width="20" height="20" rx="10" fill="#0088cc" />
                                             <path d="M14 7L8.5 12.5L6 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </span>

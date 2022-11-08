@@ -12,7 +12,7 @@
                         @if ($loop->odd)
                         <li class="feature-item">
                             <span class="icon">
-                                <x-svg.check-icon width="24" height="24" stroke="#06D7A0" />
+                                <x-svg.check-icon width="24" height="24" stroke="#0088cc" />
                             </span>
                             <p class="text--body-3">{{ $feature->name }}</p>
                         </li>
@@ -26,7 +26,7 @@
                         @if ($loop->even)
                         <li class="feature-item">
                             <span class="icon">
-                                <x-svg.check-icon width="24" height="24" stroke="#06D7A0" />
+                                <x-svg.check-icon width="24" height="24" stroke="#0088cc" />
                             </span>
                             <p class="text--body-3">{{ $feature->name }}</p>
                         </li>

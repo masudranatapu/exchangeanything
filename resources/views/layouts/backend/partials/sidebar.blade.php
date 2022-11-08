@@ -170,7 +170,7 @@
                     </x-sidebar-list>
                 @endif
 
-                {{-- Blog and Tag --}}
+                {{--
                 @if (Module::collections()->has('Blog'))
                     @if ($blog_enable)
                         @if (userCan('post.view') || userCan('postcategory.view'))
@@ -208,6 +208,9 @@
                         @endif
                     @endif
                 @endif
+                 --}}
+
+                
 
                 {{-- Testimonial, contact, faqcategory and faq --}}
                 @if (userCan('testimonial.view') || userCan('contact.view') || userCan('faqcategory.view') || userCan('faq.view'))

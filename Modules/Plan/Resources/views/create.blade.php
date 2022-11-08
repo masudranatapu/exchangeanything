@@ -12,7 +12,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('module.plan.store') }}" method="POST">
+                        <!-- <form action="{{ route('module.plan.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -51,79 +51,14 @@
                                         @error('ad_limit') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="join_community_chat" for="join_community_chat" />
-                                        <select name="join_community_chat" id="join_community_chat" class="form-control @error('join_community_chat') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('badge') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="immediate_access_to_new_ads" for="immediate_access_to_new_ads" />
-                                        <select name="immediate_access_to_new_ads" id="immediate_access_to_new_ads" class="form-control @error('immediate_access_to_new_ads') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('badge') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                {{-- <div class="col-md-6">
-                                   <div class="form-group">
-                                         <x-forms.label name="featured_limit" required="true" for="featured_limit" />
-                                        <input type="number" id="featured_limit" name="featured_limit" value="{{ old('featured_limit') }}" class="form-control @error('featured_limit') is-invalid @enderror">
-                                        @error('featured_limit')
-                                            <span class="invalid-feedback" role="alert">{{ $message }}</span> 
-                                        @enderror
-                                    </div>  
-                                </div> --}}
+
+                               
                                 
+
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <x-forms.label name="unlimited_photos" for="multiple_image" />
-                                        <select name="multiple_image" id="multiple_image" class="form-control @error('multiple_image') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('multiple_image') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="priority_situation_of_ads" for="priority_situation" />
-                                        <select name="priority_situation" id="priority_situation" class="form-control @error('priority_situation') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('badge') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="embed_youtube_videos_and_add_links_to_your_adverts" for="embed_yt_video_and_links" />
-                                        <select name="embed_yt_video_and_links" id="embed_yt_video_and_links" class="form-control @error('embed_yt_video_and_links') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('badge') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="browse_without_banner_ads" for="browse_without_banner_ads" />
-                                        <select name="browse_without_banner_ads" id="browse_without_banner_ads" class="form-control @error('browse_without_banner_ads') is-invalid @enderror">
-                                            <option value="1">{{ __('yes') }}</option>
-                                            <option value="0">{{ __('no') }}</option>
-                                        </select>
-                                        @error('badge') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <x-forms.label name="order" required="true" for="order" />
+                                        <x-forms.label name="order" required="false" for="order" />
                                         <input type="number" id="order" name="order" value="{{ old('order') }}" class="form-control @error('order') is-invalid @enderror">
                                         @error('order') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                                     </div>
@@ -152,6 +87,94 @@
                             <div class="row justify-content-center">
                                 <button class="btn btn-success btn-lg" type="submit"><i class="fas fa-plus"></i>&nbsp; {{ __('add') }}</button>
                             </div>
+                        </form> -->
+                        <form action="{{ route('module.plan.store') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="plan_type" required="true" for="ad_limit"
+                                            for="plan_type" />
+                                        <select name="interval" class="custom-select mr-sm-2" id="plan_type">
+                                            <option {{ old('interval') == 'monthly' ? 'selected' : '' }}
+                                                value="monthly">
+                                                {{ __('Monthly') }}
+                                            </option>
+                                            <option {{ old('interval') == 'yearly' ? 'selected' : '' }}
+                                                value="yearly">
+                                                {{ __('Yearly') }}
+                                            </option>
+                                            <option {{ old('interval') == 'custom_date' ? 'selected' : '' }}
+                                                value="custom_date">
+                                                {{ __('Duration') }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="label" required="true" for="label" />
+                                        <input type="text" id="label" name="label" value="{{ old('label') }}"
+                                            class="form-control @error('label') is-invalid @enderror"
+                                            placeholder="{{ __('basic') }} / {{ __('standard') }} / {{ __('premium') }}">
+                                        @error('label')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="ad_limit" required="true" for="ad_limit" />
+                                        <input type="number" id="ad_limit" name="ad_limit"
+                                            value="{{ old('ad_limit') }}"
+                                            class="form-control @error('ad_limit') is-invalid @enderror">
+                                        @error('ad_limit')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="price" required="true" for="price">
+                                           
+                                        </x-forms.label>
+                                        <input type="number" id="price" name="price" value="{{ old('price') }}"
+                                            class="form-control @error('price') is-invalid @enderror">
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="featured_limit" required="true" for="featured_limit" />
+                                        <input type="number" id="featured_limit" name="featured_limit"
+                                            value="{{ old('featured_limit') }}"
+                                            class="form-control @error('featured_limit') is-invalid @enderror">
+                                        @error('featured_limit')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="premium_badge" for="badge" />
+                                        <select name="badge" id="badge"
+                                            class="form-control @error('badge') is-invalid @enderror">
+                                            <option value="1">{{ __('yes') }}</option>
+                                            <option value="0">{{ __('no') }}</option>
+                                        </select>
+                                        @error('badge')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button class="btn btn-success" type="submit"><i class="fas fa-plus"></i>&nbsp;
+                                    {{ __('create') }}</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -159,22 +182,22 @@
         </div>
     </div>
     <script>
-        function add_features_field() {
-            $("#multiple_feature_part").append(`
-                <div class="row">
-                    <div class="col-lg-10">
-                            <div class="input-field mb-3">
-                                <input name="new_featured[]" type="text"  id="adname" class="form-control @error('new_featured') border-danger @enderror" placeholder="Enter new features"/>
-                            </div>
-                    </div>
-                    <div class="col-lg-2 mt-10">
-                        <button id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-            `);
-        }
-        // $(document).on("click", "#remove_item", function() {
-        //     $(this).parent().parent('div').remove();
-        // });
+        // function add_features_field() {
+        //     $("#multiple_feature_part").append(`
+        //         <div class="row">
+        //             <div class="col-lg-10">
+        //                     <div class="input-field mb-3">
+        //                         <input name="new_featured[]" type="text"  id="adname" class="form-control @error('new_featured') border-danger @enderror" placeholder="Enter new features"/>
+        //                     </div>
+        //             </div>
+        //             <div class="col-lg-2 mt-10">
+        //                 <button id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+        //             </div>
+        //         </div>
+        //     `);
+        // }
+        //  $(document).on("click", "#remove_item", function() {
+        //      $(this).parent().parent('div').remove();
+        //  });
     </script>
 @endsection

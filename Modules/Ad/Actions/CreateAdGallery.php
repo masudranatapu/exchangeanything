@@ -13,7 +13,6 @@ class CreateAdGallery
         foreach ($request->file as $image) {
             if ($image && $image->isValid()) {
                 $url = $image->move('uploads/adds_multiple',$image->hashName());
-
                 AdGallery::create([
                     'ad_id' => $id,
                     'image' => $url,

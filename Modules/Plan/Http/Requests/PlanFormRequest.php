@@ -15,9 +15,10 @@ class PlanFormRequest extends FormRequest
     {
         $rules = [
             'price' =>  ['required', 'numeric'],
-            'order' =>  ['required', 'numeric'],
+            'featured_limit' =>  ['required'],
+            // 'order' =>  ['required', 'numeric'],
             'ad_limit' =>  ['required', 'numeric'],
-            'multiple_image' =>  ['required', 'boolean'],
+            //'multiple_image' =>  ['required', 'boolean'],
         ];
 
         if ($this->method() == 'POST') {
