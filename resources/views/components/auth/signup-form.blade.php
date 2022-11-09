@@ -31,10 +31,10 @@
                     {{-- <input value="{{ old('phone') }}" id="phone" type="tel" placeholder="{{ __('Phone Number') }}" name="phone[main]" class="input @error('phone') is-invalid border-danger @enderror" /> --}}
                     @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
-                <div class="input-field">
+                {{--<div class="input-field">
                     <input value="{{ old('web') }}" type="text" placeholder="{{ __('Website(Optional)') }}" name="web" class="@error('phone') is-invalid border-danger @enderror" />
                     @error('web')<span class="text-danger">{{ $message }}</span>@enderror
-                </div>
+                </div>--}}
                 @php
                     $citis = Modules\Location\Entities\City::orderBy('name')->get();
                 @endphp

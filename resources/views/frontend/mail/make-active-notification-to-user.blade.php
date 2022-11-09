@@ -84,7 +84,7 @@
                             <tr>
                                 <td style="padding-left: 20px">
                                     Thanks,<br>
-                                    ExchangeAnything
+                                    exchangeanything.com
                                 </td>
                             </tr>
                         </table>
