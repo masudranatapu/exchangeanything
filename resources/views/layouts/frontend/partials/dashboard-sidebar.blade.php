@@ -27,21 +27,13 @@
 
             @php
                 $plan = Modules\Plan\Entities\Plan::find(Auth::user()->userPlan->plans_id);
-
+               
             @endphp
 
             @if (session('user_plan') && session('user_plan')->ad_limit > 0)
                 <li class="dashboard__nav-item">
-                    <a href="{{ route('frontend.post') }}" class="dashboard__nav-link {{ request()->routeIs('frontend.post')  ? 'active' : '' }}">
-                        <span class="icon">
-                            <x-svg.image-select-icon />
-                        </span>
-                        {{ __('post_ads') }}
-                    </a>
-                </li>
-            @elseif($plan->ad_limit==0)
-                <li class="dashboard__nav-item">
-                    <a href="{{ route('frontend.post') }}" class="dashboard__nav-link {{ request()->routeIs('frontend.post')  ? 'active' : '' }}">
+                    <a href="{{ route('frontend.post') }}"
+                        class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
                         <span class="icon">
                             <x-svg.image-select-icon />
                         </span>
@@ -49,6 +41,7 @@
                     </a>
                 </li>
             @endif
+
 
             
 

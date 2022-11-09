@@ -42,6 +42,7 @@ Route::group(['as' => 'frontend.'], function () {
     Route::prefix('dashboard')->middleware(['auth:customer','verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::middleware('check.planPurchase')->group(function (){
+
             // Ad Create
             Route::prefix('post')->middleware(['checkplan','check.planPurchase'])->group(function () {
                 Route::get('/', [AdPostController::class, 'postStep1'])->name('post');
@@ -55,6 +56,7 @@ Route::group(['as' => 'frontend.'], function () {
                 Route::get('/step2/back/{slug?}', [AdPostController::class, 'postStep2Back'])->name('post.step2.back');
                 Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
             });
+            
             // Ad Edit
             Route::prefix('post')->group(function () {
                 Route::get('/images/{id}/delete', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');

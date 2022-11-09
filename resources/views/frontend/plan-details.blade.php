@@ -57,6 +57,7 @@
                 <div class="dashboard-card dashboard-card--benefits">
                     <h2 class="dashboard-card__title">{{ __('current_plan_benefits') }}</h2>
                     <ul class="dashboard__benefits">
+                        
                         <li class="dashboard__benefits-left">
                             <ul>
                                 <li class="dashboard__benefits-item">

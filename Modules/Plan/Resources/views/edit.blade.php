@@ -16,26 +16,35 @@
                             @csrf
                             @method('put')
                             <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <x-forms.label name="plan_type" required="true" for="ad_limit"
-                                                for="plan_type" />
-                                            <select name="interval" class="custom-select mr-sm-2" id="plan_type">
-                                                <option {{ $plan->interval == 'monthly' ? 'selected' : '' }}
-                                                    value="monthly">
-                                                    {{ __('monthly') }}
-                                                </option>
-                                                <option {{ $plan->interval == 'yearly' ? 'selected' : '' }}
-                                                    value="yearly">
-                                                    {{ __('yearly') }}
-                                                </option>
-                                                <option {{ $plan->interval == 'custom_date' ? 'selected' : '' }}
-                                                    value="custom_date">
-                                                    {{ __('plan_duration') }}
-                                                </option>
-                                            </select>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <x-forms.label name="plan_type" required="true" for="ad_limit"
+                                            for="plan_type" />
+                                        <select name="interval" class="custom-select mr-sm-2" id="plan_type">
+                                            <option {{ $plan->interval == 'monthly' ? 'selected' : '' }}
+                                                value="monthly">
+                                                {{ __('monthly') }}
+                                            </option>
+                                            <option {{ $plan->interval == 'yearly' ? 'selected' : '' }}
+                                                value="yearly">
+                                                {{ __('yearly') }}
+                                            </option>
+                                            <option {{ $plan->interval == 'custom_date' ? 'selected' : '' }}
+                                                value="custom_date">
+                                                {{ __('plan_duration') }}
+                                            </option>
+                                        </select>
                                     </div>
+                                </div>
+                                <div class="col-md-6 d-none" id="interval_date">
+                                    <div class="form-group">
+                                        <label class="" for="custom_interval_days">
+                                            Interval Days
+                                            <span class="form-label-required text-danger">*</span>
+                                        </label>
+                                        <input type="number" min="1" id="custom_interval_days" name="custom_interval_days" value="15" class="form-control " placeholder="Interval Days">
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <x-forms.label name="label" required="true" for="label" />
