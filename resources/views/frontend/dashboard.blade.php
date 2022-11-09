@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="row dashboard__ads-activity">
-                        <div class="col-lg-7">
+                        <div class="col-12">
                             <div class="dashboard-card dashboard-card--benefits">
                                 <!-- <div class="row">
                                     <div class="col-md-8" >
@@ -91,6 +91,18 @@
                                         <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{$plan_info->is_active == 1 ? 'Active' :'Pending' }}</span></p>
                                     </div>
                                 </div> -->
+                                 <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{$plan_info->is_active == 1 ? 'Active' :'Pending' }}</span></p>
+
+                                @if($plan_info->is_active == 0)
+                                    <p>You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).</p>
+                                @endif
+
+                                @if (session('user_plan') && session('user_plan')->ad_limit == 0)
+                                    <p><strong class="text-danger">Your plan has been exceeded. Kindly Upgrade </strong><a href="{{ route('frontend.priceplan') }}"><strong class="text-primary">Pricing Plan</strong></a></p>
+                                @endif
+
+                                <br>
+                                
 
                                 <ul class="dashboard__benefits">
                                     <li class="dashboard__benefits-left">

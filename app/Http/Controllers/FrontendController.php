@@ -245,11 +245,13 @@ class FrontendController extends Controller
         $plans_id = UserPlan::where('customer_id', $ad->customer->id)->first()->plans_id;
         $plan = Plan::find($plans_id);
 
-        if($plan->immediate_access_to_new_ads == 0 && $ad_post_day_diff < 10){
-            $immediate_access_to_new_ads = 1;
-        }else{
-            $immediate_access_to_new_ads = 0;
-        }
+
+         if($plan->immediate_access_to_new_ads == 0 && $ad_post_day_diff < 10){
+
+             $immediate_access_to_new_ads = 1;
+         }else{
+             $immediate_access_to_new_ads = 0;
+         }
 
 
         $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'estimate_calling_time'])
@@ -263,7 +265,7 @@ class FrontendController extends Controller
             return abort(404);
         } else {
 
-            return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'towns', 'total_ads', 'immediate_access_to_new_ads', 'admin_ads'));
+            return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'immediate_access_to_new_ads', 'towns', 'total_ads', 'admin_ads'));
         }
     }
 
@@ -349,7 +351,7 @@ class FrontendController extends Controller
         $verified_users = Customer::where('email_verified_at', '!=', null)->count();
 
         if (empty($package_id )){
-            // flashError('Please get membership plan');
+            flashError('Please get membership plan');
             return redirect()->route('frontend.priceplan');
         }
 
@@ -412,31 +414,30 @@ class FrontendController extends Controller
         }
 
         if (!empty($request->package_id)) {
+
             $plan = Plan::where('id', $request->package_id)->first();
 
             if (empty($plan)) {
                 flashError('Your package id invalid.Please try again');
                 return redirect()->route('frontend.dashboard');
             }
-
             
-            if($plan->priority_situation==1){
-                $featured_limit = 10;
-            }else{
-                $featured_limit = 0;
-            }
 
-            $userPlan = UserPlan::create([
-                'customer_id' => $customer->id,
-                'plans_id' => $request->package_id,
-                'ad_limit' => $plan->ad_limit,
-                'featured_limit' => $featured_limit,
-                'customer_support' => $plan->customer_support,
-                // 'multiple_image' => $plan->multiple_image,
-                'badge' => $plan->badge,
-                'is_active' => 3,
-                'created_at' => now()
-            ]);
+          
+    
+             $userPlan = UserPlan::create([
+                 'customer_id' => $customer->id,
+                 'plans_id' => $request->package_id,
+                 'ad_limit' => $plan->ad_limit,
+                 'featured_limit' => $plan->featured_limit,
+                 'customer_support' => $plan->customer_support,
+                 // 'multiple_image' => $plan->multiple_image,
+                 'badge' => $plan->badge,
+                 'is_active' => 0,
+                 'created_at' => now()
+             ]);
+
+
 
 
         }

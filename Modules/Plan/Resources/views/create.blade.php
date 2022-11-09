@@ -115,7 +115,7 @@
                                         Interval Days
                                         <span class="form-label-required text-danger">*</span>
                                     </label>
-                                    <input type="number" min="1" id="custom_interval_days" name="custom_interval_days" value="15" class="form-control " placeholder="Interval Days">
+                                    <input type="number" min="1" id="custom_interval_days" name="custom_interval_days" value="" class="form-control " placeholder="Interval Days">
                                 </div>
                             </div>
 
