@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
-    @if (auth('customer')->check() && isset(session('user_plan')->ad_limit) && session('user_plan')->ad_limit < $settings->free_ad_limit)
+    @if (auth('customer')->check() &&
+        isset(session('user_plan')->ad_limit) &&
+        session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
             }
+
             .header--fixed {
                 top: 0 !important;
             }
@@ -23,6 +26,7 @@
             -webkit-transition: all 0.4s ease-in-out;
             transition: all 0.4s ease-in-out;
         }
+
         .dashboard-card--recentvoice__history .header-table {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -36,13 +40,13 @@
 
 @section('content')
     <!-- Banner section start  -->
-    {{-- 
+    {{--
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
-  --}}   
+  --}}
     <!-- Banner section end   -->
     <!-- dashboard section start  -->
     <section class="section dashboard">
@@ -69,19 +73,26 @@
                                             </li>
 
                                             <li class="dashboard__benefits-item">
-                                                <i class="fas fa-check-circle" style="color:#bd9746; margin-right: 5px; font-size: 21px;"></i>
+                                                <i class="fas fa-check-circle"
+                                                    style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
                                                 <p class="text--body-4">
-                                                    <span>@if($plan->ad_limit == 0) Unlimited  adverts @else {{ __('ads_limit') }} : {{ $plan->ad_limit }}  @endif</span>
+                                                    <span>
+                                                        @if ($plan->ad_limit == 0)
+                                                            Unlimited adverts
+                                                        @else
+                                                            {{ __('ads_limit') }} : {{ $plan->ad_limit }}
+                                                        @endif
+                                                    </span>
                                                 </p>
                                             </li>
                                         </ul>
                                     </li>
-                                   
+
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            {{--  
+                            {{--
                             <div class="dashboard-card dashboard-card--invoice">
                                 <h2 class="dashboard-card__title">{{ __('upgrade_plan') }}</h2>
                                 <div class="dashboard-card--invoice-info">
@@ -97,7 +108,7 @@
                         </div>
                     </div>
 
-                   {{--  <div class="row dashboard__bill-three">
+                    {{--  <div class="row dashboard__bill-three">
                         <div class="col-lg-12">
                             <div class="invoice-table">
                                 <h4>{{ __('recent_invoice') }}</h4>
@@ -128,9 +139,9 @@
                             </div>
                         </div>
                     </div>
-                </div>--}}
+                </div> --}}
+                </div>
             </div>
-        </div>
     </section>
     <!-- dashboard section end  -->
 
@@ -156,7 +167,7 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
-            
+
             // ===== Select2 ===== \\
             $('#town').select2({
                 theme: 'bootstrap-5',
