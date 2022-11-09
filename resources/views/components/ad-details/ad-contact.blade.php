@@ -7,26 +7,26 @@
                 ->first();
         @endphp
 
-            @if ($plan->immediate_access_to_new_ads == 1)
-                <div class="card-number">
-                    <div class="number number--hide text--body-2">
-                        <span class="icon">
-                            <x-svg.phone-icon width="32" height="32" />
-                        </span>
-                        {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($phone, 8, 'XXXXXXXX') }}
-                    </div>
-                    <div class="number number--show text--body-2">
-                        <span class="icon">
-                            <x-svg.phone-icon width="32" height="32" />
-                        </span>
+        {{-- @if ($plan->immediate_access_to_new_ads == 1) --}}
+        <div class="card-number">
+            <div class="number number--hide text--body-2">
+                <span class="icon">
+                    <x-svg.phone-icon width="32" height="32" />
+                </span>
+                {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($phone, 8, 'XXXXXXXX') }}
+            </div>
+            <div class="number number--show text--body-2">
+                <span class="icon">
+                    <x-svg.phone-icon width="32" height="32" />
+                </span>
 
-                        {{ auth('customer')->user()->country_code ?? '' }}{{ substr($phone, 0, 3) }}
-                        {{ substr($phone, 3) }}
-                    </div>
-                    <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
-                    <p>Best time to call : {{ @$callingtime }}</p>
-                </div>
-            @else
+                {{ auth('customer')->user()->country_code ?? '' }}{{ substr($phone, 0, 3) }}
+                {{ substr($phone, 3) }}
+            </div>
+            <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+            <p>Best time to call : {{ @$callingtime }}</p>
+        </div>
+        {{-- @else
                 <input type="hidden" value="{{ $plan->immediate_access_to_new_ads }}" id="immediateaccesstonewads">
                 <button href="javascript:;" class="" onclick="giveAlert()" style="margin-bottom: 20px;">
                     <div class="number number--hide text--body-2">
@@ -36,32 +36,30 @@
                         {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($phone, 8, 'XXXXXXXX') }}
                     </div>
                 </button>
-            @endif
-        
+            @endif --}}
     @endif
 
     @if (auth('customer')->check() && auth('customer')->user()->username !== $name)
+        {{-- @if ($plan->immediate_access_to_new_ads == 1) --}}
+        <form action="{{ route('frontend.message.store', $name) }}" method="POST" id="sendMessageForm">
 
-        @if ($plan->immediate_access_to_new_ads == 1)
-            <form action="{{ route('frontend.message.store', $name) }}" method="POST" id="sendMessageForm">
 
-
-                @csrf
-                <input type="hidden" value="." name="body">
-                <input type="hidden" value="{{ $id }}" name="ad_id">
-                <button type="submit" class="btn w-100">
-                    <span class="icon--left">
-                        <x-svg.message-icon width="24" height="24" stroke="white" strokeWidth="1.6" />
-                    </span>
-                    {{ __('send_message') }}
-                </button>
-            </form>
-        @else
+            @csrf
+            <input type="hidden" value="." name="body">
+            <input type="hidden" value="{{ $id }}" name="ad_id">
+            <button type="submit" class="btn w-100">
+                <span class="icon--left">
+                    <x-svg.message-icon width="24" height="24" stroke="white" strokeWidth="1.6" />
+                </span>
+                {{ __('send_message') }}
+            </button>
+        </form>
+        {{-- @else
             <input type="hidden" value="{{ $plan->immediate_access_to_new_ads }}" id="immediateaccesstonewads">
             <button href="javascript:;" class="btn w-100" onclick="giveAlert()">
                 Send Message
             </button>
-        @endif
+        @endif --}}
     @endif
 
     @if (!auth('customer')->check())

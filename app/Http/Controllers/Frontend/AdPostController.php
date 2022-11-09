@@ -31,13 +31,12 @@ class AdPostController extends Controller
     {
 
 
-            $categories = Category::active()->latest('id')->get();
-            $brands = Brand::latest('id')->get();
-            $ad = session('ad');
-            $citis = City::latest('id')->get();
-            $authUser = auth('customer')->user();
-            return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
-
+        $categories = Category::active()->latest('id')->get();
+        $brands = Brand::latest('id')->get();
+        $ad = session('ad');
+        $citis = City::orderBy('name', 'asc')->get();
+        $authUser = auth('customer')->user();
+        return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
     }
 
     public function getSubcategory($id)
@@ -103,54 +102,54 @@ class AdPostController extends Controller
             'images.*' => 'required|max:2048',
 
             // 'estimate_calling_time' => 'required',
-        ],[
-        'country.required' => 'The Country is required',
-         'town_id.required' => 'The Region is required',
-    ]);
+        ], [
+            'country.required' => 'The Country is required',
+            'town_id.required' => 'The Region is required',
+        ]);
 
 
-    DB::beginTransaction();
+        DB::beginTransaction();
         try {
 
-                $ad = new Ad();
-                $ad->title = $request->title;
-                $ad->slug = Str::slug($request->title);
-                $ad->price = $request->price;
-                $ad->condition = $request->condition;
-                $ad->negotiable = $request->negotiable;
-                $ad->featured = $request->featured;
-                $ad->brand_id = $request->brand_id;
-                $ad->authenticity = $request->authenticity;
-                $ad->model = $request->model;
-                $ad->customer_id = Auth::id();
-                $ad->web = $request->web;
-                $ad->category_id = $request->category_id;
-                $ad->subcategory_id = $request->subcategory_id;
-                $ad->city_id = $request->country;
-                $ad->town_id = $request->town_id;
-                $ad->description = $request->description;
-                $ad->status = setting('ads_admin_approval') ? 'pending': 'active';
-                $ad->save();
+            $ad = new Ad();
+            $ad->title = $request->title;
+            $ad->slug = Str::slug($request->title);
+            $ad->price = $request->price;
+            $ad->condition = $request->condition;
+            $ad->negotiable = $request->negotiable;
+            $ad->featured = $request->featured ?? 0;
+            $ad->brand_id = $request->brand_id;
+            $ad->authenticity = $request->authenticity;
+            $ad->model = $request->model;
+            $ad->customer_id = Auth::id();
+            $ad->web = $request->web;
+            $ad->category_id = $request->category_id;
+            $ad->subcategory_id = $request->subcategory_id;
+            $ad->city_id = $request->country;
+            $ad->town_id = $request->town_id;
+            $ad->description = $request->description;
+            $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
+            $ad->save();
 
 
 
-                $images = $request->images;
+            $images = $request->images;
 
 
 
-                $files = [];
-                if($images){
+            $files = [];
+            if ($images) {
 
 
                 foreach ($images as $key => $image) {
-                    if($image){
-                        if ($key == 0 && $image ) {
-                            $name = uploadImage($image,'thumbnail');
+                    if ($image) {
+                        if ($key == 0 && $image) {
+                            $name = uploadImage($image, 'thumbnail');
 
                             $ad->update(['thumbnail' => $name]);
                         }
                         if ($image && $key > 0) {
-                            $name = uploadImage($image,'thumbnail');
+                            $name = uploadImage($image, 'thumbnail');
                             $ad->galleries()->create(['image' => $name]);
                         }
                     }
@@ -158,23 +157,22 @@ class AdPostController extends Controller
             }
 
 
-                // feature inserting
-                if($request->features){
-                    foreach ($request->features as $feature) {
-                         if ($feature) {
-                             $ad->adFeatures()->create(['name' => $feature]);
-                         }
-                     }
-                 }
-                $this->adNotification($ad);
-                !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
+            // feature inserting
+            if ($request->features) {
+                foreach ($request->features as $feature) {
+                    if ($feature) {
+                        $ad->adFeatures()->create(['name' => $feature]);
+                    }
+                }
+            }
+            $this->adNotification($ad);
+            !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
-                DB::commit();
-                return view('frontend.postad.postsuccess', [
-                    'ad_slug' => $ad->slug,
-                    'mode' => 'create'
-                ]);
-
+            DB::commit();
+            return view('frontend.postad.postsuccess', [
+                'ad_slug' => $ad->slug,
+                'mode' => 'create'
+            ]);
         } catch (\Exception $th) {
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());
@@ -194,15 +192,15 @@ class AdPostController extends Controller
             'town_id'  => 'required',
         ], [
             'city_id.required' => 'The Country is required',
-             'town_id.required' => 'The Region is required',
+            'town_id.required' => 'The Region is required',
         ]);
         try {
             $ad = session('ad');
             $ad->fill($validatedData);
-            if($request->phone_number_showing_permission==1){
+            if ($request->phone_number_showing_permission == 1) {
                 $ad->phone_number_showing_permission = $request->phone_number_showing_permission;
                 $ad->phone = $request->phone;
-            }else{
+            } else {
                 $ad->phone_number_showing_permission = 0;
                 $ad->phone = null;
             }
@@ -234,7 +232,7 @@ class AdPostController extends Controller
         $ad['description'] = $validatedData['description'];
         $ad['customer_id'] = auth('customer')->id();
         $request->session()->put('ad', $ad);
-        $ad['status'] = setting('ads_admin_approval') ? 'pending': 'active';
+        $ad['status'] = setting('ads_admin_approval') ? 'pending' : 'active';
         $ad->save();
 
         $user_plan = UserPlan::where('customer_id', $ad['customer_id'])->first();
@@ -249,17 +247,21 @@ class AdPostController extends Controller
 
         $files = [];
         foreach ($images as $key => $image) {
-            if($image){
-                if ($key == 0 && $image ) {
+            if ($image) {
+                if ($key == 0 && $image) {
                     $name = $image->GetClientOriginalName();
-                    $thumbnail = 'uploads/addds_images/'.$name;
-                    Image::make($image->path())->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })->save($thumbnail);
+                    $thumbnail = 'uploads/addds_images/' . $name;
+                    Image::make($image->path())->resize(850, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($thumbnail);
                     $ad->update(['thumbnail' => $thumbnail]);
                 }
                 if ($image && $key > 0) {
                     $gallery_image_name = $image->GetClientOriginalName();
-                    $image_path = 'uploads/adds_multiple/'.$gallery_image_name;
-                    Image::make($image->path())->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })->save($image_path);
+                    $image_path = 'uploads/adds_multiple/' . $gallery_image_name;
+                    Image::make($image->path())->resize(850, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($image_path);
                     $ad->galleries()->create(['image' => $image_path]);
                 }
             }
@@ -268,7 +270,7 @@ class AdPostController extends Controller
 
         $features = $request->features;
         foreach ($features as $feature) {
-            if($feature){
+            if ($feature) {
                 $ad->adFeatures()->create(['name' => $feature]);
             }
         }
@@ -282,9 +284,6 @@ class AdPostController extends Controller
             'ad_slug' => $ad->slug,
             'mode' => 'create'
         ]);
-
-
-
     }
 
     /**
@@ -301,10 +300,10 @@ class AdPostController extends Controller
                 $ad = collectionToResource($this->setAdEditStep1Data($ad));
                 $categories = Category::latest('id')->get();
                 $brands = Brand::latest('id')->get();
-                $citis = City::orderBy('name')->get();
+                $citis = City::orderBy('name', 'asc')->get();
 
 
-                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands','citis'));
+                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands', 'citis'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
@@ -326,7 +325,7 @@ class AdPostController extends Controller
             if (session('step2') && session('edit_mode')) {
                 $citis = City::orderBy('name')->get();
 
-                return view('frontend.postad_edit.step2', compact('ad', 'citis','authUser'));
+                return view('frontend.postad_edit.step2', compact('ad', 'citis', 'authUser'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
@@ -390,7 +389,7 @@ class AdPostController extends Controller
             'condition' => $request->condition,
             'authenticity' => $request->authenticity,
             'negotiable' => $request->negotiable,
-            'featured' => $request->featured,
+            'featured' => $request->featured ?? 0,
             'web' => $request->web,
             'city_id' => $request->city_id,
             'town_id' => $request->town_id,
@@ -398,44 +397,48 @@ class AdPostController extends Controller
         ]);
 
 
-         // feature inserting
-         $ad->adFeatures()->delete();
+        // feature inserting
+        $ad->adFeatures()->delete();
 
-         if($request->features){
+        if ($request->features) {
             foreach ($request->features as $feature) {
-                 if ($feature) {
-                     $ad->adFeatures()->create(['name' => $feature]);
-                 }
-             }
-         }
+                if ($feature) {
+                    $ad->adFeatures()->create(['name' => $feature]);
+                }
+            }
+        }
 
-         
 
-         // image uploading
-         $image = $request->file('thumbnail');
-         $old_thumb = $request->old_thumbnail;
-         if ($image && $image->isValid()) {
-             $name = $image->hashName();
-             $thumbnail = 'uploads/addds_images/'.$name;
-             $ad->update(['thumbnail' => $thumbnail]);
-             Image::make($image->path())
-             ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
-             ->save($thumbnail);
-             if ($old_thumb) {
-                 @unlink($old_thumb);
-              }
-         }
 
-         
+        // image uploading
+        $image = $request->file('thumbnail');
+        $old_thumb = $request->old_thumbnail;
+        if ($image && $image->isValid()) {
+            $name = $image->hashName();
+            $thumbnail = 'uploads/addds_images/' . $name;
+            $ad->update(['thumbnail' => $thumbnail]);
+            Image::make($image->path())
+                ->resize(850, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($thumbnail);
+            if ($old_thumb) {
+                @unlink($old_thumb);
+            }
+        }
+
+
         $images = $request->file('images');
         if ($images) {
             foreach ($images as $image) {
                 if ($image && $image->isValid()) {
                     $name = $image->hashName();
-                    $image_path = 'uploads/adds_multiple/'.$name;
+                    $image_path = 'uploads/adds_multiple/' . $name;
                     Image::make($image->path())
-                    ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($image_path);
+                        ->resize(850, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })
+                        ->save($image_path);
                     $ad->galleries()->create(['image' => $image_path]);
                 }
             }
@@ -443,12 +446,12 @@ class AdPostController extends Controller
 
 
 
-         $this->adNotification($ad, 'update');
+        $this->adNotification($ad, 'update');
 
-         return view('frontend.postad.postsuccess', [
-             'ad_slug' => $ad->slug,
-             'mode' => 'update',
-         ]);
+        return view('frontend.postad.postsuccess', [
+            'ad_slug' => $ad->slug,
+            'mode' => 'update',
+        ]);
     }
 
     /**
@@ -458,15 +461,12 @@ class AdPostController extends Controller
      */
     public function updatePostStep2(Request $request, Ad $ad)
     {
-        $request->validate([
+        $request->validate([]);
 
-
-        ]);
-
-        if($request->phone_number_showing_permission==1){
+        if ($request->phone_number_showing_permission == 1) {
             $phone_number_showing_permission = $request->phone_number_showing_permission;
             $phone = $request->phone;
-        }else{
+        } else {
             $phone_number_showing_permission = 0;
             $phone = null;
         }
@@ -496,8 +496,7 @@ class AdPostController extends Controller
      */
     public function updatePostStep3(Request $request, Ad $ad)
     {
-        $request->validate([
-        ]);
+        $request->validate([]);
 
         $ad->update(['description' => $request->description]);
 
@@ -514,24 +513,28 @@ class AdPostController extends Controller
         $old_thumb = $request->old_thumbnail;
         if ($image && $image->isValid()) {
             $name = $image->hashName();
-            $thumbnail = 'uploads/addds_images/'.$name;
+            $thumbnail = 'uploads/addds_images/' . $name;
             $ad->update(['thumbnail' => $thumbnail]);
             Image::make($image->path())
-            ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
-            ->save($thumbnail);
+                ->resize(850, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($thumbnail);
             if ($old_thumb) {
                 @unlink($old_thumb);
-             }
+            }
         }
         $images = $request->file('images');
         if ($images) {
             foreach ($images as $image) {
                 if ($image && $image->isValid()) {
                     $name = $image->hashName();
-                    $image_path = 'uploads/adds_multiple/'.$name;
+                    $image_path = 'uploads/adds_multiple/' . $name;
                     Image::make($image->path())
-                    ->resize(850, null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($image_path);
+                        ->resize(850, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })
+                        ->save($image_path);
                     $ad->galleries()->create(['image' => $image_path]);
                 }
             }
@@ -556,19 +559,19 @@ class AdPostController extends Controller
         return redirect()->route('frontend.dashboard');
     }
 
-    public function adGalleryDelete($id){
+    public function adGalleryDelete($id)
+    {
         $data = AdGallery::find($id);
         $res = $data->delete();
         $res = true;
-        if($res){
+        if ($res) {
             @unlink($data->image);
             $result['status'] = 'success';
             $result['message'] = 'Image deleted successfully';
-        }else{
+        } else {
             $result['status'] = 'failed';
             $result['message'] = 'Image not deleted successfully';
         }
         return response()->json($result);
-
     }
 }
