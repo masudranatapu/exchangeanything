@@ -34,6 +34,7 @@ class AdPostController extends Controller
         $categories = Category::active()->latest('id')->get();
         $brands = Brand::latest('id')->get();
         $ad = session('ad');
+
         $citis = City::orderBy('name', 'asc')->get();
         $authUser = auth('customer')->user();
         return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
@@ -302,8 +303,9 @@ class AdPostController extends Controller
                 $brands = Brand::latest('id')->get();
                 $citis = City::orderBy('name', 'asc')->get();
 
+                $countfeatured = Ad::where('customer_id', auth()->id())->where('featured', true)->where('status', true)->count();
 
-                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands', 'citis'));
+                return view('frontend.postad_edit.step1', compact('ad', 'categories', 'brands', 'citis', 'countfeatured'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
