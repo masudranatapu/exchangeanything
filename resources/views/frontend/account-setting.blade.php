@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
-    @if (auth('customer')->check() && isset(session('user_plan')->ad_limit) && session('user_plan')->ad_limit < $settings->free_ad_limit)
+    @if (auth('customer')->check() &&
+        isset(session('user_plan')->ad_limit) &&
+        session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
             }
+
             .header--fixed {
                 top: 0 !important;
             }
@@ -20,7 +23,7 @@
 
 @section('content')
     <!-- Banner section start  -->
-    {{--  
+    {{--
         <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
             <div class="container">
                 @include('frontend.user-search-filter')
@@ -48,7 +51,8 @@
                                 <div class="user-info">
                                     <div class="img">
                                         <div class="img-wrapper">
-                                            <img src="{{ $user->image_url }}" class="rounded border"  alt="user-img" id="image">
+                                            <img src="{{ $user->image_url }}" class="rounded border" alt="user-img"
+                                                id="image">
                                         </div>
                                         <input name="image"
                                             onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"
@@ -70,9 +74,14 @@
                                     </div>
                                     <div class="input-field">
                                         <x-forms.label name="phone_number" for="telephonee" />
-                                        <input type="hidden" id="iso2" value="{{ $user->iso2 ? $user->iso2 : '' }}" name="iso2">
-                                        <input type="hidden" id="code" value="{{ $user->country_code ? $user->country_code : '' }}" name="country_code">
-                                        <input type="phone_number" name="phone" value="{{ $user->phone ? $user->phone : '' }}" class="input form-control @error('phone') is-invalid border-danger @enderror">
+                                        <input type="hidden" id="iso2" value="{{ $user->iso2 ? $user->iso2 : '' }}"
+                                            name="iso2">
+                                        <input type="hidden" id="code"
+                                            value="{{ $user->country_code ? $user->country_code : '' }}"
+                                            name="country_code">
+                                        <input type="phone_number" name="phone"
+                                            value="{{ $user->phone ? $user->phone : '' }}"
+                                            class="input form-control @error('phone') is-invalid border-danger @enderror">
                                         @error('phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -101,11 +110,14 @@
                                 <div class="row mt-1 mb-3">
                                     <div class="col-lg-3">
                                         <div class="form-check">
-                                            <input value="1" name="subscribe" type="checkbox" class="form-check-input" id="checkme" @if($check) checked @endif/>
-                                            @if($user->subscribe == 1)
-                                                <x-forms.label name="Subscribed to Newsletter" class="form-check-label" for="checkme" />
-                                            @else 
-                                                <x-forms.label name="Subscribed to Newsletter" class="form-check-label" for="checkme" />
+                                            <input value="1" name="subscribe" type="checkbox" class="form-check-input"
+                                                id="checkme" @if ($check) checked @endif />
+                                            @if ($user->subscribe == 1)
+                                                <x-forms.label name="Subscribed to Newsletter" class="form-check-label"
+                                                    for="checkme" />
+                                            @else
+                                                <x-forms.label name="Subscribed to Newsletter" class="form-check-label"
+                                                    for="checkme" />
                                             @endif
                                         </div>
                                     </div>
@@ -122,8 +134,8 @@
                                 <div class="input-field__group">
                                     <div class="input-field">
                                         <x-forms.label name="current_password" for="cpassword" />
-                                        <input name="current_password" type="password" placeholder="{{ __('password') }}"
-                                            id="cpassword"
+                                        <input name="current_password" type="password"
+                                            placeholder="{{ __('password') }}" id="cpassword"
                                             class="@error('current_password') is-invalid border-danger @enderror">
                                         @error('current_password')
                                             <span style="font-size: 12px" class="text-danger">{{ $message }}</span>
@@ -226,11 +238,12 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
-            
+
         });
         var instance = $("[name=phone]")
         instance.intlTelInput({
             initialCountry: "{{ $user->iso2 }}",
+            setCountry: "{{ $user->iso2 ?? 'us' }} "
         });
 
         $("[name=phone]").on("blur", function() {

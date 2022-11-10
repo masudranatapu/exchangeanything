@@ -1,15 +1,15 @@
 <script src="{{ asset('frontend') }}/js/plugins/jquery.min.js"></script>
 <script src="{{ asset('frontend') }}/js/plugins/bootstrap.bundle.min.js"></script>
 {{-- toastr notificaiton --}}
-<script src="{{ asset('backend') }}/plugins/toastr/toastr.min.js"> </script>
-<script src="{{ asset('backend') }}/plugins/sweetalert2/sweetalert2.min.js"> </script>
+<script src="{{ asset('backend') }}/plugins/toastr/toastr.min.js"></script>
+<script src="{{ asset('backend') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{ asset('frontend/') }}/js/plugins/lan.js"></script>
 <script>
     @if (Session::has('success'))
         toastr.success("{{ Session::get('success') }}", 'Success!')
-    @elseif(Session::has('warning'))
+    @elseif (Session::has('warning'))
         toastr.warning("{{ Session::get('warning') }}", 'Warning!')
-    @elseif(Session::has('error'))
+    @elseif (Session::has('error'))
         toastr.error("{{ Session::get('error') }}", 'Error!')
     @endif
     // toast config
@@ -31,23 +31,23 @@
     }
     $('.login_required,.signup_required').click(function(event) {
 
-        let redirectUrl = event.target.href;
+
 
         event.preventDefault();
         swal({
-            title: `Please login first!`,
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            buttons: "Login",
-        })
-        .then((confirmed) => {
-            if (confirmed) {
-                  window.location.href = redirectUrl;
-              }
-        });
+                title: `Please login first!`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: "Login",
+            })
+            .then((confirmed) => {
+                if (confirmed) {
+                    window.location.href = "/login";
+                }
+            });
     });
-    $('#language_switch_button').on('click', function () {
+    $('#language_switch_button').on('click', function() {
         $('#switch_dropdown').toggle();
     });
 </script>
