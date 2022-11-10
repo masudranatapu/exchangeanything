@@ -6131,7 +6131,7 @@ h2.text--heading-1.section__title {
     color: #fff;
     text-transform: uppercase;
     padding: 8px 20px;
-    margin-bottom: 28px;
+    margin-bottom: 1    px;
     border-radius: 5px;
     display: inline-block;
     background-color: #108AB1;
@@ -15775,6 +15775,10 @@ h2.text--heading-1.section__title {
         -ms-flex-pack: center;
         justify-content: center;
     }
+
+    .subscribe_title{
+        text-align: center;
+    }
 }
 
 @media -sass-debug-info {
@@ -15834,7 +15838,7 @@ h2.text--heading-1.section__title {
 
 .footer__brand-logo {
     margin-bottom: 32px;
-    text-align: center;
+    text-align: left;
 }
 
 @media (max-width: 1199px) {
@@ -19917,6 +19921,9 @@ h2.text--heading-1.section__title {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    .footer__brand-logo{
+        text-align: center;
+    }
 }
 
 @media (max-width: 767px) {
@@ -23231,8 +23238,13 @@ h2.text--heading-1.section__title {
     }
 }
 
+.mobile-search-filed .btn {
+    background: #0AD8A2;
+    padding: 0px 12px;
+}
+
 .search__content-item:nth-child(1) .input-field input {
-    padding-left: 66px;
+    /*padding-left: 66px;*/
     border-right: 1px solid #ebeef7;
 }
 
@@ -27961,7 +27973,7 @@ section.section.recent-post {
 }
 
 .product-item__sidebar-top .product-item__sidebar-item {
-    padding: 32px;
+    padding: 16px 23px;
     border-bottom: 1px solid #ebeef7;
 }
 
@@ -28421,7 +28433,7 @@ section.section.recent-post {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 380px) {
@@ -28519,13 +28531,11 @@ section.section.recent-post {
 
 .card-number {
     position: relative;
-    padding: 20px;
+    padding: 13px 12px 2px 12px;
     border-radius: 8px;
     cursor: pointer;
     background-color: #f5f7fa;
     margin-bottom: 16px;
-    height: 100%;
-    min-height: 104px;
 }
 
 @media -sass-debug-info {
@@ -29731,6 +29741,9 @@ span.category_name i {
     .header--four {
         padding: 4px 0px;
     }
+    .dashboard-post.post-publish h2 {
+    font-size: 28px;
+}
 }
 
 
@@ -29750,6 +29763,7 @@ span.category_name i {
     background-color: #fff;
     position: relative;
     margin-bottom: 20px;
+    height: 100%;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -29907,15 +29921,14 @@ span.category_name i {
     margin-top: 100px;
 }
 
-
-
 .section.registration {
     margin-top: 100px;
 }
 
-
-
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff !important;
+    background-color: #0d6efd;
+}
 
 
 

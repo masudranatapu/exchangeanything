@@ -23,8 +23,8 @@
                 {{ auth('customer')->user()->country_code ?? '' }}{{ substr($phone, 0, 3) }}
                 {{ substr($phone, 3) }}
             </div>
-            <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
-            <p>Best time to call : {{ @$callingtime }}</p>
+            <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+            <p>Best time to call : {{ @$callingtime }}</p> -->
         </div>
         {{-- @else
                 <input type="hidden" value="{{ $plan->immediate_access_to_new_ads }}" id="immediateaccesstonewads">
@@ -75,8 +75,11 @@
         $add = Modules\Ad\Entities\Ad::find($id);
     @endphp
     @if ($add->web)
-        <span><a href="{{ $add->web }}" target="_blank" style="text-decoration:underline; color: #108ab1;">Visit My
-                Website</a></span>
+     
+        <a href="{{ $add->web }}" class="btn mt-2 w-100 login_required">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
+            Visit My Website
+        </a>
     @endif
 </div>
 @if (!empty(auth('customer')->user()))

@@ -10,9 +10,7 @@
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
                             <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..."
                                 name="keyword" value="{{ request('keyword', '') }}" required />
-                            <span class="icon icon--left">
-                                <x-svg.search-icon />
-                            </span>
+                            
                         </div>
                     </div>
                     {{--

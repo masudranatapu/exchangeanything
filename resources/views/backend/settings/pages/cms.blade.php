@@ -65,11 +65,12 @@
                 <!-- <li class="nav-item" role="presentation">
                     <a class="nav-link " id="dashboard-tab" data-toggle="pill" href="#cms-dashboards" role="tab"
                         aria-controls="dashboard" aria-selected="false">{{ __('dashboards') }}</a>
-                </li> -->
+                </li> 
                 <li class="nav-item" role="presentation">
                     <a class="nav-link " id="auth-tab" data-toggle="pill" href="#cms-auth" role="tab"
                         aria-controls="auth" aria-selected="false">{{ __('login_or_register') }}</a>
                 </li>
+                -->
             </ul>
         </div>
         <div class="card-body">
@@ -135,10 +136,12 @@
                 <div class="tab-pane fade" id="cms-dashboards" role="tabpanel" aria-labelledby="dashboards-tab">
                     <x-backend.setting.cms.dashboards :cms="$cms" />
                 </div>
-                {{-- Login / Register --}}
+                {{-- 
+                Login / Register 
                 <div class="tab-pane fade" id="cms-auth" role="tabpanel" aria-labelledby="auth-tab">
                     <x-backend.setting.cms.auth :cms="$cms" />
                 </div>
+                --}}
             </div>
         </div>
     </div>

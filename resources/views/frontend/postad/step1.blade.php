@@ -172,13 +172,13 @@
                     <x-forms.label name="features" for="features" />
                     <div id="multiple_feature_part">
                         <div class="row">
-                            <div class="col-9 col-md-10 col-lg-11">
+                            <div class="col-9 col-sm-10 col-md-10 col-lg-11">
                                 <div class="input-field">
                                     <input name="features[]" type="text" placeholder="{{ __('features') }}"
                                         id="adname" class="@error('title') border-danger @enderror" />
                                 </div>
                             </div>
-                            <div class="col-3 col-md-2 col-lg-1 mt-10 add_feature">
+                            <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-10 add_feature">
                                 <a role="button" onclick="add_features_field()"
                                     class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
                             </div>
@@ -265,12 +265,12 @@
         function add_features_field() {
             $("#multiple_feature_part").append(`
                     <div class="row">
-                        <div class="col-9 col-md-10 col-lg-11">
+                        <div class="col-9 col-sm-10 col-md-10 col-lg-11">
                             <div class="input-field">
                                 <input name="features[]" type="text" placeholder="Feature" id="adname" class="@error('title') border-danger @enderror"/>
                             </div>
                         </div>
-                        <div class="col-3 col-md-2 col-lg-1 mt-10">
+                        <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-10">
                             <button onclick="remove_single_field()" id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
                         </div>
                     </div>

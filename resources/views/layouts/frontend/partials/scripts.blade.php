@@ -35,11 +35,11 @@
 
         event.preventDefault();
         swal({
-            title: `Membership is required for this action !`,
+            title: `Please login first!`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
-            buttons: "Join Now",
+            buttons: "Login",
         })
         .then((confirmed) => {
             if (confirmed) {

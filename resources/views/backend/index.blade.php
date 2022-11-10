@@ -37,6 +37,7 @@
                 </div>
             </div>
         </div>
+        {{-- 
         @if (enableModule('blog'))
         <div class="col-sm-6 col-lg-4 col-xl-3">
             <div class="info-box">
@@ -51,6 +52,7 @@
             </div>
         </div>
         @endif
+         --}}
         <div class="col-sm-6 col-lg-4 col-xl-3">
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-info elevation-1"><i class="fas fa-photo-video"></i></span>

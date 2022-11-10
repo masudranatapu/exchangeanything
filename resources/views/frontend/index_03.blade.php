@@ -52,7 +52,7 @@
             <h2 class="text--heading-1 section__title">{{ __('popular_category') }}</h2>
             <div class="row">
                 @foreach ($topCategories as $category)
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-sm-6">
+                    <div class="col-6 col-sm-4 col-lg-4 col-xl-3 col-xxl-2">
                         <div class="category-card">
                             {{--
                             <div class="category-card__icon">
@@ -93,7 +93,7 @@
                 <h2 class="text--heading-1 section__title">{{ __('featured_ads') }}</h2>
                 <div class="row">
                     @foreach ($featuredAds as $ad)
-                        <x-frontend.single-ad :ad="$ad" className="col-xl-3 col-md-6"></x-frontend.single-ad>
+                        <x-frontend.single-ad :ad="$ad" className="col-xl-3 col-md-6 mb-4"></x-frontend.single-ad>
                     @endforeach
                 </div>
                 @if (count($featuredAds) > 0)
