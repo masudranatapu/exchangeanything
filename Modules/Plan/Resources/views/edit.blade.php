@@ -1,5 +1,7 @@
 @extends('layouts.backend.admin')
-@section('title') {{ __('edit_plan') }} @endsection
+@section('title')
+    {{ __('edit_plan') }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -7,29 +9,27 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title" style="line-height: 36px;">{{ __('edit_plan') }}</h3>
-                        <a href="{{ route('module.plan.index') }}" class="btn bg-primary float-right d-flex align-items-center justify-content-center">
+                        <a href="{{ route('module.plan.index') }}"
+                            class="btn bg-primary float-right d-flex align-items-center justify-content-center">
                             <i class="fas fa-arrow-left"></i>&nbsp; {{ __('back') }}
                         </a>
                     </div>
                     <div class="card-body">
-                       <form action="{{ route('module.plan.update', $plan->id) }}" method="POST">
+                        <form action="{{ route('module.plan.update', $plan->id) }}" method="POST">
                             @csrf
                             @method('put')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <x-forms.label name="plan_type" required="true" for="ad_limit"
-                                            for="plan_type" />
+                                        <x-forms.label name="plan_type" required="true" for="ad_limit" for="plan_type" />
                                         <select name="interval" class="custom-select mr-sm-2" id="plan_type">
-                                            <option {{ $plan->interval == 'monthly' ? 'selected' : '' }}
-                                                value="monthly">
+                                            <option {{ $plan->package_duration == '1' ? 'selected' : '' }} value="monthly">
                                                 {{ __('monthly') }}
                                             </option>
-                                            <option {{ $plan->interval == 'yearly' ? 'selected' : '' }}
-                                                value="yearly">
+                                            <option {{ $plan->package_duration == '2' ? 'selected' : '' }} value="yearly">
                                                 {{ __('yearly') }}
                                             </option>
-                                            <option {{ $plan->interval == 'custom_date' ? 'selected' : '' }}
+                                            <option {{ $plan->package_duration == '3' ? 'selected' : '' }}
                                                 value="custom_date">
                                                 {{ __('plan_duration') }}
                                             </option>
@@ -42,7 +42,9 @@
                                             Interval Days
                                             <span class="form-label-required text-danger">*</span>
                                         </label>
-                                        <input type="number" min="1" id="custom_interval_days" name="custom_interval_days" value="15" class="form-control " placeholder="Interval Days">
+                                        <input type="number" min="1" id="custom_interval_days"
+                                            name="custom_interval_days" value="15" class="form-control "
+                                            placeholder="Interval Days">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,8 +61,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <x-forms.label name="ad_limit" required="true" for="ad_limit" />
-                                        <input type="number" id="ad_limit" name="ad_limit"
-                                            value="{{ $plan->ad_limit }}"
+                                        <input type="number" id="ad_limit" name="ad_limit" value="{{ $plan->ad_limit }}"
                                             class="form-control @error('ad_limit') is-invalid @enderror">
                                         @error('ad_limit')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -118,17 +119,17 @@
     <script>
         // function add_features_field() {
         //     $("#multiple_feature_part").append(`
-        //         <div class="row">
-        //             <div class="col-lg-10">
-        //                     <div class="input-field mb-3">
-        //                         <input name="new_featured[]" type="text"  id="adname" class="form-control @error('new_featured') border-danger @enderror"/>
-        //                     </div>
-        //             </div>
-        //             <div class="col-lg-2 mt-10">
-        //                 <button id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
-        //             </div>
-        //         </div>
-        //     `);
+    //         <div class="row">
+    //             <div class="col-lg-10">
+    //                     <div class="input-field mb-3">
+    //                         <input name="new_featured[]" type="text"  id="adname" class="form-control @error('new_featured') border-danger @enderror"/>
+    //                     </div>
+    //             </div>
+    //             <div class="col-lg-2 mt-10">
+    //                 <button id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+    //             </div>
+    //         </div>
+    //     `);
         // }
         //  $(document).on("click", "#remove_item", function() {
         //      $(this).parent().parent('div').remove();

@@ -1,5 +1,5 @@
 @extends('frontend.postad.index')
-@section('title', __('step1'))
+@section('title', __('Ad Post'))
 @section('post-ad-content')
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -11,9 +11,8 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="title" for="Title" required="true" />
-                                <input onkeyup="countChars(this);"
-                                    value="{{ old('title') }}"
-                                    name="title" type="text" placeholder="{{ __('title') }}" id="adname"
+                                <input onkeyup="countChars(this);" value="{{ old('title') }}" name="title" type="text"
+                                    placeholder="{{ __('title') }}" id="adname"
                                     class="@error('title') border-danger @enderror" / required>
                                 <p style="display: none;" id="charNum">0 characters</p>
                             </div>
@@ -105,9 +104,9 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
-                                <input required value="{{ old('price')}}"
-                                    name="price" type="number" min="1" placeholder="{{ __('price') }}"
-                                    id="price" class="@error('price') border-danger @enderror"/ step="any">
+                                <input required value="{{ old('price') }}" name="price" type="number" min="1"
+                                    placeholder="{{ __('price') }}" id="price"
+                                    class="@error('price') border-danger @enderror"/ step="any">
                             </div>
                         </div>
                     </div>
@@ -164,8 +163,8 @@
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description"
-                        class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
+                    <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..."
+                        id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
                     <p style="display: none;" id="charNum">0 characters</p>
                 </div>
                 <div class="input-field--textarea">
@@ -187,7 +186,7 @@
                 </div>
                 <div class="input-field">
                     <label class="active">{{ __('upload_photos') }}</label>
-                    <div id="multiple_image_upload" class="input-images-2"  style="padding-top: .5rem;" multiple></div>
+                    <div id="multiple_image_upload" class="input-images-2" style="padding-top: .5rem;" multiple></div>
                 </div>
                 <div class="row mt-1">
                     <div class="col-6 col-md-3">
@@ -207,7 +206,7 @@
                         $ad = Modules\Ad\Entities\Ad::where('customer_id', Auth::user()->id)
                             ->where(['featured' => 1, 'status' => 'active'])
                             ->count();
-                        
+
                     @endphp
                     @if (session('user_plan')->featured_limit)
                         @if (session('user_plan')->featured_limit > $ad)
@@ -234,8 +233,8 @@
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
-                                <x-svg.right-arrow-icon />
-                            </span> -->
+                                        <x-svg.right-arrow-icon />
+                                    </span> -->
                     </button>
                 </div>
             </form>

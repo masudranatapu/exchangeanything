@@ -1,7 +1,7 @@
 @extends('frontend.postad.index')
 
 @section('title')
-    {{ __('edit_ad') }} ({{ __('steps01') }}) - {{ $ad->title }}
+    {{ __('edit_ad') }} - {{ $ad->title }}
 @endsection
 
 @section('post-ad-content')
@@ -279,8 +279,8 @@
                     <button type="submit" class="btn btn--lg text-light">
                         {{ __('Update') }}
                         <!--  <span class="icon--right">
-                                            <x-svg.right-arrow-icon />
-                                        </span> -->
+                                                    <x-svg.right-arrow-icon />
+                                                </span> -->
                     </button>
                 </div>
                 <input type="hidden" id="cancel_edit_input" name="cancel_edit" value="0">
