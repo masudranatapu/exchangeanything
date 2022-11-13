@@ -39,12 +39,12 @@ Route::group(['as' => 'frontend.'], function () {
 
     Route::get('adlist-search-ajax/{id}', [FrontendController::class, 'adlistSearchAjax']);
     // customer dashboard
-    Route::prefix('dashboard')->middleware(['auth:customer','verified'])->group(function () {
+    Route::prefix('dashboard')->middleware(['auth:customer', 'verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
-        Route::middleware('check.planPurchase')->group(function (){
+        Route::middleware('check.planPurchase')->group(function () {
 
             // Ad Create
-            Route::prefix('post')->middleware(['checkplan','check.planPurchase'])->group(function () {
+            Route::prefix('post')->middleware(['checkplan', 'check.planPurchase'])->group(function () {
                 Route::get('/', [AdPostController::class, 'postStep1'])->name('post');
                 // subcategory routes
                 Route::get('get_subcategory/{id}', [AdPostController::class, 'getSubcategory']);
@@ -56,7 +56,7 @@ Route::group(['as' => 'frontend.'], function () {
                 Route::get('/step2/back/{slug?}', [AdPostController::class, 'postStep2Back'])->name('post.step2.back');
                 Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
             });
-            
+
             // Ad Edit
             Route::prefix('post')->group(function () {
                 Route::get('/images/{id}/delete', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');
@@ -86,6 +86,7 @@ Route::group(['as' => 'frontend.'], function () {
             Route::post('wishlist', [DashboardController::class, 'addToWishlist'])->name('add.wishlist');
             Route::delete('account-delete/{customer}', [DashboardController::class, 'deleteAccount'])->name('account.delete');
         });
+        Route::get('expired-plan', [DashboardController::class, 'expiredPlan'])->name('expiredPlan');
     });
 });
 
@@ -93,7 +94,7 @@ Route::group(['as' => 'frontend.'], function () {
 Route::get('/ads-expire-notification-send', [AdsExpireNotificationController::class, 'sendNotification'])->name('ads.expire.notification.send');
 
 // Verification Routes
-Route::middleware('auth:customer', 'setlang')->group(function() {
+Route::middleware('auth:customer', 'setlang')->group(function () {
     Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
