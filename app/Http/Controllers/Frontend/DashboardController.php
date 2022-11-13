@@ -35,6 +35,8 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
+        // try {
+        //code...
         $authUser = auth('customer')->user();
         $ads = Ad::customerData()->get();
         $activities = auth('customer')->user()->notifications()->latest()->limit(5)->get();
@@ -42,8 +44,18 @@ class DashboardController extends Controller
         $favourite_count = Wishlist::whereCustomerId($authUser->id)->count();
         $posted_ads_count = $ads->where('customer_id', $authUser->id)->count();
         $expire_ads_count = $ads->where('status', 'expired')->where('customer_id', $authUser->id)->count();
-        $plan_info = UserPlan::customerData()->firstOrFail();
-        $plan = Plan::find($plan_info->plans_id);
+
+
+        $userplan = UserPlan::where('customer_id', $authUser->id)->get();
+
+
+        if (isset($userplan) && $userplan->count() > 0) {
+
+            $plan_info = UserPlan::customerData()->firstOrFail();
+            $plan = Plan::find($plan_info->plans_id);
+        } else {
+            return redirect()->route('frontend.priceplan');
+        }
 
         // bar chart by year
         $bar_chart_datas = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -68,6 +80,9 @@ class DashboardController extends Controller
             'use_id' =>  $authUser->id,
             'unique_id' =>  $authUser->code,
         ]);
+        // } catch (\Exception $th) {
+        //     dd($th);
+        // }
     }
 
     public function editAd(Ad $ad)

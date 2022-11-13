@@ -23,36 +23,36 @@
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link {{ request()->page == 'website' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'website') }}">{{ __('website') }}</a>
-                   <!-- <a class="nav-link {{ request()->page == 'system' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'system') }}">{{ __('system') }}</a>
-                     <a class="nav-link {{ request()->page == 'layout' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'layout') }}">{{ __('layout') }}</a> -->
-                   <!--  <a class="nav-link {{ request()->page == 'color' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'color') }}">{{ __('color_picker') }}</a>
-                    <a class="nav-link {{ request()->page == 'custom' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'custom') }}">{{ __('custom_css_js') }}</a> -->
-                        {{-- <a class="nav-link {{ request()->page == 'mail' ? 'active' : '' }}"
+                    <!-- <a class="nav-link {{ request()->page == 'system' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'system') }}">{{ __('system') }}</a>
+                         <a class="nav-link {{ request()->page == 'layout' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'layout') }}">{{ __('layout') }}</a> -->
+                    <!--  <a class="nav-link {{ request()->page == 'color' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'color') }}">{{ __('color_picker') }}</a>
+                        <a class="nav-link {{ request()->page == 'custom' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'custom') }}">{{ __('custom_css_js') }}</a> -->
+                    {{-- <a class="nav-link {{ request()->page == 'mail' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'mail') }}">{{ __('mail') }}</a>
                     <a class="nav-link {{ request()->page == 'email_template' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'email_template') }}">{{ __('email_template') }}</a> --}}
 
-                     <!-- <a class="nav-link {{ request()->page == 'payment' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'payment') }}">{{ __('payment') }}</a> -->
+                    <a class="nav-link {{ request()->page == 'payment' ? 'active' : '' }}"
+                        href="{{ route('setting.index', 'payment') }}">{{ __('payment') }}</a>
 
-                   <!-- <a class="nav-link" href="{{ route('language.index') }}">{{ __('language') }}</a>
-                    <a class="nav-link" href="{{ route('module.currency.index') }}">{{ __('currency') }}</a> 
-                    <a class="nav-link {{ request()->page == 'module' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'module') }}">{{ __('module') }}</a>-->
+                    <!-- <a class="nav-link" href="{{ route('language.index') }}">{{ __('language') }}</a>
+                        <a class="nav-link" href="{{ route('module.currency.index') }}">{{ __('currency') }}</a>
+                        <a class="nav-link {{ request()->page == 'module' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'module') }}">{{ __('module') }}</a>-->
                     <a class="nav-link {{ request()->page == 'seo' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'seo') }}">{{ __('seo') }}</a>
                     <a class="nav-link {{ request()->page == 'cms' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'cms') }}">{{ __('cms') }}</a>
-                    <!-- <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a> -->
-                       <!--  <a class="nav-link {{ request()->page == 'ads' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'ads') }}">{{ __('ads') }}</a>
-                    <a class="nav-link {{ Route::is('admin.ads.show') ? 'active' : '' }}" href="{{ route('admin.ads.show') }}">
-                        {{ __('Admin Ads') }} -->
+                    <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
+                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a>
+                    <!--  <a class="nav-link {{ request()->page == 'ads' ? 'active' : '' }}"
+                            href="{{ route('setting.index', 'ads') }}">{{ __('ads') }}</a>
+                        <a class="nav-link {{ Route::is('admin.ads.show') ? 'active' : '' }}" href="{{ route('admin.ads.show') }}">
+                            {{ __('Admin Ads') }} -->
                     </a>
                 </div>
             </div>
@@ -61,10 +61,10 @@
                     <div class="tab-pane fade {{ request()->page == 'website' ? 'show active' : '' }}">
                         @yield('website-settings')
                     </div>
-                    {{--<div class="tab-pane fade {{ request()->page == 'system' ? 'show active' : '' }}" id="system"
+                    {{-- <div class="tab-pane fade {{ request()->page == 'system' ? 'show active' : '' }}" id="system"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('system')
-                    </div>--}}
+                    </div> --}}
                     <div class="tab-pane fade {{ request()->page == 'layout' ? 'show active' : '' }}" id="layout"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('layout')
@@ -84,12 +84,12 @@
                         role="tabpanel" aria-labelledby="homee">
                         @yield('emailtemplate-setting')
                     </div> --}}
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'payment' ? 'show active' : '' }}" id="payment"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('payment-setting')
                     </div>
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'module' ? 'show active' : '' }}" id="module"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('module-setting')
@@ -113,7 +113,7 @@
                         @yield('admin-ads-setting')
                     </div>
 
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'social_login' ? 'show active' : '' }}"
                         id="social_login" role="tabpanel" aria-labelledby="homee">
                         @yield('social-login-setting')
