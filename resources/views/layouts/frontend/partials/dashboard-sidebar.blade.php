@@ -16,7 +16,7 @@
     </div>
     <div class="dashboard__navigation-bottom">
         <ul class="dashboard__nav">
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="User Overview">
                 <a href="{{ route('frontend.dashboard') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.dashboard') ? 'active' : '' }}">
                     <span class="icon">
@@ -27,7 +27,7 @@
             </li>
 
 
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="Post an ads">
                 <a href="{{ route('frontend.post') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
                     <span class="icon">
@@ -41,7 +41,7 @@
 
 
 
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="My ads">
                 <a href="{{ route('frontend.adds') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.adds') ? 'active' : '' }}">
                     <span class="icon">
@@ -50,7 +50,7 @@
                     {{ __('my_ads') }}
                 </a>
             </li>
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="My favorite ads">
                 <a href="{{ route('frontend.favourites') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.favourites') ? 'active' : '' }}">
                     <span class="icon">
@@ -59,7 +59,7 @@
                     {{ __('favorite_ads') }}
                 </a>
             </li>
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="Message list">
                 <a href="{{ route('frontend.message') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.message') ? 'active' : '' }}"">
                     <span class="icon">
@@ -75,7 +75,7 @@
                     @endif
                 </a>
             </li>
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="Plans billing">
                 <a href="{{ route('frontend.plans-billing') }}"
                     class="dashboard__nav-link  {{ request()->routeIs('frontend.plans-billing') ? 'active' : '' }}">
                     <span class="icon">
@@ -84,7 +84,7 @@
                     {{ __('plans_billing') }}
                 </a>
             </li>
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="Account settings">
                 <a href="{{ route('frontend.account-setting') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.account-setting') ? 'active' : '' }}">
                     <span class="icon">
@@ -93,7 +93,7 @@
                     {{ __('account_settings') }}
                 </a>
             </li>
-            <li class="dashboard__nav-item">
+            <li class="dashboard__nav-item" title="Sign out">
                 <a href="#" class="dashboard__nav-link"
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <span class="icon">

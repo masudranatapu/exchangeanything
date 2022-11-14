@@ -5,6 +5,11 @@
 @endsection
 
 @section('post-ad-content')
+    @php
+        $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
+        $state = DB::table('towns')->where('city_id', $ad->city_id)->get();
+        $areas = DB::table('areas')->where('state_id', $adsinfo->town_id)->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -123,30 +128,39 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-select">
                                 <x-forms.label name="country" for="cityy" required="true" />
-                                <select name="city_id" id="cityy"
-                                    class="form-control select-bg @error('city_id') border-danger @enderror">
+                                <select name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
                                     <option value="" selected>{{ __('select_country') }}</option>
                                     @foreach ($citis as $city)
-                                        <option {{ $city->id == $ad->city_id ? 'selected' : '' }}
-                                            value="{{ $city->id }}">
-                                            {{ $city->name }}</option>
+                                        <option {{ $city->id == $ad->city_id ? 'selected' : '' }} value="{{ $city->id }}">
+                                            {{ $city->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-select">
-                                <x-forms.label name="region" for="townn" required="true" />
-                                <select name="town_id" id="townn"
-                                    class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <x-forms.label name="region" for="townn"/>
+                                <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_region') }}</option>
+                                    @foreach($state as $sta)
+                                        <option value="{{$sta->id}}" @if($sta->id == $adsinfo->town_id) selected @endif>{{$sta->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-select">
+                                <label for="">City</label>
+                                <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                                    <option value="" disabled>{{ __('Select City') }}</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{$area->id}}" @if($area->id == $adsinfo->area_id) selected @endif>{{$area->city_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -383,5 +397,49 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        
+        $('#cityy').on('change', function() {
+            var country_id = $(this).val();
+            if (country_id) {
+                $.ajax({
+                    url: "{{ url('adlist-search-ajax') }}/" + country_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#areaid').html('');
+                        var d = $('#townn').empty();
+                        $('#townn').append(
+                            '<option value="" disabled selected> Select Region </option>');
+                        $.each(data, function(key, value) {
+                            $('#townn').append('<option value="' + value.id + '">' + value
+                                .name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        $('#townn').on('change', function() {
+            var townnid = $("#townn").val()
+            // alert(townnid);
+            if (townnid) {
+                $.ajax({
+                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
+                        $.each(data, function(key, value){
+                            $('#areaid').append('<option value="'+ value.id +'">' + value.city_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
     </script>
 @endpush

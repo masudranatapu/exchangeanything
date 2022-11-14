@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\AdPostController;
 use App\Http\Controllers\AdsExpireNotificationController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\SellerDashboardController;
 
 // show website pages
 Route::group(['as' => 'frontend.'], function () {
@@ -33,11 +34,21 @@ Route::group(['as' => 'frontend.'], function () {
     Route::post('blog/comments/count', [FrontendController::class, 'commentsCount'])->name('comments.create');
 
 
+    //seller dashboard
+    Route::controller(SellerDashboardController::class)->group(function () {
+        Route::get('/seller/{user:username}', 'profile')->name('seller.profile');
+        Route::post('/seller/rate', 'rateReview')->name('seller.review');
+        Route::post('/pre/signup', 'preSignup')->name('pre.signup');
+        Route::post('/report', 'report')->name('seller.report');
+    });
+
+
     Route::get('country/to/city/{id}', [FrontendController::class, 'CountryToCity']);
     Route::get('category/to/subcategory/{id}', [FrontendController::class, 'CategoryWiseSubcategory']);
 
 
     Route::get('adlist-search-ajax/{id}', [FrontendController::class, 'adlistSearchAjax']);
+    Route::get('adlist-town-city-ajax/{id}', [FrontendController::class, 'adlistSearchAjaxtowncity']);
     // customer dashboard
     Route::prefix('dashboard')->middleware(['auth:customer', 'verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
