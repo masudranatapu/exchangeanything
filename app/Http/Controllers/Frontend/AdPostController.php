@@ -98,14 +98,14 @@ class AdPostController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'country' => 'required',
-            'town_id'  => 'required',
+            // 'town_id'  => 'required',
             'description' => 'required|min:150',
             'images.*' => 'required|max:2048',
 
             // 'estimate_calling_time' => 'required',
         ], [
             'country.required' => 'The Country is required',
-            'town_id.required' => 'The Region is required',
+            // 'town_id.required' => 'The Region is required',
         ]);
 
 
