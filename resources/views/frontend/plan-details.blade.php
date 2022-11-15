@@ -121,7 +121,7 @@
 
 
 
-                                @if ($userPlan->is_active == 1 && $plan->price == 0)
+                                @if ($plan->price == 0)
                                     <button onclick="openPaymentModal()" class="btn btn-success btn-sm">Active</button>
                                 @endif
 
