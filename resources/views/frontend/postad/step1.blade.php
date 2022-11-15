@@ -123,7 +123,7 @@
                         <div class="input-select">
                             <x-forms.label name="Country" required="true" for="cityy" />
                             <select required name="country" id="country" class="form-control select-bg @error('country') border-danger @enderror">
-                                <option class="d-none" value="" selected>{{ __('select_city') }}</option>
+                                <option class="d-none" value="" selected>{{ __('Select Country') }}</option>
                                 @foreach ($citis as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
@@ -132,9 +132,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="input-select">
-                            <x-forms.label name="region" for="townn" />
+                            <x-forms.label name="State" for="townn" />
                             <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('Select Town') }}</option>
+                                <option value="" hidden>{{ __('Select State') }}</option>
                             </select>
                         </div>
                     </div>
@@ -347,20 +347,28 @@
 
         $('#country').on('change', function() {
             var country_id = $(this).val();
+            // alert(country_id);
             if (country_id) {
                 $.ajax({
                     url: "{{ url('adlist-search-ajax') }}/" + country_id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+                        console.log(data);
                         $('#areaid').html('');
                         var d = $('#townn').empty();
-                        $('#townn').append(
-                            '<option value="" disabled selected> Select Region </option>');
-                        $.each(data, function(key, value) {
-                            $('#townn').append('<option value="' + value.id + '">' + value
-                                .name + '</option>');
+                        // $('#townn').append(
+                        //     '<option value="" disabled selected> Select Region </option>');
+                        // $.each(data, function(key, value) {
+                        //     $('#townn').append('<option value="' + value.id + '">' + value
+                        //         .name + '</option>');
+                        // });
+
+                        $('#townn').html('<option value="" disabled selected> Select One </option>');
+                        $.each(data, function(key, value){
+                            $('#townn').append('<option value="'+ value.id +'">' + value.name + '</option>');
                         });
+
                     },
                 });
             } else {

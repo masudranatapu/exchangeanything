@@ -84,7 +84,7 @@ class AdPostController extends Controller
      */
     public function storePostStep1(Request $request)
     {
-
+        
         $request->validate([
             'title' => 'required|min:30|unique:ads,title',
             'price' => 'required|numeric',
