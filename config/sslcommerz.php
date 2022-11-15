@@ -23,4 +23,5 @@ return [
     'failed_url' => '/payment/fail',
     'cancel_url' => '/payment/cancel',
     'ipn_url' => '/payment/ipn',
+    'active' => env('SSL_COMMERZ_ACTIVE', false)
 ];

@@ -16,14 +16,14 @@ trait PaymentTrait
     public function userPlanInfoUpdate($plan)
     {
         $userplan = UserPlan::customerData()->first();
-        if($plan->ad_limit==0){
+        if ($plan->ad_limit == 0) {
             $userplan->ad_limit = 0;
-        }else{
+        } else {
             $userplan->ad_limit = $userplan->ad_limit + $plan->ad_limit;
         }
-        if($plan->priority_situation==1){
+        if ($plan->priority_situation == 1) {
             $userplan->featured_limit = $userplan->featured_limit + 10;
-        }else{
+        } else {
             $userplan->featured_limit = 0;
         }
         if (!$userplan->customer_support) {
@@ -36,6 +36,7 @@ trait PaymentTrait
             $userplan->badge = $plan->badge ? true : false;
         }
 
+        $userplan->plans_id = $plan->id;
         $userplan->is_active = 0;
 
         $userplan->save();

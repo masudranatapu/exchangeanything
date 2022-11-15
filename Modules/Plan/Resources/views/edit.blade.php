@@ -22,16 +22,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <x-forms.label name="plan_type" required="true" for="ad_limit" for="plan_type" />
-                                        <select name="interval" class="custom-select mr-sm-2" id="plan_type">
-                                            <option {{ $plan->package_duration == '1' ? 'selected' : '' }} value="monthly">
+                                        <select name="package_duration" class="custom-select mr-sm-2" id="plan_type">
+                                            <option {{ $plan->package_duration == '1' ? 'selected' : '' }} value="1">
+                                                {{ __('lifetime') }}
+                                            </option>
+                                            <option {{ $plan->package_duration == '2' ? 'selected' : '' }} value="2">
+                                                {{ __('anually') }}
+                                            </option>
+                                            <option {{ $plan->package_duration == '3' ? 'selected' : '' }} value="3">
                                                 {{ __('monthly') }}
-                                            </option>
-                                            <option {{ $plan->package_duration == '2' ? 'selected' : '' }} value="yearly">
-                                                {{ __('yearly') }}
-                                            </option>
-                                            <option {{ $plan->package_duration == '3' ? 'selected' : '' }}
-                                                value="custom_date">
-                                                {{ __('plan_duration') }}
                                             </option>
                                         </select>
                                     </div>

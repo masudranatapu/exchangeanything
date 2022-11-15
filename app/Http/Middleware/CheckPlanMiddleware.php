@@ -19,9 +19,8 @@ class CheckPlanMiddleware
     {
         if ($userPlan =  session('user_plan')) {
             $plan    = Plan::find($userPlan->plans_id);
-            if ((int) $userPlan->ad_limit < 1) {
+            if ((int) $userPlan->ad_limit <= 0) {
                 if ($plan->ad_limit == 0) {
-                    // dd($plan->ad_limit);
                     return $next($request);
                 } else {
 
