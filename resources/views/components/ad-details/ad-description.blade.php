@@ -3,6 +3,8 @@
         <h2 class="text--body-1-600">{{ __('descriptions') }}</h2>
         {!! $description !!}
     </div>
+
+@if($features->count())
     <div class="product-item__feature">
         <h2 class="text--body-1-600">{{ __('feature') }}</h2>
         <ul class="feature">
@@ -36,4 +38,5 @@
             </li>
         </ul>
     </div>
+@endif
 </div>

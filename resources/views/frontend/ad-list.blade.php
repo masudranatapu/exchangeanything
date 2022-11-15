@@ -66,6 +66,7 @@
                                         <div class="accordion-body list-sidebar__accordion-body">
                                             <div class="accordion list-sidebar__accordion-inner" id="subcategoryGroup">
                                                 @foreach ($categories as $category)
+                                                @if ($category->subcategories->count() > 1)
                                                     <div class="accordion-item list-sidebar__accordion-inner-item">
                                                         <h2 class="accordion-header"
                                                             id="{{ Str::slug($category->slug) }}">
@@ -84,22 +85,17 @@
                                                                     {{ $category->name }}
                                                                     <strong>({{ $cat_count }})</strong>
                                                                 </span>
-                                                            {{-- 
-                                                                <span style="padding-left:5px;">
-                                                                    @php
-                                                                     $cat_count = DB::table('ads')->where('category_id', $category->id)->count();
-                                                                    @endphp
-                                                                    <strong>({{ $cat_count }})</strong>
-                                                                </span>
-                                                            --}}
-                                                                @if ($category->subcategories->count() > 1)
+                                                                
                                                                     <span class="icon icon--plus">
                                                                         <x-svg.plus-light-icon />
                                                                     </span>
-                                                                @endif
-                                                                <span class="icon icon--minus">
+                                                               
+                                                               
+                                                                     <span class="icon icon--minus">
                                                                     <x-svg.minus-icon />
                                                                 </span>
+                                                                
+                                                               
                                                             </div>
                                                         </h2>
                                                         <div id="{{ Str::slug($category->slug) }}Collapse"
@@ -130,6 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
@@ -203,7 +200,7 @@
                 <div class="col-xl-9">
                     <div class="ad-list__content row">
                         @forelse ($adlistings as $ad)
-                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6"></x-frontend.single-ad>
+                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6 mb-4"></x-frontend.single-ad>
                         @empty
                             <x-not-found2 message="No ads found" />
                         @endforelse

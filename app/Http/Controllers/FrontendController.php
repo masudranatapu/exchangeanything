@@ -704,6 +704,12 @@ class FrontendController extends Controller
         return json_encode($towns);
     }
 
+    public function adlistSearchAjaxtowncity($id)
+    {
+        $cities = DB::table('areas')->where('state_id', $id)->get();
+        return json_encode($cities);
+    }
+
      public function CountryToCity(Request $request, $id)
     {
          $town  = DB::table('towns')->where('city_id', $id)->orderBy('name')->get();

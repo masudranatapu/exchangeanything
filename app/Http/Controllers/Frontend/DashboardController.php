@@ -35,6 +35,8 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
+        // try {
+        //code...
         $authUser = auth('customer')->user();
         $ads = Ad::customerData()->get();
         $activities = auth('customer')->user()->notifications()->latest()->limit(5)->get();
@@ -42,8 +44,18 @@ class DashboardController extends Controller
         $favourite_count = Wishlist::whereCustomerId($authUser->id)->count();
         $posted_ads_count = $ads->where('customer_id', $authUser->id)->count();
         $expire_ads_count = $ads->where('status', 'expired')->where('customer_id', $authUser->id)->count();
-        $plan_info = UserPlan::customerData()->firstOrFail();
-        $plan = Plan::find($plan_info->plans_id);
+
+
+        $userplan = UserPlan::where('customer_id', $authUser->id)->get();
+
+
+        if (isset($userplan) && $userplan->count() > 0) {
+
+            $plan_info = UserPlan::customerData()->firstOrFail();
+            $plan = Plan::find($plan_info->plans_id);
+        } else {
+            return redirect()->route('frontend.priceplan');
+        }
 
         // bar chart by year
         $bar_chart_datas = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -68,6 +80,9 @@ class DashboardController extends Controller
             'use_id' =>  $authUser->id,
             'unique_id' =>  $authUser->code,
         ]);
+        // } catch (\Exception $th) {
+        //     dd($th);
+        // }
     }
 
     public function editAd(Ad $ad)
@@ -177,7 +192,7 @@ class DashboardController extends Controller
 
     public function plansBilling()
     {
-        
+
         $plan_info = UserPlan::customerData()->firstOrFail();
         $data['plan'] = Plan::find($plan_info->plans_id);
         $data['plan_info'] = UserPlan::customerData()->firstOrFail();
@@ -206,29 +221,28 @@ class DashboardController extends Controller
             'iso2' => "sometimes|nullable",
             'web' => "sometimes|nullable|url",
         ]);
-        if($request->subscribe == 1){
+        if ($request->subscribe == 1) {
             $check = Email::where('email', $request->email)->first();
             // return $check;
-            if(!$check) {
+            if (!$check) {
                 Email::create(['email' => $request->email]);
                 $customer = ProfileUpdate::update($request, $customer);
                 flashSuccess('Profile Updated Successfully with subscribed');
                 return back();
-            }else {
+            } else {
                 $customer = ProfileUpdate::update($request, $customer);
                 flashSuccess('Profile Updated Successfully with subscribed');
                 return back();
             }
-        }else {
+        } else {
             $check = Email::where('email', $request->email)->first();
             // $check->delete();
-            if($check){
+            if ($check) {
                 $check->delete();
             }
             $customer = ProfileUpdate::update($request, $customer);
             flashSuccess('Profile Updated Successfully with subscribed');
             return back();
-
         }
     }
 
@@ -286,7 +300,7 @@ class DashboardController extends Controller
     {
         Mail::to($customer->email)->send(new DeleteCustomerNotification);
         $customer->delete();
-        
+
         Auth::guard('customer')->logout();
         return redirect()->route('customer.login');
     }
@@ -333,5 +347,9 @@ class DashboardController extends Controller
     public function postRules()
     {
         return view('frontend.posting-rules')->withSetting(Setting::first());
+    }
+    public function expiredPlan()
+    {
+        return view('frontend.add-plan');
     }
 }

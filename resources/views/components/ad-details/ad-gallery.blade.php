@@ -2,6 +2,8 @@
     <div class="product-item__gallery">
         <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
         <div class="swiper-wrapper">
+            
+
             <div class="swiper-slide">
                 <img src="{{ $thumbnail }}" alt="product-img" />
             </div>
@@ -13,11 +15,11 @@
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-        <div class="view">
+        <!-- <div class="view">
             <a class="icon" href="{{ route('frontend.ad.gallery.details', $slug) }}">
                 <x-svg.full-screen-icon />
             </a>
-        </div>
+        </div> -->
       </div>
       <div thumbsSlider="" class="swiper mySwiper">
         <div class="swiper-wrapper">

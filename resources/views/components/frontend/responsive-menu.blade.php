@@ -82,11 +82,11 @@
                 --}}
                 @if ($priceplan_enable)
                 <li class="menu--sm__item">
-                    <a href="{{ route('frontend.priceplan') }}" class="menu--sm__link">{{ __('Membership') }}</a>
+                    <a href="{{ route('frontend.priceplan') }}" class="menu--sm__link">{{ __('Pricing') }}</a>
                 </li>
                 @endif
             </ul>
-            <div class="container">
+           <!--  <div class="container">
                 <div class="row">
                     <div class="col-6">
                         <div class="search__content-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="padding:0;">
@@ -118,18 +118,22 @@
                     </div>
                 </div>
                 </div>
-        </div>
+        </div> -->
         <div class="mobile-menu__footer ">
     @if (auth('customer')->check())
     <div class="mobile-menu__footer ">
         <div class="mobile-menu-user-wrap">
         <div class="mobile-menu-user-left">
         <div class="mobile-menu-user">
-            <img src="{{ auth('customer')->user()->image_url }}" alt="">
+            <a href="{{ route('frontend.dashboard') }}">
+                <img src="{{ auth('customer')->user()->image_url }}" alt="">
+            </a>
         </div>
         <div class="mobile-menu-user-data">
+            <a href="{{ route('frontend.dashboard') }}">
             <h5>{{ auth('customer')->user()->name }}</h5>
             <p>{{ auth('customer')->user()->username }}</p>
+        </a>
         </div>
         </div>
         <div class="mobile-menu-user-right">

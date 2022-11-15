@@ -32,7 +32,7 @@
                 </h2>
                 <div class="row">
                     @forelse ($recommendedAds as $ad)
-                        <x-frontend.single-ad :ad="$ad" className="col-xl-3 col-md-6"></x-frontend.single-ad>
+                        <x-frontend.single-ad :ad="$ad" className="col-xl-3 col-md-6 mb-4"></x-frontend.single-ad>
                     @empty
                         <x-no-data-found/>
                     @endforelse

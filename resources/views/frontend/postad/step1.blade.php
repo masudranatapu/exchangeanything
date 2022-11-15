@@ -1,5 +1,5 @@
 @extends('frontend.postad.index')
-@section('title', __('step1'))
+@section('title', __('Ad Post'))
 @section('post-ad-content')
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -11,9 +11,8 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="title" for="Title" required="true" />
-                                <input onkeyup="countChars(this);"
-                                    value="{{ old('title') }}"
-                                    name="title" type="text" placeholder="{{ __('title') }}" id="adname"
+                                <input onkeyup="countChars(this);" value="{{ old('title') }}" name="title" type="text"
+                                    placeholder="{{ __('title') }}" id="adname"
                                     class="@error('title') border-danger @enderror" / required>
                                 <p style="display: none;" id="charNum">0 characters</p>
                             </div>
@@ -105,9 +104,9 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
-                                <input required value="{{ old('price')}}"
-                                    name="price" type="number" min="1" placeholder="{{ __('price') }}"
-                                    id="price" class="@error('price') border-danger @enderror"/ step="any">
+                                <input required value="{{ old('price') }}" name="price" type="number" min="1"
+                                    placeholder="{{ __('price') }}" id="price"
+                                    class="@error('price') border-danger @enderror"/ step="any">
                             </div>
                         </div>
                     </div>
@@ -120,13 +119,10 @@
                                 class="input form-control">
                         </div>
                     </div>
-
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
                             <x-forms.label name="Country" required="true" for="cityy" />
-                            <select required name="country" id="country"
-                                class="form-control select-bg @error('country') border-danger @enderror">
+                            <select required name="country" id="country" class="form-control select-bg @error('country') border-danger @enderror">
                                 <option class="d-none" value="" selected>{{ __('select_city') }}</option>
                                 @foreach ($citis as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -134,12 +130,19 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
-                            <x-forms.label required="true" name="region" for="townn" />
-                            <select required name="town_id" id="townn"
-                                class="form-control select-bg @error('town_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('select_town') }}</option>
+                            <x-forms.label name="region" for="townn" />
+                            <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('Select Town') }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-select">
+                            <label for="">City</label>
+                            <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('Select City') }}</option>
                             </select>
                         </div>
                     </div>
@@ -164,21 +167,21 @@
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description"
-                        class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
+                    <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..."
+                        id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
                     <p style="display: none;" id="charNum">0 characters</p>
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="features" for="features" />
                     <div id="multiple_feature_part">
                         <div class="row">
-                            <div class="col-9 col-md-10 col-lg-11">
+                            <div class="col-9 col-sm-10 col-md-10 col-lg-11">
                                 <div class="input-field">
                                     <input name="features[]" type="text" placeholder="{{ __('features') }}"
                                         id="adname" class="@error('title') border-danger @enderror" />
                                 </div>
                             </div>
-                            <div class="col-3 col-md-2 col-lg-1 mt-10 add_feature">
+                            <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-10 add_feature">
                                 <a role="button" onclick="add_features_field()"
                                     class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
                             </div>
@@ -187,7 +190,7 @@
                 </div>
                 <div class="input-field">
                     <label class="active">{{ __('upload_photos') }}</label>
-                    <div id="multiple_image_upload" class="input-images-2"  style="padding-top: .5rem;" multiple></div>
+                    <div id="multiple_image_upload" class="input-images-2" style="padding-top: .5rem;" multiple></div>
                 </div>
                 <div class="row mt-1">
                     <div class="col-6 col-md-3">
@@ -207,7 +210,7 @@
                         $ad = Modules\Ad\Entities\Ad::where('customer_id', Auth::user()->id)
                             ->where(['featured' => 1, 'status' => 'active'])
                             ->count();
-                        
+
                     @endphp
                     @if (session('user_plan')->featured_limit)
                         @if (session('user_plan')->featured_limit > $ad)
@@ -234,8 +237,8 @@
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
-                                <x-svg.right-arrow-icon />
-                            </span> -->
+                                        <x-svg.right-arrow-icon />
+                                    </span> -->
                     </button>
                 </div>
             </form>
@@ -265,12 +268,12 @@
         function add_features_field() {
             $("#multiple_feature_part").append(`
                     <div class="row">
-                        <div class="col-9 col-md-10 col-lg-11">
+                        <div class="col-9 col-sm-10 col-md-10 col-lg-11">
                             <div class="input-field">
                                 <input name="features[]" type="text" placeholder="Feature" id="adname" class="@error('title') border-danger @enderror"/>
                             </div>
                         </div>
-                        <div class="col-3 col-md-2 col-lg-1 mt-10">
+                        <div class="col-3 col-sm-2 col-md-2 col-lg-1 mt-10">
                             <button onclick="remove_single_field()" id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
                         </div>
                     </div>
@@ -350,12 +353,34 @@
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+                        $('#areaid').html('');
                         var d = $('#townn').empty();
                         $('#townn').append(
                             '<option value="" disabled selected> Select Region </option>');
                         $.each(data, function(key, value) {
                             $('#townn').append('<option value="' + value.id + '">' + value
                                 .name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        $('#townn').on('change', function() {
+            var townnid = $("#townn").val()
+            // alert(townnid);
+            if (townnid) {
+                $.ajax({
+                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
+                        $.each(data, function(key, value){
+                            $('#areaid').append('<option value="'+ value.id +'">' + value.city_name + '</option>');
                         });
                     },
                 });

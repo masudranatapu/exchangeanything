@@ -1,10 +1,15 @@
 @extends('frontend.postad.index')
 
 @section('title')
-    {{ __('edit_ad') }} ({{ __('steps01') }}) - {{ $ad->title }}
+    {{ __('edit_ad') }} - {{ $ad->title }}
 @endsection
 
 @section('post-ad-content')
+    @php
+        $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
+        $state = DB::table('towns')->where('city_id', $ad->city_id)->get();
+        $areas = DB::table('areas')->where('state_id', $adsinfo->town_id)->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -99,49 +104,63 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="authenticity" for="authenticityy" />
-                                <select name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
+                                <select name="authenticity" id="authenticityy"
+                                    class="form-control select-bg @error('authenticity') border-danger @enderror">
                                     @isset($ad->condition)
-                                    <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
-                                    <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
+                                        <option {{ $ad->authenticity == 'original' ? 'selected' : '' }} value="original">
+                                            {{ __('original') }}</option>
+                                        <option {{ $ad->authenticity == 'refurbished' ? 'selected' : '' }} value="refurbished">
+                                            {{ __('refurbished') }}</option>
                                     @else
-                                    <option value="original">{{ __('original') }}</option>
-                                    <option value="refurbished">{{ __('refurbished') }}</option>
+                                        <option value="original">{{ __('original') }}</option>
+                                        <option value="refurbished">{{ __('refurbished') }}</option>
                                     @endisset
                                 </select>
                             </div>
                         </div>
 
-                         <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
-                                <input value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price"  class="@error('price') border-danger @enderror"/ step="any">
+                                <input value="{{ $ad->price }}" name="price" type="number" min="1"
+                                    placeholder="{{ __('price') }}" id="price"
+                                    class="@error('price') border-danger @enderror"/ step="any">
                             </div>
                         </div>
                     </div>
-
-                    
-
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-select">
                                 <x-forms.label name="country" for="cityy" required="true" />
-                                <select name="city_id" id="cityy"
-                                    class="form-control select-bg @error('city_id') border-danger @enderror">
+                                <select name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
                                     <option value="" selected>{{ __('select_country') }}</option>
                                     @foreach ($citis as $city)
-                                        <option {{ $city->id == $ad->city_id ? 'selected' : '' }}
-                                            value="{{ $city->id }}">
-                                            {{ $city->name }}</option>
+                                        <option {{ $city->id == $ad->city_id ? 'selected' : '' }} value="{{ $city->id }}">
+                                            {{ $city->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-select">
-                                <x-forms.label name="region" for="townn" required="true" />
-                                <select name="town_id" id="townn"
-                                    class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <x-forms.label name="region" for="townn"/>
+                                <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_region') }}</option>
+                                    @foreach($state as $sta)
+                                        <option value="{{$sta->id}}" @if($sta->id == $adsinfo->town_id) selected @endif>{{$sta->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-select">
+                                <label for="">City</label>
+                                <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                                    <option value="" disabled>{{ __('Select City') }}</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{$area->id}}" @if($area->id == $adsinfo->area_id) selected @endif>{{$area->city_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -167,8 +186,9 @@
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description" class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
-                  
+                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description"
+                        class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
+
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="feature" for="feature" />
@@ -203,17 +223,19 @@
                     </div>
                 </div>
                 <div class="row">
-                <div class="col-lg-6 col-md-6 upload-wrapper">
-                    <h3>{{ __('Thumbnail Image') }} <span class="text-danger">*</span></h3>
-                    <div class="input-field">
-                        <input type="file" name="thumbnail" class="form-control @error('title') border-danger @enderror" onchange="readURL(this);">
-                        <input type="hidden" name="old_thumbnail" value="{{ $ad->thumbnail ?? '' }}">
+                    <div class="col-lg-6 col-md-6 upload-wrapper">
+                        <h3>{{ __('Thumbnail Image') }} <span class="text-danger">*</span></h3>
+                        <div class="input-field">
+                            <input type="file" name="thumbnail"
+                                class="form-control @error('title') border-danger @enderror" onchange="readURL(this);">
+                            <input type="hidden" name="old_thumbnail" value="{{ $ad->thumbnail ?? '' }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail"
+                            style="height: 100px;width: 80px;float: right;margin-right: 46%;">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail" style="height: 100px;width: 80px;float: right;margin-right: 46%;">
-                </div>
-            </div>
                 <div class="col-12 mb-4 mt-4">
                     <div class="row">
                         @foreach ($ad->galleries as $gallery)
@@ -237,7 +259,7 @@
                 </div>
                 <div class="input-field">
                     <label class="active">{{ __('upload_photos') }}</label>
-                    <div id="file-1" class="input-images-2" style="padding-top: .5rem;" ></div>
+                    <div id="file-1" class="input-images-2" style="padding-top: .5rem;"></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
@@ -248,8 +270,9 @@
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-                   @if (session('user_plan')->featured_limit)
-                        @if (session('user_plan')->featured_limit > $ad)
+
+                    @if (session('user_plan')->featured_limit)
+                        @if (session('user_plan')->featured_limit > $countfeatured)
                             <div class="col-6 col-md-3">
                                 <div class="form-check">
                                     <input name="featured" type="hidden" value="0">
@@ -269,9 +292,9 @@
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn btn--lg text-light">
                         {{ __('Update') }}
-                       <!--  <span class="icon--right">
-                            <x-svg.right-arrow-icon />
-                        </span> -->
+                        <!--  <span class="icon--right">
+                                                    <x-svg.right-arrow-icon />
+                                                </span> -->
                     </button>
                 </div>
                 <input type="hidden" id="cancel_edit_input" name="cancel_edit" value="0">
@@ -281,23 +304,21 @@
 @endsection
 
 @section('frontend_style')
-
-<link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet">
 @endsection
 
 @push('post-ad-scripts')
-<script src="{{ asset('backend/plugins/bootstrap-fileinput/js/fileinput.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backend/plugins/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
-<script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
-<script>
-    $('.input-images-2').imageUploader({
-        maxSize: 2 * 1024 * 1024,
-        maxFiles: 10,
-        multiple: true,
-    });
-
-</script>
-<script type="text/javascript">
+    <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/fileinput.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backend/plugins/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
+    <script>
+        $('.input-images-2').imageUploader({
+            maxSize: 2 * 1024 * 1024,
+            maxFiles: 10,
+            multiple: true,
+        });
+    </script>
+    <script type="text/javascript">
         // feature field
         function add_features_field() {
             $("#multiple_feature_part").append(`
@@ -318,7 +339,6 @@
         });
     </script>
     <script>
-
         // ad update and cancel edit
         $(document).on("click", "#remove_item", function() {
             $(this).parent().parent('div').remove();
@@ -342,21 +362,21 @@
         }
     </script>
     <script>
-        $(document).on('click','.delete_image', function(e){
+        $(document).on('click', '.delete_image', function(e) {
             var id = $(this).data('id');
-            var div = '#photo_div_'+id;
+            var div = '#photo_div_' + id;
             var url = $(this).data('url');
             if (!confirm('Are you sure you want to delete the photo')) {
                 return false;
             }
             if ('' != id) {
                 $.ajax({
-                    type:'get',
-                    url:url,
-                    async :true,
+                    type: 'get',
+                    url: url,
+                    async: true,
                     data: {},
-                    success: function (response) {
-                        if(response.status == 'success'){
+                    success: function(response) {
+                        if (response.status == 'success') {
                             $(div).hide();
                             toastr.success(response.message);
                         }
@@ -364,17 +384,62 @@
                 });
             }
         })
-        function readURL(input){
-                if (input.files && input.files[0]) {
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#thumbnail')
-                    .attr('src', e.target.result)
-                    .width(80)
-                    .height(100)
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(100)
                 };
                 reader.readAsDataURL(input.files[0]);
-                }
             }
+        }
+        
+        $('#cityy').on('change', function() {
+            var country_id = $(this).val();
+            if (country_id) {
+                $.ajax({
+                    url: "{{ url('adlist-search-ajax') }}/" + country_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#areaid').html('');
+                        var d = $('#townn').empty();
+                        $('#townn').append(
+                            '<option value="" disabled selected> Select Region </option>');
+                        $.each(data, function(key, value) {
+                            $('#townn').append('<option value="' + value.id + '">' + value
+                                .name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        $('#townn').on('change', function() {
+            var townnid = $("#townn").val()
+            // alert(townnid);
+            if (townnid) {
+                $.ajax({
+                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
+                        $.each(data, function(key, value){
+                            $('#areaid').append('<option value="'+ value.id +'">' + value.city_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
     </script>
 @endpush

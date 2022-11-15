@@ -17,15 +17,18 @@ class CheckPlanMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($userPlan =  session('user_plan')){
+        if ($userPlan =  session('user_plan')) {
             $plan    = Plan::find($userPlan->plans_id);
-            if( (int) $userPlan->ad_limit < 1 ){
-                if($plan->ad_limit==0){
+            if ((int) $userPlan->ad_limit < 1) {
+                if ($plan->ad_limit == 0) {
+                    // dd($plan->ad_limit);
                     return $next($request);
+                } else {
+
+                    session()->forget('user_plan');
+                    session()->put('user_plan', auth()->guard('customer')->user()->userPlan);
+                    return redirect()->route('frontend.expiredPlan');
                 }
-                session()->forget('user_plan');
-                session()->put('user_plan', auth()->guard('customer')->user()->userPlan);
-                return redirect()->route('frontend.dashboard');
             }
 
             return $next($request);
@@ -33,7 +36,6 @@ class CheckPlanMiddleware
 
         session()->put('user_plan', auth()->guard('customer')->user()->userPlan);
 
-        return redirect()->route('frontend.dashboard');
+        return redirect()->route('frontend.expiredPlan');
     }
-
 }

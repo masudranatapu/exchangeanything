@@ -1,4 +1,4 @@
-<div class="col-xl-2 col-lg-6 col-sm-6">
+<div class="col-xl-2 col-lg-6 col-6">
     <h2 class="footer__title text--body-2-600">{{ __('quick_links') }}</h2>
 
     <ul class="footer-menu">

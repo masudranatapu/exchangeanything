@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title') {{ __('Create Region') }} @endsection
+@section('title') {{ __('Create State') }} @endsection
 
 @section('content')
 <div class="container-fluid">
@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title" style="line-height: 36px;">{{ __('Create Region') }}</h3>
+                    <h3 class="card-title" style="line-height: 36px;">{{ __('Create State') }}</h3>
                     <a href="{{ route('module.town.index') }}" class="btn bg-primary float-right d-flex align-items-center justify-content-center">
                         <i class="fas fa-arrow-left"></i>&nbsp; {{ __('back') }}
                     </a>
@@ -30,12 +30,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <x-forms.label name="Region name" required="true" class="col-sm-3"/>
+                                <x-forms.label name="State name" required="true" class="col-sm-3"/>
                                 <div class="col-sm-9">
                                     <input
                                         type="text"
                                         name="name"
-                                        placeholder="{{ __('Enter Region name') }}"
+                                        placeholder="{{ __('Enter State name') }}"
                                         value="{{ old('name') }}"
                                         class="form-control @error('name') is-invalid @enderror"
                                     >

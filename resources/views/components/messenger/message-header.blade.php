@@ -45,7 +45,7 @@
     <div class="col-lg-7">
        <div class="select_pro_info float-lg-end">
            <div class="d-flex position-relative">
-              <img src="{{ asset($ad->thumbnail) }}" style="width:60px; height: 60px;" alt="image">
+              <img src="{{ asset($ad->thumbnail) }}" class="rounded me-2" style="width:60px; height: 60px;" alt="image">
               <div class="pro_details">
                     <h2><a href="#">{{$ad->title}}</a></h2>
                     <span>{{ changeCurrency($ad->price) }}</span>

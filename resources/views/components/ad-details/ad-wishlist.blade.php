@@ -2,9 +2,12 @@
     @php
         $add = Modules\Ad\Entities\Ad::find($id);
     @endphp
-    <h2 class="text--heading-2">{{ changeCurrency($price) }} @if($add->negotiable==1)<step style="font-size: 14px;
-        font-weight: 300;">Negotiable</step>@endif</h2>
-    
+    <h2 class="text--heading-2">{{ changeCurrency($price) }} @if ($add->negotiable == 1)
+            <step style="font-size: 14px;
+        font-weight: 300;">Negotiable</step>
+        @endif
+    </h2>
+
     <form action="{{ route('frontend.add.wishlist') }}" method="POST">
         @csrf
 
