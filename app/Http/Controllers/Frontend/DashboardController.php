@@ -52,6 +52,7 @@ class DashboardController extends Controller
         if (isset($userplan) && $userplan->count() > 0) {
 
             $plan_info = UserPlan::customerData()->firstOrFail();
+            session()->put('user_plan', $plan_info);
             $plan = Plan::find($plan_info->plans_id);
         } else {
             return redirect()->route('frontend.priceplan');
