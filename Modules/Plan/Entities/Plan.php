@@ -10,8 +10,8 @@ class Plan extends Model
 {
     use HasFactory;
 
-     protected $fillable = [
-        'label', 'price', 'ad_limit', 'featured_limit', 'badge', 'recommended'
+    protected $fillable = [
+        'label', 'price', 'ad_limit', 'featured_limit', 'badge', 'recommended', 'package_duration'
     ];
 
     protected $casts = [
