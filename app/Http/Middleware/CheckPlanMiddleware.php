@@ -31,7 +31,7 @@ class CheckPlanMiddleware
             }
         }
 
-        // return $next($request);
+        return $next($request);
 
 
         session()->put('user_plan', auth()->guard('customer')->user()->userPlan);
