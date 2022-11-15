@@ -34,7 +34,6 @@ class AdPostController extends Controller
         $categories = Category::active()->latest('id')->get();
         $brands = Brand::latest('id')->get();
         $ad = session('ad');
-
         $citis = City::orderBy('name', 'asc')->get();
         $authUser = auth('customer')->user();
         return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
@@ -166,9 +165,10 @@ class AdPostController extends Controller
                     }
                 }
             }
-            $this->adNotification($ad);
-            !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
+            $this->forgetStepSession();
+            // $this->adNotification($ad);
+            $this->userPlanInfoUpdate($ad->featured, auth('customer')->id());
             DB::commit();
             return view('frontend.postad.postsuccess', [
                 'ad_slug' => $ad->slug,

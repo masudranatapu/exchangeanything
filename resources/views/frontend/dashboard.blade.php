@@ -87,25 +87,32 @@
                          <div class="col-12">
                              <div class="dashboard-card dashboard-card--benefits">
                                  <!-- <div class="row">
-                                        <div class="col-md-8" >
-                                            <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
-                                        </div>
-                                        <div class="col-md-4" >
-                                            <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
-                                        </div>
-                                    </div> -->
+                                                <div class="col-md-8" >
+                                                    <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
+                                                </div>
+                                                <div class="col-md-4" >
+                                                    <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
+                                                </div>
+                                            </div> -->
                                  <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:
-                                     <span>{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
+                                     <span>{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span>
+                                 </p>
 
                                  @if ($plan_info->is_active == 0)
                                      <p>You will be notified by email as soon as the account has been approved. (Please
                                          allow up to 24 hours).</p>
                                  @endif
 
-                                 @if (session('user_plan') && session('user_plan')->ad_limit == 0)
-                                     <p><strong class="text-danger">Your plan has been exceeded. Kindly Upgrade </strong><a
-                                             href="{{ route('frontend.priceplan') }}"><strong class="text-primary">Pricing
-                                                 Plan</strong></a></p>
+                                 @if ($plan->ad_limit !== 0)
+
+                                     @if (session('user_plan'))
+                                         @if (session('user_plan')->ad_limit == 0 && session('user_plan')->featured_limit == 0)
+                                             <p><strong class="text-danger">Your plan has been exceeded. Kindly Upgrade
+                                                 </strong><a href="{{ route('frontend.priceplan') }}"><strong
+                                                         class="text-primary">Pricing
+                                                         Plan</strong></a></p>
+                                         @endif
+                                     @endif
                                  @endif
 
                                  <br>
