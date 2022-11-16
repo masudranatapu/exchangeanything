@@ -661,7 +661,7 @@ class FrontendController extends Controller
     {
 
         $plans = Plan::where('id', $request->plan_id)->first();
-        //dd($plans->id);
+        // dd($plans->id);
 
         DB::beginTransaction();
         try {
@@ -669,12 +669,13 @@ class FrontendController extends Controller
             $this->userPlanInfoUpdate($plans);
             Customer::where('id', \auth('customer')->id())->update(['payment_note' => $request->payment_note]);
             UserPlan::where('customer_id', \auth('customer')->id())->update(['is_active' => 0, 'plans_id' => $plans->id]);
+            // all are good
 
             $customer_details = Customer::where('id', \auth('customer')->id())->first();
             $customer_email = $customer_details->email;
             $setting_email = Setting::find(1)->email;
         } catch (\Exception $exception) {
-            //dd($exception);
+
             DB::rollBack();
             flashError('Something went wrong. Please try again');
             return redirect()->back();
