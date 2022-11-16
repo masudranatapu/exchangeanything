@@ -661,7 +661,7 @@ class FrontendController extends Controller
     {
 
         $plans = Plan::where('id', $request->plan_id)->first();
-        dd($plans);
+        //dd($plans->id);
 
         DB::beginTransaction();
         try {
