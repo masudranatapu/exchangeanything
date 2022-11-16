@@ -662,12 +662,12 @@ class FrontendController extends Controller
 
         $plans = Plan::where('id', $request->plan_id)->first();
         //dd($plans->id);
-
+        $this->userPlanInfoUpdate($plans);
+        dd($this->userPlanInfoUpdate($plans));
         DB::beginTransaction();
         try {
 
-            $this->userPlanInfoUpdate($plans);
-            dd($this->userPlanInfoUpdate($plans));
+            
             Customer::where('id', \auth('customer')->id())->update(['payment_note' => $request->payment_note]);
             UserPlan::where('customer_id', \auth('customer')->id())->update(['is_active' => 0, 'plans_id' => $plans->id]);
 
