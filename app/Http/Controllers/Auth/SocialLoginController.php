@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\SocialSetting;
+use App\Models\UserPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +63,17 @@ class SocialLoginController extends Controller
                 'provider' => $provider,
                 'provider_id' =>  $socialiteUserId,
             ]);
+
+            $userplan = new UserPlan();
+            $userplan->plans_id = 1;
+            $userplan->customer_id = $user->id;
+            $userplan->ad_limit = 0;
+            $userplan->featured_limit = 0;
+            $userplan->customer_support = 1;
+            $userplan->multiple_image = 1;
+            $userplan->multiple_image = 0;
+            $userplan->multiple_image = 2;
+            $userplan->save();
         }
 
         Auth::guard('customer')->login($user);

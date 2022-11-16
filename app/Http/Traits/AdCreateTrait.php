@@ -82,6 +82,10 @@ trait AdCreateTrait
     {
         $userPlan = UserPlan::customerData($customer_id)->firstOrFail();
 
+        if ($userPlan->ad_limit == 0 && $userPlan->featured_limit != 0) {
+            $userPlan->featured_limit = $userPlan->featured_limit - 1;
+        }
+
         if ($userPlan->ad_limit != 0) {
             $userPlan->ad_limit = $userPlan->ad_limit - 1;
         }
@@ -90,7 +94,8 @@ trait AdCreateTrait
             $userPlan->featured_limit = $userPlan->featured_limit - 1;
         }
 
-        return $userPlan->save();
+        $userPlan->save();
+        // return $userPlan->save();
     }
 
     protected function adNotification($ad, $mode = 'create', $api = false)
@@ -124,8 +129,8 @@ trait AdCreateTrait
             'authenticity' => $ad->authenticity,
             'negotiable' => $ad->negotiable,
             'featured' => $ad->featured,
-            'city_id'=>$ad->city_id,
-            'description'=>$ad->description,
+            'city_id' => $ad->city_id,
+            'description' => $ad->description,
             'features' => $ad->adFeatures,
             'galleries' => $ad->galleries,
             'thumbnail' => $ad->thumbnail,

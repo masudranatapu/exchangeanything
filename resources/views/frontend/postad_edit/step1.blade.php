@@ -144,9 +144,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="input-select">
-                                <x-forms.label name="region" for="townn"/>
+                                <x-forms.label name="State" for="townn"/>
                                 <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('select_region') }}</option>
+                                    <option value="" hidden>{{ __('Select State') }}</option>
                                     @foreach($state as $sta)
                                         <option value="{{$sta->id}}" @if($sta->id == $adsinfo->town_id) selected @endif>{{$sta->name}}</option>
                                     @endforeach
