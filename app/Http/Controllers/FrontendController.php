@@ -667,6 +667,7 @@ class FrontendController extends Controller
         try {
 
             $this->userPlanInfoUpdate($plans);
+            dd($this->userPlanInfoUpdate($plans));
             Customer::where('id', \auth('customer')->id())->update(['payment_note' => $request->payment_note]);
             UserPlan::where('customer_id', \auth('customer')->id())->update(['is_active' => 0, 'plans_id' => $plans->id]);
 
