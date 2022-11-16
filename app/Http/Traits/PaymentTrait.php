@@ -16,6 +16,7 @@ trait PaymentTrait
     public function userPlanInfoUpdate($plan)
     {
         $userplan = UserPlan::customerData()->first();
+        dd($userplan->ad_limit);
         if ($plan->ad_limit == 0) {
             $userplan->ad_limit = 0;
         } else {

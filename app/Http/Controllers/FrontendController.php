@@ -674,7 +674,7 @@ class FrontendController extends Controller
             $customer_email = $customer_details->email;
             $setting_email = Setting::find(1)->email;
         } catch (\Exception $exception) {
-            dd($exception);
+            //dd($exception);
             DB::rollBack();
             flashError('Something went wrong. Please try again');
             return redirect()->back();
