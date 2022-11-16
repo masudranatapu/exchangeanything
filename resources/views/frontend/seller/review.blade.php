@@ -1,7 +1,7 @@
 <div class="">
-    <div class="review-text-title">{{ __('you_dont_have_account') }}</div>
+    <div class="review-text-title">{{ __('You do not have an account') }}</div>
     <div class="review-text-decription">
-        {{ __('first_create_a_account_to_write_down_a_review_to_seller_accoount') }}
+        {{ __('First Create an account to write down a review to seller account') }}
     </div>
     <div class="mt-24">
         <form action="{{ route('frontend.pre.signup') }}" class="d-flex-custom" method="post">
