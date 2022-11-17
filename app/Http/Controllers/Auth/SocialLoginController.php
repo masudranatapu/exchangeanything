@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Modules\Plan\Entities\Plan;
 
 class SocialLoginController extends Controller
 {
@@ -21,6 +22,8 @@ class SocialLoginController extends Controller
 
     public function callback($provider)
     {
+        $plan = Plan::first();
+
         try {
             $socialiteUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
@@ -64,16 +67,17 @@ class SocialLoginController extends Controller
                 'provider_id' =>  $socialiteUserId,
             ]);
 
-            $userplan = new UserPlan();
-            $userplan->plans_id = 1;
-            $userplan->customer_id = $user->id;
-            $userplan->ad_limit = 0;
-            $userplan->featured_limit = 0;
-            $userplan->customer_support = 1;
-            $userplan->multiple_image = 1;
-            $userplan->multiple_image = 0;
-            $userplan->multiple_image = 2;
-            $userplan->save();
+            UserPlan::create([
+                'customer_id' => $user->id,
+                'plans_id' => $plan->id,
+                'ad_limit' => $plan->ad_limit,
+                'featured_limit' => $plan->featured_limit,
+                'customer_support' => 0,
+                // 'multiple_image' => $plan->multiple_image,
+                'badge' => 0,
+                'is_active' => 0,
+                'created_at' => now()
+            ]);
         }
 
         Auth::guard('customer')->login($user);
