@@ -119,7 +119,7 @@
                                 class="input form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
                             <x-forms.label name="Country" required="true" for="cityy" />
                             <select required name="country" id="country"
@@ -131,7 +131,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
                             <x-forms.label name="State" for="townn" />
                             <select required name="town_id" id="townn"
@@ -140,14 +140,15 @@
                             </select>
                         </div>
                     </div>
-                    {{-- <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="input-select">
                             <label for="">City</label>
-                            <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                            <select name="area_id" id="areaid"
+                                class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option value="" hidden>{{ __('Select City') }}</option>
                             </select>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="row">
                     <input type="hidden" value="{{ $authUser->country_id ?? '' }}" name="city_id">
@@ -239,8 +240,8 @@
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
-                                                <x-svg.right-arrow-icon />
-                                            </span> -->
+                                                    <x-svg.right-arrow-icon />
+                                                </span> -->
                     </button>
                 </div>
             </form>
