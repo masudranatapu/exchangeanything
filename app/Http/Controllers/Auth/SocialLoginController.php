@@ -75,7 +75,7 @@ class SocialLoginController extends Controller
                 'customer_support' => 0,
                 // 'multiple_image' => $plan->multiple_image,
                 'badge' => 0,
-                'is_active' => 0,
+                'is_active' => 1,
                 'created_at' => now()
             ]);
         }

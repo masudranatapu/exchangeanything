@@ -240,8 +240,8 @@
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
-                                                    <x-svg.right-arrow-icon />
-                                                </span> -->
+                                                        <x-svg.right-arrow-icon />
+                                                    </span> -->
                     </button>
                 </div>
             </form>

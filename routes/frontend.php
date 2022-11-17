@@ -49,6 +49,7 @@ Route::group(['as' => 'frontend.'], function () {
 
     Route::get('adlist-search-ajax/{id}', [FrontendController::class, 'adlistSearchAjax']);
     Route::get('adlist-town-city-ajax/{id}', [FrontendController::class, 'adlistSearchAjaxtowncity']);
+
     // customer dashboard
     Route::prefix('dashboard')->middleware(['auth:customer', 'verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');

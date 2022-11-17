@@ -438,7 +438,7 @@ class FrontendController extends Controller
             'customer_support' => 0,
             // 'multiple_image' => $plan->multiple_image,
             'badge' => 0,
-            'is_active' => 0,
+            'is_active' => 1,
             'created_at' => now()
         ]);
 
@@ -761,9 +761,17 @@ class FrontendController extends Controller
     }
 
 
-    // public function CityWiseTown(Request $request, $id)
-    // {
-    //      $town = DB::table('towns')->where('city_id', $id)->get();
-    //      return response()->json($town);
-    // }
+    public function CityWiseTown(Request $request, $id)
+    {
+        $town = DB::table('towns')->where('city_id', $id)->get();
+        return response()->json($town);
+    }
+
+
+    public function adlistSearchAjaxtowncity($id)
+    {
+
+        $area = DB::table('areas')->where('state_id', $id)->get();
+        return response()->json($area);
+    }
 }

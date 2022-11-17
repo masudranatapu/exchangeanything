@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
-    @if (auth('customer')->check() && isset(session('user_plan')->ad_limit) && session('user_plan')->ad_limit < $settings->free_ad_limit)
+    @if (auth('customer')->check() &&
+        isset(session('user_plan')->ad_limit) &&
+        session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
             }
+
             .header--fixed {
                 top: 0 !important;
             }
@@ -20,30 +23,32 @@
 
 @section('content')
     <!-- Banner section start  -->
- <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
+    <div class="banner banner--three"
+        style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
         <div class="container">
-          <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
+            <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
                 {{ $cms->index3_title }}
             </div>
-             
-          <!--   <h4 style="color: white;">
+
+            <h4 style="color: white;">
                 {!! $cms->index3_short_title !!}
-            </h4> -->
-             
-            
+            </h4>
+
+
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-7">
                     <div class="home_banner">
-                        <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
+                        <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns"
+                            :dark="true" :total-ads="$total_ads" :marginTop="124" />
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
 
-    
+
     <!-- Banner section end   -->
 
     <!-- Poupular category Section start  -->
@@ -59,7 +64,7 @@
                                 <i class="{{ $category->icon }}" style="font-size: 40px"></i>
                             </div>
                              --}}
-                              
+
                             <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm"
                                 class="d-none">
                                 <input type="hidden" name="category" value="" id="adFilterInput">
@@ -71,12 +76,12 @@
                                 <span class="first view-number"> {{ $category->ad_count ?? 0 }}
                                     {{ __('ads') }}</span>
                                 <!-- <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')"
-                                    class="second view-btn">
-                                    {{ __('view_ads') }}
-                                    <span class="icon">
-                                        <x-svg.right-arrow-icon stroke="#0088cc" />
-                                    </span>
-                                </a> -->
+                                        class="second view-btn">
+                                        {{ __('view_ads') }}
+                                        <span class="icon">
+                                            <x-svg.right-arrow-icon stroke="#0088cc" />
+                                        </span>
+                                    </a> -->
                             </div>
                         </div>
                     </div>
@@ -100,9 +105,9 @@
                     <div class="recent-post__btn">
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
-                           <!--  <span class="icon--right">
-                                <x-svg.right-arrow-icon />
-                            </span> -->
+                            <!--  <span class="icon--right">
+                                    <x-svg.right-arrow-icon />
+                                </span> -->
                         </a>
                     </div>
                 @endif
@@ -126,8 +131,8 @@
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
                             <!-- <span class="icon--right">
-                                <x-svg.right-arrow-icon />
-                            </span> -->
+                                    <x-svg.right-arrow-icon />
+                                </span> -->
                         </a>
                     </div>
                 @endif
@@ -159,7 +164,7 @@
     <!-- popular-loc section end -->
 
     <!-- price-plan section start  -->
-    {{--<section class="section price-plan">
+    {{-- <section class="section price-plan">
         <div class="container">
             <h2 class="price-plan__title text--heading-1">{{ __('become_a_barrrter_member') }}</h2>
             <p class="price-plan__brief text--body-3">
@@ -178,16 +183,16 @@
                 </div>
             </div>
         </div>
-    </section>--}}
+    </section> --}}
     <!-- price-plan section end  -->
     <!-- newsletter subscription  -->
     @if ($newsletter_enable)
-         @include('layouts.frontend.partials.newsletter')
+        @include('layouts.frontend.partials.newsletter')
     @endif
 
 
 
-    
+
 @endsection
 
 @section('frontend_script')
@@ -209,7 +214,7 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
-            
+
             // ===== Select2 ===== \\
             $('#town').select2({
                 theme: 'bootstrap-5',

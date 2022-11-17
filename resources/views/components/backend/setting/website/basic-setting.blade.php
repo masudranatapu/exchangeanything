@@ -70,21 +70,7 @@
         </div>
     </div> --}}
 
-        <div class="col-6">
-            <div class="form-group">
-                <x-forms.label name="free_ad_limit" required="true" />
-                <x-forms.input type="text" name="free_ad_limit" value="{{ $setting->free_ad_limit }}"
-                    placeholder="{{ __('enter_ad_limit') }}" />
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <x-forms.label name="free_ad_featured_limit" required="true" />
-                <x-forms.input type="text" name="free_featured_ad_limit"
-                    value="{{ $setting->free_featured_ad_limit }}"
-                    placeholder="{{ __('enter_featured_ad_limit') }}" />
-            </div>
-        </div>
+
     </div>
 
     @if (userCan('setting.update'))
