@@ -15,7 +15,17 @@ trait PaymentTrait
      */
     public function userPlanInfoUpdate($plan)
     {
-        $userplan = UserPlan::customerData()->first();
+
+        $userplan = UserPlan::customerData(auth('customer')->id())->first();
+
+
+        if (!isset($userplan)) {
+            $userplan = new UserPlan();
+            $userplan->customer_id = auth('customer')->id();
+        }
+
+
+
         if ($plan->ad_limit == 0) {
             $userplan->ad_limit = 0;
         } else {

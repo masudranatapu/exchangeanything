@@ -28,7 +28,7 @@
                     </span>
                 </a>
             @else
-                <a href="{{ route('frontend.signup', $plan->id) }}" class="plan-card__select-pack btn btn--bg w-100">
+                <a href="{{ route('frontend.signup') }}" class="plan-card__select-pack btn btn--bg w-100">
                     {{ __('choose_plan') }}
                     <span class="icon--right">
                         <x-svg.right-arrow-icon />

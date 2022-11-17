@@ -87,13 +87,13 @@
                          <div class="col-12">
                              <div class="dashboard-card dashboard-card--benefits">
                                  <!-- <div class="row">
-                                                <div class="col-md-8" >
-                                                    <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
-                                                </div>
-                                                <div class="col-md-4" >
-                                                    <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
-                                                </div>
-                                            </div> -->
+                                                                <div class="col-md-8" >
+                                                                    <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
+                                                                </div>
+                                                                <div class="col-md-4" >
+                                                                    <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
+                                                                </div>
+                                                            </div> -->
                                  <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:
                                      <span>{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span>
                                  </p>

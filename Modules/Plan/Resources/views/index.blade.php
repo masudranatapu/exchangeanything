@@ -124,20 +124,22 @@
                                         </a>
                                     @endif
                                 </div>
-                                <div class="col-6">
-                                    @if (userCan('plan.delete'))
-                                        <form action="{{ route('module.plan.delete', $plan->id) }}"
-                                            class="plan-card__select-pack card_footer-bg" method="POST"
-                                            onclick="return confirm('Are You Sure?')">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn--bg" style="width: 100%">
-                                                <i class="fas fa-trash"></i>
-                                                {{ __('delete_plan') }}
-                                            </button>
-                                        </form>
-                                    @endif
-                                </div>
+                                @if (!$loop->first)
+                                    <div class="col-6">
+                                        @if (userCan('plan.delete'))
+                                            <form action="{{ route('module.plan.delete', $plan->id) }}"
+                                                class="plan-card__select-pack card_footer-bg" method="POST"
+                                                onclick="return confirm('Are You Sure?')">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn--bg" style="width: 100%">
+                                                    <i class="fas fa-trash"></i>
+                                                    {{ __('delete_plan') }}
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         @endif
                     </div>

@@ -28,8 +28,8 @@ use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
 use function GuzzleHttp\Promise\all;
 use App\Http\Traits\PaymentTrait;
-use Session;
-use Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\MakePaymentNotificationToUser;
 use App\Mail\MakePaymentNotificationToAdmin;
 use Carbon\Carbon;
@@ -354,19 +354,16 @@ class FrontendController extends Controller
      *
      * @return void
      */
-    public function signUp($package_id = null)
+    public function signUp()
     {
         $verified_users = Customer::where('email_verified_at', '!=', null)->count();
 
-        if (empty($package_id)) {
-            flashError('Please get membership plan');
-            return redirect()->route('frontend.priceplan');
-        }
+
 
         $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
         $towns = Town::orderBy('name')->get();
         $total_ads = Ad::activeCategory()->active()->count();
-        return view('frontend.sign-up', compact('verified_users', 'package_id', 'categories', 'towns', 'total_ads'));
+        return view('frontend.sign-up', compact('verified_users',  'categories', 'towns', 'total_ads'));
     }
 
     /**
@@ -378,6 +375,10 @@ class FrontendController extends Controller
     public function register(Request $request)
     {
         $setting = setting();
+        $plan = Plan::first();
+
+
+
 
         $request->validate([
             'name' => "required",
@@ -421,30 +422,25 @@ class FrontendController extends Controller
             Email::create(['email' => $request->email]);
         }
 
-        if (!empty($request->package_id)) {
-
-            $plan = Plan::where('id', $request->package_id)->first();
-
-            if (empty($plan)) {
-                flashError('Your package id invalid.Please try again');
-                return redirect()->route('frontend.dashboard');
-            }
+        // if (!empty($request->package_id)) {
 
 
-
-
-            $userPlan = UserPlan::create([
-                'customer_id' => $customer->id,
-                'plans_id' => $request->package_id,
-                'ad_limit' => $plan->ad_limit,
-                'featured_limit' => $plan->featured_limit,
-                'customer_support' => $plan->customer_support,
-                // 'multiple_image' => $plan->multiple_image,
-                'badge' => $plan->badge,
-                'is_active' => 0,
-                'created_at' => now()
-            ]);
-        }
+        //     if (empty($plan)) {
+        //         flashError('Your package id invalid.Please try again');
+        //         return redirect()->route('frontend.dashboard');
+        //     }
+        // }
+        UserPlan::create([
+            'customer_id' => $customer->id,
+            'plans_id' => $plan->id,
+            'ad_limit' => $plan->ad_limit,
+            'featured_limit' => $plan->featured_limit,
+            'customer_support' => 0,
+            // 'multiple_image' => $plan->multiple_image,
+            'badge' => 0,
+            'is_active' => 0,
+            'created_at' => now()
+        ]);
 
         if ($customer) {
             Auth::guard('customer')->logout();
@@ -661,7 +657,7 @@ class FrontendController extends Controller
     {
 
         $plans = Plan::where('id', $request->plan_id)->first();
-        // dd($plans->id);
+
 
         DB::beginTransaction();
         try {
@@ -676,7 +672,9 @@ class FrontendController extends Controller
             $setting_email = Setting::find(1)->email;
         } catch (\Exception $exception) {
 
+
             DB::rollBack();
+            dd($exception);
             flashError('Something went wrong. Please try again');
             return redirect()->back();
         }

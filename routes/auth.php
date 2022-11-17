@@ -10,7 +10,7 @@ use App\Http\Controllers\Auth\SocialLoginController;
 
 //====================Frontent Authentication=========================
 // registration proccess
-Route::get('/sign-up/{package_id?}', [FrontendController::class, 'signUp'])->name('frontend.signup')->middleware('setlang');
+Route::get('/sign-up/', [FrontendController::class, 'signUp'])->name('frontend.signup')->middleware('setlang');
 Route::post('customer/register', [FrontendController::class, 'register'])->name('customer.register');
 Route::post('/valid_user_name', [FrontendController::class, 'valid_user_name'])->name('user.valid_user_name');
 // login proccess
@@ -22,7 +22,7 @@ Route::get('forgot/password', [ForgotPasswordController::class, 'customerResetPa
 Route::post('customer/password/mail', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('customer.password.email');
 Route::get('password-reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('customer.password.reset')->middleware('setlang');
 Route::post('customer-password-update', [ResetPasswordController::class, 'reset'])->name('customer.password.update');
-Auth::routes(['login' => false,'register' => false]);
+Auth::routes(['login' => false, 'register' => false]);
 // Social Authentication
 Route::get('/auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');
 Route::get('/auth/{provider}/callback', [SocialLoginController::class, 'callback'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');

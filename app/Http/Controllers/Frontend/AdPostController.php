@@ -83,7 +83,7 @@ class AdPostController extends Controller
      */
     public function storePostStep1(Request $request)
     {
-        
+
         $request->validate([
             'title' => 'required|min:30|unique:ads,title',
             'price' => 'required|numeric',
@@ -127,7 +127,6 @@ class AdPostController extends Controller
             $ad->subcategory_id = $request->subcategory_id;
             $ad->city_id = $request->country;
             $ad->town_id = $request->town_id;
-            $ad->area_id = $request->area_id;
             $ad->description = $request->description;
             $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
             $ad->save();
@@ -392,7 +391,6 @@ class AdPostController extends Controller
             'web' => $request->web,
             'city_id' => $request->city_id,
             'town_id' => $request->town_id,
-            'area_id' => $request->area_id,
             'description' => $request->description
         ]);
 
