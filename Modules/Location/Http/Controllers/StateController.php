@@ -9,7 +9,7 @@ use Modules\Location\Entities\City;
 use Modules\Location\Entities\Town;
 use Modules\Ad\Entities\Ad;
 
-class TownController extends Controller
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.

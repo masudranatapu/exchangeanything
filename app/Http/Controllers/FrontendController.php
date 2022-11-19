@@ -28,8 +28,8 @@ use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
 use function GuzzleHttp\Promise\all;
 use App\Http\Traits\PaymentTrait;
-use Session;
-use Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\MakePaymentNotificationToUser;
 use App\Mail\MakePaymentNotificationToAdmin;
 use Carbon\Carbon;
@@ -224,48 +224,55 @@ class FrontendController extends Controller
      */
     public function adDetails(Ad $ad)
     {
+        try {
+            //code...
 
-        if ($ad->status == 'pending') {
-            if ($ad->customer_id != auth('customer')->id()) {
-                abort(404);
+
+            if ($ad->status == 'pending') {
+                if ($ad->customer_id != auth('customer')->id()) {
+
+                    abort(404);
+                }
             }
-        }
-        $admin_ads = DB::table('admin_ads')->where('status', 1)->inRandomOrder()->first();
-        $verified_seller = Customer::findOrFail($ad->customer_id)->email_verified_at;
-        $ad->increment('total_views');
-        $ad = $ad->load(['customer', 'brand', 'adFeatures', 'galleries', 'town', 'city']);
+            $admin_ads = DB::table('admin_ads')->where('status', 1)->inRandomOrder()->first();
+            $verified_seller = Customer::findOrFail($ad->customer_id)->email_verified_at;
+            $ad->increment('total_views');
+            $ad = $ad->load(['customer', 'brand', 'adFeatures', 'galleries', 'town', 'city']);
 
-        $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
-        $towns = Town::orderBy('name')->get();
-        $total_ads = Ad::activeCategory()->active()->count();
-        $current = Carbon::now();
-        $ad_post_day_diff = $ad->created_at->diffInDays($current);
-
-
-        $plans_id = UserPlan::where('customer_id', $ad->customer->id)->first()->plans_id;
-        $plan = Plan::find($plans_id);
+            $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
+            $towns = Town::orderBy('name')->get();
+            $total_ads = Ad::activeCategory()->active()->count();
+            $current = Carbon::now();
+            $ad_post_day_diff = $ad->created_at->diffInDays($current);
 
 
-         if($plan->immediate_access_to_new_ads == 0 && $ad_post_day_diff < 10){
-
-             $immediate_access_to_new_ads = 1;
-         }else{
-             $immediate_access_to_new_ads = 0;
-         }
+            $plans_id = UserPlan::where('customer_id', $ad->customer->id)->first()->plans_id;
+            $plan = Plan::find($plans_id);
 
 
-        $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'estimate_calling_time'])
-            ->with(['city', 'category'])
-            ->where('category_id', $ad->category_id)
-            ->where('id', '!=', $ad->id)
-            ->active()
-            ->latest('id')->take(10)->get());
+            if ($plan->immediate_access_to_new_ads == 0 && $ad_post_day_diff < 10) {
 
-        if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
-            return abort(404);
-        } else {
+                $immediate_access_to_new_ads = 1;
+            } else {
+                $immediate_access_to_new_ads = 0;
+            }
 
-            return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'immediate_access_to_new_ads', 'towns', 'total_ads', 'admin_ads'));
+
+            $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'estimate_calling_time'])
+                ->with(['city', 'category'])
+                ->where('category_id', $ad->category_id)
+                ->where('id', '!=', $ad->id)
+                ->active()
+                ->latest('id')->take(10)->get());
+
+            if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
+                return abort(404);
+            } else {
+
+                return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'immediate_access_to_new_ads', 'towns', 'total_ads', 'admin_ads'));
+            }
+        } catch (\Throwable $th) {
+            dd($th);
         }
     }
 
@@ -289,7 +296,8 @@ class FrontendController extends Controller
         return view('frontend.ad-list', $data);
     }
 
-    public function ad_list(){
+    public function ad_list()
+    {
         $data['adlistings'] = Ad::activeCategory()->with(['category', 'city'])->latest('id')->active()->paginate(21);
         $data['categories'] = Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
@@ -329,7 +337,7 @@ class FrontendController extends Controller
             abort(404);
         }
 
-        $data['plans'] = Plan::orderBy('order','asc')->get();
+        $data['plans'] = Plan::orderBy('order', 'asc')->get();
         currentCurrency();
 
         $categories = CategoryResource::collection(Category::active()->latest()->get());
@@ -346,19 +354,16 @@ class FrontendController extends Controller
      *
      * @return void
      */
-    public function signUp($package_id = null)
+    public function signUp()
     {
         $verified_users = Customer::where('email_verified_at', '!=', null)->count();
 
-        if (empty($package_id )){
-            flashError('Please get membership plan');
-            return redirect()->route('frontend.priceplan');
-        }
+
 
         $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
         $towns = Town::orderBy('name')->get();
         $total_ads = Ad::activeCategory()->active()->count();
-        return view('frontend.sign-up', compact('verified_users', 'package_id', 'categories', 'towns', 'total_ads'));
+        return view('frontend.sign-up', compact('verified_users',  'categories', 'towns', 'total_ads'));
     }
 
     /**
@@ -370,6 +375,10 @@ class FrontendController extends Controller
     public function register(Request $request)
     {
         $setting = setting();
+        $plan = Plan::first();
+
+
+
 
         $request->validate([
             'name' => "required",
@@ -397,50 +406,41 @@ class FrontendController extends Controller
             'subscribe' => 1,
             'password' => bcrypt($request->password),
         ]);
-        
+
         $usersubscribe = Customer::where('email', $request->email)->first();
 
-        if($usersubscribe){
-            if($usersubscribe->subscribe == NULL){
+        if ($usersubscribe) {
+            if ($usersubscribe->subscribe == NULL) {
                 Customer::where('email', $request->email)->update([
                     'subscribe' => 1,
                 ]);
                 Email::create(['email' => $request->email]);
-            }else {
+            } else {
                 Email::create(['email' => $request->email]);
             }
-        }else{
+        } else {
             Email::create(['email' => $request->email]);
         }
 
-        if (!empty($request->package_id)) {
-
-            $plan = Plan::where('id', $request->package_id)->first();
-
-            if (empty($plan)) {
-                flashError('Your package id invalid.Please try again');
-                return redirect()->route('frontend.dashboard');
-            }
-            
-
-          
-    
-             $userPlan = UserPlan::create([
-                 'customer_id' => $customer->id,
-                 'plans_id' => $request->package_id,
-                 'ad_limit' => $plan->ad_limit,
-                 'featured_limit' => $plan->featured_limit,
-                 'customer_support' => $plan->customer_support,
-                 // 'multiple_image' => $plan->multiple_image,
-                 'badge' => $plan->badge,
-                 'is_active' => 0,
-                 'created_at' => now()
-             ]);
+        // if (!empty($request->package_id)) {
 
 
-
-
-        }
+        //     if (empty($plan)) {
+        //         flashError('Your package id invalid.Please try again');
+        //         return redirect()->route('frontend.dashboard');
+        //     }
+        // }
+        UserPlan::create([
+            'customer_id' => $customer->id,
+            'plans_id' => $plan->id,
+            'ad_limit' => $plan->ad_limit,
+            'featured_limit' => $plan->featured_limit,
+            'customer_support' => 0,
+            // 'multiple_image' => $plan->multiple_image,
+            'badge' => 0,
+            'is_active' => 1,
+            'created_at' => now()
+        ]);
 
         if ($customer) {
             Auth::guard('customer')->logout();
@@ -456,12 +456,13 @@ class FrontendController extends Controller
         }
     }
 
-    public function valid_user_name(Request $request){
+    public function valid_user_name(Request $request)
+    {
         $user_name = $request->valid_user_name;
         // dd($user_name);
         // exit;
         $result = Customer::where('username', $user_name)->get();
-        if(count($result) > 0){
+        if (count($result) > 0) {
             $data['status'] = 1;
             echo json_encode($data);
         } else {
@@ -584,7 +585,6 @@ class FrontendController extends Controller
     // posting Rules
     public function posting_rules()
     {
-
     }
 
     /**
@@ -618,16 +618,16 @@ class FrontendController extends Controller
         ]);
 
         BlogComment::insert([
-            'post_id'=>$request->post_id,
-            'name'=>$request->name,
-            'body'=>$request->body,
-            'email'=>$request->email,
-            'image'=> 0,
-            'status'=> 0,
-            'created_at'=> Carbon::now(),
+            'post_id' => $request->post_id,
+            'name' => $request->name,
+            'body' => $request->body,
+            'email' => $request->email,
+            'image' => 0,
+            'status' => 0,
+            'created_at' => Carbon::now(),
         ]);
 
-        Toastr::success('Thanks for your comment, it is under review :-)','Success');
+        Toastr::success('Thanks for your comment, it is under review :-)', 'Success');
         return redirect()->back();
     }
 
@@ -657,24 +657,24 @@ class FrontendController extends Controller
     {
 
         $plans = Plan::where('id', $request->plan_id)->first();
-        // dd($plans->id);
+
 
         DB::beginTransaction();
         try {
 
             $this->userPlanInfoUpdate($plans);
             Customer::where('id', \auth('customer')->id())->update(['payment_note' => $request->payment_note]);
-            UserPlan::where('customer_id', \auth('customer')->id())->update(['is_active' => 0, 'plans_id' => $plans->id]);
+            UserPlan::where('customer_id', \auth('customer')->id())->update(['is_active' => 1, 'plans_id' => $plans->id]);
             // all are good
 
             $customer_details = Customer::where('id', \auth('customer')->id())->first();
             $customer_email = $customer_details->email;
             $setting_email = Setting::find(1)->email;
-
-
         } catch (\Exception $exception) {
-            dd($exception);
+
+
             DB::rollBack();
+            dd($exception);
             flashError('Something went wrong. Please try again');
             return redirect()->back();
         }
@@ -682,8 +682,6 @@ class FrontendController extends Controller
         Mail::to($customer_email)->send(new MakePaymentNotificationToUser);
         Mail::to($setting_email)->send(new MakePaymentNotificationToAdmin($customer_details));
         return redirect()->route('frontend.dashboard');
-
-
     }
 
     public function adGalleryDetails(Ad $ad)
@@ -704,27 +702,27 @@ class FrontendController extends Controller
         return json_encode($towns);
     }
 
-     public function CountryToCity(Request $request, $id)
+    public function CountryToCity(Request $request, $id)
     {
-         $town  = DB::table('towns')->where('city_id', $id)->orderBy('name')->get();
-         $city  = DB::table('cities')->where('id', $id)->first();
-         $html = '';
-        if($town && count($town) > 0 ){
+        $town  = DB::table('towns')->where('city_id', $id)->orderBy('name')->get();
+        $city  = DB::table('cities')->where('id', $id)->first();
+        $html = '';
+        if ($town && count($town) > 0) {
             $html .= '<ul>';
-            foreach($town as $k => $val){
+            foreach ($town as $k => $val) {
                 $town_ads_count  = DB::table('ads')->where('town_id', $val->id)->count();
-                $route = route('frontend.adlist.search',['city' => $city->name, 'town' => $val->name ]);
+                $route = route('frontend.adlist.search', ['city' => $city->name, 'town' => $val->name]);
                 $html .= '<li>
-                            <a class="nav-link" href="'.$route.'">
-                            '.$val->name.'
-                                <span>('.$town_ads_count.')</span>
+                            <a class="nav-link" href="' . $route . '">
+                            ' . $val->name . '
+                                <span>(' . $town_ads_count . ')</span>
                             </a>
                         </li>';
             }
             $html .= '</ul>';
-        }else{
+        } else {
             $html .= '<ul>';
-                $html .= '<li class="not_found"><a href="#">'.'Data not found'.'</a></li>';
+            $html .= '<li class="not_found"><a href="#">' . 'Data not found' . '</a></li>';
             $html .= '</ul>';
         }
         $response['html'] = $html;
@@ -739,22 +737,22 @@ class FrontendController extends Controller
         $subcategory    = DB::table('sub_categories')->where('category_id', $id)->orderBy('name')->get();
         $category_name  = DB::table('categories')->where('id', $id)->first();
         $html = '';
-        if($subcategory && count($subcategory) > 0 ){
+        if ($subcategory && count($subcategory) > 0) {
             $html .= '<ul>';
-            foreach($subcategory as $k => $val){
+            foreach ($subcategory as $k => $val) {
                 $subcat_ads_count  = DB::table('ads')->where('subcategory_id', $val->id)->count();
-                $route = route('frontend.adlist.search',['category' => $category_name->slug, 'subcategory[]' => $val->slug ]);
+                $route = route('frontend.adlist.search', ['category' => $category_name->slug, 'subcategory[]' => $val->slug]);
                 $html .= '<li>
-                            <a class="nav-link" href="'.$route.'">
-                                '.$val->name.'
-                                <span>('.$subcat_ads_count.')</span>
+                            <a class="nav-link" href="' . $route . '">
+                                ' . $val->name . '
+                                <span>(' . $subcat_ads_count . ')</span>
                             </a>
                          </li>';
             }
             $html .= '</ul>';
-        }else{
+        } else {
             $html .= '<ul>';
-                $html .= '<li class="not_found"><a href="#">'.'Subcategory Not Found!'.'</a></li>';
+            $html .= '<li class="not_found"><a href="#">' . 'Subcategory Not Found!' . '</a></li>';
             $html .= '</ul>';
         }
         $response['html'] = $html;
@@ -763,9 +761,17 @@ class FrontendController extends Controller
     }
 
 
-    // public function CityWiseTown(Request $request, $id)
-    // {
-    //      $town = DB::table('towns')->where('city_id', $id)->get();
-    //      return response()->json($town);
-    // }
+    public function CityWiseTown(Request $request, $id)
+    {
+        $town = DB::table('towns')->where('city_id', $id)->get();
+        return response()->json($town);
+    }
+
+
+    public function adlistSearchAjaxtowncity($id)
+    {
+
+        $area = DB::table('areas')->where('state_id', $id)->get();
+        return response()->json($area);
+    }
 }

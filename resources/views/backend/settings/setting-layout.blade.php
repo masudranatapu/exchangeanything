@@ -36,19 +36,19 @@
                     <a class="nav-link {{ request()->page == 'email_template' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'email_template') }}">{{ __('email_template') }}</a> --}}
 
-                     <!-- <a class="nav-link {{ request()->page == 'payment' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'payment') }}">{{ __('payment') }}</a> -->
+                      <a class="nav-link {{ request()->page == 'payment' ? 'active' : '' }}"
+                        href="{{ route('setting.index', 'payment') }}">{{ __('payment') }}</a> 
 
                    <!-- <a class="nav-link" href="{{ route('language.index') }}">{{ __('language') }}</a>
-                    <a class="nav-link" href="{{ route('module.currency.index') }}">{{ __('currency') }}</a> 
+                    <a class="nav-link" href="{{ route('module.currency.index') }}">{{ __('currency') }}</a>
                     <a class="nav-link {{ request()->page == 'module' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'module') }}">{{ __('module') }}</a>-->
                     <a class="nav-link {{ request()->page == 'seo' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'seo') }}">{{ __('seo') }}</a>
                     <a class="nav-link {{ request()->page == 'cms' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'cms') }}">{{ __('cms') }}</a>
-                    <!-- <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a> -->
+                   <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
+                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a>
                        <!--  <a class="nav-link {{ request()->page == 'ads' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'ads') }}">{{ __('ads') }}</a>
                     <a class="nav-link {{ Route::is('admin.ads.show') ? 'active' : '' }}" href="{{ route('admin.ads.show') }}">
@@ -84,12 +84,12 @@
                         role="tabpanel" aria-labelledby="homee">
                         @yield('emailtemplate-setting')
                     </div> --}}
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'payment' ? 'show active' : '' }}" id="payment"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('payment-setting')
                     </div>
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'module' ? 'show active' : '' }}" id="module"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('module-setting')
@@ -113,7 +113,7 @@
                         @yield('admin-ads-setting')
                     </div>
 
-                    
+
                     <div class="tab-pane fade {{ request()->page == 'social_login' ? 'show active' : '' }}"
                         id="social_login" role="tabpanel" aria-labelledby="homee">
                         @yield('social-login-setting')

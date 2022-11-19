@@ -801,5 +801,10 @@
     "website_links_optional": "Website links (optional)",
     "translation_all": "Translation All",
     "translate": "Translate",
-    "phone_number_showing_permission": "Allow buyer to contact by phone."
+    "phone_number_showing_permission": "Allow buyer to contact by phone.",
+    "monthly": "Monthly",
+    "anually": "Anually",
+    "lifetime": "Life Time",
+    "live_mode": "Live Mode",
+    "is_active": "Active"
 }

@@ -78,8 +78,8 @@
                 @if (Module::collections()->has('Ad') || Module::collections()->has('Category') || Module::collections()->has('Brand') || Module::collections()->has('Location'))
                     @if (userCan('ad.view') || userCan('category.view') || userCan('subcategory.view') || userCan('brand.view') || userCan('city.view') || userCan('town.view'))
                         <x-sidebar-dropdown
-                            :linkActive="Route::is('module.ad.*') ||Route::is('module.category.*') || Route::is('module.subcategory.*') || Route::is('module.brand.*') || Route::is('module.city.*') || Route::is('module.town.*') ? true : false"
-                            :subLinkActive="Route::is('module.ad.*') ||Route::is('module.category.*') || Route::is('module.subcategory.*') || Route::is('module.brand.*') || Route::is('module.city.*') || Route::is('module.town.*') ? true : false"
+                            :linkActive="Route::is('module.ad.*') ||Route::is('module.category.*') || Route::is('module.subcategory.*') || Route::is('module.brand.*') || Route::is('module.city.*') || Route::is('module.town.*') || Route::is('module.area.*') ? true : false"
+                            :subLinkActive="Route::is('module.ad.*') ||Route::is('module.category.*') || Route::is('module.subcategory.*') || Route::is('module.brand.*') || Route::is('module.city.*') || Route::is('module.town.*') || Route::is('module.area.*') ? true : false"
                             icon="fab fa-adversal">
                             @slot('title')
                                 {{ __('ads') }}
@@ -141,10 +141,16 @@
                                     <ul class="nav nav-treeview">
                                         <x-sidebar-list :linkActive="Route::is('module.town.*') ? true : false"
                                             route="module.town.index" icon="fas fa-circle">
-                                            {{ __('Region') }}
+                                            {{ __('State') }}
                                         </x-sidebar-list>
                                     </ul>
                                 @endif
+                                <ul class="nav nav-treeview">
+                                    <x-sidebar-list :linkActive="Route::is('module.area.*') ? true : false"
+                                        route="module.area.index" icon="fas fa-circle">
+                                        {{ __('City') }}
+                                    </x-sidebar-list>
+                                </ul>
                             @endif
                         </x-sidebar-dropdown>
                     @endif

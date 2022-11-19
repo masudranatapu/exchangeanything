@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 use App\Models\ModuleSetting;
 use App\Models\SocialSetting;
 use App\Models\PaymentSetting;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Modules\Currency\Entities\Currency;
 use Modules\Language\Entities\Language;
-use File;
-use DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
@@ -117,14 +118,14 @@ class SettingsController extends Controller
                     'map_address' => "sometimes|required",
                 ]);
                 $setting = Setting::first();
-                if($request->ads_admin_approval !=null){
+                if ($request->ads_admin_approval != null) {
                     $setting->ads_admin_approval = 1;
-                }else{
+                } else {
                     $setting->ads_admin_approval = $request->ads_admin_approval ?? false;
-                } 
+                }
                 $setting->update();
                 $this->websiteUpdate($request);
-                
+
                 $message = 'Site Settings Content';
                 break;
             case 'system':
@@ -315,13 +316,13 @@ class SettingsController extends Controller
         }
 
         if ($app_name != config('app.name')) {
-            \Artisan::call('env:set APP_NAME="' . $app_name . '"');
+            Artisan::call('env:set APP_NAME="' . $app_name . '"');
         }
 
         if ($request->app_debug) {
-            \Artisan::call('env:set APP_DEBUG=true');
+            Artisan::call('env:set APP_DEBUG=true');
         } else {
-            \Artisan::call('env:set APP_DEBUG=false');
+            Artisan::call('env:set APP_DEBUG=false');
         }
 
         if ($app_url && $app_url != env('DB_CONNECTION')) {
@@ -438,7 +439,7 @@ class SettingsController extends Controller
             envReplace('MAIL_FROM_ADDRESS', $request->from_address);
         }
         if (env('MAIL_FROM_NAME') != $request->from_name) {
-            \Artisan::call('env:set MAIL_FROM_NAME="' . $request->from_name . '"');
+            Artisan::call('env:set MAIL_FROM_NAME="' . $request->from_name . '"');
         }
 
         flashSuccess('Mail Setting Updated Successfully');
@@ -478,7 +479,8 @@ class SettingsController extends Controller
         return redirect()->back()->with('success', 'SEO Settings update successfully!');
     }
 
-    public function adsSettingUpdate(Request $request){
+    public function adsSettingUpdate(Request $request)
+    {
         $setting = Setting::first();
         $setting->ads_expire_day = $request->ads_expire_day;
         $setting->ads_expire_notify = $request->ads_expire_notify;
@@ -510,12 +512,12 @@ class SettingsController extends Controller
 
         $admin_ads_image = $request->file('ads_img');
         $slug = 'ads-image';
-        $admin_ads_image_name = $slug.'-'.uniqid().'.'.$admin_ads_image->getClientOriginalExtension();
+        $admin_ads_image_name = $slug . '-' . uniqid() . '.' . $admin_ads_image->getClientOriginalExtension();
         $upload_path = 'media/adminads/';
         $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
-        $image_url = $upload_path.$admin_ads_image_name;
-        
+        $image_url = $upload_path . $admin_ads_image_name;
+
         DB::table('admin_ads')->insert([
             'ads_name' => $request->ads_name,
             'ads_img' => $image_url,
@@ -530,7 +532,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'ads_name' => 'required',
         ]);
-        
+
 
         // if($request->status == 1){
         //     DB::table('admin_ads')->where('status', 1)->update([
@@ -540,17 +542,17 @@ class SettingsController extends Controller
 
         $admin_ads_image = $request->file('ads_img');
         $slug = 'ads-image';
-        if(isset($admin_ads_image)) {
+        if (isset($admin_ads_image)) {
 
-            $admin_ads_image_name = $slug.'-'.uniqid().'.'.$admin_ads_image->getClientOriginalExtension();
+            $admin_ads_image_name = $slug . '-' . uniqid() . '.' . $admin_ads_image->getClientOriginalExtension();
             $upload_path = 'media/adminads/';
             $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
             $adminadsimage = DB::table('admin_ads')->where('id', $id)->first();
-            if(File::exists(public_path('media/adminads/'.$adminadsimage->ads_img))){
-               File::delete();
+            if (File::exists(public_path('media/adminads/' . $adminadsimage->ads_img))) {
+                File::delete();
             }
-            $image_url = $upload_path.$admin_ads_image_name;
+            $image_url = $upload_path . $admin_ads_image_name;
 
             DB::table('admin_ads')->where('id', $id)->update([
                 'ads_name' => $request->ads_name,
@@ -559,7 +561,7 @@ class SettingsController extends Controller
                 'status' => $request->status,
             ]);
             return redirect()->back()->with('success', 'Admin Ads successfully updated ');
-        }else {
+        } else {
 
             DB::table('admin_ads')->where('id', $id)->update([
                 'ads_name' => $request->ads_name,
@@ -574,7 +576,7 @@ class SettingsController extends Controller
         $adminads = DB::table('admin_ads')->where('id', $id)->first();
         $deleteadminadsimage = $adminads->ads_img;
 
-        if(file_exists($deleteadminadsimage)) {
+        if (file_exists($deleteadminadsimage)) {
             unlink($deleteadminadsimage);
         }
 
@@ -590,7 +592,7 @@ class SettingsController extends Controller
         //         return redirect()->back()->with('error', 'Already active a data ');
         //     }
         // }
-        
+
         DB::table('admin_ads')->where('id', $request->admin_ads_id)->update([
             'status' => $request->get_active_status,
         ]);

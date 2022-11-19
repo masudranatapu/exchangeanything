@@ -29,9 +29,9 @@ class CustomerController extends Controller
         }
 
         $query = Customer::query()->orderBy('id', 'desc');
-        
-         // keyword search
-         if (request()->has('keyword') && request()->keyword != null) {
+
+        // keyword search
+        if (request()->has('keyword') && request()->keyword != null) {
             $keyword = request('keyword');
             $query->where('name', "LIKE", "%$keyword%")
                 ->orWhere('username', "LIKE", "%$keyword%")
@@ -86,7 +86,7 @@ class CustomerController extends Controller
                     $customers = $query->get();
                     break;
             }
-        }else{
+        } else {
             $customers = $query->paginate(10);
         }
 
@@ -117,7 +117,7 @@ class CustomerController extends Controller
         $data['password'] = bcrypt($data['password']);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $url = $request->image->move('uploads/customer',$request->image->hashName());
+            $url = $request->image->move('uploads/customer', $request->image->hashName());
             $data['image'] = $url;
         }
 
@@ -137,7 +137,7 @@ class CustomerController extends Controller
         $ads = $customer->ads;
         $transactions = $customer->transactions()->latest()->get();
 
-        return view('customer::show', compact('customer','ads','transactions'));
+        return view('customer::show', compact('customer', 'ads', 'transactions'));
     }
 
     /**
@@ -166,7 +166,7 @@ class CustomerController extends Controller
         }
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $url = $request->image->move('uploads/customer',$request->image->hashName());
+            $url = $request->image->move('uploads/customer', $request->image->hashName());
             $data['image'] = $url;
         }
 
@@ -184,17 +184,17 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         // $user_plan = UserPlan::where('customer_id',$customer->id)->where('is_active',1)->first();
-        $user_ad = Ad::where('customer_id',$customer->id)->first();
-        if($user_ad){
+        $user_ad = Ad::where('customer_id', $customer->id)->first();
+        if ($user_ad) {
             flashError('Customer Not Deleted ! Have an another Table');
             return back();
-        }else{
+        } else {
             if ($customer) {
                 $customer->delete();
             }
             flashSuccess('Customer Deleted Successfully');
             return back();
-        }    
+        }
     }
 
     /**
@@ -208,7 +208,7 @@ class CustomerController extends Controller
 
         if ($customer->email_verified_at) {
             $customer->update(['email_verified_at' => null]);
-        }else{
+        } else {
             $customer->update(['email_verified_at' => now()]);
         }
 
@@ -219,31 +219,34 @@ class CustomerController extends Controller
         }
     }
 
-    public function ads(Customer $customer){
-        $ads = $customer->ads->load('category:id,name,slug','subcategory:id,name,slug','brand:id,name,slug','town:id,name','city:id,name');
+    public function ads(Customer $customer)
+    {
+        $ads = $customer->ads->load('category:id,name,slug', 'subcategory:id,name,slug', 'brand:id,name,slug', 'town:id,name', 'city:id,name');
 
-        return view('customer::ads', compact('ads','customer'));
+        return view('customer::ads', compact('ads', 'customer'));
     }
 
-    public function planPurchaseConfirm(Request $request){
+    public function planPurchaseConfirm(Request $request)
+    {
         $userPlan = UserPlan::CustomerData($request->customer_id)->first();
 
         $userPlan->is_active = $request->is_active == "Active" ? 1 : 2;
 
         $userPlan->save();
-        Customer::where('id',$request->customer_id)->update(['plan_purcase_image' => null]);
+        Customer::where('id', $request->customer_id)->update(['plan_purcase_image' => null]);
 
         flashSuccess("Customer Plan Successfully $request->is_active");
         return back();
     }
 
 
-    public function status($customer_id, $status){
+    public function status($customer_id, $status)
+    {
         $user_plan = UserPlan::where('customer_id', $customer_id)->first();
         $plan = Plan::find($user_plan->plans_id);
         $user_plan->is_active = $status;
         $user_plan->save();
-        $transaction =new Transaction();
+        $transaction = new Transaction();
         $transaction->payment_id = 1;
         $transaction->payment_type = "Manual";
         $transaction->plan_id = $user_plan->plans_id;
@@ -251,14 +254,10 @@ class CustomerController extends Controller
         $transaction->amount = $plan->price;
         $transaction->save();
         //send mail to customer
-        $customer_details = Customer::where('id', $customer_id)->first();
-        $customer_email = $customer_details->email;
-        Mail::to($customer_email)->send(new MakeActiveNotificationToUser);        
+        // $customer_details = Customer::where('id', $customer_id)->first();
+        // $customer_email = $customer_details->email;
+        // Mail::to($customer_email)->send(new MakeActiveNotificationToUser);
         flashSuccess('Account Status Change Successfully');
         return back();
     }
-
-
-
-
 }

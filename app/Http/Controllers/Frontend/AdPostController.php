@@ -34,7 +34,6 @@ class AdPostController extends Controller
         $categories = Category::active()->latest('id')->get();
         $brands = Brand::latest('id')->get();
         $ad = session('ad');
-
         $citis = City::orderBy('name', 'asc')->get();
         $authUser = auth('customer')->user();
         return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
@@ -98,14 +97,14 @@ class AdPostController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'country' => 'required',
-            'town_id'  => 'required',
+            // 'town_id'  => 'required',
             'description' => 'required|min:150',
             'images.*' => 'required|max:2048',
 
             // 'estimate_calling_time' => 'required',
         ], [
             'country.required' => 'The Country is required',
-            'town_id.required' => 'The Region is required',
+            // 'town_id.required' => 'The Region is required',
         ]);
 
 
@@ -132,11 +131,7 @@ class AdPostController extends Controller
             $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
             $ad->save();
 
-
-
             $images = $request->images;
-
-
 
             $files = [];
             if ($images) {
@@ -166,9 +161,10 @@ class AdPostController extends Controller
                     }
                 }
             }
-            $this->adNotification($ad);
-            !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
+            $this->forgetStepSession();
+            // $this->adNotification($ad);
+            $this->userPlanInfoUpdate($ad->featured, auth('customer')->id());
             DB::commit();
             return view('frontend.postad.postsuccess', [
                 'ad_slug' => $ad->slug,

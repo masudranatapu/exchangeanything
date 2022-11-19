@@ -119,26 +119,33 @@
                                 class="input form-control">
                         </div>
                     </div>
-
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
                             <x-forms.label name="Country" required="true" for="cityy" />
                             <select required name="country" id="country"
                                 class="form-control select-bg @error('country') border-danger @enderror">
-                                <option class="d-none" value="" selected>{{ __('select_city') }}</option>
+                                <option class="d-none" value="" selected>{{ __('Select Country') }}</option>
                                 @foreach ($citis as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-select">
-                            <x-forms.label required="true" name="region" for="townn" />
+                            <x-forms.label name="State" for="townn" />
                             <select required name="town_id" id="townn"
                                 class="form-control select-bg @error('town_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('select_town') }}</option>
+                                <option value="" hidden>{{ __('Select State') }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-select">
+                            <label for="">City</label>
+                            <select name="area_id" id="areaid"
+                                class="form-control select-bg @error('area_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('Select City') }}</option>
                             </select>
                         </div>
                     </div>
@@ -227,14 +234,14 @@
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">
-                    <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
+                    {{-- <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
                         {{ __('view_posting_rules') }}
-                    </a>
+                    </a> --}}
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
-                                        <x-svg.right-arrow-icon />
-                                    </span> -->
+                                                        <x-svg.right-arrow-icon />
+                                                    </span> -->
                     </button>
                 </div>
             </form>
@@ -343,18 +350,50 @@
 
         $('#country').on('change', function() {
             var country_id = $(this).val();
+            // alert(country_id);
             if (country_id) {
                 $.ajax({
                     url: "{{ url('adlist-search-ajax') }}/" + country_id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+                        console.log(data);
+                        $('#areaid').html('');
                         var d = $('#townn').empty();
-                        $('#townn').append(
-                            '<option value="" disabled selected> Select Region </option>');
+                        // $('#townn').append(
+                        //     '<option value="" disabled selected> Select Region </option>');
+                        // $.each(data, function(key, value) {
+                        //     $('#townn').append('<option value="' + value.id + '">' + value
+                        //         .name + '</option>');
+                        // });
+
+                        $('#townn').html('<option value="" disabled selected> Select One </option>');
                         $.each(data, function(key, value) {
                             $('#townn').append('<option value="' + value.id + '">' + value
                                 .name + '</option>');
+                        });
+
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        $('#townn').on('change', function() {
+            var townnid = $("#townn").val()
+            // alert(townnid);
+            if (townnid) {
+                $.ajax({
+                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
+                        $.each(data, function(key, value) {
+                            $('#areaid').append('<option value="' + value.id + '">' + value
+                                .city_name + '</option>');
                         });
                     },
                 });

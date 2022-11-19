@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\SocialSetting;
+use App\Models\UserPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Modules\Plan\Entities\Plan;
 
 class SocialLoginController extends Controller
 {
@@ -20,6 +22,8 @@ class SocialLoginController extends Controller
 
     public function callback($provider)
     {
+        $plan = Plan::first();
+
         try {
             $socialiteUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
@@ -61,6 +65,18 @@ class SocialLoginController extends Controller
                 'username' => $username,
                 'provider' => $provider,
                 'provider_id' =>  $socialiteUserId,
+            ]);
+
+            UserPlan::create([
+                'customer_id' => $user->id,
+                'plans_id' => $plan->id,
+                'ad_limit' => $plan->ad_limit,
+                'featured_limit' => $plan->featured_limit,
+                'customer_support' => 0,
+                // 'multiple_image' => $plan->multiple_image,
+                'badge' => 0,
+                'is_active' => 1,
+                'created_at' => now()
             ]);
         }
 

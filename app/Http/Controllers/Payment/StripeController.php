@@ -23,6 +23,7 @@ class StripeController extends Controller
      */
     public function stripePost(Request $request)
     {
+
         try {
             Stripe::setApiKey(env('STRIPE_SECRET'));
 

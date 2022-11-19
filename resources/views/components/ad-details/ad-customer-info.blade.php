@@ -1,16 +1,22 @@
 <div class="product-item__sidebar-item user-details">
     <div class="user">
-        <div class="img">
-            @if ($customer->image)
-                <img src="{{ asset($customer->image) }}" alt="">
-            @else
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
-                alt="user-photo" />
-            @endif
-        </div>
+        <a href="{{ route('frontend.seller.profile', $customer->username) }}">
+            <div class="img">
+                @if ($customer->image)
+                    <img src="{{ asset($customer->image) }}" alt="">
+                @else
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
+                    alt="user-photo" />
+                @endif
+            </div>
+        </a>
         <div class="info">
             <span class="text--body-4">{{ __('added_by') }}:</span>
-            <h2 class="text--body-3-600"> {{ $customer->username }} </h2>
+            <h2 class="text--body-3-600">
+                <a href="{{ route('frontend.seller.profile', $customer->username) }}">
+                    {{ $customer->username }}
+                </a>
+            </h2>
         </div>
     </div>
     <ul class="contact">

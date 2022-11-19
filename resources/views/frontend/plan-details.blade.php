@@ -94,47 +94,38 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    @if ($message = Session::get('success'))
-                        <div class="alert bg-success" role="alert">
-                            {{ $message }}
-                        </div>
-                    @endif
-                    @if ($message = Session::get('error'))
-                        <div class="alert bg-danger" role="alert">
-                            {{ $message }}
-                        </div>
-                    @endif
-                    <div class="membership-card">
-                        <div class="membership-card__info">
-                            @php
-                                $userPlan = App\Models\UserPlan::CustomerData(auth('customer')->id())->first();
-                                $plan_id = $plan->plans_id;
-                                $plans = Modules\Plan\Entities\Plan::where('id', $plan_id)->first();
-                                $payment_setting = App\Models\PaymentSetting::first();
-                            @endphp
 
-                            {{--  @if ($userPlan->is_active == 1)
-                        <p class="blinking">Thank you for choosing the <strong>{{$plan->label}}</strong>   membership package. </p>
+            @if ($plan->price == 0)
 
-                        <p>Your membership ID is <strong>{{ auth('customer')->user()->code  }}</strong> .</p>
-
-                        <p> Please send your ARRR equivalent payment of <strong>${{$plan->price}}</strong>  to: <br> <strong>{{$payment_setting->pay_to}}</strong></p>
-
-                        <p>You <strong>MUST</strong> include your membership ID in the MEMO FIELD so we can confirm payment and activate your account. </p>
-                        <p><strong> Please use the converter below for the current exchange rate.</strong></p>
-                        <br>
-                            <div style="width: 250px; height:335px; background-color: #FAFAFA; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:335px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;margin: 0;width: 250px;padding:1px;padding: 0px; margin: 0px;"><div style="height:315px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=converter&theme=light" width="250" height="310px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div><div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div>
-                            <br>
-                            <p>When you have sent the payment press the ‘I have paid’ button.</p>
-                            <p> You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).</p>
-                            <p>Thank you for joining the ExchangeAnything Pirate Chain Community!</p>
-
-                        <button onclick="openPaymentModal()" class="btn btn-success btn-sm">I have paid</button>
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        @if ($message = Session::get('success'))
+                            <div class="alert bg-success" role="alert">
+                                {{ $message }}
+                            </div>
                         @endif
-                        --}}
-                            {{-- <form action="{{route('frontend.planPurchase')}}" method="post"
+                        @if ($message = Session::get('error'))
+                            <div class="alert bg-danger" role="alert">
+                                {{ $message }}
+                            </div>
+                        @endif
+                        <div class="membership-card">
+                            <div class="membership-card__info">
+                                @php
+                                    $userPlan = App\Models\UserPlan::CustomerData(auth('customer')->id())->first();
+                                    $plan_id = $plan->plans_id;
+                                    $plans = Modules\Plan\Entities\Plan::where('id', $plan_id)->first();
+                                    $payment_setting = App\Models\PaymentSetting::first();
+                                @endphp
+
+
+
+
+                                @if ($plan->price == 0)
+                                    <button onclick="openPaymentModal()" class="btn btn-success btn-sm">Active</button>
+                                @endif
+
+                                {{-- <form action="{{route('frontend.planPurchase')}}" method="post"
                             enctype="multipart/form-data" onsubmit="return formValidation()" id="step2Form">
                             @csrf
                             <div class="mb-3 row">
@@ -167,10 +158,179 @@
                                 </div>
                             </div>
                         </form> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="row">
+
+                    {{-- Paypal payment --}}
+                    @if (config('paypal.mode') == 'sandbox')
+                        @if (config('paypal.active') && config('paypal.sandbox.client_id') && config('paypal.sandbox.client_id'))
+                            <div class="col-xl-6">
+                                <div class="membership-card">
+                                    <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                        <x-svg.paypal-icon />
+                                    </div>
+                                    <div class="membership-card__info">
+                                        <h2 class="membership-card__title text--body-1">{{ __('paypal_payment') }}</h2>
+                                        <button id="paypal_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                            {{ __('pay_now') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @else
+                        @if (config('paypal.active') && config('paypal.live.client_id') && config('paypal.live.client_secret'))
+                            <div class="col-xl-6">
+                                <div class="membership-card">
+                                    <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                        <x-svg.paypal-icon />
+                                    </div>
+                                    <div class="membership-card__info">
+                                        <h2 class="membership-card__title text--body-1">{{ __('paypal_payment') }}</h2>
+                                        <button id="paypal_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                            {{ __('pay_now') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+
+
+                    {{-- Stripe payment --}}
+
+                    @if (env('STRIPE_ACTIVE'))
+                        <div class="col-xl-6">
+                            <div class="membership-card">
+                                <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                    <x-svg.stripe-icon />
+                                </div>
+                                <div class="membership-card__info">
+                                    <h2 class="membership-card__title text--body-1">{{ __('stripe_payment') }}</h2>
+                                    <button id="stripe_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                        {{ __('pay_now') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+
+                    {{-- Razorpay payment --}}
+
+                    @if (env('RAZORPAY_ACTIVE'))
+                        <div class="col-xl-6">
+                            <div class="membership-card">
+                                <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                    <img src="{{ asset('frontend/images/payment/razorpay.svg') }}" alt="">
+                                </div>
+                                <div class="membership-card__info">
+                                    <h2 class="membership-card__title text--body-1">{{ __('razor_payment') }}</h2>
+                                    <button id="razorpay_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                        {{ __('pay_now') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+
+                    {{-- SSl Commerz payment --}}
+                    @if (config('sslcommerz.active'))
+                        <div class="col-xl-6">
+                            <div class="membership-card">
+                                <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                    <img src="{{ asset('frontend/images/payment/ssl.jpeg') }}" alt="">
+                                </div>
+                                <div class="membership-card__info">
+                                    <h2 class="membership-card__title text--body-1">{{ __('sslcommerz_payment') }}</h2>
+                                    <button type="button" id="ssl_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                        {{ __('pay_now') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+
+
+                    @if (env('PAYSTACK_ACTIVE'))
+                        {{-- Paystack payment --}}
+
+                        <div class="col-xl-6">
+                            <div class="membership-card">
+                                <div class="membership-card__icon" style="background-color: #e8f7ff">
+                                    <img src="{{ asset('frontend/images/payment/paystack.png') }}" alt="">
+                                </div>
+                                <div class="membership-card__info">
+                                    <h2 class="membership-card__title text--body-1">{{ __('paystack_payment') }}</h2>
+                                    @if (config('adlisting.currency') == 'USD')
+                                        <button id="paystack_btn" class="mt-3 btn btn--lg price-plan__checkout-btn">
+                                            {{ __('pay_now') }}
+                                        </button>
+                                    @else
+                                        <p class="text-danger">{{ __('paystack_does_not_support') }}
+                                            {{ config('adlisting.currency') }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    {{-- Paypal Form --}}
+                    <form action="{{ route('paypal.post') }}" method="POST" class="d-none" id="paypal-form">
+                        @csrf
+                        <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+                        <input type="hidden" name="amount" value="{{ $plan->price }}">
+                    </form>
+
+
+                    {{-- Stripe Form --}}
+                    <form action="{{ route('stripe.post') }}" method="POST" class="d-none">
+                        @csrf
+                        <input type="hidden" name="amount" id="" value="{{ $plan->price }}">
+                        <input type="hidden" name="plan_id" id="" value="{{ $plan->id }}">
+                        <script id="stripe_script" src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ env('STRIPE_KEY') }}" data-amount="{{ $plan->price }}" data-plan="{{ $plan->id }}"
+                            data-name="{{ config('app.name') }}" data-description="Money pay with stripe"
+                            data-locale="{{ app()->getLocale() == 'default' ? 'en' : app()->getLocale() }}" data-currency="USD"></script>
+                    </form>
+
+                    {{-- Razorpay Form --}}
+                    <form action="{{ route('razorpay.post') }}" method="POST" class="d-none">
+                        @csrf
+                        <script id="razor_script" src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="{{ config('zakirsoft.razorpay_key') }}" data-amount="{{ session('razor_amount') }}"
+                            data-buttontext="Pay with Razorpay" data-name="{{ config('app.name') }}" data-description="Money pay with razorpay"
+                            data-prefill.name="{{ auth('customer')->user()->name }}"
+                            data-prefill.email="{{ auth('customer')->user()->email }}" data-theme.color="#2980b9" data-currency="INR"></script>
+                    </form>
+
+                    {{-- paystack_btn Form --}}
+                    <form action="{{ route('paystack.post') }}" method="POST" class="d-none" id="paystack-form">
+                        @csrf
+                    </form>
+
+                    {{-- SSL Form --}}
+                    <form method="POST" class="needs-validation d-none" novalidate>
+                        <input type="hidden" value="{{ session('ssl_amount') }}" name="amount" id="total_amount" />
+                        <input id="ssl_plan_id" type="hidden" name="plan_id" value="{{ $plan->id }}">
+                        <button class="btn btn-primary" id="sslczPayBtn" token="if you have any token validation"
+                            postdata="your javascript arrays or objects which requires in backend"
+                            order="If you already have the transaction generated for current order"
+                            endpoint="{{ route('ssl.pay') }}"> {{ __('pay_now') }}
+                        </button>
+                    </form>
+
+                </div>
+
+            @endif
+
+
         </div>
     </section>
     <!-- popup for package change alert start -->
@@ -186,6 +346,8 @@
         </div>
     </div>
     <!-- popup for package change alert end -->
+
+
 @endsection
 @section('frontend_script')
     <script>
@@ -232,5 +394,56 @@
             }
 
         }
+    </script>
+
+    <script>
+        $('#paypal_btn').on('click', function(e) {
+            e.preventDefault();
+            $('#paypal-form').submit();
+        });
+        $('#pesapal_btn').on('click', function(e) {
+            e.preventDefault();
+            $('#pesapal-payment-form').submit();
+        });
+
+        $('#stripe_btn').on('click', function(e) {
+            e.preventDefault();
+            $('.stripe-button-el').click();
+        });
+
+        $('#razorpay_btn').on('click', function(e) {
+            e.preventDefault();
+            $('.razorpay-payment-button').click();
+        });
+
+        $('#paystack_btn').on('click', function(e) {
+            e.preventDefault();
+            $('#paystack-form').submit();
+        });
+        $('#ssl_btn').on('click', function(e) {
+            e.preventDefault();
+            $('#sslczPayBtn').click();
+        });
+
+        // ssl commerz
+        var obj = {};
+        obj.amount = $('#total_amount').val();
+        obj.plan_id = $('#ssl_plan_id').val();
+
+        $('#sslczPayBtn').prop('postdata', obj);
+
+        (function(window, document) {
+            var loader = function() {
+                var script = document.createElement("script"),
+                    tag = document.getElementsByTagName("script")[0];
+                // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
+                script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(
+                    7); // USE THIS FOR SANDBOX
+                tag.parentNode.insertBefore(script, tag);
+            };
+
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload",
+                loader);
+        })(window, document);
     </script>
 @endsection

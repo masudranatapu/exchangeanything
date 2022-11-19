@@ -8,10 +8,10 @@
         @endif
     </h2>
 
-    @csrf
+    <form action="{{ route('frontend.add.wishlist') }}" method="POST">
+        @csrf
 
-    @if (auth('customer')->check())
-        <form action="{{ route('frontend.add.wishlist') }}" method="POST">
+        @if (auth('customer')->check())
             <input type="hidden" name="ad_id" value="{{ $id }}">
             <input type="hidden" name="customer_id" value="{{ auth('customer')->user()->id }}">
             <button class="btn--fav" type="submit">
@@ -21,10 +21,10 @@
                     <x-svg.heart-icon />
                 @endif
             </button>
-        </form>
-    @else
-        <a href="{{ route('customer.login') }}" class="btn--fav login_required">
-            <x-svg.heart-icon />
-        </a>
-    @endif
+        @else
+            <a href="{{ route('customer.login') }}" class="btn--fav login_required" type="button">
+                <x-svg.heart-icon />
+            </a>
+        @endif
+    </form>
 </div>

@@ -7,6 +7,8 @@ use Illuminate\Routing\Controller;
 use Modules\Location\Entities\City;
 use Modules\Location\Entities\Town;
 use Modules\Ad\Entities\Ad;
+use DB;
+use Carbon\Carbon;
 
 class CityController extends Controller
 {
@@ -16,11 +18,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        if (!userCan('city.view')) {
-            return abort(403);
-        }
-        $cities = City::orderBy('name')->paginate(10);
-        return view('location::city.index', compact('cities'));
+        $areas = DB::table('areas')->orderBy('city_name')->paginate(10);
+        return view('location::area.index', compact('areas'));
     }
 
     /**
@@ -29,10 +28,16 @@ class CityController extends Controller
      */
     public function create()
     {
-        if (!userCan('city.create')) {
-            return abort(403);
-        }
-        return view('location::city.create');
+        $countries = DB::table('cities')->orderBy('name')->get();
+        return view('location::area.create', compact('countries'));
+    }
+
+
+    public function countryGetAjax($countryid)
+    {
+        $towns = DB::table('towns')->where('city_id', $countryid)->get();
+        // return $towns;
+        return json_encode($towns);
     }
 
     /**
@@ -42,22 +47,23 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        if (!userCan('city.create')) {
-            return abort(403);
-        }
         $request->validate([
-            'name' => 'required|string|min:3|unique:cities,name',
+            'city_name' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
         ]);
 
-        $city = City::create($request->except('image'));
+        DB::table('areas')->insert([
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_name' => $request->city_name,
+            'created_at' => Carbon::now(),
+        ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $url = $request->image->move('uploads/city', $request->image->hashName());
-            $city->update(['image' => $url]);
-        }
+        flashSuccess('City created successfully');
 
-        $city ? flashSuccess('Country created successfully') : flashError();
-        return back();
+        return redirect()->back();
+
     }
 
     /**
@@ -65,12 +71,9 @@ class CityController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show(City $city)
+    public function show($id)
     {
-        $city->loadCount('ads');
-        $ads = $city->ads;
 
-        return view('location::city.show', compact('city', 'ads'));
     }
 
     /**
@@ -78,12 +81,12 @@ class CityController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(City $city)
+    public function edit($id)
     {
-        if (!userCan('city.update')) {
-            return abort(403);
-        }
-        return view('location::city.edit', compact('city'));
+        $areas = DB::table('areas')->where('id', $id)->first();
+        $countries = DB::table('cities')->orderBy('name')->get();
+        $towns = DB::table('towns')->where('city_id', $areas->country_id)->get();
+        return view('location::area.edit', compact('areas', 'countries', 'towns'));
     }
 
     /**
@@ -92,27 +95,24 @@ class CityController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, $id)
     {
-        if (!userCan('city.update')) {
-            return abort(403);
-        }
-
         $request->validate([
-            'name' => "required|string|min:3|unique:cities,name,{$city->id}",
+            'city_name' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+        ]);
+        
+        DB::table('areas')->where('id', $id)->update([
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_name' => $request->city_name,
+            'created_at' => Carbon::now(),
         ]);
 
-        $city->update($request->except('image'));
-
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            deleteImage($city->image);
-            $url = $request->image->move('uploads/city', $request->image->hashName());
-            $city->update(['image' => $url]);
-        }
-
-        // result after update
-        $city ? flashSuccess('Country updated successfully') : flashError();
-        return back();
+        flashSuccess('City update successfully');
+        return redirect()->route('module.area.index');
+        
     }
 
     /**
@@ -120,35 +120,11 @@ class CityController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
-        if (!userCan('city.delete')) {
-            return abort(403);
-        }
-
-        //city_id existign check in ads and towns table
-        $city_id = Ad::where('city_id', $city->id)->first();
-        $town_id = Town::where('city_id', $city->id)->first();
-        if($city_id || $town_id){
-            flashError("You can't delete this country, because this country contain ads and regions, if you delete this country you need to delete this countries ads and regions first");
-            return back();
-        }
-
-        // file remove
-        if ($city->image) {
-            deleteImage($city->image);
-        }
-
-        // delete city
-        $delete = $city->delete();
-
-        // result after delete
-        $delete ? flashSuccess('City deleted successfully') : flashError();
-        return back();
+        DB::table('areas')->where('id', $id)->delete();
+        flashSuccess('City delete successfully');
+        return redirect()->back();
     }
 
-    public function getTowns($city_id)
-    {
-        return Town::where('city_id', $city_id)->get();
-    }
 }
