@@ -12,7 +12,7 @@
                             <div class="col-auto my-1">
                                 <x-forms.label name="set_recommended_package" for="inlineFormCustomSelect" class="mr-sm-2" />
                                 <select name="plan_id" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option value="0" selected>NULL</option>
+                                    <option value="0" selected>None</option>
                                     @foreach ($plans as $plan)
                                         <option {{ $plan->recommended ? 'selected' : '' }} value="{{ $plan->id }}">
                                             {{ $plan->label }}</option>
