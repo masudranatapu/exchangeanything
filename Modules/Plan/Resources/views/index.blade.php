@@ -64,10 +64,12 @@
                         <div class="plan-card__bottom">
                             <div class="plan-card__package">
 
-                                <div class="plan-card__package-list">
-                                    <i class="fas fa-check-circle"
-                                        style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                    <h5 class="text--body-3">
+                                <div class="plan-card__package-list active">
+                                    <span class="icon">
+                                            <x-svg.check-icon />
+                                        </span>
+
+                                    <h5 class="text--body-3 m-0">
                                         @if ($plan->ad_limit == 0)
                                             Unlimited adverts
                                         @else
@@ -77,10 +79,10 @@
                                 </div>
 
                                 <div class="plan-card__package-list active">
-                                    <span class="icon">
-                                        <x-svg.check-icon />
-                                    </span>
-                                    <h5 class="text--body-3">{{ __('featured_ads_limit') }} : {{ $plan->featured_limit }}
+                                        <span class="icon">
+                                            <x-svg.check-icon />
+                                        </span>
+                                    <h5 class="text--body-3 m-0">{{ __('featured_ads_limit') }} : {{ $plan->featured_limit }}
                                     </h5>
                                 </div>
 
@@ -90,21 +92,21 @@
                                             <x-svg.check-icon />
                                         </span>
                                     @else
-                                        <span class="icon text-danger">
-                                            <i class="fa fa-times"></i>
+                                        <span style="margin-right: 12px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                                         </span>
                                     @endif
 
-                                    <h5 class="text--body-3">{{ __('badge') }}</h5>
+                                    <h5 class="text--body-3 m-0">{{ __('badge') }}</h5>
                                 </div>
 
 
                                 @if (is_array($plan->new_featured))
                                     @foreach ($plan->new_featured as $value)
                                         <div class="plan-card__package-list active">
-                                            <span class="icon">
-                                                <x-svg.check-icon />
-                                            </span>
+                                             <span class="icon">
+                                            <x-svg.check-icon />
+                                        </span>
                                             <h5 class="text--body-3">{{ $value }}</h5>
                                         </div>
                                     @endforeach
