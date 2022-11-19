@@ -17,7 +17,7 @@
     <div class="dashboard__navigation-bottom">
         <ul class="dashboard__nav">
             <li class="dashboard__nav-item" title="User Overview">
-                <a href="{{ route('frontend.dashboard') }}"
+                <a data-toggle="tooltip" title="Reports & Plan Overview" href="{{ route('frontend.dashboard') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.dashboard') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.overview-icon />
@@ -28,7 +28,7 @@
 
 
             <li class="dashboard__nav-item" title="Post an ads">
-                <a href="{{ route('frontend.post') }}"
+                <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.image-select-icon />
@@ -42,7 +42,7 @@
 
 
             <li class="dashboard__nav-item" title="My ads">
-                <a href="{{ route('frontend.adds') }}"
+                <a data-toggle="tooltip" title="Your ads list" href="{{ route('frontend.adds') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.adds') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.list-icon width="24" height="24" stroke="currentColor" />
@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="My favorite ads">
-                <a href="{{ route('frontend.favourites') }}"
+                <a data-toggle="tooltip" title="Your favorites ads list" href="{{ route('frontend.favourites') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.favourites') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.heart-icon fill="none" stroke="currentColor" />
@@ -60,7 +60,7 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="Message list">
-                <a href="{{ route('frontend.message') }}"
+                <a data-toggle="tooltip" title="Chat with buyer/seller" href="{{ route('frontend.message') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.message') ? 'active' : '' }}"">
                     <span class="icon">
                         <x-svg.message-icon width="24" height="24" stroke="currentColor" />
@@ -76,7 +76,7 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="Plans billing">
-                <a href="{{ route('frontend.plans-billing') }}"
+                <a data-toggle="tooltip" title="Your plan & billing information" href="{{ route('frontend.plans-billing') }}"
                     class="dashboard__nav-link  {{ request()->routeIs('frontend.plans-billing') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.invoice-icon width="24" height="24" stroke="currentColor" />
@@ -85,7 +85,7 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="Account settings">
-                <a href="{{ route('frontend.account-setting') }}"
+                <a data-toggle="tooltip" title="Customize your account" href="{{ route('frontend.account-setting') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.account-setting') ? 'active' : '' }}">
                     <span class="icon">
                         <x-svg.setting-icon />
@@ -94,7 +94,7 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="Sign out">
-                <a href="#" class="dashboard__nav-link"
+                <a data-toggle="tooltip" title="Log out from the system" href="#" class="dashboard__nav-link"
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <span class="icon">
                         <x-svg.logout-icon />
