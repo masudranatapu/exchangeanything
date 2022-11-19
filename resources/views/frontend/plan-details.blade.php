@@ -293,8 +293,8 @@
                     <form action="{{ route('stripe.post') }}" method="POST" class="d-none">
                         @csrf
                         <script id="stripe_script" src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="{{ config('zakirsoft.stripe_key') }}" data-amount="{{ session('stripe_amount') }}"
-                            data-name="{{ config('app.name') }}" data-description="Money pay with stripe"
+                            data-key="{{ env('STRIPE_KEY') }}" data-amount="{{ $plan->price }}" data-name="{{ config('app.name') }}"
+                            data-description="Money pay with stripe"
                             data-locale="{{ app()->getLocale() == 'default' ? 'en' : app()->getLocale() }}" data-currency="USD"></script>
                     </form>
 

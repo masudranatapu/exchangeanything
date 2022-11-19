@@ -28,16 +28,17 @@ class SettingController extends Controller
             envReplace('PAYPAL_MODE', 'live');
             envReplace('PAYPAL_LIVE_CLIENT_ID', $request->paypal_client_id);
             envReplace('PAYPAL_LIVE_CLIENT_SECRET', $request->paypal_client_secret);
+            envReplace('PAYPAL_ACTIVE', $request->paypal ? true : false);
         } else {
             envReplace('PAYPAL_MODE', 'sandbox');
             envReplace('PAYPAL_SANDBOX_CLIENT_ID', $request->paypal_client_id);
             envReplace('PAYPAL_SANDBOX_CLIENT_SECRET', $request->paypal_client_secret);
+            envReplace('PAYPAL_ACTIVE', $request->paypal ? true : false);
         }
 
-        $this->paymentSetting->update([
-            'paypal_live_mode' => $request->paypal_live_mode ? true : false,
-            'paypal' => $request->paypal ? true : false,
-        ]);
+
+
+
 
         flashSuccess('Paypal Setting Updated Successfully');
         return back();
@@ -47,14 +48,14 @@ class SettingController extends Controller
     {
         if ($request->stripe) {
             $request->validate([
-                'stripe_client_id' => 'required',
-                'stripe_client_secret' => 'required',
+                'stripe_key' => 'required',
+                'stripe_secret' => 'required',
             ]);
         }
 
-        envReplace('STRIPE_KEY', $request->stripe_client_id);
-        envReplace('STRIPE_SECRET', $request->stripe_client_secret);
-        $this->paymentSetting->update(['stripe' => $request->stripe ? true : false]);
+        envReplace('STRIPE_KEY', $request->stripe_key);
+        envReplace('STRIPE_SECRET', $request->stripe_secret);
+        envReplace('STRIPE_ACTIVE', $request->stripe ? true : false);
 
         flashSuccess('Stripe Setting Updated Successfully');
         return back();
