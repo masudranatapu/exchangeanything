@@ -31,7 +31,7 @@ class StripeController extends Controller
             $this->userPlanInfoUpdate($plan);
             $this->createTransaction($request->stripeToken, 'Stripe', $plan->price, $request->plan_id);
             $user = auth('customer')->user();
-            // $user->notify(new MembershipUpgradeNotification($user, $plan->label));
+            $user->notify(new MembershipUpgradeNotification($user, $plan->label));
             storePlanInformation();
 
             session()->flash('success', 'Payment Successfully');
