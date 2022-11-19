@@ -198,8 +198,8 @@ class DashboardController extends Controller
         $data['plan'] = Plan::find($plan_info->plans_id);
         $data['plan_info'] = UserPlan::customerData()->firstOrFail();
         $data['transactions'] = Transaction::with('plan')->customerData()->latest()->get()->take(5);
-        // return $data['transactions'] = Transaction::where('customer_id', auth('customer')->id())->latest()->get()->take(5);
-        // $user['user'] = auth()->user();
+        $data['transactions'] = Transaction::where('customer_id', auth('customer')->id())->latest()->get()->take(5);
+        $user['user'] = auth()->user();
         return view('frontend.plans-billing', $data);
     }
 

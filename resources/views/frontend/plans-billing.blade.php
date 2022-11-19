@@ -73,32 +73,33 @@
                                             </li>
 
                                             <li class="dashboard__benefits-item">
-                                        <i class="fas fa-check-circle"
-                                            style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                        <p class="text--body-4">
-                                            @if ($plan->ad_limit == 0)
-                                                Unlimited adverts
-                                            @else
-                                                {{ __('ads_limit') }} : {{ $plan->ad_limit }}
-                                            @endif
-                                        </p>
-                                    </li>
-                                    <li class="dashboard__benefits-item">
-                                        <i class="fas fa-check-circle"
-                                            style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                        <p class="text--body-3">{{ $plan->featured_limit }} {{ __('featured_ads') }}</p>
-                                    </li>
+                                                <i class="fas fa-check-circle"
+                                                    style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                <p class="text--body-4">
+                                                    @if ($plan->ad_limit == 0)
+                                                        Unlimited adverts
+                                                    @else
+                                                        {{ __('ads_limit') }} : {{ $plan->ad_limit }}
+                                                    @endif
+                                                </p>
+                                            </li>
+                                            <li class="dashboard__benefits-item">
+                                                <i class="fas fa-check-circle"
+                                                    style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                <p class="text--body-3">{{ $plan->featured_limit }} {{ __('featured_ads') }}
+                                                </p>
+                                            </li>
 
-                                    <li class="dashboard__benefits-item">
-                                        @if ($plan->badge == true)
-                                            <i class="fas fa-check-circle"
-                                                style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                        @else
-                                            <i class="fas fa-times"
-                                                style="color:red; margin-right: 5px; font-size: 21px;"></i>
-                                        @endif
-                                        <p class="text--body-3">{{ __('special_membership_badge') }}</p>
-                                    </li>
+                                            <li class="dashboard__benefits-item">
+                                                @if ($plan->badge == true)
+                                                    <i class="fas fa-check-circle"
+                                                        style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                @else
+                                                    <i class="fas fa-times"
+                                                        style="color:red; margin-right: 5px; font-size: 21px;"></i>
+                                                @endif
+                                                <p class="text--body-3">{{ __('special_membership_badge') }}</p>
+                                            </li>
                                         </ul>
                                     </li>
 
@@ -106,23 +107,24 @@
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            {{--
+
                             <div class="dashboard-card dashboard-card--invoice">
                                 <h2 class="dashboard-card__title">{{ __('upgrade_plan') }}</h2>
                                 <div class="dashboard-card--invoice-info">
                                     <div class="action">
-                                        <a href="{{ route('frontend.priceplan') }}" class="btn">{{ __('upgrade_plan') }}</a>
+                                        <a href="{{ route('frontend.priceplan') }}"
+                                            class="btn">{{ __('upgrade_plan') }}</a>
                                     </div>
                                 </div>
                                 <span class="dashboard-card--invoice__icon">
                                     <x-svg.invoice-icon />
                                 </span>
                             </div>
-                            --}}
+
                         </div>
                     </div>
 
-                    {{--  <div class="row dashboard__bill-three">
+                    <div class="row dashboard__bill-three">
                         <div class="col-lg-12">
                             <div class="invoice-table">
                                 <h4>{{ __('recent_invoice') }}</h4>
@@ -143,19 +145,20 @@
                                                 <td>{{ $transaction->plan->label }}</td>
                                                 <td>{{ $transaction->payment_type }}</td>
                                                 <td>${{ $transaction->amount }}</td>
-                                                <td>{{  Carbon\Carbon::parse($transaction->created_at)->format('M d, Y g:i A')  }}</td>
+                                                <td>{{ Carbon\Carbon::parse($transaction->created_at)->format('M d, Y g:i A') }}
+                                                </td>
                                             </tr>
                                         @empty
-                                            <x-not-found2 message="No recent invoice found"/>
+                                            <x-not-found2 message="No recent invoice found" />
                                         @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div> --}}
                 </div>
             </div>
+        </div>
     </section>
     <!-- dashboard section end  -->
 
