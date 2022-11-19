@@ -234,9 +234,9 @@
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">
-                    <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
+                    {{-- <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
                         {{ __('view_posting_rules') }}
-                    </a>
+                    </a> --}}
                     <button type="submit" class="btn btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
