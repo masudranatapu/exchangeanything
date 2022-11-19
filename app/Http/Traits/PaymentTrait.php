@@ -47,7 +47,7 @@ trait PaymentTrait
         }
 
         $userplan->plans_id = $plan->id;
-        $userplan->is_active = 0;
+        $userplan->is_active = 1;
 
         $userplan->save();
 
