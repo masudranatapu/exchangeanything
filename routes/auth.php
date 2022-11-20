@@ -24,8 +24,8 @@ Route::get('password-reset/{token}', [ResetPasswordController::class, 'showReset
 Route::post('customer-password-update', [ResetPasswordController::class, 'reset'])->name('customer.password.update');
 Auth::routes(['login' => false, 'register' => false]);
 // Social Authentication
-Route::get('/auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');
-Route::get('/auth/{provider}/callback', [SocialLoginController::class, 'callback'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');
+Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');
+Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->where('provider', 'google|facebook|twitter|linkedin|github|gitlab|bitbucket')->middleware('setlang');
 //Auth Guard Logout
 Route::post('auth-logout', function (Request $request) {
     if ($request->auth === 'customer') {
