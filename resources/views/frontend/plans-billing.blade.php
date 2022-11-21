@@ -95,8 +95,9 @@
                                                     <i class="fas fa-check-circle"
                                                         style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
                                                 @else
-                                                    <i class="fas fa-times"
-                                                        style="color:red; margin-right: 5px; font-size: 21px;"></i>
+                                                <span style="margin-right: 5px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                </span>
                                                 @endif
                                                 <p class="text--body-3">{{ __('special_membership_badge') }}</p>
                                             </li>

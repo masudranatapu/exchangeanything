@@ -7,6 +7,7 @@
             <span class="invalid-feedback d-block">{{ $message }}</span>
         @enderror
         <input type="hidden" name="stars" id="rating">
+        <input type="hidden" name="seller_id" value="{{ $user->id }}">
         <div class="mt-3 input-field--textarea">
             <textarea name="comment" placeholder="" id="description" class="@error('comment') border-danger @enderror"></textarea>
             @error('comment')

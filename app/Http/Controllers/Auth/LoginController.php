@@ -66,7 +66,7 @@ class LoginController extends Controller
             return $response;
         }
 
-        return redirect($this->redirectPath());
+        return redirect()->back();
     }
 
 }

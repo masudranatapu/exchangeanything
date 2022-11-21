@@ -5,6 +5,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js"
     integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .select2-selection__rendered {
+        line-height: 38px !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+    }
+
+    .select2-selection__arrow {
+        height: 38px !important;
+    }
+</style>
 <div class="col-lg-6 order-1 order-lg-0">
     <div class="registration-form">
         <h2 class="text-center text--heading-1 registration-form__title">{{ __('sign_up') }}</h2>
@@ -159,6 +172,22 @@
 </script>
 @section('frontend_script')
     <script>
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            console.log(1);
+            $('#country').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            // ===== Select2 ===== \\
+            $('#townn').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+        });
         $('#country').on('change', function() {
             var country_id = $(this).val();
             if (country_id) {

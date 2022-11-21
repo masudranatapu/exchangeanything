@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UseIsActive
 {
@@ -17,12 +18,12 @@ class UseIsActive
     public function handle(Request $request, Closure $next)
     {
         $authUser = auth('customer')->user();
-        $userPlan = App\Models\UserPlan::CustomerData($authUser)->first();
-        if($userPlan->is_active == 1){
-            return $next($request);
-
-        }else{
-            return redirect()->route('dashboard');
+        if ($authUser && $authUser->deactive_account == 1) {
+            Auth::guard('customer')->logout();
+                return redirect()->route('customer.login')->with('error', 'Your account is deactived.');
+        } else {
+                return $next($request);
         }
+
     }
 }

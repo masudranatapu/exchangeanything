@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Ad\Entities\Ad;
 use App\Models\Customer;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SellerDashboardController extends controller
 {
@@ -16,13 +16,13 @@ class SellerDashboardController extends controller
         $user = Customer::where('username', $username)->first();
 
         $ads = Ad::where('customer_id', $user->id)->paginate(6);
-        
-        $reviews = DB::table('reviews')->where('user_id', $user->id)->where('status', 1)->get();
+
+        $reviews = DB::table('reviews')->where('seller_id', $user->id)->where('status', 1)->get();
 
         $rating_details = [
             'total' => $reviews->count(),
             'rating' => $reviews->sum('stars'),
-            'average' => number_format($reviews->avg('stars')),
+            'average' => $reviews->avg('stars'),
         ];
 
         return view('frontend.seller.dashboard', compact('ads', 'user', 'rating_details'));
@@ -30,6 +30,12 @@ class SellerDashboardController extends controller
 
     public function rateReview(Request $request)
     {
+        $user_id = auth('customer')->id();
+        $review = DB::table('reviews')->where('user_id', $user_id)->where('seller_id', $request->seller_id)->get();
+        if ($review && $review->count() > 0) {
+            return redirect()->back()->with('error', 'You already reviewed this seller.');
+        }
+
         session(['seller_tab' => 'review_store']);
 
         $request->validate([
@@ -38,6 +44,7 @@ class SellerDashboardController extends controller
         ]);
 
         DB::table('reviews')->insert([
+            'seller_id' => $request->seller_id,
             'user_id' => auth('customer')->id(),
             'stars' => $request->stars,
             'comment' => $request->comment,
