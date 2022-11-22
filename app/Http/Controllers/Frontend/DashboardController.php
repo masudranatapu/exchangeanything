@@ -356,4 +356,21 @@ class DashboardController extends Controller
     {
         return view('frontend.add-plan');
     }
+    public function getCertified()
+    {
+        $plan = DB::table('get_certified_plans')->where('status', 1)->first();
+        return view('frontend.get_certified', compact('plan'));
+    }
+
+    public function certifiedCheckout($id)
+    {
+        if (!auth('customer')->check()) {
+            abort(404);
+        }
+
+
+        $data['plan'] = DB::table('get_certified_plans')->where('id', $id)->first();
+        $data['payment_setting'] = PaymentSetting::first();
+        return view('frontend.certificate_checkout', $data);
+    }
 }

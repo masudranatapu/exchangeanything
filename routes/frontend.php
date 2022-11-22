@@ -11,7 +11,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\SellerDashboardController;
 
 // show website pages
-Route::group(['as' => 'frontend.'], function () {
+Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function () {
     Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('about', [FrontendController::class, 'about'])->name('about');
     Route::get('faq', [FrontendController::class, 'faq'])->name('faq');
@@ -97,6 +97,8 @@ Route::group(['as' => 'frontend.'], function () {
             Route::put('password', [DashboardController::class, 'passwordUpdate'])->name('password');
             Route::post('wishlist', [DashboardController::class, 'addToWishlist'])->name('add.wishlist');
             Route::delete('account-delete/{customer}', [DashboardController::class, 'deleteAccount'])->name('account.delete');
+            Route::get('certified_plan', [DashboardController::class, 'getCertified'])->name('getCertified');
+            Route::get('certifiedCheckout/{id}', [DashboardController::class, 'certifiedCheckout'])->name('certifiedCheckout');
         });
         Route::get('expired-plan', [DashboardController::class, 'expiredPlan'])->name('expiredPlan');
     });

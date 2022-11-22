@@ -95,19 +95,7 @@ class LoginController extends Controller
             : redirect()->intended($this->redirectPath());
     }
 
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            if (Auth::guard('customer')->user()->deactive_account == 1) {
-                Auth::guard('customer')->logout();
-                return back();
-            } else {
-                return redirect()->route('frontend.dashboard');
-            }
-        }
-    }
 
     public function loggedinNotification()
     {
