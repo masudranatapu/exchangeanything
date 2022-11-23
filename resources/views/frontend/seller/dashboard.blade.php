@@ -26,10 +26,13 @@
                         <div class="dashboard__navigation-top">
                             <div class="dashboard__user-proifle">
                                 <div class="dashboard__user-img" style="position: relative">
-                                    <img src="{{ $user->image_url }}"
-                                        style="width: 100px; height: 100px; border-radius: 50%;" alt="{{ $user->name }}">
-                                        <img src="{{ asset('images/certified.jpg') }}"
-                                        style="width: 50px;height: 50px;border-radius: 50%;position: absolute;bottom: 0px;right: -13px;" alt="{{ $user->name }}">
+                                    <img src="{{ $user->image_url }}" style="width: 100px; height: 100px; border-radius: 50%;" alt="{{ $user->name }}">
+                                    @if ($user->certified_seller == 1 && $user->certificite_validity < now())
+                                        @php
+                                            $certified = DB::table('get_certified_plans')->latest()->first();
+                                        @endphp
+                                        <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 40px;height: 40px;border-radius: 50%;position: absolute;bottom: 0px;right: -5px;" alt="{{ $user->name }}">
+                                    @endif
                                 </div>
                                 <div class="dashboard__user-info">
                                     <h2 class="name text-center">{{ $user->name }}</h2>
@@ -97,10 +100,8 @@
                                                 </span>
                                                 {{ $user->phone }}
                                             </a>
-
                                         </li>
                                     @endif
-
                                 </ul>
                             </div>
                         @endif

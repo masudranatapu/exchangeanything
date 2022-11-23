@@ -4,8 +4,17 @@
     @endphp
     <div class="dashboard__navigation-top">
         <div class="dashboard__user-proifle">
-            <div class="dashboard__user-img">
+            <!-- <div class="dashboard__user-img">
                 <img src="{{ $user->image_url }}" alt="user-photo" />
+            </div> -->
+            <div class="dashboard__user-img" style="position: relative">
+                <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
+                @if ($user->certified_seller == 1 && $user->certificite_validity < now())
+                    @php
+                        $certified = DB::table('get_certified_plans')->latest()->first();
+                    @endphp
+                    <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 25px;height: 25px;border-radius: 50%;position: absolute;bottom: 0px; top: 37px; right: -5px;" alt="{{ $user->name }}">
+                @endif
             </div>
             <div class="dashboard__user-info">
                 <h2 class="name text--body-2-600">{{ $user->name }}</h2>

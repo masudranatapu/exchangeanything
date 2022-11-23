@@ -37,6 +37,67 @@
             </div>
         @endif
         <div class="row">
+            @foreach($getcertifiedplans as $getcertifiedplan)
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-5">
+                    <div class="plan-card plan-card--active">
+                        <div class="plan-card__top">
+                            <h2 class="plan-card__title text--body-1">{{ $getcertifiedplan->name }}</h2>
+                            <div class="plan-card__price">
+                                <h5 class="text--display-3">$ {{ $getcertifiedplan->price }}</h5>
+                            </div>
+                            <p class="plan-card__title">
+                                @if ($getcertifiedplan->package_duration == 1)
+                                    Lifetime Membership
+                                @elseif($getcertifiedplan->package_duration == 2)
+                                    Annually
+                                @elseif($getcertifiedplan->package_duration == 3)
+                                    Monthly
+                                @endif
+                            </p>
+                        </div>
+                        <div class="plan-card__bottom">
+                            <div class="plan-card__package">
+                                <div class="plan-card__package-list active">
+                                    <span class="icon">
+                                        <x-svg.check-icon />
+                                    </span>
+                                    <h5 class="text--body-3 m-0">
+                                        {{$getcertifiedplan->certified_badge}}
+                                    </h5>
+                                </div>
+                                <div class="plan-card__package-list active">
+                                        <span class="icon">
+                                            <x-svg.check-icon />
+                                        </span>
+                                    <h5 class="text--body-3 m-0">
+                                        {{$getcertifiedplan->review_request}}
+                                    </h5>
+                                </div>
+                                <div class="plan-card__package-list {{ $plan->badge == true ? 'active' : '' }}">
+                                    <span class="icon">
+                                        <x-svg.check-icon />
+                                    </span>
+                                    <h5 class="text--body-3 m-0">
+                                        {{$getcertifiedplan->share_review}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{{ route('module.certified.editCertified', $getcertifiedplan->id) }}"
+                                    class="plan-card__select-pack btn btn--bg card_footer-bg">
+                                    <i class="fas fa-edit"></i>
+                                    {{ __('Edit Get Certified') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="row">
             @forelse ($plans as $plan)
                 <div class="col-md-6 col-lg-4 col-xl-3 mb-5">
                     <div class="plan-card plan-card--active">
