@@ -44,7 +44,7 @@
             <span class="icon">
                 <x-svg.address-icon />
             </span>
-            <h6 class="text--body-3" style="text-transform: none">@if($town) {{ucwords(strtolower($town->name))}}, @endif{{ ucwords(strtolower($city->name)) }}</h6>
+            <h6 class="text--body-3" style="text-transform: none">@if($town) {{ucwords(strtolower($town->name ?? ''))}}, @endif{{ ucwords(strtolower($city->name ?? '')) }}</h6>
         </li>
         @if($customer->created_at)
         <li class="contact-item">

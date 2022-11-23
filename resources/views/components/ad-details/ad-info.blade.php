@@ -5,7 +5,7 @@
             <span class="icon">
                 <x-svg.location-icon />
             </span>
-            <p class="text--body-3">@if($ad->town) {{$ad->town->name}} ,@endif{{ $ad->city->name }}</p>
+            <p class="text--body-3">@if($ad->town) {{$ad->town->name ?? ''}} , @endif {{ $ad->city->name  ?? ''}}</p>
         </li>
         <li class="post-details__item">
             <span class="icon">
