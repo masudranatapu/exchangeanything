@@ -143,10 +143,17 @@
                                         @forelse ($transactions as $transaction)
                                             <tr>
                                                 <td>{{ $transaction->payment_id }}</td>
-                                                <td>{{ $transaction->plan->label ?? 'N/A' }}</td>
+                                                <td>
+                                                    @if ($transaction->transaction_type == 1)
+                                                        {{ __('Plan Purchase')}}
+                                                    @else
+                                                        {{ __('Certificate Purchase	')}}
+                                                    @endif    
+                                                </td>
                                                 <td>{{ $transaction->payment_type ?? 'N/A' }}</td>
                                                 <td>${{ $transaction->amount }}</td>
-                                                <td>{{ Carbon\Carbon::parse($transaction->created_at)->format('M d, Y g:i A') }}
+                                                <td>
+                                                    {{ Carbon\Carbon::parse($transaction->created_at)->format('M d, Y g:i A') }}
                                                 </td>
                                             </tr>
                                         @empty
