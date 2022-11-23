@@ -56,9 +56,9 @@
             <div class="card_content">
                 <h6>
                     <span class="icon">
-                        <i class="{{ $ad->category->icon }}" style="font-size: 15px"></i>
+                        <i class="{{ $ad->category->icon ?? '' }}" style="font-size: 15px"></i>
                     </span>
-                    {{ $ad->category->name }}
+                    {{ $ad->category->name ?? '' }}
                 </h6>
                 <h3>
                     <a href="{{ route('frontend.addetails', $ad->slug) }}" class="text--body-3-600 cards__caption-title">
@@ -70,7 +70,7 @@
                         <span class="icon">
                             <x-svg.location-icon width="20" height="20" stroke="#0088cc" />
                         </span>
-                        {{ $ad->city->name }}
+                        {{ $ad->city->name ?? ''}}
                     </h5>
                     <span class="cards__price-title text--body-3-600">
                         {{ changeCurrency($ad->price) }}
