@@ -1,6 +1,11 @@
 @extends('frontend.postad.index')
+
 @section('title', __('Ad Post'))
+
 @section('post-ad-content')
+    @php 
+        $state = DB::table('towns')->where('city_id', 85)->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -14,7 +19,7 @@
                                 <input onkeyup="countChars(this);" value="{{ old('title') }}" name="title" type="text"
                                     placeholder="{{ __('title') }}" id="adname"
                                     class="@error('title') border-danger @enderror" / required>
-                                <p style="display: none;" id="charNum">0 characters</p>
+                                {{-- <p style="display: none;" id="charNum">0 characters</p> --}}
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -84,7 +89,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="authenticity" for="authenticityy" />
                                 <select name="authenticity" id="authenticityy"
@@ -100,13 +105,25 @@
                                     @endisset
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="price" for="price" required="true" />($)
                                 <input required value="{{ old('price') }}" name="price" type="number" min="1"
                                     placeholder="{{ __('price') }}" id="price"
                                     class="@error('price') border-danger @enderror"/ step="any">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-select">
+                                <x-forms.label name="State" required="true" />
+                                <select required name="town_id" 
+                                    class="form-control select-bg @error('town_id') border-danger @enderror">
+                                    <option value="">Select One</option>
+                                    @foreach ($state as $stat)
+                                        <option value="{{$stat->id}}">{{$stat->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -119,7 +136,7 @@
                                 class="input form-control">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="input-select">
                             <x-forms.label name="Country" required="true" for="cityy" />
                             <select required name="country" id="country"
@@ -130,23 +147,20 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </div> --}}
+                    <div class="col-md-6">
                         <div class="input-select">
-                            <x-forms.label name="State" for="townn" />
-                            <select required name="town_id" id="townn"
-                                class="form-control select-bg @error('town_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('Select State') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="input-select">
-                            <label for="">City</label>
+                            <label for="">City and Neighborhood</label>
                             <select name="area_id" id="areaid"
                                 class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option value="" hidden>{{ __('Select City') }}</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Postal Code</label>
+                            <input type="number" min="1" name="postal_code" class="form-control select-bg" placeholder="Postal code">
                         </div>
                     </div>
                 </div>
@@ -172,7 +186,7 @@
                     <x-forms.label name="ad_description" for="description" required="true" />
                     <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..."
                         id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
-                    <p style="display: none;" id="charNum">0 characters</p>
+                    {{-- <p style="display: none;" id="charNum">0 characters</p> --}}
                 </div>
                 <div class="input-field--textarea">
                     <x-forms.label name="features" for="features" />

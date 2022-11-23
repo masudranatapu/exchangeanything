@@ -85,26 +85,26 @@ class AdPostController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|min:30|unique:ads,title',
+            'title' => 'required|min:2|unique:ads,title',
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'required',
             'featured' => 'sometimes',
             'brand_id' => 'sometimes',
-            'authenticity' => 'sometimes',
+            // 'authenticity' => 'sometimes',
             'model' => 'sometimes',
             'web' => 'sometimes',
             'category_id' => 'required',
             'subcategory_id' => 'required',
-            'country' => 'required',
+            // 'country' => 'required',
             // 'town_id'  => 'required',
             'description' => 'required|min:150',
             'images.*' => 'required|max:2048',
 
             // 'estimate_calling_time' => 'required',
         ], [
-            'country.required' => 'The Country is required',
-            // 'town_id.required' => 'The Region is required',
+            // 'country.required' => 'The Country is required',
+            // 'town_id.required' => 'State name is required',
         ]);
 
 
@@ -127,6 +127,7 @@ class AdPostController extends Controller
             $ad->subcategory_id = $request->subcategory_id;
             $ad->city_id = $request->country;
             $ad->town_id = $request->town_id;
+            $ad->postal_code = $request->postal_code;
             $ad->description = $request->description;
             $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
             $ad->save();
@@ -391,6 +392,7 @@ class AdPostController extends Controller
             'web' => $request->web,
             'city_id' => $request->city_id,
             'town_id' => $request->town_id,
+            'postal_code' => $request->postal_code,
             'description' => $request->description
         ]);
 

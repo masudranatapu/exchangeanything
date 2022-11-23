@@ -15,6 +15,7 @@
         $areas = DB::table('areas')
             ->where('state_id', $adsinfo->town_id)
             ->get();
+        $state = DB::table('towns')->where('city_id', 85)->get();
     @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -107,7 +108,7 @@
 
 
                     <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="authenticity" for="authenticityy" />
                                 <select name="authenticity" id="authenticityy"
@@ -123,7 +124,7 @@
                                     @endisset
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-6">
                             <div class="input-field">
@@ -133,9 +134,22 @@
                                     class="@error('price') border-danger @enderror"/ step="any">
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="input-select">
+                                <x-forms.label name="State" for="townn" />
+                                <select name="town_id" id="townn"
+                                    class="form-control select-bg @error('town_id') border-danger @enderror">
+                                    <option value="" hidden>{{ __('Select State') }}</option>
+                                    @foreach ($state as $sta)
+                                        <option value="{{ $sta->id }}"
+                                            @if ($sta->id == $adsinfo->town_id) selected @endif>{{ $sta->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="input-select">
                                 <x-forms.label name="country" for="cityy" required="true" />
                                 <select name="city_id" id="cityy"
@@ -149,21 +163,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-select">
-                                <x-forms.label name="State" for="townn" />
-                                <select name="town_id" id="townn"
-                                    class="form-control select-bg @error('town_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('Select State') }}</option>
-                                    @foreach ($state as $sta)
-                                        <option value="{{ $sta->id }}"
-                                            @if ($sta->id == $adsinfo->town_id) selected @endif>{{ $sta->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> --}}
+                        <div class="col-md-6">
                             <div class="input-select">
                                 <label for="">City</label>
                                 <select name="area_id" id="areaid"
@@ -175,6 +176,12 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-select">
+                                <label for="">Postal Code</label>
+                                <input type="number" min="1" name="postal_code" class="form-control select-bg" value="{{$adsinfo->postal_code}}" placeholder="Postal code">
                             </div>
                         </div>
                     </div>

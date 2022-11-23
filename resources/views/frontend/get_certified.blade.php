@@ -56,6 +56,9 @@
                                     <div class="my-3">
                                         <div class="col-lg-6 container-fluid">
                                             <h2 class=" text-center">{{ __('You are a certified seller') }}</h2>
+                                            <div class="content text-center">
+                                                <img src="@if($plan->badge_image) {{asset($plan->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style=" width: 200px ; height: 200px;">
+                                            </div>
                                             <div class="content mt-5">
                                                 <h3 class="dashboard-card__title">Benifits</h3>
                                                 <ul class="dashboard__benefits">
