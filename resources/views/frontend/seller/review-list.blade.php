@@ -1,5 +1,7 @@
 <div>
-    
+    @livewire('seller-review', ['user_id' => $user->id])
+
+     {{-- <livewire:seller-review :user="$user"> --}}
 </div>
 
 <style>

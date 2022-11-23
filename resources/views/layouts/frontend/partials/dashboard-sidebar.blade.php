@@ -85,6 +85,15 @@
                 </a>
             </li>
             <li class="dashboard__nav-item" title="Account settings">
+                <a data-toggle="tooltip" title="Customize your account" href="{{ route('frontend.getCertified') }}"
+                    class="dashboard__nav-link {{ request()->routeIs('frontend.getCertified') ? 'active' : '' }}">
+                    <span class="icon">
+                        <i class="fa-solid fa-ribbon fa-lg"></i>
+                    </span>
+                    {{ __('get_certified') }}
+                </a>
+            </li>
+            <li class="dashboard__nav-item" title="Account settings">
                 <a data-toggle="tooltip" title="Customize your account" href="{{ route('frontend.account-setting') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.account-setting') ? 'active' : '' }}">
                     <span class="icon">

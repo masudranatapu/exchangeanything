@@ -64,12 +64,13 @@ trait PaymentTrait
      *
      * @return boolean
      */
-    public function createTransaction(string $payment_id, string $payment_type, int $payment_amount, int $plan_id)
+    public function createTransaction(string $payment_id, string $payment_type, int $payment_amount, int $plan_id, int $transaction_type = 1 )
     {
         Transaction::create([
             'payment_id' => $payment_id,
             'customer_id' => auth('customer')->id(),
             'plan_id' => $plan_id,
+            'transaction_type' => $transaction_type,
             'payment_type' => $payment_type,
             'amount' => $payment_amount,
             'created_at' => now(),

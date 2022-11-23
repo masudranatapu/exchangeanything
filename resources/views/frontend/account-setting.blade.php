@@ -92,17 +92,15 @@
                                         <x-forms.label name="email" for="email" />
                                         <input name="email" value="{{ $user->email }}" type="email"
                                             placeholder="{{ __('email_address') }}" id="email"
-                                            class="@error('email') is-invalid border-danger @enderror">
+                                            class=" form-control @error('email') is-invalid border-danger @enderror">
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-field">
-                                        <x-forms.label name="website_links_optional" for="web" />
-                                        <input name="web" value="{{ $user->web ? $user->web : '' }}" type="text"
-                                            placeholder="{{ __('website_url') }}" id="web"
-                                            class="@error('web') is-invalid border-danger @enderror">
-                                        @error('web')
+                                        <x-forms.label name="About" for="about" />
+                                        <textarea name="about" class="form-control" style="height: 48px">{{ $user->about }}</textarea>
+                                        @error('about')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -119,6 +117,27 @@
                                                 <x-forms.label name="Subscribed to Newsletter" class="form-check-label"
                                                     for="checkme" />
                                             @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 mb-3">
+                                    <div class="col-lg-3">
+                                        <div class="form-check">
+                                            <input value="1" name="email_share" type="checkbox" class="form-check-input"
+                                                id="email_share" @if ($user->email_share == 1) checked @endif />
+                                            <x-forms.label name="Share email to public" class="form-check-label"
+                                                for="email_share" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 mb-3">
+                                    <div class="col-lg-3">
+                                        <div class="form-check">
+                                            <input value="1" name="phone_share" type="checkbox"
+                                                class="form-check-input" id="phone_share"
+                                                @if ($user->phone_share == 1) checked @endif />
+                                            <x-forms.label name="Share phone to public" class="form-check-label"
+                                                for="phone_share" />
                                         </div>
                                     </div>
                                 </div>

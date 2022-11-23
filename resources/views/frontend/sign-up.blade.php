@@ -86,6 +86,7 @@
         }
         $(document).ready(function() {
             // ===== Select2 ===== \\
+            console.log(1);
             $('#country').select2({
                 theme: 'bootstrap-5',
                 width: $(this).data('width') ?

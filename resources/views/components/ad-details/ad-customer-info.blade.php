@@ -1,22 +1,25 @@
 <div class="product-item__sidebar-item user-details">
-    <div class="user">
-        <a href="{{ route('frontend.seller.profile', $customer->username) }}">
-            <div class="img">
-                @if ($customer->image)
+    <div class="user p-2 rounded-1">
+        <div class="d-flex">
+            <a href="{{ route('frontend.seller.profile', $customer->username) }}">
+                <div class="img">
+                    @if ($customer->image)
                     <img src="{{ asset($customer->image) }}" alt="">
-                @else
+                    @else
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
                     alt="user-photo" />
-                @endif
+                    @endif
+                </div>
+            </a>
+            <div class="content">
+                <h2 class="text--body-3-600 m-0">
+                    <span class="text--body-4">{{ __('added_by') }}:</span>
+                    <a href="{{ route('frontend.seller.profile', $customer->username) }}">
+                        {{ $customer->username }}
+                    </a>
+                </h2>
+                 <a href="{{ route('frontend.seller.profile', $customer->username) }}" class="text-info">Visit Shop</a>
             </div>
-        </a>
-        <div class="info">
-            <span class="text--body-4">{{ __('added_by') }}:</span>
-            <h2 class="text--body-3-600">
-                <a href="{{ route('frontend.seller.profile', $customer->username) }}">
-                    {{ $customer->username }}
-                </a>
-            </h2>
         </div>
     </div>
     <ul class="contact">
@@ -33,10 +36,10 @@
             <h6 class="text--body-3" style="text-transform: none">@if($town) {{ucwords(strtolower($town->name))}}, @endif{{ ucwords(strtolower($city->name)) }}</h6>
         </li>
         @if($customer->created_at)
-            <li class="contact-item">
-                <span> Member Since : </span>
-                <h6 class="text--body-3">{{ $customer->created_at->format('d F, Y') }}</h6>
-            </li>
+        <li class="contact-item">
+            <span> Member Since : </span>
+            <h6 class="text--body-3">{{ $customer->created_at->format('d F, Y') }}</h6>
+        </li>
         @endif
         @if (!is_null($link))
         <li class="contact-item">
@@ -46,7 +49,7 @@
             <a target="_blank" href="{{ $link }}" class="text--body-3">
                 {{ $link }}
                 <span class="icon">
-                   <x-svg.target-blank-icon />
+                    <x-svg.target-blank-icon />
                 </span>
             </a>
         </li>

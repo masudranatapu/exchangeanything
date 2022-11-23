@@ -213,6 +213,7 @@ class DashboardController extends Controller
     public function profileUpdate(Request $request)
     {
         $customer = auth('customer')->user();
+        // dd($request->all());
 
         $request->validate([
             'name' => "required",
@@ -220,7 +221,9 @@ class DashboardController extends Controller
             'phone' => "sometimes|nullable",
             'country_code' => "sometimes|nullable",
             'iso2' => "sometimes|nullable",
-            'web' => "sometimes|nullable|url",
+            'about' => "sometimes|nullable",
+            'email_share' => "sometimes|nullable",
+            'phone_share' => "sometimes|nullable",
         ]);
         if ($request->subscribe == 1) {
             $check = Email::where('email', $request->email)->first();
@@ -299,8 +302,8 @@ class DashboardController extends Controller
 
     public function deleteAccount(Customer $customer)
     {
-        Mail::to($customer->email)->send(new DeleteCustomerNotification);
-        $customer->delete();
+        // Mail::to($customer->email)->send(new DeleteCustomerNotification);
+        $customer->update(['deactive_account' => 1]);
 
         Auth::guard('customer')->logout();
         return redirect()->route('customer.login');
@@ -352,5 +355,22 @@ class DashboardController extends Controller
     public function expiredPlan()
     {
         return view('frontend.add-plan');
+    }
+    public function getCertified()
+    {
+        $plan = DB::table('get_certified_plans')->where('status', 1)->first();
+        return view('frontend.get_certified', compact('plan'));
+    }
+
+    public function certifiedCheckout($id)
+    {
+        if (!auth('customer')->check()) {
+            abort(404);
+        }
+
+
+        $data['plan'] = DB::table('get_certified_plans')->where('id', $id)->first();
+        $data['payment_setting'] = PaymentSetting::first();
+        return view('frontend.certificate_checkout', $data);
     }
 }

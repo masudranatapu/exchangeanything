@@ -237,7 +237,7 @@
                     {{-- <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
                         {{ __('view_posting_rules') }}
                     </a> --}}
-                    <button type="submit" class="btn btn--lg">
+                    <button type="submit" class="btn text-white btn--lg">
                         {{ __('Publish') }}
                         <!--  <span class="icon--right">
                                                         <x-svg.right-arrow-icon />

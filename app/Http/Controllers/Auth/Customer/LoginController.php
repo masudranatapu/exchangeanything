@@ -95,6 +95,8 @@ class LoginController extends Controller
             : redirect()->intended($this->redirectPath());
     }
 
+
+
     public function loggedinNotification()
     {
         // Send login notification
