@@ -29,7 +29,7 @@ class StripeController extends Controller
         try {
             $user = auth('customer')->user();
             Stripe::setApiKey(env('STRIPE_SECRET'));
-            if ($request->transaction_type && $request->transaction_type == 2) {
+            if (isset($request->transaction_type) && $request->transaction_type == 2) {
                 $plan = DB::table('get_certified_plans')->where('id', $request->plan_id)->first();
                 // $valid_till = Carbon::now();
                 if ($plan && $plan->package_duration == 1) {
@@ -49,12 +49,12 @@ class StripeController extends Controller
                 $this->userPlanInfoUpdate($plan);
             }
 
-            $this->createTransaction($request->stripeToken, 'Stripe', $plan->price, $request->plan_id, $request->transaction_type);
+            $this->createTransaction($request->stripeToken, 'Stripe', $plan->price, $request->plan_id, $request->transaction_type ?? 1);
             // $user->notify(new MembershipUpgradeNotification($user, $plan->label));
             storePlanInformation();
 
             session()->flash('success', 'Payment Successfully');
-            if ($request->transaction_type && $request->transaction_type == 2) {
+            if (isset($request->transaction_type) && $request->transaction_type == 2) {
                 return redirect()->route('frontend.getCertified');
             } else {
                 return redirect()->route('frontend.plans-billing');

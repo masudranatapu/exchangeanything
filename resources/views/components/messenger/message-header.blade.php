@@ -25,7 +25,7 @@
                 <h3>{{ $user->username}}</h3>
                 <p>
                     @if (Cache::has('isOnline' . $user->id))
-                        <span class="icon">{{ __('online') }}</span> 
+                        <span class="icon">{{ __('online') }}</span>
                     @else
                         <span class="offline">{{ __('offline') }}</span>
                     @endif
@@ -35,7 +35,7 @@
     </div>
     @php
         $user_message = App\Models\Messenger::where('from_id',$user->id)->where('to_id',Auth::user()->id)->orderBy('id','desc')->first();
-        
+
         if(empty($user_message)){
             $user_message = App\Models\Messenger::where('from_id',Auth::user()->id)->where('to_id',$user->id)->orderBy('id','desc')->first();
         }
@@ -47,7 +47,7 @@
            <div class="d-flex position-relative">
               <img src="{{ asset($ad->thumbnail) }}" class="rounded me-2" style="width:60px; height: 60px;" alt="image">
               <div class="pro_details">
-                    <h2><a href="#">{{$ad->title}}</a></h2>
+                    <h2><a href="{{ route('frontend.addetails', $ad->slug) }}">{{$ad->title}}</a></h2>
                     <span>{{ changeCurrency($ad->price) }}</span>
               </div>
           </div>

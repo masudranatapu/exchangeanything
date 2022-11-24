@@ -16,7 +16,7 @@
 
                             <li class="dashboard__benefits-left">
                                 <ul>
-                                    <div class="dashboard__benefits-item">
+                                    {{-- <div class="dashboard__benefits-item">
                                         <span class="icon">
                                             <x-svg.check-icon />
                                         </span>
@@ -37,7 +37,7 @@
                                             {{ __($plan->share_review) }}
                                         </h5>
                                     </div>
-                                </ul>
+                                </ul> --}}
                             </li>
                         </ul>
                     </div>
