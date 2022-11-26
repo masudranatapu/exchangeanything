@@ -33,7 +33,22 @@
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('price') }}</th>
-                                        <td width="80%">${{ $ad->price }}</td>
+                                        <td width="80%">
+                                            $ {{ $ad->price }}
+                                            <span style="font-size: 15px;">
+                                                @if ($ad->price_method == 2)
+                                                    <sub>Per Hour</sub>
+                                                @elseif ($ad->price_method == 3)
+                                                    <sub>Per Day</sub>
+                                                @elseif ($ad->price_method == 4)
+                                                    <sub>Per Week</sub>
+                                                @elseif ($ad->price_method == 5)
+                                                    <sub>Per Month</sub>
+                                                @elseif ($ad->price_method == 6)
+                                                    <sub>Per Year</sub>
+                                                @endif
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('category') }}</th>

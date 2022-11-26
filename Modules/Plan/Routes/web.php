@@ -14,5 +14,10 @@ Route::middleware(['auth:super_admin', 'setlang'])->group(function () {
         Route::get('recommended', [PlanController::class, 'markRecommended'])->name('recommended');
     });
 
+    Route::prefix('admin/certified')->name('module.certified.')->group(function () {
+        Route::get('edit/{id}', [PlanController::class, 'editCertified'])->name('editCertified');
+        Route::post('update/{id}', [PlanController::class, 'UpdateCertified'])->name('updateCertified');
+    });
+
     Route::get('transactions', [PlanController::class, 'allTransactions'])->name('transactions');
 });

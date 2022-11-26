@@ -10,7 +10,7 @@ use App\Http\Controllers\Payment\SslCommerzPaymentController;
 //Paypal
 Route::get('paypal/payment', [PayPalController::class, 'createTransaction'])->name('paypal.payment');
 Route::post('paypal/payment', [PayPalController::class, 'processTransaction'])->name('paypal.post');
-Route::get('success-transaction/{plan_id}/{amount}', [PayPalController::class, 'successTransaction'])->name('paypal.successTransaction')->middleware('setlang');
+Route::get('success-transaction/{plan_id}/{amount}/{transaction_type}', [PayPalController::class, 'successTransaction'])->name('paypal.successTransaction')->middleware('setlang');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('paypal.cancelTransaction')->middleware('setlang');
 // Stripe
 Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');

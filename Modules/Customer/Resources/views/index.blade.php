@@ -97,8 +97,15 @@
                                         <td class="text-center" tabindex="0">{{ $key+1 }}
                                         </td>
                                         <td class="text-center" tabindex="0">
-                                            <img src="{{ $customer->image_url }}" class="rounded" height="50px"
-                                                width="50px" alt="image">
+                                            <div style="position: relative">
+                                                <img src="{{ $customer->image_url }}" class="rounded" height="50px"  width="50px" alt="image">
+                                                @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                                                    @php
+                                                        $certified = DB::table('get_certified_plans')->latest()->first();
+                                                    @endphp
+                                                    <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 20px;height: 20px;border-radius: 50%;position: absolute; bottom: 0px; top: 32px; right: 0px;">
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="text-center" tabindex="0">{{ $customer->name }}</td>
                                         <td class="text-center" tabindex="0">{{ $customer->email }}</td>

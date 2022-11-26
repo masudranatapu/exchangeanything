@@ -19,9 +19,12 @@ class SellerReview extends Component
     public function mount($user_id)
     {
         $this->seller = Customer::where('id', $user_id)->first();
-        $this->user = Customer::where('id', auth('customer')->id())->first();
         $this->reviews = DB::table('reviews')->where('seller_id', $user_id)->where('status', 1)->get();
-
+        
+        foreach($this->reviews as $review){
+            $review->reviewcustomer = DB::table('customers')->where('id', $review->user_id)->first();
+        }
+        
         $this->total = $this->reviews->count();
         $this->rating = $this->reviews->sum('stars');
         $this->average = $this->reviews->avg('stars');

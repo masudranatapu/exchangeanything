@@ -1,3 +1,6 @@
+@php
+    $area = DB::table('areas')->where('id', $ad->area_id)->first();
+@endphp
 <div class="product-item__ads-info">
     <h2 class="text--heading-2 title">{{ $ad->title }}</h2>
     <ul class="post-details">
@@ -5,7 +8,10 @@
             <span class="icon">
                 <x-svg.location-icon />
             </span>
-            <p class="text--body-3">@if($ad->town) {{$ad->town->name}} ,@endif{{ $ad->city->name }}</p>
+            <p class="text--body-3">
+                @if($area) {{$area->city_name}}  , @endif
+                @if($ad->town) {{$ad->town->name ?? ''}} @endif
+            </p>
         </li>
         <li class="post-details__item">
             <span class="icon">

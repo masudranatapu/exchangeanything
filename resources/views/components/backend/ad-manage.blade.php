@@ -8,9 +8,6 @@
             @if ($showCategory)
             <th width="10%">{{ __('category') }}</th>
             @endif
-            @if ($showCity)
-                <th width="10%">{{ __('city') }}</th>
-            @endif
             @if ($showCustomer)
                 <th width="10%">{{ __('customer_name') }}</th>
             @endif
@@ -37,18 +34,24 @@
             </td>
             <td class="text-center" tabindex="0">
                 ${{ $ad->price }}
+                <span style="font-size: 15px;">
+                    @if ($ad->price_method == 2)
+                        <sub>Per Hour</sub>
+                    @elseif ($ad->price_method == 3)
+                        <sub>Per Day</sub>
+                    @elseif ($ad->price_method == 4)
+                        <sub>Per Week</sub>
+                    @elseif ($ad->price_method == 5)
+                        <sub>Per Month</sub>
+                    @elseif ($ad->price_method == 6)
+                        <sub>Per Year</sub>
+                    @endif
+                </span>
             </td>
             @if ($showCategory)
             <td class="text-center" tabindex="0">
                 <a href="{{ route('module.category.show', $ad->category->slug) }}">{{ $ad->category->name }}</a>
             </td>
-            @endif
-            @if ($showCity)
-                <td class="text-center" tabindex="0">
-                    <a href="{{ route('module.ad.index',['city'=>$ad->city->name]) }}">
-                        {{ $ad->city->name }}
-                    </a>
-                </td>
             @endif
             @if ($showCustomer) 
                 <td class="text-center" tabindex="0">

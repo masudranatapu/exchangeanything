@@ -16,28 +16,28 @@
 
                             <li class="dashboard__benefits-left">
                                 <ul>
-                                    <div class="dashboard__benefits-item">
+                                    {{-- <div class="dashboard__benefits-item">
                                         <span class="icon">
                                             <x-svg.check-icon />
                                         </span>
-                                        <h5 class="text--body-3">{{ __('Get certified Badge') }}</h5>
+                                        <h5 class="text--body-3">{{ __($plan->certified_badge) }}</h5>
                                     </div>
                                     <div class="dashboard__benefits-item">
                                         <span class="icon">
                                             <x-svg.check-icon />
                                         </span>
-                                        <h5 class="text--body-3"> {{ __('Send review request to customer') }}
+                                        <h5 class="text--body-3">{{ __($plan->review_request) }}
                                         </h5>
                                     </div>
                                     <div class="dashboard__benefits-item ">
                                         <span class="icon">
                                             <x-svg.check-icon />
                                         </span>
-                                        <h5 class="text--body-3"> {{ __('Share your review and rating to others') }}
+                                        <h5 class="text--body-3">
+                                            {{ __($plan->share_review) }}
                                         </h5>
                                     </div>
-
-                                </ul>
+                                </ul> --}}
                             </li>
                         </ul>
                     </div>

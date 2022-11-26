@@ -84,49 +84,48 @@ class AdPostController extends Controller
     public function storePostStep1(Request $request)
     {
 
+        // dd($request->all());
+
         $request->validate([
-            'title' => 'required|min:30|unique:ads,title',
+            'title' => 'required|min:2|unique:ads,title',
             'price' => 'required|numeric',
             'condition' => 'required',
-            'negotiable' => 'required',
             'featured' => 'sometimes',
             'brand_id' => 'sometimes',
-            'authenticity' => 'sometimes',
             'model' => 'sometimes',
-            'web' => 'sometimes',
             'category_id' => 'required',
+            'town_id' => 'required',
+            'area_id' => 'required',
+            'price_method' => 'required',
             'subcategory_id' => 'required',
-            'country' => 'required',
-            // 'town_id'  => 'required',
             'description' => 'required|min:150',
-            'images.*' => 'required|max:2048',
-
-            // 'estimate_calling_time' => 'required',
+            'images' => 'required|max:2048',
         ], [
-            'country.required' => 'The Country is required',
-            // 'town_id.required' => 'The Region is required',
+            'title.required' => 'Ad title name must be required',
+            'town_id.required' => 'Town name must be required',
+            'area_id.required' => 'City and neighborhood name must be required',
         ]);
-
-
+        
         DB::beginTransaction();
         try {
 
             $ad = new Ad();
             $ad->title = $request->title;
             $ad->slug = Str::slug($request->title);
+            $ad->price_method = $request->price_method;
             $ad->price = $request->price;
             $ad->condition = $request->condition;
-            $ad->negotiable = $request->negotiable;
+            $ad->negotiable = $request->negotiable ?? 0;
             $ad->featured = $request->featured ?? 0;
             $ad->brand_id = $request->brand_id;
-            $ad->authenticity = $request->authenticity;
             $ad->model = $request->model;
             $ad->customer_id = Auth::id();
             $ad->web = $request->web;
             $ad->category_id = $request->category_id;
             $ad->subcategory_id = $request->subcategory_id;
-            $ad->city_id = $request->country;
             $ad->town_id = $request->town_id;
+            $ad->area_id = $request->area_id;
+            $ad->postal_code = $request->postal_code;
             $ad->description = $request->description;
             $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
             $ad->save();
@@ -366,7 +365,7 @@ class AdPostController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'title' => "required|unique:ads,title,$ad->id",
+            'title' => "required|unique:ads,title, $ad->id",
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'sometimes',
@@ -379,18 +378,19 @@ class AdPostController extends Controller
         $ad->update([
             'title' => $request->title,
             'price' => $request->price,
+            'price_method' => $request->price_method,
             'slug' => Str::slug($request->title),
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'brand_id' => $request->brand_id,
             'model' => $request->model,
             'condition' => $request->condition,
-            'authenticity' => $request->authenticity,
-            'negotiable' => $request->negotiable,
+            'negotiable' => $request->negotiable ?? 0,
             'featured' => $request->featured ?? 0,
             'web' => $request->web,
-            'city_id' => $request->city_id,
             'town_id' => $request->town_id,
+            'area_id' => $request->area_id,
+            'postal_code' => $request->postal_code,
             'description' => $request->description
         ]);
 
@@ -405,8 +405,6 @@ class AdPostController extends Controller
                 }
             }
         }
-
-
 
         // image uploading
         $image = $request->file('thumbnail');
@@ -425,13 +423,19 @@ class AdPostController extends Controller
             }
         }
 
-
         $images = $request->file('images');
+        // dd($images);
         if ($images) {
             foreach ($images as $image) {
                 if ($image && $image->isValid()) {
                     $name = $image->hashName();
-                    $image_path = 'uploads/adds_multiple/' . $name;
+                    
+                    $path =  'uploads/adds_multiple/';
+                    if (!file_exists($path)) {
+                        mkdir($path, 0755, true);
+                    }
+
+                    $image_path = $path . $name;
                     Image::make($image->path())
                         ->resize(850, null, function ($constraint) {
                             $constraint->aspectRatio();
@@ -442,14 +446,13 @@ class AdPostController extends Controller
             }
         }
 
-
-
         $this->adNotification($ad, 'update');
 
         return view('frontend.postad.postsuccess', [
             'ad_slug' => $ad->slug,
             'mode' => 'update',
         ]);
+
     }
 
     /**

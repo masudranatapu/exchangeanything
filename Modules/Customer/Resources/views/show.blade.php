@@ -13,8 +13,20 @@
                     <div class="widget-user-image">
                         @if ($customer->image)
                             <img class="img-circle elevation-2" src="{{ asset($customer->image) }}" alt="Customer Image">
+                            @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                                @php
+                                    $certified = DB::table('get_certified_plans')->latest()->first();
+                                @endphp
+                                <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 50px;height: 50px;border-radius: 50%;position: absolute; bottom: 0px; top: 62px; right: -5px;">
+                            @endif
                         @else
                             <img class="img-circle elevation-2" src="{{ asset('backend/image/thumbnail.jpg') }}" alt="Customer Image">
+                            @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                                @php
+                                    $certified = DB::table('get_certified_plans')->latest()->first();
+                                @endphp
+                                <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 50px;height: 50px;border-radius: 50%;position: absolute; bottom: 0px; top: 45px; right: -10px;">
+                            @endif
                         @endif
                     </div>
                     <div class="card-footer">
@@ -130,9 +142,15 @@ $plans = Modules\Plan\Entities\Plan::where('id', $user_plan->plans_id)->first();
                                         </td>
                                         <td class="text-muted">${{  number_format($transaction->amount, 2, '.', ',') }}</td>
                                         <td class="text-muted">
-                                            <span class="badge badge-primary">
-                                                {{ $transaction->plan->label }}
-                                            </span>
+                                            @if($transaction->transaction_type == 1)
+                                                <span class="badge badge-primary">
+                                                    Plan Purchase
+                                                </span>
+                                            @else 
+                                                <span class="badge badge-primary">
+                                                    Certificate Purchase
+                                                </span>
+                                            @endif
                                         </td>
                                         <td class="text-muted">{{ ucfirst($transaction->payment_type) }}</td>
                                         <td class="text-muted">{{ date('M d, Y', strtotime($transaction->created_at))  }}</td>

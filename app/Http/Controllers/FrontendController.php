@@ -257,8 +257,7 @@ class FrontendController extends Controller
                 $immediate_access_to_new_ads = 0;
             }
 
-
-            $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'estimate_calling_time'])
+            $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'area_id', 'town_id', 'price_method', 'estimate_calling_time'])
                 ->with(['city', 'category'])
                 ->where('category_id', $ad->category_id)
                 ->where('id', '!=', $ad->id)
@@ -770,8 +769,8 @@ class FrontendController extends Controller
 
     public function adlistSearchAjaxtowncity($id)
     {
-
         $area = DB::table('areas')->where('state_id', $id)->get();
-        return response()->json($area);
+        // return $area;
+        return json_encode($area);
     }
 }

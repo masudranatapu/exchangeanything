@@ -6,17 +6,12 @@
 
 @section('post-ad-content')
     @php
-        $adsinfo = DB::table('ads')
-            ->where('id', $ad->id)
-            ->first();
-        $state = DB::table('towns')
-            ->where('city_id', $ad->city_id)
-            ->get();
-        $areas = DB::table('areas')
-            ->where('state_id', $adsinfo->town_id)
-            ->get();
+        $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
+        $state = DB::table('towns')->where('city_id', 194)->get();
+        $areas = DB::table('areas')->where('state_id', $adsinfo->town_id)->get();
+        // dd($areas);
     @endphp
-    <!-- Step 01 -->
+
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
             @if ($errors->any())
@@ -31,208 +26,150 @@
             <form action="{{ route('frontend.post.update', $ad->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="dashboard-post__information-form">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-field">
-                                <x-forms.label name="Title" for="Title" required="true" />
-                                <input onkeyup="countChars(this);" required value="{{ $ad->title }}" name="title"
-                                    type="text" placeholder="{{ __('ad_name') }}" id="adname"
-                                    class="@error('title') border-danger @enderror" />
-                                <p style="display: none;" id="charNum">0 characters</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-select">
-                                <x-forms.label name="category" for="allCategory" required="true" />
-                                <select required name="category_id" id="ad_category"
-                                    class="form-control select-bg @error('category_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('By Category') }}</option>
-                                    @foreach ($categories as $category)
-                                        <option {{ $category->id == $ad->category_id ? 'selected' : '' }}
-                                            value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="input-select">
-                                <x-forms.label name="subcategory" for="subcategory" required="true" />
-                                <select name="subcategory_id" id="ad_subcategory"
-                                    class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    <option value="" selected>{{ __('select_subcategory') }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-select">
-                                <x-forms.label name="brand" for="brand" />
-                                <select name="brand_id" id="brandd"
-                                    class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('select_brand') }}</option>
-                                    @foreach ($brands as $brand)
-                                        <option {{ $brand->id == $ad->brand_id ? 'selected' : '' }}
-                                            value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-field">
+                            <label for="">Title <span class="text-danger">*</span></label>
+                            <input required value="{{ $ad->title }}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname" class="@error('title') border-danger @enderror" />
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-field">
-                                <x-forms.label name="model" for="modell" />
-                                <input value="{{ $ad->model ?? '' }}" name="model" type="text"
-                                    placeholder="{{ __('model') }}" id="modell"
-                                    class="@error('model') border-danger @enderror" />
-                            </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label>Category <span class="text-danger">*</span></label>
+                            <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('By Category') }}</option>
+                                @foreach ($categories as $category)
+                                    <option {{ $category->id == $ad->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <div class="input-select">
-                                <x-forms.label name="condition" for="conditionss" required="true" />
-                                <select required name="condition" id="conditionss"
-                                    class="form-control select-bg @error('condition') border-danger @enderror">
-                                    <option {{ $ad->condition == 'new' ? 'selected' : '' }} value="new">
-                                        {{ __('new') }}</option>
-                                    <option {{ $ad->condition == 'used' ? 'selected' : '' }} value="used">
-                                        {{ __('used') }}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-field">
-                                <x-forms.label name="authenticity" for="authenticityy" />
-                                <select name="authenticity" id="authenticityy"
-                                    class="form-control select-bg @error('authenticity') border-danger @enderror">
-                                    @isset($ad->condition)
-                                        <option {{ $ad->authenticity == 'original' ? 'selected' : '' }} value="original">
-                                            {{ __('original') }}</option>
-                                        <option {{ $ad->authenticity == 'refurbished' ? 'selected' : '' }} value="refurbished">
-                                            {{ __('refurbished') }}</option>
-                                    @else
-                                        <option value="original">{{ __('original') }}</option>
-                                        <option value="refurbished">{{ __('refurbished') }}</option>
-                                    @endisset
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="input-field">
-                                <x-forms.label name="price" for="price" required="true" />($)
-                                <input value="{{ $ad->price }}" name="price" type="number" min="1"
-                                    placeholder="{{ __('price') }}" id="price"
-                                    class="@error('price') border-danger @enderror"/ step="any">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="input-select">
-                                <x-forms.label name="country" for="cityy" required="true" />
-                                <select name="city_id" id="cityy"
-                                    class="form-control select-bg @error('city_id') border-danger @enderror">
-                                    <option value="" selected>{{ __('select_country') }}</option>
-                                    @foreach ($citis as $city)
-                                        <option {{ $city->id == $ad->city_id ? 'selected' : '' }}
-                                            value="{{ $city->id }}">
-                                            {{ $city->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-select">
-                                <x-forms.label name="State" for="townn" />
-                                <select name="town_id" id="townn"
-                                    class="form-control select-bg @error('town_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('Select State') }}</option>
-                                    @foreach ($state as $sta)
-                                        <option value="{{ $sta->id }}"
-                                            @if ($sta->id == $adsinfo->town_id) selected @endif>{{ $sta->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-select">
-                                <label for="">City</label>
-                                <select name="area_id" id="areaid"
-                                    class="form-control select-bg @error('area_id') border-danger @enderror">
-                                    <option value="" disabled>{{ __('Select City') }}</option>
-                                    @foreach ($areas as $area)
-                                        <option value="{{ $area->id }}"
-                                            @if ($area->id == $adsinfo->area_id) selected @endif>{{ $area->city_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        @php
-                            $user_plan = App\Models\UserPlan::where('customer_id', Auth::user()->id)->first();
-                            $plan = Modules\Plan\Entities\Plan::find($user_plan->plans_id);
-
-                        @endphp
-                        @if ($plan->embed_yt_video_and_links == 1)
-                            <div class="col-md-6">
-                                <div class="input-field">
-                                    <x-forms.label name="website_url" for="website url" />
-                                    <input name="web" id="web" type="text"
-                                        placeholder="{{ __('website_url') }}" value="{{ $ad->web ?? '' }}"
-                                        class="@error('web') border-danger @enderror" />
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
-                <div class="input-field--textarea">
-                    <x-forms.label name="ad_description" for="description" required="true" />
-                    <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description"
-                        class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
-
-                </div>
-                <div class="input-field--textarea">
-                    <x-forms.label name="feature" for="feature" />
-                    <div id="multiple_feature_part">
-                        <div class="row">
-                            <div class="col-9 col-md-10 col-lg-11">
-                                <div class="input-field">
-                                    <input name="features[]" type="text" placeholder="{{ __('feature') }}"
-                                        id="adname" class="@error('title') border-danger @enderror" />
-                                </div>
-                            </div>
-                            <div class="col-3 col-md-2 col-lg-1">
-                                <a role="button" onclick="add_features_field()"
-                                    class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
-                            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Sub Category <span class="text-danger">*</span></label>
+                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                <option value="" selected>{{ __('select_subcategory') }}</option>
+                            </select>
                         </div>
-                        @foreach ($ad->features as $feature)
-                            <div class="row">
-                                <div class="col-9 col-md-10 col-lg-11">
-                                    <div class="input-field">
-                                        <input value="{{ $feature->name }}" name="features[]" type="text"
-                                            placeholder="{{ __('feature') }}" id="adname"
-                                            class="@error('title') border-danger @enderror" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Brand</label>
+                            <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('select_brand') }}</option>
+                                @foreach ($brands as $brand)
+                                    <option {{ $brand->id == $ad->brand_id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Model</label>
+                            <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label >condition <span class="text-danger">*</span></label>
+                            <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
+                                <option {{ $ad->condition == 'new' ? 'selected' : '' }} value="new"> {{ __('new') }}</option>
+                                <option {{ $ad->condition == 'used' ? 'selected' : '' }} value="used"> {{ __('used') }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="mb-2">Price <span class="text-danger"> * </span> ($) </label>
+                        <div class="input-group">
+                            <select name="price_method" class="form-control select-bg">
+                                <option value="1" @if($adsinfo->price_method == 1) selected @endif>Total Price</option>
+                                <option value="2" @if($adsinfo->price_method == 2) selected @endif>Per Hour</option>
+                                <option value="3" @if($adsinfo->price_method == 3) selected @endif>Per Day</option>
+                                <option value="4" @if($adsinfo->price_method == 4) selected @endif>Per Week</option>
+                                <option value="5" @if($adsinfo->price_method == 5) selected @endif>Per Month</option>
+                                <option value="6" @if($adsinfo->price_method == 6) selected @endif>Per Year</option>
+                            </select>
+                            <input required value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <x-forms.label name="State" required="true" />
+                            <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <option value="">Select One</option>
+                                @foreach ($state as $stat)
+                                    <option value="{{$stat->id}}" @if($adsinfo->town_id == $stat->id) selected @endif>{{$stat->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">City /  Neighborhood <span class="text-danger">*</span></label>
+                            <select name="area_id" id="areaid"
+                                class="form-control select-bg @error('area_id') border-danger @enderror">
+                                <option value="" disabled>{{ __('Select City') }}</option>
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->id }}"
+                                        @if ($area->id == $adsinfo->area_id) selected @endif>{{ $area->city_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Postal Code</label>
+                            <input type="number" min="1" name="postal_code" class="form-control select-bg" value="{{$adsinfo->postal_code}}" placeholder="Postal code">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-field--textarea">
+                            <x-forms.label name="ad_description" for="description" required="true" />
+                            <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description" class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
+                        </div>
+                        <div class="input-field--textarea">
+                            <x-forms.label name="feature" for="feature" />
+                            <div id="multiple_feature_part">
+                                <div class="row">
+                                    <div class="col-9 col-md-10 col-lg-11">
+                                        <div class="input-field">
+                                            <input name="features[]" type="text" placeholder="{{ __('feature') }}"
+                                                id="adname" class="@error('title') border-danger @enderror" />
+                                        </div>
+                                    </div>
+                                    <div class="col-3 col-md-2 col-lg-1">
+                                        <a role="button" onclick="add_features_field()"
+                                            class="btn bg-primary btn-sm text-light"><i class="fas fa-plus"></i></a>
                                     </div>
                                 </div>
-                                <div class="col-3 col-md-2 col-lg-1">
-                                    <button onclick="remove_single_field()" id="remove_item"
-                                        class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
-                                </div>
+                                @foreach ($ad->features as $feature)
+                                    <div class="row">
+                                        <div class="col-9 col-md-10 col-lg-11">
+                                            <div class="input-field">
+                                                <input value="{{ $feature->name }}" name="features[]" type="text"
+                                                    placeholder="{{ __('feature') }}" id="adname"
+                                                    class="@error('title') border-danger @enderror" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-2 col-lg-1">
+                                            <button onclick="remove_single_field()" id="remove_item"
+                                                class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -270,9 +207,13 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="input-field">
-                    <label class="active">{{ __('upload_photos') }}</label>
-                    <div id="file-1" class="input-images-2" style="padding-top: .5rem;"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-field">
+                            <label class="active">{{ __('upload_photos') }}</label>
+                            <div class="input-images-2" style="padding-top: .5rem;" multiple></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
@@ -283,7 +224,6 @@
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-
                     @if (session('user_plan')->featured_limit)
                         @if (session('user_plan')->featured_limit > $countfeatured)
                             <div class="col-6 col-md-3">
@@ -305,9 +245,6 @@
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn btn--lg text-light">
                         {{ __('Update') }}
-                        <!--  <span class="icon--right">
-                                                        <x-svg.right-arrow-icon />
-                                                    </span> -->
                     </button>
                 </div>
                 <input type="hidden" id="cancel_edit_input" name="cancel_edit" value="0">
@@ -335,32 +272,28 @@
         // feature field
         function add_features_field() {
             $("#multiple_feature_part").append(`
-                    <div class="row">
-                        <div class="col-9 col-md-10 col-lg-11">
-                            <div class="input-field">
-                                <input name="features[]" type="text" placeholder="Feature" id="adname" class="@error('title') border-danger @enderror"/>
-                            </div>
-                        </div>
-                        <div class="col-3 col-md-2 col-lg-1 mt-10">
-                            <button onclick="remove_single_field()" id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+                <div class="row">
+                    <div class="col-9 col-md-10 col-lg-11">
+                        <div class="input-field">
+                            <input name="features[]" type="text" placeholder="Feature" id="adname" class="@error('title') border-danger @enderror"/>
                         </div>
                     </div>
-                    `);
-        }
-        $("#remove_item").click(function() {
-            $(this).parent().parent('div').remove();
-        });
-    </script>
-    <script>
+                    <div class="col-3 col-md-2 col-lg-1 mt-10">
+                        <button onclick="remove_single_field()" id="remove_item" class="btn btn-sm bg-danger text-light"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            `);
+        };
         // ad update and cancel edit
         $(document).on("click", "#remove_item", function() {
             $(this).parent().parent('div').remove();
         });
+    </script>
+    <script>
 
         $('.kv-file-remove').on('click', function() {
             window.location.reload();
         });
-
 
         function countChars(obj) {
             $("#charNum").show();
