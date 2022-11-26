@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
-                            <x-forms.label name="brand" for="brand" />
+                            <label for="">Brand <span class="text-danger">*</span></label>
                             <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                 <option value="">{{ __('select_brand') }}</option>
                                 @foreach ($brands as $brand)
@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label>Model</label>
+                            <label>Model <span class="text-danger">*</span></label>
                             <input value="{{ old('model') }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>

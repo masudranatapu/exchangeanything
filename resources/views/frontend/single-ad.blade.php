@@ -111,6 +111,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css/productslider.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery-bundle.min.css">
 @endsection
 
 @section('frontend_script')
@@ -121,6 +122,17 @@
     <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/venobox.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
+    
+    <!-- lightgallery plugins -->
+    <script src="{{asset('lightgallery/lightgallery.js')}}"></script>
+    <script src="{{asset('lightgallery/thumbnail.js')}}"></script>
+    <script src="{{asset('lightgallery/zoom.js')}}"></script>
+    <script type="text/javascript">
+        lightGallery(document.getElementById('lightgallery'), {
+            plugins: [lgZoom, lgThumbnail],
+            speed: 500,
+        });
+    </script>
     <script>
         function adFilterFunction(slug) {
             $('#adFilterInput').val(slug);

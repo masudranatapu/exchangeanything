@@ -24,7 +24,7 @@
 @section('content')
     <!-- Banner section start  -->
     <div class="banner banner--three"
-        style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
+        style="background:url('{{ asset('ads/banner.jpg') }}') center center/cover no-repeat; height: 425px !important; padding-top:87px; padding-bottom: 32px !important;">
         <div class="container">
             <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">

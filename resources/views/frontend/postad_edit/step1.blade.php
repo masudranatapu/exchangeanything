@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">Brand</label>
+                            <label for="">Brand <span class="text-danger">*</span></label>
                             <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                 <option value="" hidden>{{ __('select_brand') }}</option>
                                 @foreach ($brands as $brand)
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label>Model</label>
+                            <label>Model <span class="text-danger">*</span></label>
                             <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>
