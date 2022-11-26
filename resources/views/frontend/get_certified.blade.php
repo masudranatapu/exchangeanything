@@ -64,7 +64,7 @@
                                                 <ul class="dashboard__benefits">
                                                     <li class="dashboard__benefits-left">
                                                         <ul>
-                                                            {{-- <div class="dashboard__benefits-item">
+                                                            <div class="dashboard__benefits-item">
                                                                 <span class="icon">
                                                                     <x-svg.check-icon />
                                                                 </span>
@@ -86,7 +86,7 @@
                                                                 <h5 class="text--body-3">
                                                                     {{ __($plan->share_review) }}
                                                                 </h5>
-                                                            </div> --}}
+                                                            </div>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -127,7 +127,7 @@
                                         </div>
                                         <div class="plan-card__bottom">
                                             <div class="plan-card__package">
-                                                {{-- <div class="plan-card__package-list active">
+                                                <div class="plan-card__package-list active">
                                                     <span class="icon">
                                                         <x-svg.check-icon />
                                                     </span>
@@ -147,7 +147,7 @@
                                                     <h5 class="text--body-3">
                                                         {{ __($plan->share_review) }}
                                                     </h5>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
