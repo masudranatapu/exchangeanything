@@ -10,11 +10,11 @@ use App\Http\Controllers\Auth\SocialLoginController;
 
 //====================Frontent Authentication=========================
 // registration proccess
-Route::get('/sign-up/', [FrontendController::class, 'signUp'])->name('frontend.signup')->middleware('setlang');
+Route::get('sign-up/', [FrontendController::class, 'signUp'])->name('frontend.signup')->middleware('setlang');
 Route::post('customer/register', [FrontendController::class, 'register'])->name('customer.register');
 Route::post('/valid_user_name', [FrontendController::class, 'valid_user_name'])->name('user.valid_user_name');
 // login proccess
-Route::post('/customer/login', [App\Http\Controllers\Auth\Customer\LoginController::class, 'login'])->name('frontend.login')->middleware('auth_logout');
+Route::post('/customer/login', [App\Http\Controllers\Auth\Customer\LoginController::class, 'login'])->name('frontend.login');
 Route::post('/frontend/logout', [FrontendController::class, 'frontendLogout'])->name('frontend.logout');
 // Customer Reset Password
 Route::get('forgot/password', [ForgotPasswordController::class, 'customerResetPasswordForm'])
