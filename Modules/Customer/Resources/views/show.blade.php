@@ -13,7 +13,7 @@
                     <div class="widget-user-image">
                         @if ($customer->image)
                             <img class="img-circle elevation-2" src="{{ asset($customer->image) }}" alt="Customer Image">
-                            @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                            @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
                                 @php
                                     $certified = DB::table('get_certified_plans')->latest()->first();
                                 @endphp
@@ -21,7 +21,7 @@
                             @endif
                         @else
                             <img class="img-circle elevation-2" src="{{ asset('backend/image/thumbnail.jpg') }}" alt="Customer Image">
-                            @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                            @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
                                 @php
                                     $certified = DB::table('get_certified_plans')->latest()->first();
                                 @endphp

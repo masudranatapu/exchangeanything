@@ -8,8 +8,14 @@
                 </div>
                 @foreach ($reviews as $review)
                     <div class="review-wrap d-flex">
-                        <div class="profile-img">
+                        <div class="profile-img" style="position: relative">
                             <img src="{{ asset($review->reviewcustomer->image) }}" alt="Seller Profile" class="seller-image">
+                            @if ($review->reviewcustomer->certified_seller == 1 && $review->reviewcustomer->certificate_validity > now())
+                                @php
+                                    $certified = DB::table('get_certified_plans')->latest()->first();
+                                @endphp
+                                <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 30px;height: 30px;border-radius: 50%;position: absolute;bottom: 0px; top: 42px; right: -6px;">
+                            @endif
                         </div>
                         <div class="review-info">
                             @if ($review->stars)

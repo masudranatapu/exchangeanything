@@ -9,7 +9,7 @@
             </div> -->
             <div class="dashboard__user-img" style="position: relative">
                 <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
-                @if ($user->certified_seller == 1 && $user->certificite_validity < now())
+                @if ($user->certified_seller == 1 && $user->certificate_validity > now())
                     @php
                         $certified = DB::table('get_certified_plans')->latest()->first();
                     @endphp

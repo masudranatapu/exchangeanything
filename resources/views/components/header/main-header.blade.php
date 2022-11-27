@@ -68,7 +68,7 @@
                 <a href="{{ route('frontend.dashboard') }}" class="user">
                     <div class="user__img-wrapper" style="position: relative">
                         <img src="{{ auth('customer')->user()->image_url }}" style="width: 40px; height: 40px; border-radius: 50%" alt="User Image">
-                        @if (auth('customer')->user()->certified_seller == 1 && auth('customer')->user()->certificite_validity < now())
+                        @if (auth('customer')->user()->certified_seller == 1 && auth('customer')->user()->certificate_validity > now())
                             @php
                                 $certified = DB::table('get_certified_plans')->latest()->first();
                             @endphp

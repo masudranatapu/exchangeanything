@@ -14,10 +14,16 @@
                     </div>
                     <div class="row pt-3 pb-4">
                         <div class="col-md-6 offset-md-3">
-                            <div class="text-center mb-4">
+                            <div class="text-center mb-4" style="position: relative">
                                 <img width="150px" height="150px" id="image" class="img-circle"
                                     src="{{ $customer->image_url }}" alt="Cutomer picture"
-                                    style="border: 3px solid #adb5bd;margin: 0 auto;padding: 3px;">
+                                    style="border: 3px solid #adb5bd;margin: 0 auto;padding: 3px; position: relative">
+                                @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
+                                    @php
+                                        $certified = DB::table('get_certified_plans')->latest()->first();
+                                    @endphp
+                                    <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 50px;height: 50px;border-radius: 50%; position: absolute; bottom: 0px;">
+                                @endif
                             </div>
                             <form class="form-horizontal" action="{{ route('module.customer.update', $customer->username) }}" method="POST"
                                 enctype="multipart/form-data">
