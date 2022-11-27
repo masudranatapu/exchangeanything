@@ -12968,7 +12968,7 @@ h2.text--heading-1.section__title {
 }
 
 .dashboard-post__content {
-    padding: 0px 32px;
+    padding: 0px 32px 20px 32px;
 }
 
 @media (max-width: 767px) {

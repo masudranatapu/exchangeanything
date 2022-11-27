@@ -6,13 +6,16 @@
 
 <style>
     .review-wrap {
-        gap: 24px;
-        margin-bottom: 32px;
-    }
+    gap: 24px;
+    margin-bottom: 15px;
+    border: 1px dashed #cccccc;
+    padding: 8px 16px;
+    border-radius: 9px;
+}
 
     .profile-img img {
-        width: 88px;
-        height: 88px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
     }
 
@@ -39,13 +42,13 @@
     .seller-details {
         padding: 0px;
         gap: 6px;
-        margin-bottom: 8px;
     }
 
     .seller-details .name {
         font-weight: 600;
         font-size: 16px;
         line-height: 1.5;
+        margin:0;
         color: #191F33;
     }
 
