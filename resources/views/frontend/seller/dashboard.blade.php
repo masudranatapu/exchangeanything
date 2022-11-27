@@ -21,7 +21,7 @@
     <section class="section dashboard dashboard--user">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="seller-dashboard__navigation">
                         <div class="dashboard__navigation-top">
                             <div class="dashboard__user-proifle">
@@ -53,9 +53,9 @@
                             <div class="seller-dashboard__navigation-bottom">
                                 <p>CONTACT INFORMATION</p>
                                 <ul class="dashboard__nav">
-                                    @if ($user->email_share === 1)
+                                    @if ($user->email_share == 1)
                                         <li class="dashboard__nav-item">
-                                            <a href="mailto:rabin@gamil.com" class="seller-dashboard__nav-link">
+                                            <a href="mailto:{{ $user->email }}" class="seller-dashboard__nav-link">
                                                 <span class="icon">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +80,7 @@
                                     @endif
                                     @if ($user->phone && $user->phone_share == 1)
                                         <li class="dashboard__nav-item">
-                                            <a href="#" class="seller-dashboard__nav-link">
+                                            <a href="tel:{{ $user->phone }}" class="seller-dashboard__nav-link">
                                                 <span class="icon">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

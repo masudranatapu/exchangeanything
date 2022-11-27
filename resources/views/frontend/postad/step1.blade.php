@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="input-field">
                             <label>Brand Name <span class="text-danger">*</span></label>
-                            <input value="{{ old('brand_name') }}" name="brand_name" type="text" placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                            <input value="{{ old('brand_name') }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="input-field">
                             <label>Model <span class="text-danger">*</span></label>
-                            <input value="{{ old('model') }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                            <input value="{{ old('model') }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>
                     <div class="col-md-6">
