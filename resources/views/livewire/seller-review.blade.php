@@ -2,9 +2,9 @@
     <div>
         @if ($seller->certified_seller == 1 && $seller->certificate_validity > now())
             @if ($total != 0)
-                <div class="card-body">
-                    <h4>Total Reviews: {{ $total }}</h4>
-                    <h4>Average Ratings: {{  number_format($average, '1') }}</h4>
+                <div class="mb-3">
+                    <h5>Total Review: <span style="color:#108AB1">({{ $total }})</span></h5>
+                    <h5>Rating: {{  number_format($average, '1') }}</h5>
                 </div>
                 @foreach ($reviews as $review)
                     <div class="review-wrap d-flex">
