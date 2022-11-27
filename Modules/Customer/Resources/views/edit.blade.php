@@ -12,66 +12,68 @@
                             class="btn bg-primary float-right d-flex align-items-center justify-content-center"><i
                                 class="fas fa-arrow-left"></i>&nbsp; {{ __('back') }}</a>
                     </div>
-                    <div class="row pt-3 pb-4">
-                        <div class="col-md-6 offset-md-3">
-                            <div class="text-center mb-4" style="position: relative">
-                                <img width="150px" height="150px" id="image" class="img-circle"
-                                    src="{{ $customer->image_url }}" alt="Cutomer picture"
-                                    style="border: 3px solid #adb5bd;margin: 0 auto;padding: 3px; position: relative">
-                                @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
-                                    @php
-                                        $certified = DB::table('get_certified_plans')->latest()->first();
-                                    @endphp
-                                    <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 50px;height: 50px;border-radius: 50%; position: absolute; bottom: 0px;">
-                                @endif
+                    <div class="card-body">
+                        <div class="row pt-3 pb-4">
+                            <div class="col-md-12 text center">
+                                <div class="text-center">
+                                    <img width="150px" height="150px" id="image" class="img-circle" src="{{ $customer->image_url }}" alt="Cutomer picture" style="border: 3px solid #adb5bd;margin: 0 auto;padding: 3px;">
+                                    @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
+                                        @php
+                                            $certified = DB::table('get_certified_plans')->latest()->first();
+                                        @endphp
+                                        <img src="@if($certified->badge_image) {{asset($certified->badge_image)}} @else {{ asset('images/certified.jpg') }} @endif" style="width: 50px;height: 50px;border-radius: 50%; position: absolute; bottom: 0px;">
+                                    @endif
+                                </div>
                             </div>
-                            <form class="form-horizontal" action="{{ route('module.customer.update', $customer->username) }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <div class="form-group row">
-                                    <x-forms.label name="name" required="true" class="col-sm-3 col-form-label"/>
-                                    <div class="col-sm-9">
-                                        <x-forms.input type="text" name="name" value="{{ $customer->name }}" placeholder="enter_new_name"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <x-forms.label name="username" required="true" class="col-sm-3 col-form-label"/>
-                                    <div class="col-sm-9">
-                                        <x-forms.input type="text" name="username" value="{{ $customer->username }}" placeholder="username"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <x-forms.label name="email" required="true" class="col-sm-3 col-form-label"/>
-                                    <div class="col-sm-9">
-                                        <x-forms.input type="email" name="email" value="{{ $customer->email }}" placeholder="email"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <x-forms.label name="change_password" required="true" class="col-sm-3 col-form-label"/>
-                                    <div class="col-sm-9">
-                                        <x-forms.input type="password" name="password" value="{{ old('password') }}" placeholder="change_password"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <x-forms.label name="image" class="col-sm-3" />
-                                    <div class="col-sm-9">
-                                        <div class="custom-file">
-                                            <input name="image" autocomplete="image"
-                                                onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"
-                                                type="file" class="custom-file-input" id="customFile">
-                                            <x-forms.label name="choose_file" for="customFile" class="custom-file-label" />
+                            <div class="col-md-6 offset-md-3 mt-3">
+                                <form class="form-horizontal" action="{{ route('module.customer.update', $customer->username) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group row">
+                                        <x-forms.label name="name" required="true" class="col-sm-3 col-form-label"/>
+                                        <div class="col-sm-9">
+                                            <x-forms.input type="text" name="name" value="{{ $customer->name }}" placeholder="enter_new_name"/>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="offset-sm-3 col-sm-9">
-                                        <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>
-                                            {{ __('Update') }}
-                                        </button>
+                                    <div class="form-group row">
+                                        <x-forms.label name="username" required="true" class="col-sm-3 col-form-label"/>
+                                        <div class="col-sm-9">
+                                            <x-forms.input type="text" name="username" value="{{ $customer->username }}" placeholder="username"/>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="form-group row">
+                                        <x-forms.label name="email" required="true" class="col-sm-3 col-form-label"/>
+                                        <div class="col-sm-9">
+                                            <x-forms.input type="email" name="email" value="{{ $customer->email }}" placeholder="email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <x-forms.label name="change_password" required="true" class="col-sm-3 col-form-label"/>
+                                        <div class="col-sm-9">
+                                            <x-forms.input type="password" name="password" value="{{ old('password') }}" placeholder="change_password"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <x-forms.label name="image" class="col-sm-3" />
+                                        <div class="col-sm-9">
+                                            <div class="custom-file">
+                                                <input name="image" autocomplete="image"
+                                                    onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])"
+                                                    type="file" class="custom-file-input" id="customFile">
+                                                <x-forms.label name="choose_file" for="customFile" class="custom-file-label" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>
+                                                {{ __('Update') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
