@@ -38,22 +38,24 @@
             @endif
         @else
             @if($checkuserforphone->phone_share == 1)
-                <div class="card-number">
-                    <div class="number number--hide text--body-2">
-                        <span class="icon">
-                            <x-svg.phone-icon width="32" height="32" />
-                        </span>
-                        {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($checkuserforphone->phone, 8, 'XXXXXXXX') }}
+                @if($checkuserforphone->phone)
+                    <div class="card-number">
+                        <div class="number number--hide text--body-2">
+                            <span class="icon">
+                                <x-svg.phone-icon width="32" height="32" />
+                            </span>
+                            {{ Str::limit($checkuserforphone->phone, 8, 'XXXXXXXX') }}
+                        </div>
+                        <div class="number number--show text--body-2">
+                            <span class="icon">
+                                <x-svg.phone-icon width="32" height="32" />
+                            </span>
+                            {{ $checkuserforphone->phone }}
+                        </div>
+                        <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+                        <p>Best time to call : {{ @$callingtime }}</p> -->
                     </div>
-                    <div class="number number--show text--body-2">
-                        <span class="icon">
-                            <x-svg.phone-icon width="32" height="32" />
-                        </span>
-                        {{ $checkuserforphone->phone }}
-                    </div>
-                    <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
-                    <p>Best time to call : {{ @$callingtime }}</p> -->
-                </div>
+                @endif
             @endif
         @endif
     @endif
