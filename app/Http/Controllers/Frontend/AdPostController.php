@@ -90,7 +90,8 @@ class AdPostController extends Controller
             'condition' => 'required',
             'featured' => 'sometimes',
             // 'brand_id' => 'required',
-            // 'model' => 'required',
+            'brand_name' => 'required',
+            'model' => 'required',
             'category_id' => 'required',
             'town_id' => 'required',
             'area_id' => 'required',
@@ -103,7 +104,8 @@ class AdPostController extends Controller
             'town_id.required' => 'Town name must be required',
             'area_id.required' => 'City and neighborhood name must be required',
             // 'brand_id.required' => 'Brand name filed must be required',
-            // 'model.required' => 'Model name filed must be required',
+            'brand_name.required' => 'Brand name filed must be required',
+            'model.required' => 'Model name filed must be required',
         ]);
         
         DB::beginTransaction();
@@ -369,10 +371,10 @@ class AdPostController extends Controller
             'negotiable' => 'sometimes',
             'category_id' => 'required',
             // 'brand_id' => 'required',
-            // 'model' => 'required',
+            'brand_name' => 'required',
+            'model' => 'required',
             // 'subcategory_id' => 'required',
             'description' => 'required',
-
         ]);
 
         $ad->update([
@@ -382,7 +384,7 @@ class AdPostController extends Controller
             'slug' => Str::slug($request->title),
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'brand_id' => $request->brand_id,
+            // 'brand_id' => $request->brand_id,
             'brand_name' => $request->brand_name,
             'model' => $request->model,
             'condition' => $request->condition,
