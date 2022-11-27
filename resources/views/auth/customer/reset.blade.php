@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 order-1 order-lg-0">
-                    <div class="registration-form">
+                    <div class="registration-form" style="margin-top: 94px;">
                         <h2 class="text-center text--heading-1 registration-form__title">{{ __('reset_password') }}</h2>
                         <div class="registration-form__wrapper">
                             <form method="POST" action="{{ route('customer.password.update') }}">
