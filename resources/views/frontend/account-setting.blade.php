@@ -152,10 +152,10 @@
                                 @method('PUT')
                                 <div class="input-field__group">
                                     <div class="input-field">
-                                        <x-forms.label name="current_password" for="cpassword" />
-                                        <input name="current_password" type="password"
-                                            placeholder="{{ __('password') }}" id="cpassword"
-                                            class="@error('current_password') is-invalid border-danger @enderror">
+                                        <x-forms.label name="current_password" for="cpassword" required="true"/>
+                                        <input name="current_password"  required="" type="password"
+                                            placeholder="{{ __('password') }}"  id="cpassword"
+                                            class="@error('current_password') is-invalid border-danger @enderror" >
                                         @error('current_password')
                                             <span style="font-size: 12px" class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -165,8 +165,8 @@
                                         </span>
                                     </div>
                                     <div class="input-field">
-                                        <x-forms.label name="new_password" for="npassword" />
-                                        <input name="password" type="password" placeholder="{{ __('password') }}"
+                                        <x-forms.label name="new_password" for="npassword" required="true"/>
+                                        <input name="password" type="password" required="" placeholder="{{ __('password') }}"
                                             id="npassword" class="@error('password') is-invalid border-danger @enderror">
                                         @error('password')
                                             <span style="font-size: 12px" class="text-danger">{{ $message }}</span>
@@ -178,8 +178,8 @@
                                         </span>
                                     </div>
                                     <div class="input-field">
-                                        <x-forms.label name="confirm_password" for="confirmpass" />
-                                        <input name="password_confirmation" type="password"
+                                        <x-forms.label name="confirm_password" for="confirmpass" required="true"/>
+                                        <input name="password_confirmation" required="" type="password"
                                             placeholder="{{ __('password') }}" id="confirmpass"
                                             class="@error('password_confirmation') is-invalid border-danger @enderror">
                                         @error('password_confirmation')
