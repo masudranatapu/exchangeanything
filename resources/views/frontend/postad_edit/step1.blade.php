@@ -54,9 +54,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">Brand <span class="text-danger">*</span></label>
+                            <label for="">Brand</label>
                             <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                 <option value="" hidden>{{ __('select_brand') }}</option>
                                 @foreach ($brands as $brand)
@@ -64,12 +64,18 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Brand Name</label>
+                            <input value="{{ $adsinfo->brand_name }}" name="brand_name" type="text" placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label>Model <span class="text-danger">*</span></label>
+                            <label>Model </label>
                             <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>

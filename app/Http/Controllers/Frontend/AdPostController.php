@@ -83,13 +83,14 @@ class AdPostController extends Controller
      */
     public function storePostStep1(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'title' => 'required|min:2|unique:ads,title',
             'price' => 'required|numeric',
             'condition' => 'required',
             'featured' => 'sometimes',
-            'brand_id' => 'required',
-            'model' => 'required',
+            // 'brand_id' => 'required',
+            // 'model' => 'required',
             'category_id' => 'required',
             'town_id' => 'required',
             'area_id' => 'required',
@@ -101,13 +102,12 @@ class AdPostController extends Controller
             'title.required' => 'Ad title name must be required',
             'town_id.required' => 'Town name must be required',
             'area_id.required' => 'City and neighborhood name must be required',
-            'brand_id.required' => 'Brand name filed must be required',
-            'model.required' => 'Model name filed must be required',
+            // 'brand_id.required' => 'Brand name filed must be required',
+            // 'model.required' => 'Model name filed must be required',
         ]);
         
         DB::beginTransaction();
         try {
-
             $ad = new Ad();
             $ad->title = $request->title;
             $ad->slug = Str::slug($request->title);
@@ -116,7 +116,8 @@ class AdPostController extends Controller
             $ad->condition = $request->condition;
             $ad->negotiable = $request->negotiable ?? 0;
             $ad->featured = $request->featured ?? 0;
-            $ad->brand_id = $request->brand_id;
+            // $ad->brand_id = $request->brand_id;
+            $ad->brand_name = $request->brand_name;
             $ad->model = $request->model;
             $ad->customer_id = Auth::id();
             $ad->web = $request->web;
@@ -360,14 +361,15 @@ class AdPostController extends Controller
      */
     public function UpdatePostStep1(Request $request, Ad $ad)
     {
+        // dd($request->all());
         $request->validate([
             'title' => "required|unique:ads,title, $ad->id",
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'sometimes',
             'category_id' => 'required',
-            'brand_id' => 'required',
-            'model' => 'required',
+            // 'brand_id' => 'required',
+            // 'model' => 'required',
             // 'subcategory_id' => 'required',
             'description' => 'required',
 
@@ -381,6 +383,7 @@ class AdPostController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'brand_id' => $request->brand_id,
+            'brand_name' => $request->brand_name,
             'model' => $request->model,
             'condition' => $request->condition,
             'negotiable' => $request->negotiable ?? 0,

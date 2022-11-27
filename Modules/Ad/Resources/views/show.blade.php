@@ -61,10 +61,13 @@
                                         <td width="80%">{{ $ad->subcategory->name ?? '' }}</td>
                                         @endif
                                     </tr>
-                                    
-                                    <tr class="mb-5">
+                                    <!-- <tr class="mb-5">
                                         <th width="20%">{{ __('brand') }}</th>
                                         <td width="80%">{{ $ad->brand->name ?? '' }}</td>
+                                    </tr> -->
+                                    <tr class="mb-5">
+                                        <th width="20%">{{ __('Brand Name') }}</th>
+                                        <td width="80%">{{ $ad->brand_name ?? ' N/L' }}</td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('location') }}</th>
