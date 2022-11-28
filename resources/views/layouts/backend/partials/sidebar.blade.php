@@ -148,7 +148,7 @@
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('module.area.*') ? true : false"
                                         route="module.area.index" icon="fas fa-circle">
-                                        {{ __('City / Neighborhood') }}
+                                        {{ __('City') }}
                                     </x-sidebar-list>
                                 </ul>
                             @endif

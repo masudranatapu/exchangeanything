@@ -102,7 +102,7 @@ class AdPostController extends Controller
         ], [
             'title.required' => 'Ad title name must be required',
             'town_id.required' => 'Town name must be required',
-            'area_id.required' => 'City and neighborhood name must be required',
+            'area_id.required' => 'City name must be required',
             // 'brand_id.required' => 'Brand name filed must be required',
             'brand_name.required' => 'Brand name filed must be required',
             'model.required' => 'Model name filed must be required',

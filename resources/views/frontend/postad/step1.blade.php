@@ -105,9 +105,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">City /  Neighborhood <span class="text-danger">*</span></label>
+                            <label for="">City <span class="text-danger">*</span></label>
                             <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
-                                <option disabled selected>{{ __('Select City / Neighborhood ') }}</option>
+                                <option disabled selected>{{ __('Select City ') }}</option>
                             </select>
                         </div>
                     </div>
