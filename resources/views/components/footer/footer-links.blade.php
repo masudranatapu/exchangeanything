@@ -9,7 +9,7 @@
             <a href="{{ route('frontend.privacy') }}" class="footer-menu__link text--body-3">{{ __('privacy_policy') }}</a>
         </li>
         <li class="footer-menu__item">
-            <a href="{{ route('frontend.cookie.policy') }}" class="footer-menu__link text--body-3">{{ __('Cookie Policy') }}</a>
+            <a href="{{ route('frontend.cookie.policy') }}" class="footer-menu__link text--body-3">{{ __('Avoid Scam & Fraud') }}</a>
         </li>
     </ul>
 </div>

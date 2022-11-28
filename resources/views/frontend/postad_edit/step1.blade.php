@@ -269,7 +269,7 @@
     <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
     <script>
         $('.input-images-2').imageUploader({
-            maxSize: 2 * 1024 * 1024,
+            maxSize: 10 * 1024 * 1024,
             maxFiles: 10,
             multiple: true,
         });
@@ -383,11 +383,18 @@
                     dataType: "json",
                     success: function(data) {
                         console.log(data);
-                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
-                        $.each(data, function(key, value) {
-                            $('#areaid').append('<option value="' + value.id + '">' + value
-                                .city_name + '</option>');
-                        });
+                        $('#areaid').html('');
+                        if(data.length > 0){
+                            $.each(data, function(key, value) {
+                                $('#areaid').append('<option value="' + value.id + '">' + value
+                                    .city_name + '</option>');
+                            });
+                        }else {
+                            toastr.warning("No country for this state", 'Info',{
+                                closeButton:true,
+                                progressBar:true,
+                            });
+                        }
                     },
                 });
             } else {
