@@ -7,9 +7,7 @@
 @section('post-ad-content')
     @php
         $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
-        $state = DB::table('towns')->where('city_id', 194)->get();
-        $areas = DB::table('areas')->where('state_id', $adsinfo->town_id)->get();
-        // dd($areas);
+        $state = DB::table('towns')->orderBy('name')->get();
     @endphp
 
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -101,6 +99,7 @@
                                 <option value="5" @if($adsinfo->price_method == 5) selected @endif>Per Month</option>
                                 <option value="6" @if($adsinfo->price_method == 6) selected @endif>Per Year</option>
                             </select>
+                            <span class="input-group-text"> $ </span>
                             <input required value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
                         </div>
                     </div>
@@ -120,15 +119,11 @@
                     <div class="col-md-6">
                         <div class="input-select">
                             <label for="">City <span class="text-danger">*</span></label>
-                            <select name="area_id" id="areaid"
+                            <!-- <select name="area_id" id="areaid"
                                 class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option value="" disabled>{{ __('Select City') }}</option>
-                                @foreach ($areas as $area)
-                                    <option value="{{ $area->id }}"
-                                        @if ($area->id == $adsinfo->area_id) selected @endif>{{ $area->city_name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            </select> -->
+                            <input type="text" name="area_name" value="{{ $adsinfo->area_name }}" class="form-control select-bg  border-danger" placeholder="City name">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -261,6 +256,17 @@
 
 @section('frontend_style')
     <link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet">
+    <style>
+        .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+        .select2-selection__arrow {
+            height: 38px !important;
+        }
+    </style>
 @endsection
 
 @push('post-ad-scripts')
@@ -272,6 +278,28 @@
             maxSize: 10 * 1024 * 1024,
             maxFiles: 10,
             multiple: true,
+        });
+
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            
+            $('#townn').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_category').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_subcategory').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
         });
     </script>
     <script type="text/javascript">
@@ -350,56 +378,56 @@
             }
         }
 
-        $('#cityy').on('change', function() {
-            var country_id = $(this).val();
-            if (country_id) {
-                $.ajax({
-                    url: "{{ url('adlist-search-ajax') }}/" + country_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('#areaid').html('');
-                        var d = $('#townn').empty();
-                        $('#townn').append(
-                            '<option value="" disabled selected> Select Region </option>');
-                        $.each(data, function(key, value) {
-                            $('#townn').append('<option value="' + value.id + '">' + value
-                                .name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
+        // $('#cityy').on('change', function() {
+        //     var country_id = $(this).val();
+        //     if (country_id) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-search-ajax') }}/" + country_id,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 $('#areaid').html('');
+        //                 var d = $('#townn').empty();
+        //                 $('#townn').append(
+        //                     '<option value="" disabled selected> Select Region </option>');
+        //                 $.each(data, function(key, value) {
+        //                     $('#townn').append('<option value="' + value.id + '">' + value
+        //                         .name + '</option>');
+        //                 });
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
+        // });
 
-        $('#townn').on('change', function() {
-            var townnid = $("#townn").val()
-            // alert(townnid);
-            if (townnid) {
-                $.ajax({
-                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data);
-                        $('#areaid').html('');
-                        if(data.length > 0){
-                            $.each(data, function(key, value) {
-                                $('#areaid').append('<option value="' + value.id + '">' + value
-                                    .city_name + '</option>');
-                            });
-                        }else {
-                            toastr.warning("No country for this state", 'Info',{
-                                closeButton:true,
-                                progressBar:true,
-                            });
-                        }
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
+        // $('#townn').on('change', function() {
+        //     var townnid = $("#townn").val()
+        //     // alert(townnid);
+        //     if (townnid) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 $('#areaid').html('');
+        //                 if(data.length > 0){
+        //                     $.each(data, function(key, value) {
+        //                         $('#areaid').append('<option value="' + value.id + '">' + value
+        //                             .city_name + '</option>');
+        //                     });
+        //                 }else {
+        //                     toastr.warning("No country for this state", 'Info',{
+        //                         closeButton:true,
+        //                         progressBar:true,
+        //                     });
+        //                 }
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
+        // });
     </script>
 @endpush

@@ -85,7 +85,7 @@
                             <x-ad-details.ad-contact :id="$ad->id" :phone="$ad->phone" :name="$ad->customer->username" :callingtime="$ad->estimate_calling_time" :numberShowingPermission="$ad->phone_number_showing_permission" :immediateAccessToNewAds="$immediate_access_to_new_ads" />
                                 
                             {{-- ad customer info --}}
-                            <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->website_link" />
+                            <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->website_link" :area="$ad->area_name"/>
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">

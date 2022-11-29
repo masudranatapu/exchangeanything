@@ -94,7 +94,8 @@ class AdPostController extends Controller
             'model' => 'required',
             'category_id' => 'required',
             'town_id' => 'required',
-            'area_id' => 'required',
+            // 'area_id' => 'required',
+            'area_name' => 'required',
             'price_method' => 'required',
             'subcategory_id' => 'required',
             'description' => 'required|min:150',
@@ -102,8 +103,9 @@ class AdPostController extends Controller
         ], [
             'title.required' => 'Ad title name must be required',
             'town_id.required' => 'Town name must be required',
-            'area_id.required' => 'City name must be required',
+            // 'area_id.required' => 'City name must be required',
             // 'brand_id.required' => 'Brand name filed must be required',
+            'area_name.required' => 'City name filed must be required',
             'brand_name.required' => 'Brand name filed must be required',
             'model.required' => 'Model name filed must be required',
         ]);
@@ -126,7 +128,8 @@ class AdPostController extends Controller
             $ad->category_id = $request->category_id;
             $ad->subcategory_id = $request->subcategory_id;
             $ad->town_id = $request->town_id;
-            $ad->area_id = $request->area_id;
+            // $ad->area_id = $request->area_id;
+            $ad->area_name = $request->area_name;
             $ad->postal_code = $request->postal_code;
             $ad->description = $request->description;
             $ad->status = setting('ads_admin_approval') ? 'pending' : 'active';
@@ -375,6 +378,9 @@ class AdPostController extends Controller
             'model' => 'required',
             // 'subcategory_id' => 'required',
             'description' => 'required',
+            'area_name' => 'required',
+        ],[
+            'area_name.required' => 'City name filed must be required',
         ]);
 
         $ad->update([
@@ -392,7 +398,8 @@ class AdPostController extends Controller
             'featured' => $request->featured ?? 0,
             'web' => $request->web,
             'town_id' => $request->town_id,
-            'area_id' => $request->area_id,
+            // 'area_id' => $request->area_id,
+            'area_name' => $request->area_name,
             'postal_code' => $request->postal_code,
             'description' => $request->description
         ]);

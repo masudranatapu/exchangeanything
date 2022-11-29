@@ -34,8 +34,9 @@
                     <span class="icon">
                         <x-svg.location-icon width="20" height="20" stroke="#0088cc" />
                     </span>
-                    @if($area) {{$area->city_name}}  , @endif
-                    @if($ad->town) {{$ad->town->name ?? ''}} @endif
+                    @if($ad->town)
+                        {{$ad->town->name ?? ''}}
+                    @endif
                 </h5>
                 <span class="cards__price-title text--body-3-600">
                     {{ changeCurrency($ad->price) }}

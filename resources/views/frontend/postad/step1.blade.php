@@ -4,7 +4,7 @@
 
 @section('post-ad-content')
     @php 
-        $state = DB::table('towns')->where('city_id', 194)->get();
+        $state = DB::table('towns')->orderBy('name')->get();
     @endphp
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -30,7 +30,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
@@ -87,7 +86,8 @@
                                 <option value="5">Per Month</option>
                                 <option value="6">Per Year</option>
                             </select>
-                            <input required value="{{ old('price') }}" name="price" type="number" min="1" placeholder="{{ __('price ( $ )') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
+                            <span class="input-group-text"> $ </span>
+                            <input required value="{{ old('price') }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
                         </div> 
                     </div>
                     <div class="col-md-6">
@@ -105,10 +105,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">City <span class="text-danger">*</span></label>
-                            <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                            <label for="">City <span class="text-danger"> * </span></label>
+                            <!-- <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option disabled selected>{{ __('Select City ') }}</option>
-                            </select>
+                            </select> -->
+                            <input type="text" name="area_name" value="{{ old('area_name')}}" class="form-control select-bg @error('area_name') border-danger @enderror" placeholder="City name">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -190,8 +191,21 @@
     </div>
 @endsection
 
-@push('component_script')
+@section('frontend_style')
+    <style>
+        .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+        .select2-selection__arrow {
+            height: 38px !important;
+        }
+    </style>
+@endsection
 
+@push('component_script')
     <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/venobox.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
@@ -203,8 +217,31 @@
             maxFiles: 10,
             multiple: true,
         });
-    </script>
+        
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            
+            $('#townn').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
 
+            $('#ad_category').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_subcategory').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+        });
+
+    </script>
+    
     <script type="text/javascript">
 
         function add_features_field() {
@@ -285,32 +322,32 @@
             }))
         }
 
-        $('#townn').on('change', function() {
-            var townnid = $("#townn").val()
-            // alert(townnid);
-            if (townnid) {
-                $.ajax({
-                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data);
-                        $('#areaid').html('');
-                        if(data.length > 0){
-                            $.each(data, function(key, value) {
-                                $('#areaid').append('<option value="' + value.id + '">' + value.city_name + '</option>');
-                            });
-                        }else {
-                            toastr.warning("No country for this state", 'Info',{
-                                closeButton:true,
-                                progressBar:true,
-                            });
-                        }
-                    },
-                });
-            } else {
-                alert('danger');
-            }
+        // $('#townn').on('change', function() {
+        //     var townnid = $("#townn").val()
+        //     // alert(townnid);
+        //     if (townnid) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 $('#areaid').html('');
+        //                 if(data.length > 0){
+        //                     $.each(data, function(key, value) {
+        //                         $('#areaid').append('<option value="' + value.id + '">' + value.city_name + '</option>');
+        //                     });
+        //                 }else {
+        //                     toastr.warning("No country for this state", 'Info',{
+        //                         closeButton:true,
+        //                         progressBar:true,
+        //                     });
+        //                 }
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
         });
     </script>
 @endpush
