@@ -5,6 +5,7 @@
 @section('post-ad-content')
     @php 
         $state = DB::table('towns')->orderBy('name')->get();
+        $user = auth('customer')->user();
     @endphp
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -96,7 +97,7 @@
                             <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                                 <option value="">Select One</option>
                                 @foreach ($state as $stat)
-                                    <option value="{{$stat->id}}">{{$stat->name}}</option>
+                                    <option @if($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
                                 @endforeach
                             </select>
                         </div>
