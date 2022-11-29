@@ -42,6 +42,9 @@
         <!-- Action Buttons -->
         <div class="navigation-bar__buttons">
             @if (auth('customer')->check())
+                @php
+                    $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
+                @endphp
                 <div class="d-none d-xl-block">
                     <li class="menu__item">
                         <a href="{{ route('frontend.ad-list') }}" class="menu__link {{ Route::is('frontend.ad-list') ? 'active' : '' }}">{{ __('ads') }}</a>
@@ -76,12 +79,21 @@
                         @endif
                     </div>
                 </a>
-                <a href="{{ route('frontend.post') }}" class="btn">
-                    <span class="icon--left">
-                        <x-svg.image-select-icon />
-                    </span>
-                    {{ __('post_ads') }}
-                </a>
+                @if($user_plan->ad_limit > 0)
+                    <a href="{{ route('frontend.post') }}" class="btn">
+                        <span class="icon--left">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                @else
+                    <a href="{{ route('frontend.priceplan') }}" class="btn">
+                        <span class="icon--left">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                @endif
             @else
                 <div class="d-none d-xl-block me-5">
                     <li class="menu__item">

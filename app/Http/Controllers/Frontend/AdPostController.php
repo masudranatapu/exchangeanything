@@ -29,14 +29,17 @@ class AdPostController extends Controller
      */
     public function postStep1()
     {
-
-
         $categories = Category::active()->latest('id')->get();
         $brands = Brand::latest('id')->get();
         $ad = session('ad');
         $citis = City::orderBy('name', 'asc')->get();
         $authUser = auth('customer')->user();
-        return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
+        if($user_plan->ad_limit > 0){
+            return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
+        }else {
+            return redirect()->route('frontend.priceplan');
+        }
     }
 
     public function getSubcategory($id)

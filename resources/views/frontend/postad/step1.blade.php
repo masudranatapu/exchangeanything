@@ -6,6 +6,7 @@
     @php 
         $state = DB::table('towns')->orderBy('name')->get();
         $user = auth('customer')->user();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -175,12 +176,16 @@
                             <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-check">
-                            <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
-                            <label for="checkfeatured" class="form-check-label">Featured</label>
+                    @if($user_plan->featured_limit > 0)
+                        <div class="col-6 col-md-3">
+                            <div class="form-check">
+                                <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
+                                <label for="checkfeatured" class="form-check-label">Featured</label>
+                            </div>
                         </div>
-                    </div>
+                    @else
+
+                    @endif
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn text-white btn--lg">

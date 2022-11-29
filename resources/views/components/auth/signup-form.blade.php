@@ -70,7 +70,7 @@
                         @endphp
                         <div class="input-field">
                             <select name="region_id" id="country" class="form-control select-bg @error('region_id') border-danger @enderror" required>
-                                <option value="" selected>{{ __('select_country') }}</option>
+                                <option value="" selected>{{ __('Select State') }}</option>
                                 @foreach ($towns as $town)
                                     <option value="{{ $town->id }}">{{ $town->name }}</option>
                                 @endforeach

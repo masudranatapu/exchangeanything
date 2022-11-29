@@ -8,6 +8,7 @@
     @php
         $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
         $state = DB::table('towns')->orderBy('name')->get();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
 
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -220,27 +221,19 @@
                     <div class="col-lg-3">
                         <div class="form-check">
                             <input name="negotiable" type="hidden" value="0">
-                            <input {{ $ad->negotiable == 1 ? 'checked' : '' }} value="1" name="negotiable"
-                                type="checkbox" class="form-check-input" id="checkme" />
+                            <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" {{ $ad->negotiable == 1 ? 'checked' : '' }} />
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-                    @if (session('user_plan')->featured_limit)
-                        @if (session('user_plan')->featured_limit > $countfeatured)
-                            <div class="col-6 col-md-3">
-                                <div class="form-check">
-                                    <input name="featured" type="hidden" value="0">
-                                    @isset($ad->featured)
-                                        <input {{ $ad->featured == 1 ? 'checked' : '' }} value="1" name="featured"
-                                            type="checkbox" class="form-check-input" id="featured" />
-                                    @else
-                                        <input value="1" name="featured" type="checkbox" class="form-check-input"
-                                            id="featured" />
-                                    @endisset
-                                    <x-forms.label name="featured" class="form-check-label" for="featured" />
-                                </div>
+                    @if($user_plan->featured_limit > 0)
+                        <div class="col-6 col-md-3">
+                            <div class="form-check">
+                                <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ $ad->featured == 1 ? 'checked' : '' }} />
+                                <label for="checkfeatured" class="form-check-label">Featured</label>
                             </div>
-                        @endif
+                        </div>
+                    @else
+                    
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">

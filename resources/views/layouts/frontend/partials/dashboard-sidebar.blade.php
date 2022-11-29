@@ -1,6 +1,7 @@
 <div class="dashboard__navigation">
     @php
         $user = auth('customer')->user();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
     <div class="dashboard__navigation-top">
         <div class="dashboard__user-proifle">
@@ -35,17 +36,27 @@
                 </a>
             </li>
 
-
-            <li class="dashboard__nav-item" title="Post an ads">
-                <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
-                    class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
-                    <span class="icon">
-                        <x-svg.image-select-icon />
-                    </span>
-                    {{ __('post_ads') }}
-                </a>
-            </li>
-
+            @if($user_plan->ad_limit > 0)
+                <li class="dashboard__nav-item" title="Post an ads">
+                    <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
+                        class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
+                        <span class="icon">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                </li>
+            @else 
+                <li class="dashboard__nav-item" title="Post an ads">
+                    <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.priceplan') }}"
+                        class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
+                        <span class="icon">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                </li>
+            @endif
 
 
 
