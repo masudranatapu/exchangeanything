@@ -90,6 +90,14 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
+
+            $("#youareincurrentplan").on('click', function(){
+                toastr.info("This is your current Plan. Please choose another Plan. You can upgrade your current plan once your plan limit/duration will be exceeded", 'Info',{
+                    closeButton:true,
+                    progressBar:true,
+                    timeOut: 10000,
+                });
+            });
         });
     </script>
 @endsection

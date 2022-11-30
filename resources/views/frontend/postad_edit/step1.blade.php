@@ -225,7 +225,7 @@
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-                    @if($user_plan->featured_limit > 0)
+                    @if($adsinfo->is_featured == 'yes')
                         <div class="col-6 col-md-3">
                             <div class="form-check">
                                 <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ $ad->featured == 1 ? 'checked' : '' }} />
@@ -233,7 +233,14 @@
                             </div>
                         </div>
                     @else
-                    
+                        @if($user_plan->featured_limit > 0)
+                            <div class="col-6 col-md-3">
+                                <div class="form-check">
+                                    <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured"/>
+                                    <label for="checkfeatured" class="form-check-label">Featured</label>
+                                </div>
+                            </div>
+                        @endif
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">

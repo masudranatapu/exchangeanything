@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <x-forms.label name="premium_badge" for="badge" />
+                                        <label for="">Premium Badge</label>
                                         <select name="badge" id="badge"
                                             class="form-control @error('badge') is-invalid @enderror">
                                             <option value="1" {{ $plan->badge == true ? 'selected' : '' }}>

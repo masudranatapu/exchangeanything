@@ -183,8 +183,6 @@
                                 <label for="checkfeatured" class="form-check-label">Featured</label>
                             </div>
                         </div>
-                    @else
-
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">

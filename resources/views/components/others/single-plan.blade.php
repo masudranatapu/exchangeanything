@@ -20,13 +20,25 @@
                 @endif
             </p>
             @if (auth('customer')->check())
-                <a href="{{ route('frontend.priceplanDetails', $plan->label) }}"
-                    class="plan-card__select-pack btn btn--bg w-100">
-                    {{ __('choose_plan') }}
-                    <span class="icon--right">
-                        <x-svg.right-arrow-icon />
-                    </span>
-                </a>
+                @php
+                    $userplan = App\Models\UserPlan::where('customer_id', auth('customer')->user()->id)->first();
+                @endphp
+                @if($userplan->plans_id == $plan->id)
+                    <button type="button" class="plan-card__select-pack btn btn--bg w-100" id="youareincurrentplan">
+                        {{ __('You are in current plan') }}
+                        <span class="icon--right">
+                            <x-svg.right-arrow-icon />
+                        </span>
+                    </button>
+                @else
+                    <a href="{{ route('frontend.priceplanDetails', $plan->label) }}"
+                        class="plan-card__select-pack btn btn--bg w-100">
+                        {{ __('choose_plan') }}
+                        <span class="icon--right">
+                            <x-svg.right-arrow-icon />
+                        </span>
+                    </a>
+                @endif
             @else
                 <a href="{{ route('frontend.signup') }}" class="plan-card__select-pack btn btn--bg w-100">
                     {{ __('choose_plan') }}

@@ -91,13 +91,10 @@ class AdPostController extends Controller
             'title' => 'required|min:2|unique:ads,title',
             'price' => 'required|numeric',
             'condition' => 'required',
-            'featured' => 'sometimes',
-            // 'brand_id' => 'required',
             'brand_name' => 'required',
             'model' => 'required',
             'category_id' => 'required',
             'town_id' => 'required',
-            // 'area_id' => 'required',
             'area_name' => 'required',
             'price_method' => 'required',
             'subcategory_id' => 'required',
@@ -106,13 +103,17 @@ class AdPostController extends Controller
         ], [
             'title.required' => 'Ad title name must be required',
             'town_id.required' => 'Town name must be required',
-            // 'area_id.required' => 'City name must be required',
-            // 'brand_id.required' => 'Brand name filed must be required',
             'area_name.required' => 'City name filed must be required',
             'brand_name.required' => 'Brand name filed must be required',
             'model.required' => 'Model name filed must be required',
         ]);
-        
+
+        if($request->featured) {
+            $isfeatured = 'yes';
+        }else {
+            $isfeatured = 'no';
+        }
+
         DB::beginTransaction();
         try {
             $ad = new Ad();
@@ -121,9 +122,9 @@ class AdPostController extends Controller
             $ad->price_method = $request->price_method;
             $ad->price = $request->price;
             $ad->condition = $request->condition;
-            $ad->negotiable = $request->negotiable ?? 0;
+            $ad->negotiable = $request->negotiable;
             $ad->featured = $request->featured ?? 0;
-            // $ad->brand_id = $request->brand_id;
+            $ad->is_featured = $isfeatured;
             $ad->brand_name = $request->brand_name;
             $ad->model = $request->model;
             $ad->customer_id = Auth::id();
@@ -131,7 +132,6 @@ class AdPostController extends Controller
             $ad->category_id = $request->category_id;
             $ad->subcategory_id = $request->subcategory_id;
             $ad->town_id = $request->town_id;
-            // $ad->area_id = $request->area_id;
             $ad->area_name = $request->area_name;
             $ad->postal_code = $request->postal_code;
             $ad->description = $request->description;
@@ -369,6 +369,33 @@ class AdPostController extends Controller
      */
     public function UpdatePostStep1(Request $request, Ad $ad)
     {
+        if($ad->is_featured == 'yes'){
+            $isfeatured = 'yes';
+            if($request->featured){
+                $checkedfeatured = 1;
+            }else {
+                $checkedfeatured = 0;
+            }
+        }else {
+
+            if($request->featured){
+                $isfeatured = 'yes';
+
+                $userplan = UserPlan::where('customer_id', $ad->customer_id)->first();
+                UserPlan::where('id', $userplan->id)->update([
+                    'featured_limit' => $userplan->featured_limit - 1,
+                ]);
+
+                $checkedfeatured = 1;
+
+            }else {
+
+                $isfeatured = 'no';
+                $checkedfeatured = 0;
+
+            }
+        }
+        
         // dd($request->all());
         $request->validate([
             'title' => "required|unique:ads,title, $ad->id",
@@ -393,15 +420,14 @@ class AdPostController extends Controller
             'slug' => Str::slug($request->title),
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            // 'brand_id' => $request->brand_id,
             'brand_name' => $request->brand_name,
             'model' => $request->model,
             'condition' => $request->condition,
-            'negotiable' => $request->negotiable ?? 0,
-            'featured' => $request->featured ?? 0,
+            'negotiable' => $request->negotiable,
+            'featured' => $checkedfeatured,
+            'is_featured' => $isfeatured,
             'web' => $request->web,
             'town_id' => $request->town_id,
-            // 'area_id' => $request->area_id,
             'area_name' => $request->area_name,
             'postal_code' => $request->postal_code,
             'description' => $request->description

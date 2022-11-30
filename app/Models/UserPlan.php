@@ -12,7 +12,7 @@ class UserPlan extends Model
 
 
     protected $fillable = [
-        'customer_id', 'plans_id', 'ad_limit', 'featured_limit', 'customer_support', 'badge','is_active'];
+        'customer_id', 'plans_id', 'ad_limit', 'featured_limit', 'customer_support', 'badge', 'is_active', 'valid_date'];
 
     /**
      * Undocumented variable
