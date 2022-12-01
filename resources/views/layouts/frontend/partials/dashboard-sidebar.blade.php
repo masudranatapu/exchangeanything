@@ -36,7 +36,7 @@
                 </a>
             </li>
 
-            @if($user_plan->ad_limit > 0)
+            @if($user_plan->ad_limit > 0 || $user_plan->valid_date > now())
                 <li class="dashboard__nav-item" title="Post an ads">
                     <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
                         class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">

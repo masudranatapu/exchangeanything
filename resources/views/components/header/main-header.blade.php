@@ -79,7 +79,7 @@
                         @endif
                     </div>
                 </a>
-                @if($user_plan->ad_limit > 0)
+                @if($user_plan->ad_limit > 0 || $user_plan->valid_date > now())
                     <a href="{{ route('frontend.post') }}" class="btn">
                         <span class="icon--left">
                             <x-svg.image-select-icon />
