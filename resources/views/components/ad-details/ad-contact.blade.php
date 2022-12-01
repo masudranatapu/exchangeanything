@@ -2,48 +2,67 @@
     @if (auth('customer')->check())
         @php
             $userPlan = App\Models\UserPlan::CustomerData(auth('customer')->user()->id)->first();
-            $plan = Modules\Plan\Entities\Plan::where('id', $userPlan->plans_id)
-                ->latest()
-                ->first();
+            $plan = Modules\Plan\Entities\Plan::where('id', $userPlan->plans_id)->latest()->first();
+            $checkuserforphone = DB::table('customers')->where('username', $name)->first();
         @endphp
-
-        {{-- @if ($plan->immediate_access_to_new_ads == 1) --}}
-        <div class="card-number">
-            <div class="number number--hide text--body-2">
-                <span class="icon">
-                    <x-svg.phone-icon width="32" height="32" />
-                </span>
-                {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($phone, 8, 'XXXXXXXX') }}
-            </div>
-            <div class="number number--show text--body-2">
-                <span class="icon">
-                    <x-svg.phone-icon width="32" height="32" />
-                </span>
-
-                {{ auth('customer')->user()->country_code ?? '' }}{{ substr($phone, 0, 3) }}
-                {{ substr($phone, 3) }}
-            </div>
-            <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
-            <p>Best time to call : {{ @$callingtime }}</p> -->
-        </div>
-        {{-- @else
-                <input type="hidden" value="{{ $plan->immediate_access_to_new_ads }}" id="immediateaccesstonewads">
-                <button href="javascript:;" class="" onclick="giveAlert()" style="margin-bottom: 20px;">
+        @if($checkuserforphone->provider_id)
+            @if($checkuserforphone->email_share == 1)
+                <div class="card-number">
                     <div class="number number--hide text--body-2">
                         <span class="icon">
-                            <x-svg.phone-icon width="32" height="32" />
+                            <!-- <x-svg.phone-icon width="32" height="32" /> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
                         </span>
-                        {{ auth('customer')->user()->country_code ?? '' }}{{ Str::limit($phone, 8, 'XXXXXXXX') }}
+                        <span style=" text-transform: lowercase;">
+                            {{ Str::limit($checkuserforphone->email, 8, 'XXXXXXXX') }}
+                        </span>
                     </div>
-                </button>
-            @endif --}}
+                    <div class="number number--show text--body-2">
+                        <span class="icon">
+                            <!-- <x-svg.phone-icon width="32" height="32" /> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </span>
+                        <span style=" text-transform: lowercase;">
+                            {{ $checkuserforphone->email }}
+                        </span>
+                    </div>
+                    <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+                    <p>Best time to call : {{ @$callingtime }}</p> -->
+                </div>
+            @endif
+        @else
+            @if($checkuserforphone->phone_share == 1)
+                @if($checkuserforphone->phone)
+                    <div class="card-number">
+                        <div class="number number--hide text--body-2">
+                            <span class="icon">
+                                <x-svg.phone-icon width="32" height="32" />
+                            </span>
+                            {{ Str::limit($checkuserforphone->phone, 8, 'XXXXXXXX') }}
+                        </div>
+                        <div class="number number--show text--body-2">
+                            <span class="icon">
+                                <x-svg.phone-icon width="32" height="32" />
+                            </span>
+                            {{ $checkuserforphone->phone }}
+                        </div>
+                        <!-- <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+                        <p>Best time to call : {{ @$callingtime }}</p> -->
+                    </div>
+                @endif
+            @endif
+        @endif
     @endif
 
     @if (auth('customer')->check() && auth('customer')->user()->username !== $name)
         {{-- @if ($plan->immediate_access_to_new_ads == 1) --}}
         <form action="{{ route('frontend.message.store', $name) }}" method="POST" id="sendMessageForm">
-
-
             @csrf
             <input type="hidden" value="." name="body">
             <input type="hidden" value="{{ $id }}" name="ad_id">
@@ -54,12 +73,6 @@
                 {{ __('send_message') }}
             </button>
         </form>
-        {{-- @else
-            <input type="hidden" value="{{ $plan->immediate_access_to_new_ads }}" id="immediateaccesstonewads">
-            <button href="javascript:;" class="btn w-100" onclick="giveAlert()">
-                Send Message
-            </button>
-        @endif --}}
     @endif
 
     @if (!auth('customer')->check())
@@ -70,12 +83,11 @@
             {{ __('send_message') }}
         </a>
     @endif
-    {{-- web --}}
+    
     @php
         $add = Modules\Ad\Entities\Ad::find($id);
     @endphp
     @if ($add->web)
-
         <a href="{{ $add->web }}" class="btn mt-2 w-100 login_required">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" fill-rule="evenodd"><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8"/></g></svg>
             Visit My Website

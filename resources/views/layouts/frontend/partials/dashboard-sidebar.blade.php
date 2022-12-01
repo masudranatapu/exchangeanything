@@ -1,6 +1,7 @@
 <div class="dashboard__navigation">
     @php
         $user = auth('customer')->user();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
     <div class="dashboard__navigation-top">
         <div class="dashboard__user-proifle">
@@ -9,7 +10,7 @@
             </div> -->
             <div class="dashboard__user-img" style="position: relative">
                 <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
-                @if ($user->certified_seller == 1 && $user->certificite_validity < now())
+                @if ($user->certified_seller == 1 && $user->certificate_validity > now())
                     @php
                         $certified = DB::table('get_certified_plans')->latest()->first();
                     @endphp
@@ -35,17 +36,27 @@
                 </a>
             </li>
 
-
-            <li class="dashboard__nav-item" title="Post an ads">
-                <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
-                    class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
-                    <span class="icon">
-                        <x-svg.image-select-icon />
-                    </span>
-                    {{ __('post_ads') }}
-                </a>
-            </li>
-
+            @if($user_plan->ad_limit > 0)
+                <li class="dashboard__nav-item" title="Post an ads">
+                    <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.post') }}"
+                        class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
+                        <span class="icon">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                </li>
+            @else 
+                <li class="dashboard__nav-item" title="Post an ads">
+                    <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.priceplan') }}"
+                        class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
+                        <span class="icon">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                </li>
+            @endif
 
 
 

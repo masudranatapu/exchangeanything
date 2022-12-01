@@ -22,15 +22,10 @@
  @endsection
 
  @section('content')
-     <!-- Banner section start  -->
-     {{--
-    <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
-        <div class="container">
-             @include('frontend.user-search-filter')
-        </div>
-    </div>
-    --}}
-     <!-- Banner section end   -->
+    @php
+        $plans = Modules\Plan\Entities\Plan::where('id', $userplan->plans_id)->first();
+        $payment_setting = App\Models\PaymentSetting::first();
+    @endphp
      <!-- dashboard section start  -->
      <section class="section dashboard dashboard--user">
          <div class="container">
@@ -86,133 +81,91 @@
                      <div class="row dashboard__ads-activity">
                          <div class="col-12">
                              <div class="dashboard-card dashboard-card--benefits">
-                                 <!-- <div class="row">
-                                                                <div class="col-md-8" >
-                                                                    <h2 class="dashboard-card__title">{{ __('plan_benefits') }}</h2>
-                                                                </div>
-                                                                <div class="col-md-4" >
-                                                                    <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:  <span >{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span></p>
-                                                                </div>
-                                                            </div> -->
                                  <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:
-                                     <span>{{ $plan_info->is_active == 1 ? 'Active' : 'Pending' }}</span>
+                                     <span>{{ $userplan->is_active == 1 ? 'Active' : 'Pending' }}</span>
                                  </p>
-
-                                 @if ($plan_info->is_active == 0)
-                                     <p>You will be notified by email as soon as the account has been approved. (Please
-                                         allow up to 24 hours).</p>
+                                 @if ($userplan->is_active == 0)
+                                     <p>
+                                        You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).
+                                    </p>
                                  @endif
-
-                                 @if ($plan->ad_limit !== 0)
-
-                                     @if (session('user_plan'))
-                                         @if (session('user_plan')->ad_limit == 0 && session('user_plan')->featured_limit == 0)
-                                             <p><strong class="text-danger">Your plan has been exceeded. Kindly Upgrade
-                                                 </strong><a href="{{ route('frontend.priceplan') }}"><strong
-                                                         class="text-primary">Pricing
-                                                         Plan</strong></a></p>
-                                         @endif
-                                     @endif
-                                 @endif
-
+                                @if ($userplan->ad_limit == 0 || $userplan->featured_limit == 0 || $userplan->valid_date < now())
+                                    <p>
+                                        <strong class="text-danger">
+                                            Your plan has been exceeded. Kindly Upgrade
+                                        </strong>
+                                        <a href="{{ route('frontend.priceplan') }}">
+                                            <strong class="text-primary">
+                                                Pricing Plan
+                                            </strong>
+                                        </a>
+                                    </p>
+                                @endif
                                  <br>
-
-
-                                 <ul class="dashboard__benefits">
-                                     <li class="dashboard__benefits-left">
-                                         <ul>
-                                             <li class="dashboard__benefits-item">
-                                                 <p class="text--body-4">{{ __('plan_name') }} :
-                                                     <span>{{ $plan->label }}</span>
-                                                 </p>
-                                             </li>
-
-                                             <li class="dashboard__benefits-item">
-                                                 <i class="fas fa-check-circle"
-                                                     style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                                 <p class="text--body-4">
-                                                     <span>
-                                                         @if ($plan->ad_limit == 0)
-                                                             Unlimited adverts
-                                                         @else
-                                                             {{ __('ads_limit') }} : {{ $plan->ad_limit }}
-                                                         @endif
-                                                     </span>
-                                                 </p>
-                                             </li>
-
-                                             <li class="dashboard__benefits-item">
-                                                 <i class="fas fa-check-circle"
-                                                     style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                                 <p class="text--body-3">{{ $plan->featured_limit }}
-                                                     {{ __('featured_ads') }}</p>
-                                             </li>
-
-                                             <li class="dashboard__benefits-item">
-                                                 @if ($plan->badge == true)
-                                                     <i class="fas fa-check-circle"
-                                                         style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
-                                                 @else
-                                                 <span style="margin-right: 5px;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                                </span>
-                                                 @endif
-                                                 <p class="text--body-3">{{ __('special_membership_badge') }}</p>
-                                             </li>
-                                         </ul>
-                                     </li>
-
-                                 </ul>
+                                <ul class="dashboard__benefits">
+                                    <li class="dashboard__benefits-left">
+                                        <ul>
+                                            <li class="dashboard__benefits-item">
+                                                <p class="text--body-4">{{ __('plan_name') }} :
+                                                    <span>
+                                                        @if($userplan->plans_id == 1)
+                                                            Free 
+                                                        @else 
+                                                            {{$plans->name }}
+                                                        @endif
+                                                    </span>
+                                                </p>
+                                            </li>
+                                            <li class="dashboard__benefits-item">
+                                                @if ($userplan->ad_limit == 0)
+                                                    <span style="margin-right: 5px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                    </span>
+                                                    <p class="text--body-4">
+                                                        <span>
+                                                            Adverts limit is over 
+                                                        </span>
+                                                    </p>
+                                                @else
+                                                    <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                    <p class="text--body-4">
+                                                        <span>
+                                                            {{ __('Adverts Limit') }} : {{ $userplan->ad_limit }}
+                                                        </span>
+                                                    </p>
+                                                @endif
+                                            </li>
+                                            <li class="dashboard__benefits-item">
+                                                @if ($userplan->featured_limit == 0)
+                                                    <span style="margin-right: 5px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                    </span>
+                                                    <p class="text--body-3">
+                                                        Featured Ads limit is over 
+                                                    </p>
+                                                @else
+                                                    <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                    <p class="text--body-3">
+                                                        {{ __('Featured Ads limit is ') }} : {{ $userplan->featured_limit }} 
+                                                    </p>
+                                                @endif
+                                            </li>
+                                            <li class="dashboard__benefits-item">
+                                                @if ($userplan->badge == true)
+                                                    <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
+                                                @else
+                                                    <span style="margin-right: 5px;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                                    </span>
+                                                @endif
+                                                <p class="text--body-3">{{ __('special_membership_badge') }}</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                              </div>
                          </div>
-
-                         {{--                        <div class="col-lg-6"> --}}
-                         {{--                            <div class="dashboard-card"> --}}
-                         {{--                                <div class="dashboard__section-info"> --}}
-                         {{--                                    <h2 class="dashboard-card__title">{{ __('ads_view') }}</h2> --}}
-                         {{--                                    --}}{{-- <ul class="history"> --}}
-                         {{--                                        <li class="history-item"> --}}
-                         {{--                                            <a href="#" class="history-link"> --}}
-                         {{--                                                This Week --}}
-                         {{--                                                <span class="icon"> --}}
-                         {{--                                                    <x-svg.bottom-light-icon /> --}}
-                         {{--                                                </span> --}}
-                         {{--                                            </a> --}}
-                         {{--                                            <ul class="history-dropdown"> --}}
-                         {{--                                                <li class="history-dropdown__item"> --}}
-                         {{--                                                    <a href="#" class="history-dropdown__link">Previous Week</a> --}}
-                         {{--                                                </li> --}}
-                         {{--                                                <li class="history-dropdown__item"> --}}
-                         {{--                                                    <a href="#" class="history-dropdown__link">Last Month</a> --}}
-                         {{--                                                </li> --}}
-                         {{--                                                <li class="history-dropdown__item"> --}}
-                         {{--                                                    <a href="#" class="history-dropdown__link">Last years</a> --}}
-                         {{--                                                </li> --}}
-                         {{--                                            </ul> --}}
-                         {{--                                        </li> --}}
-                         {{--                                    </ul> --}}
-                         {{--                                </div> --}}
-                         {{--                                <canvas id="adsview" width="536" height="436"></canvas> --}}
-                         {{--                            </div> --}}
-                         {{--                        </div> --}}
-                         {{--                        <div class="col-lg-6"> --}}
-                         {{--                            <x-dashboard.activity-log :activities="$activities"/> --}}
-                         {{--                        </div> --}}
                      </div>
-
-                     @php
-                         $userPlan = App\Models\UserPlan::CustomerData($use_id)->first();
-                         $plan_id = $plan_info->plans_id;
-                         $plans = Modules\Plan\Entities\Plan::where('id', $plan_id)->first();
-
-                         $payment_setting = App\Models\PaymentSetting::first();
-                     @endphp
-
-
-
-
-
-
                      @if ($recent_ads->count() > 0)
                          <div class="dashboard__posted-ads">
                              <div class="dashboard__section-info">
@@ -301,16 +254,11 @@
      <!-- payment popup start -->
      <div id="paymentPopupModal" class="w3-modal">
          <div class="w3-modal-content w3-animate-top w3-card-4" style="width: 41%;">
-
              <div class="w3-container my-2 py-5">
-
-                 <form action="{{ route('frontend.planPurchase') }}" method="post" enctype="multipart/form-data"
-                     id="iHavePaid">
+                 <form action="{{ route('frontend.planPurchase') }}" method="post" enctype="multipart/form-data" id="iHavePaid">
                      @csrf
-
                      <input type="hidden" name="users_unique_id" value="{{ $unique_id }}">
-                     <input type="hidden" name="plan_id" value="{{ $plan_id }}">
-
+                     <input type="hidden" name="plan_id" value="{{ $userplan->plans_id }}">
                      <div class="mb-3 row">
                          <label for="user_id" class="col-sm-4 col-form-label">User Id :</label>
                          <div class="col-sm-8">
@@ -318,22 +266,18 @@
                                  value="{{ auth('customer')->user()->code }}">
                          </div>
                      </div>
-
                      <div class="mb-3 row">
                          <label class="col-sm-4 col-form-label">Pay To :</label>
                          <div class="col-sm-8">
                              <p class="form-control">{{ @$payment_setting->pay_to }}</p>
                          </div>
                      </div>
-
                      <div class="mb-3 row">
                          <label for="payment_note" class="col-sm-4 col-form-label">You can write note to admin</label>
                          <div class="col-sm-8">
                              <textarea name="payment_note" id="payment_note" rows="3" class="form-control"></textarea>
                          </div>
                      </div>
-
-
                      <div class="row justify-content-center">
                          <div class="form-group col-md-3 col-sm-3 col-4 offset-2 text-center">
                              <span onclick="document.getElementById('paymentPopupModal').style.display='none'"
@@ -347,16 +291,12 @@
              </div>
          </div>
      </div>
-     <!-- payment popup end -->
-
      <!-- payment popup js start -->
      <script>
          function openPaymentModal() {
              document.getElementById('iHavePaid').submit();
          }
      </script>
-     <!-- payment popup js end -->
-
  @endsection
 
  @section('adlisting_style')
@@ -371,11 +311,8 @@
  @section('frontend_script')
      <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
      <script src="{{ asset('frontend') }}/js/plugins/chart.min.js"></script>
-
      <script>
          const ctx = document.querySelector('#adsview');
-
-         // ===== chart ===== \\
          if (ctx) {
              ctx.getContext('2d');
              var myChart = new Chart(ctx, {
@@ -405,16 +342,9 @@
                  },
              });
          }
-
-         // ==== Internation telephone  Code ===== \\
-         // if (inputNumber) {
-         //     window.intlTelInput(inputNumber, {
-         //         preferredCountries: ['us', 'bd'],
-         //     });
-         // }
      </script>
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-     @if ($userPlan->is_active != 1)
+     @if ($userplan->is_active != 1)
          <script>
              var refreshIntervalId = setInterval(function() {
                  $(".blinking").animate({
@@ -434,9 +364,6 @@
              }, 'slow');
          </script>
      @endif
-
-
-
      <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
      <script src="{{ asset('frontend') }}/js/plugins/venobox.min.js"></script>
      <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>

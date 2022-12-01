@@ -7,9 +7,8 @@
 @section('post-ad-content')
     @php
         $adsinfo = DB::table('ads')->where('id', $ad->id)->first();
-        $state = DB::table('towns')->where('city_id', 194)->get();
-        $areas = DB::table('areas')->where('state_id', $adsinfo->town_id)->get();
-        // dd($areas);
+        $state = DB::table('towns')->orderBy('name')->get();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
 
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
@@ -54,9 +53,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">Brand <span class="text-danger">*</span></label>
+                            <label for="">Brand</label>
                             <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                 <option value="" hidden>{{ __('select_brand') }}</option>
                                 @foreach ($brands as $brand)
@@ -64,13 +63,19 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Brand Name <span class="text-danger">*</span></label>
+                            <input value="{{ $adsinfo->brand_name }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
                             <label>Model <span class="text-danger">*</span></label>
-                            <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                            <input value="{{ $ad->model ?? '' }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -95,6 +100,7 @@
                                 <option value="5" @if($adsinfo->price_method == 5) selected @endif>Per Month</option>
                                 <option value="6" @if($adsinfo->price_method == 6) selected @endif>Per Year</option>
                             </select>
+                            <span class="input-group-text"> $ </span>
                             <input required value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
                         </div>
                     </div>
@@ -113,16 +119,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">City /  Neighborhood <span class="text-danger">*</span></label>
-                            <select name="area_id" id="areaid"
+                            <label for="">City <span class="text-danger">*</span></label>
+                            <!-- <select name="area_id" id="areaid"
                                 class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option value="" disabled>{{ __('Select City') }}</option>
-                                @foreach ($areas as $area)
-                                    <option value="{{ $area->id }}"
-                                        @if ($area->id == $adsinfo->area_id) selected @endif>{{ $area->city_name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            </select> -->
+                            <input type="text" name="area_name" value="{{ $adsinfo->area_name }}" class="form-control select-bg  border-danger" placeholder="City name">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -219,24 +221,23 @@
                     <div class="col-lg-3">
                         <div class="form-check">
                             <input name="negotiable" type="hidden" value="0">
-                            <input {{ $ad->negotiable == 1 ? 'checked' : '' }} value="1" name="negotiable"
-                                type="checkbox" class="form-check-input" id="checkme" />
+                            <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" {{ $ad->negotiable == 1 ? 'checked' : '' }} />
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div>
-                    @if (session('user_plan')->featured_limit)
-                        @if (session('user_plan')->featured_limit > $countfeatured)
+                    @if($adsinfo->is_featured == 'yes')
+                        <div class="col-6 col-md-3">
+                            <div class="form-check">
+                                <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ $ad->featured == 1 ? 'checked' : '' }} />
+                                <label for="checkfeatured" class="form-check-label">Featured</label>
+                            </div>
+                        </div>
+                    @else
+                        @if($user_plan->featured_limit > 0)
                             <div class="col-6 col-md-3">
                                 <div class="form-check">
-                                    <input name="featured" type="hidden" value="0">
-                                    @isset($ad->featured)
-                                        <input {{ $ad->featured == 1 ? 'checked' : '' }} value="1" name="featured"
-                                            type="checkbox" class="form-check-input" id="featured" />
-                                    @else
-                                        <input value="1" name="featured" type="checkbox" class="form-check-input"
-                                            id="featured" />
-                                    @endisset
-                                    <x-forms.label name="featured" class="form-check-label" for="featured" />
+                                    <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured"/>
+                                    <label for="checkfeatured" class="form-check-label">Featured</label>
                                 </div>
                             </div>
                         @endif
@@ -255,6 +256,17 @@
 
 @section('frontend_style')
     <link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet">
+    <style>
+        .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+        .select2-selection__arrow {
+            height: 38px !important;
+        }
+    </style>
 @endsection
 
 @push('post-ad-scripts')
@@ -263,9 +275,31 @@
     <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
     <script>
         $('.input-images-2').imageUploader({
-            maxSize: 2 * 1024 * 1024,
+            maxSize: 10 * 1024 * 1024,
             maxFiles: 10,
             multiple: true,
+        });
+
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            
+            $('#townn').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_category').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_subcategory').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
         });
     </script>
     <script type="text/javascript">
@@ -344,49 +378,56 @@
             }
         }
 
-        $('#cityy').on('change', function() {
-            var country_id = $(this).val();
-            if (country_id) {
-                $.ajax({
-                    url: "{{ url('adlist-search-ajax') }}/" + country_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('#areaid').html('');
-                        var d = $('#townn').empty();
-                        $('#townn').append(
-                            '<option value="" disabled selected> Select Region </option>');
-                        $.each(data, function(key, value) {
-                            $('#townn').append('<option value="' + value.id + '">' + value
-                                .name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
+        // $('#cityy').on('change', function() {
+        //     var country_id = $(this).val();
+        //     if (country_id) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-search-ajax') }}/" + country_id,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 $('#areaid').html('');
+        //                 var d = $('#townn').empty();
+        //                 $('#townn').append(
+        //                     '<option value="" disabled selected> Select Region </option>');
+        //                 $.each(data, function(key, value) {
+        //                     $('#townn').append('<option value="' + value.id + '">' + value
+        //                         .name + '</option>');
+        //                 });
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
+        // });
 
-        $('#townn').on('change', function() {
-            var townnid = $("#townn").val()
-            // alert(townnid);
-            if (townnid) {
-                $.ajax({
-                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data);
-                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
-                        $.each(data, function(key, value) {
-                            $('#areaid').append('<option value="' + value.id + '">' + value
-                                .city_name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
+        // $('#townn').on('change', function() {
+        //     var townnid = $("#townn").val()
+        //     // alert(townnid);
+        //     if (townnid) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 $('#areaid').html('');
+        //                 if(data.length > 0){
+        //                     $.each(data, function(key, value) {
+        //                         $('#areaid').append('<option value="' + value.id + '">' + value
+        //                             .city_name + '</option>');
+        //                     });
+        //                 }else {
+        //                     toastr.warning("No country for this state", 'Info',{
+        //                         closeButton:true,
+        //                         progressBar:true,
+        //                     });
+        //                 }
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
+        // });
     </script>
 @endpush

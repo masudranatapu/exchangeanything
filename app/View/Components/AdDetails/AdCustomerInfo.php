@@ -6,19 +6,20 @@ use Illuminate\View\Component;
 
 class AdCustomerInfo extends Component
 {
-    public $customer, $town, $city, $link;
+    public $customer, $town, $city, $link, $area;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($customer, $town, $city, $link)
+    public function __construct($customer, $town, $city, $link, $area)
     {
         $this->customer = $customer;
         $this->town = $town;
         $this->city = $city;
         $this->link = $link;
+        $this->area = $area;
     }
 
     /**

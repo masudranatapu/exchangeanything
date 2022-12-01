@@ -64,29 +64,35 @@
                                                 <ul class="dashboard__benefits">
                                                     <li class="dashboard__benefits-left">
                                                         <ul>
-                                                            <div class="dashboard__benefits-item">
-                                                                <span class="icon">
-                                                                    <x-svg.check-icon />
-                                                                </span>
-                                                                <h5 class="text--body-3">{{ __($plan->certified_badge) }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="dashboard__benefits-item">
-                                                                <span class="icon">
-                                                                    <x-svg.check-icon />
-                                                                </span>
-                                                                <h5 class="text--body-3">
-                                                                    {{ __($plan->review_request) }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="dashboard__benefits-item ">
-                                                                <span class="icon">
-                                                                    <x-svg.check-icon />
-                                                                </span>
-                                                                <h5 class="text--body-3">
-                                                                    {{ __($plan->share_review) }}
-                                                                </h5>
-                                                            </div>
+                                                            @if($plan->certified_badge)
+                                                                <div class="dashboard__benefits-item">
+                                                                    <span class="icon">
+                                                                        <x-svg.check-icon />
+                                                                    </span>
+                                                                    <h5 class="text--body-3">{{ __($plan->certified_badge) }}
+                                                                    </h5>
+                                                                </div>
+                                                            @endif
+                                                            @if($plan->review_request)
+                                                                <div class="dashboard__benefits-item">
+                                                                    <span class="icon">
+                                                                        <x-svg.check-icon />
+                                                                    </span>
+                                                                    <h5 class="text--body-3">
+                                                                        {{ __($plan->review_request) }}
+                                                                    </h5>
+                                                                </div>
+                                                            @endif
+                                                            @if($plan->share_review)
+                                                                <div class="dashboard__benefits-item ">
+                                                                    <span class="icon">
+                                                                        <x-svg.check-icon />
+                                                                    </span>
+                                                                    <h5 class="text--body-3">
+                                                                        {{ __($plan->share_review) }}
+                                                                    </h5>
+                                                                </div>
+                                                            @endif
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -127,27 +133,33 @@
                                         </div>
                                         <div class="plan-card__bottom">
                                             <div class="plan-card__package">
-                                                <div class="plan-card__package-list active">
-                                                    <span class="icon">
-                                                        <x-svg.check-icon />
-                                                    </span>
-                                                    <h5 class="text--body-3">{{ __($plan->certified_badge) }}</h5>
-                                                </div>
-                                                <div class="plan-card__package-list active">
-                                                    <span class="icon">
-                                                        <x-svg.check-icon />
-                                                    </span>
-                                                    <h5 class="text--body-3"> {{ __($plan->review_request) }}
-                                                    </h5>
-                                                </div>
-                                                <div class="plan-card__package-list active ">
-                                                    <span class="icon">
-                                                        <x-svg.check-icon />
-                                                    </span>
-                                                    <h5 class="text--body-3">
-                                                        {{ __($plan->share_review) }}
-                                                    </h5>
-                                                </div>
+                                                @if($plan->certified_badge)
+                                                    <div class="plan-card__package-list active">
+                                                        <span class="icon">
+                                                            <x-svg.check-icon />
+                                                        </span>
+                                                        <h5 class="text--body-3">{{ __($plan->certified_badge) }}</h5>
+                                                    </div>
+                                                @endif
+                                                @if($plan->review_request)
+                                                    <div class="plan-card__package-list active">
+                                                        <span class="icon">
+                                                            <x-svg.check-icon />
+                                                        </span>
+                                                        <h5 class="text--body-3"> {{ __($plan->review_request) }}
+                                                        </h5>
+                                                    </div>
+                                                @endif
+                                                @if($plan->share_review)
+                                                    <div class="plan-card__package-list active ">
+                                                        <span class="icon">
+                                                            <x-svg.check-icon />
+                                                        </span>
+                                                        <h5 class="text--body-3">
+                                                            {{ __($plan->share_review) }}
+                                                        </h5>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

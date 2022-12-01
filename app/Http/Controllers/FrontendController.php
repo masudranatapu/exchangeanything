@@ -226,8 +226,6 @@ class FrontendController extends Controller
     {
         try {
             //code...
-
-
             if ($ad->status == 'pending') {
                 if ($ad->customer_id != auth('customer')->id()) {
 
@@ -238,7 +236,7 @@ class FrontendController extends Controller
             $verified_seller = Customer::findOrFail($ad->customer_id)->email_verified_at;
             $ad->increment('total_views');
             $ad = $ad->load(['customer', 'brand', 'adFeatures', 'galleries', 'town', 'city']);
-
+            // dd($ad);
             $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
             $towns = Town::orderBy('name')->get();
             $total_ads = Ad::activeCategory()->active()->count();
@@ -257,13 +255,13 @@ class FrontendController extends Controller
                 $immediate_access_to_new_ads = 0;
             }
 
-            $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'area_id', 'town_id', 'price_method', 'estimate_calling_time'])
+            $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'area_id', 'town_id', 'area_name', 'price_method', 'estimate_calling_time'])
                 ->with(['city', 'category'])
                 ->where('category_id', $ad->category_id)
                 ->where('id', '!=', $ad->id)
                 ->active()
                 ->latest('id')->take(10)->get());
-
+            
             if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
                 return abort(404);
             } else {
@@ -336,7 +334,7 @@ class FrontendController extends Controller
             abort(404);
         }
 
-        $data['plans'] = Plan::orderBy('order', 'asc')->get();
+        $data['plans'] = Plan::orderBy('order', 'asc')->where('id', '!=', 1)->get();
         currentCurrency();
 
         $categories = CategoryResource::collection(Category::active()->latest()->get());
@@ -357,8 +355,6 @@ class FrontendController extends Controller
     {
         $verified_users = Customer::where('email_verified_at', '!=', null)->count();
 
-
-
         $categories = collectionToResource(CategoryResource::collection(Category::active()->latest()->get()));
         $towns = Town::orderBy('name')->get();
         $total_ads = Ad::activeCategory()->active()->count();
@@ -373,18 +369,24 @@ class FrontendController extends Controller
      */
     public function register(Request $request)
     {
+        date_default_timezone_set('Asia/Dhaka');
+
         $setting = setting();
         $plan = Plan::first();
 
-
-
-
+        if($plan->package_duration == 1){
+            $time = Carbon::now()->addYear(50);
+        }elseif ($plan->package_duration == 2) {
+            $time = Carbon::now()->addMonth(12);
+        }else {
+            $time = Carbon::now()->addMonth(1);
+        }
+        
         $request->validate([
             'name' => "required",
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
             'phone' => "required",
-            'country_id' => "required",
             'region_id' => "required",
             'password' => "required|confirmed|min:8|max:50",
         ]);
@@ -398,7 +400,6 @@ class FrontendController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'phone' => $phone,
-            'country_id' => $request->country_id,
             'region_id' => $request->region_id,
             'country_code' => $request->countrycode,
             'iso2' => $request->iso2,
@@ -420,25 +421,17 @@ class FrontendController extends Controller
         } else {
             Email::create(['email' => $request->email]);
         }
-
-        // if (!empty($request->package_id)) {
-
-
-        //     if (empty($plan)) {
-        //         flashError('Your package id invalid.Please try again');
-        //         return redirect()->route('frontend.dashboard');
-        //     }
-        // }
-        UserPlan::create([
+        
+        UserPlan::insert([
             'customer_id' => $customer->id,
             'plans_id' => $plan->id,
             'ad_limit' => $plan->ad_limit,
             'featured_limit' => $plan->featured_limit,
             'customer_support' => 0,
-            // 'multiple_image' => $plan->multiple_image,
             'badge' => 0,
             'is_active' => 1,
-            'created_at' => now()
+            'valid_date' => $time,
+            'created_at' => Carbon::now(),
         ]);
 
         if ($customer) {
@@ -453,6 +446,7 @@ class FrontendController extends Controller
                 return redirect()->route('frontend.dashboard');
             }
         }
+
     }
 
     public function valid_user_name(Request $request)

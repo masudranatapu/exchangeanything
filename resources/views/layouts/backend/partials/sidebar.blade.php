@@ -120,14 +120,14 @@
                                     </ul>
                                 @endif
                             @endif
-                            @if (Module::collections()->has('Brand') && userCan('brand.view'))
+                            <!-- @if (Module::collections()->has('Brand') && userCan('brand.view'))
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('module.brand.*') ? true : false"
                                         route="module.brand.index" icon="fas fa-circle">
                                         {{ __('brand') }}
                                     </x-sidebar-list>
                                 </ul>
-                            @endif
+                            @endif -->
                             @if (Module::collections()->has('Location'))
                                 @if (userCan('city.view'))
                                     <ul class="nav nav-treeview">

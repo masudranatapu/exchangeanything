@@ -1,10 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
-    integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js"
-    integrity="sha512-QK4ymL3xaaWUlgFpAuxY+6xax7QuxPB3Ii/99nykNP/PlK3NTQa/f/UbQQnWsM4h5yjQoMjWUhCJbYgWamtL6g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput-jquery.min.js"></script>
 <style>
     .select2-selection__rendered {
         line-height: 38px !important;
@@ -29,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <input value="{{ old('name') }}" type="text" placeholder="{{ __('full_name') }}"
+                            <input value="{{ old('name') }}" type="text" required placeholder="{{ __('full_name') }}"
                                 name="name" class="@error('name') is-invalid border-danger @enderror" />
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
@@ -68,33 +64,30 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         @php
-                            $citis = Modules\Location\Entities\City::orderBy('name')->get();
+                            $towns = DB::table('towns')->orderBy('name')->get();
                         @endphp
                         <div class="input-field">
-
-                            <select name="country_id" id="country"
-                                class="form-control select-bg @error('city_id') border-danger @enderror">
-                                <option value="" selected>{{ __('select_country') }}</option>
-                                @foreach ($citis as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            <select name="region_id" id="country" class="form-control select-bg @error('region_id') border-danger @enderror" required>
+                                <option value="" selected>{{ __('Select State') }}</option>
+                                @foreach ($towns as $town)
+                                    <option value="{{ $town->id }}">{{ $town->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-field">
-
                             <select name="region_id" id="townn"
                                 class="form-control select-bg @error('town_id') border-danger @enderror">
                                 <option value="" selected disabled>First Select Country</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-6">
                         <div class="input-field">
-                            <input type="password" id="password-field" name="password"
+                            <input type="password" id="password-field" name="password" required
                                 placeholder="{{ __('password') }}"
                                 class="@error('password') is-invalid border-danger @enderror" />
                             <span id="psw_msg"></span>
@@ -108,7 +101,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
-                            <input type="password" name="password_confirmation"
+                            <input type="password" name="password_confirmation" required
                                 placeholder="{{ __('confirm password') }}" id="password-field2"
                                 class="@error('password') is-invalid border-danger @enderror" />
                             <span toggle="#password-field2" class="icon icon--eye toggle-password2">

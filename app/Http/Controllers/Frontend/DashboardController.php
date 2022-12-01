@@ -46,18 +46,8 @@ class DashboardController extends Controller
         $expire_ads_count = $ads->where('status', 'expired')->where('customer_id', $authUser->id)->count();
 
 
-        $userplan = UserPlan::where('customer_id', $authUser->id)->get();
-
-
-        if (isset($userplan) && $userplan->count() > 0) {
-
-            $plan_info = UserPlan::customerData()->firstOrFail();
-            session()->put('user_plan', $plan_info);
-            $plan = Plan::find($plan_info->plans_id);
-        } else {
-            return redirect()->route('frontend.priceplan');
-        }
-
+        $userplan = UserPlan::where('customer_id', $authUser->id)->first();
+        
         // bar chart by year
         $bar_chart_datas = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
@@ -76,8 +66,7 @@ class DashboardController extends Controller
             'posted_ads_count' =>  $posted_ads_count,
             'expire_ads_count' =>  $expire_ads_count,
             'bar_chart_datas' =>  $bar_chart_datas,
-            'plan_info' =>  $plan_info,
-            'plan' =>  $plan,
+            'userplan' => $userplan,
             'use_id' =>  $authUser->id,
             'unique_id' =>  $authUser->code,
         ]);

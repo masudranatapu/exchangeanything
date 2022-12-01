@@ -5,7 +5,7 @@
                 <div  style="position: relative">
                     @if ($customer->image)
                         <img src="{{ asset($customer->image) }}" class="img">
-                        @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                        @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
                             @php
                                 $certified = DB::table('get_certified_plans')->latest()->first();
                             @endphp
@@ -13,7 +13,7 @@
                         @endif
                     @else
                         <img src="{{ asset('images/default.png') }}" class="img"/>
-                        @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                        @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
                             @php
                                 $certified = DB::table('get_certified_plans')->latest()->first();
                             @endphp
@@ -44,7 +44,14 @@
             <span class="icon">
                 <x-svg.address-icon />
             </span>
-            <h6 class="text--body-3" style="text-transform: none">@if($town) {{ucwords(strtolower($town->name ?? ''))}}, @endif{{ ucwords(strtolower($city->name ?? '')) }}</h6>
+            <h6 class="text--body-3" style="text-transform: none">
+                @if($area) 
+                    {{$area}} , 
+                @endif
+                @if($town)
+                    {{ ucwords(strtolower($town->name ?? '')) }}
+                @endif
+            </h6>
         </li>
         @if($customer->created_at)
         <li class="contact-item">

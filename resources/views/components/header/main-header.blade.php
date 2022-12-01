@@ -42,6 +42,9 @@
         <!-- Action Buttons -->
         <div class="navigation-bar__buttons">
             @if (auth('customer')->check())
+                @php
+                    $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
+                @endphp
                 <div class="d-none d-xl-block">
                     <li class="menu__item">
                         <a href="{{ route('frontend.ad-list') }}" class="menu__link {{ Route::is('frontend.ad-list') ? 'active' : '' }}">{{ __('ads') }}</a>
@@ -68,7 +71,7 @@
                 <a href="{{ route('frontend.dashboard') }}" class="user">
                     <div class="user__img-wrapper" style="position: relative">
                         <img src="{{ auth('customer')->user()->image_url }}" style="width: 40px; height: 40px; border-radius: 50%" alt="User Image">
-                        @if (auth('customer')->user()->certified_seller == 1 && auth('customer')->user()->certificite_validity < now())
+                        @if (auth('customer')->user()->certified_seller == 1 && auth('customer')->user()->certificate_validity > now())
                             @php
                                 $certified = DB::table('get_certified_plans')->latest()->first();
                             @endphp
@@ -76,12 +79,21 @@
                         @endif
                     </div>
                 </a>
-                <a href="{{ route('frontend.post') }}" class="btn">
-                    <span class="icon--left">
-                        <x-svg.image-select-icon />
-                    </span>
-                    {{ __('post_ads') }}
-                </a>
+                @if($user_plan->ad_limit > 0)
+                    <a href="{{ route('frontend.post') }}" class="btn">
+                        <span class="icon--left">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                @else
+                    <a href="{{ route('frontend.priceplan') }}" class="btn">
+                        <span class="icon--left">
+                            <x-svg.image-select-icon />
+                        </span>
+                        {{ __('post_ads') }}
+                    </a>
+                @endif
             @else
                 <div class="d-none d-xl-block me-5">
                     <li class="menu__item">

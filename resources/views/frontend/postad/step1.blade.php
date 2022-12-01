@@ -4,7 +4,9 @@
 
 @section('post-ad-content')
     @php 
-        $state = DB::table('towns')->where('city_id', 194)->get();
+        $state = DB::table('towns')->orderBy('name')->get();
+        $user = auth('customer')->user();
+        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
     @endphp
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -30,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
@@ -40,7 +41,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-field">
                             <label for="">Brand <span class="text-danger">*</span></label>
                             <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
@@ -50,13 +51,19 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Brand Name <span class="text-danger">*</span></label>
+                            <input value="{{ old('brand_name') }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
                             <label>Model <span class="text-danger">*</span></label>
-                            <input value="{{ old('model') }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                            <input value="{{ old('model') }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -85,8 +92,9 @@
                                 <option value="5">Per Month</option>
                                 <option value="6">Per Year</option>
                             </select>
+                            <span class="input-group-text"> $ </span>
                             <input required value="{{ old('price') }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
-                        </div>
+                        </div> 
                     </div>
                     <div class="col-md-6">
                         <div class="input-select">
@@ -94,7 +102,7 @@
                             <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                                 <option value="">Select One</option>
                                 @foreach ($state as $stat)
-                                    <option value="{{$stat->id}}">{{$stat->name}}</option>
+                                    <option @if($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -103,10 +111,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">City /  Neighborhood <span class="text-danger">*</span></label>
-                            <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
-                                <option disabled selected>{{ __('Select City / Neighborhood ') }}</option>
-                            </select>
+                            <label for="">City <span class="text-danger"> * </span></label>
+                            <!-- <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
+                                <option disabled selected>{{ __('Select City ') }}</option>
+                            </select> -->
+                            <input type="text" name="area_name" value="{{ old('area_name')}}" class="form-control select-bg @error('area_name') border-danger @enderror" placeholder="City name">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -171,12 +180,14 @@
                             <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <div class="form-check">
-                            <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
-                            <label for="checkfeatured" class="form-check-label">Featured</label>
+                    @if($user_plan->featured_limit > 0)
+                        <div class="col-6 col-md-3">
+                            <div class="form-check">
+                                <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
+                                <label for="checkfeatured" class="form-check-label">Featured</label>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn text-white btn--lg">
@@ -188,8 +199,21 @@
     </div>
 @endsection
 
-@push('component_script')
+@section('frontend_style')
+    <style>
+        .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+        }
+        .select2-selection__arrow {
+            height: 38px !important;
+        }
+    </style>
+@endsection
 
+@push('component_script')
     <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/venobox.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
@@ -197,12 +221,35 @@
     <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
     <script>
         $('.input-images-2').imageUploader({
-            maxSize: 2 * 1024 * 1024,
+            maxSize: 10 * 1024 * 1024,
             maxFiles: 10,
             multiple: true,
         });
-    </script>
+        
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            
+            $('#townn').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
 
+            $('#ad_category').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            $('#ad_subcategory').select2({
+                // theme: 'bootstrap-5',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+        });
+
+    </script>
+    
     <script type="text/javascript">
 
         function add_features_field() {
@@ -283,25 +330,32 @@
             }))
         }
 
-        $('#townn').on('change', function() {
-            var townnid = $("#townn").val()
-            // alert(townnid);
-            if (townnid) {
-                $.ajax({
-                    url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        console.log(data);
-                        $('#areaid').html('<option value="" disabled selected> Select One </option>');
-                        $.each(data, function(key, value) {
-                            $('#areaid').append('<option value="' + value.id + '">' + value.city_name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
+        // $('#townn').on('change', function() {
+        //     var townnid = $("#townn").val()
+        //     // alert(townnid);
+        //     if (townnid) {
+        //         $.ajax({
+        //             url: "{{ url('adlist-town-city-ajax') }}/" + townnid,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 $('#areaid').html('');
+        //                 if(data.length > 0){
+        //                     $.each(data, function(key, value) {
+        //                         $('#areaid').append('<option value="' + value.id + '">' + value.city_name + '</option>');
+        //                     });
+        //                 }else {
+        //                     toastr.warning("No country for this state", 'Info',{
+        //                         closeButton:true,
+        //                         progressBar:true,
+        //                     });
+        //                 }
+        //             },
+        //         });
+        //     } else {
+        //         alert('danger');
+        //     }
         });
     </script>
 @endpush

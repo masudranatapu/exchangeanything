@@ -99,7 +99,7 @@
                                         <td class="text-center" tabindex="0">
                                             <div style="position: relative">
                                                 <img src="{{ $customer->image_url }}" class="rounded" height="50px"  width="50px" alt="image">
-                                                @if ($customer->certified_seller == 1 && $customer->certificite_validity < now())
+                                                @if ($customer->certified_seller == 1 && $customer->certificate_validity > now())
                                                     @php
                                                         $certified = DB::table('get_certified_plans')->latest()->first();
                                                     @endphp
