@@ -63,8 +63,12 @@
                         <div class="input-field">
                             <label >condition <span class="text-danger">*</span></label>
                             <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
-                                <option value="new">{{ __('new') }}</option>
-                                <option value="used"> {{ __('used') }}</option>
+                                <option value="New">{{ __('new') }}</option>
+                                <option value="Like New"> {{ __('like_new') }}</option>
+                                <option value="Excellent">{{ __('excellent') }}</option>
+                                <option value="Good"> {{ __('good') }}</option>
+                                <option value="Fair">{{ __('fair') }}</option>
+                                <option value="Salvage"> {{ __('salvage') }}</option>
                             </select>
                         </div>
                     </div>
