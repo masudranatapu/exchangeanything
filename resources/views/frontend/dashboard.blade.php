@@ -89,7 +89,7 @@
                                         You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).
                                     </p>
                                  @endif
-                                @if ($userplan->ad_limit == 0 || $userplan->featured_limit == 0 || $userplan->valid_date < now())
+                                @if ($userplan->ad_limit == 0 || $userplan->valid_date < now())
                                     <p>
                                         <strong class="text-danger">
                                             Your plan has been exceeded. Kindly Upgrade
@@ -117,38 +117,18 @@
                                                 </p>
                                             </li>
                                             <li class="dashboard__benefits-item">
-                                                @if ($userplan->ad_limit == 0)
-                                                    <span style="margin-right: 5px;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                                    </span>
-                                                    <p class="text--body-4">
-                                                        <span>
-                                                            Adverts limit is over 
-                                                        </span>
-                                                    </p>
-                                                @else
                                                     <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
                                                     <p class="text--body-4">
                                                         <span>
                                                             {{ __('Adverts Limit') }} : {{ $userplan->ad_limit }}
                                                         </span>
                                                     </p>
-                                                @endif
                                             </li>
                                             <li class="dashboard__benefits-item">
-                                                @if ($userplan->featured_limit == 0)
-                                                    <span style="margin-right: 5px;">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d32323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                                                    </span>
-                                                    <p class="text--body-3">
-                                                        Featured Ads limit is over 
-                                                    </p>
-                                                @else
                                                     <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
                                                     <p class="text--body-3">
                                                         {{ __('Featured Ads limit is ') }} : {{ $userplan->featured_limit }} 
                                                     </p>
-                                                @endif
                                             </li>
                                             <li class="dashboard__benefits-item">
                                                 @if ($userplan->badge == true)

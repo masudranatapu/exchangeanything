@@ -82,10 +82,14 @@
                         <div class="input-select">
                             <label >condition <span class="text-danger">*</span></label>
                             <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
-                                <option {{ $ad->condition == 'new' ? 'selected' : '' }} value="new"> {{ __('new') }}</option>
-                                <option {{ $ad->condition == 'used' ? 'selected' : '' }} value="used"> {{ __('used') }}</option>
+                                <option {{ $ad->condition == 'New' ? 'selected' : '' }} value="New"> {{ __('new') }}</option>
+                                <option {{ $ad->condition == 'Like New' ? 'selected' : '' }} value="Like New"> {{ __('like_new') }}</option>
+                                <option {{ $ad->condition == 'Excellent' ? 'selected' : '' }} value="Excellent"> {{ __('excellent') }}</option>
+                                <option {{ $ad->condition == 'Good' ? 'selected' : '' }} value="Good"> {{ __('good') }}</option>
+                                <option {{ $ad->condition == 'Fair' ? 'selected' : '' }} value="Fair"> {{ __('fair') }}</option>
+                                <option {{ $ad->condition == 'Salvage' ? 'selected' : '' }} value="Salvage"> {{ __('salvage') }}</option>
                             </select>
-                        </div>
+                       </div>
                     </div>
                 </div>
                 <div class="row">
