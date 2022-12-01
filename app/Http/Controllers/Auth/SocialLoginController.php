@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Modules\Plan\Entities\Plan;
+use Carbon\Carbon;
 
 class SocialLoginController extends Controller
 {
@@ -23,6 +24,14 @@ class SocialLoginController extends Controller
     public function callback($provider)
     {
         $plan = Plan::first();
+        
+        if($plan->package_duration == 1){
+            $time = Carbon::now()->addYear(50);
+        }elseif ($plan->package_duration == 2) {
+            $time = Carbon::now()->addMonth(12);
+        }else {
+            $time = Carbon::now()->addMonth(1);
+        }
 
         try {
             $socialiteUser = Socialite::driver($provider)->user();
@@ -76,7 +85,8 @@ class SocialLoginController extends Controller
                 // 'multiple_image' => $plan->multiple_image,
                 'badge' => 0,
                 'is_active' => 1,
-                'created_at' => now()
+                'valid_date' => $time,
+                'created_at' => Carbon::now(),
             ]);
         }
 
