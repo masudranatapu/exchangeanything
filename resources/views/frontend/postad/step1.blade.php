@@ -173,13 +173,13 @@
                     </div>
                 </div>
                 <div class="row mt-1">
-                    <div class="col-6 col-md-3">
+                    <!-- <div class="col-6 col-md-3">
                         <div class="form-check">
                             <input name="negotiable" type="hidden" value="0">
                                 <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="Price_Negotiable" {{ old('negotiable')== "1" ? 'checked' : '' }}/>
                             <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
                         </div>
-                    </div>
+                    </div> -->
                     @if($user_plan->featured_limit > 0)
                         <div class="col-6 col-md-3">
                             <div class="form-check">

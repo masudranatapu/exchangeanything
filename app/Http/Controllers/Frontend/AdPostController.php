@@ -122,7 +122,7 @@ class AdPostController extends Controller
             $ad->price_method = $request->price_method;
             $ad->price = $request->price;
             $ad->condition = $request->condition;
-            $ad->negotiable = $request->negotiable;
+            $ad->negotiable = $request->negotiable ?? 0;
             $ad->featured = $request->featured ?? 0;
             $ad->is_featured = $isfeatured;
             $ad->brand_name = $request->brand_name;
@@ -423,7 +423,7 @@ class AdPostController extends Controller
             'brand_name' => $request->brand_name,
             'model' => $request->model,
             'condition' => $request->condition,
-            'negotiable' => $request->negotiable,
+            'negotiable' => $request->negotiable ?? 0,
             'featured' => $checkedfeatured,
             'is_featured' => $isfeatured,
             'web' => $request->web,

@@ -222,13 +222,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
+                    <!-- <div class="col-lg-3">
                         <div class="form-check">
                             <input name="negotiable" type="hidden" value="0">
                             <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" {{ $ad->negotiable == 1 ? 'checked' : '' }} />
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
-                    </div>
+                    </div> -->
                     @if($adsinfo->is_featured == 'yes')
                         <div class="col-6 col-md-3">
                             <div class="form-check">
