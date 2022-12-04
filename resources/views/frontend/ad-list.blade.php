@@ -3,34 +3,6 @@
 @section('title', __('ads'))
 
 @section('content')
-
-    {{--<!-- breedcrumb section start  -->
-    <x-frontend.breedcrumb-component :background="$cms->ads_background_path">
-        {{ __('ad_list') }}
-        <x-slot name="items">
-            <li class="breedcrumb__page-item">
-                <a class="breedcrumb__page-link text--body-3">{{ __('ad_list') }}</a>
-            </li>
-        </x-slot>
-    </x-frontend.breedcrumb-component>
-    <!-- breedcrumb section end  --> --}}
-
-    <!-- Banner section start  -->
-    {{-- 
- <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
-        <div class="container">
-           <span class="banner__tag text--body-2-600">{{ __('over') }} {{ $totalAds }} {{ __('live_ads') }}</span>
-            <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
-                {{ $cms->index3_title }}
-            </div>
-           
-
-            <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
-        </div>
-    </div> 
-  --}}   
-    <!-- Banner section end   -->
-
     <section class="section ad-list">
         <div class="container">
             <div class="row">
@@ -48,9 +20,6 @@
                                 </svg>
                             </span>
                         </div>
-                        {{-- <span class="toggle-bar">
-                           <x-svg.toggle-icon />
-                        </span> --}}
                         <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm">
                             <div class="accordion list-sidebar__accordion" id="accordionGroup">
                                 <div class="accordion-item list-sidebar__accordion-item category">
@@ -164,16 +133,60 @@
                                             <div class="list-sidebar__accordion-inner-body--item">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="condition"
-                                                        id="condition3" value="used" onchange="changeFilter()"
-                                                        {{ request('condition') == 'used' ? 'checked' : '' }} />
-                                                    <x-forms.label name="{{ __('used') }}" class="form-check-label"
+                                                        id="condition3" value="Like New" onchange="changeFilter()"
+                                                        {{ request('condition') == 'Like New' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('Like New') }}" class="form-check-label"
                                                         for="condition3" />
                                                 </div>
                                             </div>
+                                            <div class="list-sidebar__accordion-inner-body--item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="condition"
+                                                        id="condition4" value="Excellent" onchange="changeFilter()"
+                                                        {{ request('condition') == 'Excellent' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('Excellent') }}" class="form-check-label"
+                                                        for="condition4" />
+                                                </div>
+                                            </div>
+                                            <div class="list-sidebar__accordion-inner-body--item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="condition"
+                                                        id="condition5" value="Good" onchange="changeFilter()"
+                                                        {{ request('condition') == 'Good' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('Good') }}" class="form-check-label"
+                                                        for="condition5" />
+                                                </div>
+                                            </div>
+                                            <div class="list-sidebar__accordion-inner-body--item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="condition"
+                                                        id="condition6" value="Fair" onchange="changeFilter()"
+                                                        {{ request('condition') == 'Fair' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('Fair') }}" class="form-check-label"
+                                                        for="condition6" />
+                                                </div>
+                                            </div>
+                                            <div class="list-sidebar__accordion-inner-body--item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="condition"
+                                                        id="condition6" value="Salvage" onchange="changeFilter()"
+                                                        {{ request('condition') == 'Salvage' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('Salvage') }}" class="form-check-label"
+                                                        for="condition6" />
+                                                </div>
+                                            </div>
+                                            <!-- <div class="list-sidebar__accordion-inner-body--item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="condition"
+                                                        id="condition" value="used" onchange="changeFilter()"
+                                                        {{ request('condition') == 'used' ? 'checked' : '' }} />
+                                                    <x-forms.label name="{{ __('used') }}" class="form-check-label"
+                                                        for="condition" />
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item list-sidebar__accordion-item price">
                                     <h2 class="accordion-header list-sidebar__accordion-header" id="priceTag">
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
