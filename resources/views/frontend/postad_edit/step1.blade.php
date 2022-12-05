@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-select">
-                            <label for="">Sub Category <span class="text-danger">*</span></label>
+                            <label for="">Sub Category</label>
                             <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                 <option value="" selected>{{ __('select_subcategory') }}</option>
                             </select>

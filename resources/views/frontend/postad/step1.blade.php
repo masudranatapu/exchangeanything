@@ -35,8 +35,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label for="">Sub Category <span class="text-danger">*</span></label>
-                            <select required name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                            <label for="">Sub Category </label>
+                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                 <option value="" selected>{{ __('select_subcategory') }}</option>
                             </select>
                         </div>

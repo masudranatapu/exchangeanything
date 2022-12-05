@@ -97,7 +97,7 @@ class AdPostController extends Controller
             'town_id' => 'required',
             'area_name' => 'required',
             'price_method' => 'required',
-            'subcategory_id' => 'required',
+            // 'subcategory_id' => 'required',
             'description' => 'required|min:150',
             'images' => 'required|max:2048',
         ], [
@@ -402,7 +402,7 @@ class AdPostController extends Controller
             'price' => 'required|numeric',
             'condition' => 'required',
             'negotiable' => 'sometimes',
-            'category_id' => 'required',
+            // 'category_id' => 'required',
             // 'brand_id' => 'required',
             'brand_name' => 'required',
             'model' => 'required',
