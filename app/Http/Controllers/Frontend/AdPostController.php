@@ -253,19 +253,11 @@ class AdPostController extends Controller
         foreach ($images as $key => $image) {
             if ($image) {
                 if ($key == 0 && $image) {
-                    $name = $image->GetClientOriginalName();
-                    $thumbnail = 'uploads/addds_images/' . $name;
-                    Image::make($image->path())->resize(850, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($thumbnail);
+                    $thumbnail = uploadImage($image, 'addds_images');
                     $ad->update(['thumbnail' => $thumbnail]);
                 }
                 if ($image && $key > 0) {
-                    $gallery_image_name = $image->GetClientOriginalName();
-                    $image_path = 'uploads/adds_multiple/' . $gallery_image_name;
-                    Image::make($image->path())->resize(850, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($image_path);
+                    $image_path = uploadImage($image, 'adds_multiple');
                     $ad->galleries()->create(['image' => $image_path]);
                 }
             }
@@ -395,7 +387,7 @@ class AdPostController extends Controller
 
             }
         }
-        
+
         // dd($request->all());
         $request->validate([
             'title' => "required|unique:ads,title, $ad->id",
@@ -449,14 +441,8 @@ class AdPostController extends Controller
         $image = $request->file('thumbnail');
         $old_thumb = $request->old_thumbnail;
         if ($image && $image->isValid()) {
-            $name = $image->hashName();
-            $thumbnail = 'uploads/addds_images/' . $name;
+            $thumbnail = uploadImage($image, 'addds_images');
             $ad->update(['thumbnail' => $thumbnail]);
-            Image::make($image->path())
-                ->resize(850, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })
-                ->save($thumbnail);
             if ($old_thumb) {
                 @unlink($old_thumb);
             }
@@ -467,19 +453,7 @@ class AdPostController extends Controller
         if ($images) {
             foreach ($images as $image) {
                 if ($image && $image->isValid()) {
-                    $name = $image->hashName();
-                    
-                    $path =  'uploads/adds_multiple/';
-                    if (!file_exists($path)) {
-                        mkdir($path, 0755, true);
-                    }
-
-                    $image_path = $path . $name;
-                    Image::make($image->path())
-                        ->resize(850, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        })
-                        ->save($image_path);
+                    $image_path = uploadImage($image, 'adds_multiple');
                     $ad->galleries()->create(['image' => $image_path]);
                 }
             }
