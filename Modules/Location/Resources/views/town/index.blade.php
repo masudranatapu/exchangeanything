@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title') {{ __('State List') }} @endsection
+@section('title') {{ __('City List') }} @endsection
 
 @section('content')
 <div class="container-fluid">
@@ -8,10 +8,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title" style="line-height: 36px;">{{ __('State List') }}</h3>
+                    <h3 class="card-title" style="line-height: 36px;">{{ __('City List') }}</h3>
                     @if (userCan('town.create'))
                     <a href="{{ route('module.town.create') }}" class="btn bg-primary float-right d-flex align-items-center justify-content-center">
-                        <i class="fas fa-plus"></i>&nbsp; {{ __('Add State') }}
+                        <i class="fas fa-plus"></i>&nbsp; {{ __('Add City') }}
                     </a>
                     @endif
                 </div>
@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th width="5%">{{ __('sl') }}</th>
-                                <th>{{ __('State Name') }}</th>
+                                <th>{{ __('City Name') }}</th>
                                 <th>{{ __('Country Name') }}</th>
                                 <th>{{ __('created_date') }}</th>
                                 <th>{{ __('last_updated') }}</th>

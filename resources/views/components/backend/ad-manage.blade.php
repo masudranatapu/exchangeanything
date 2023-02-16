@@ -33,7 +33,7 @@
                 @endif
             </td>
             <td class="text-center" tabindex="0">
-                ${{ $ad->price }}
+                $ {{ $ad->price ?? 0 }}
                 <span style="font-size: 15px;">
                     @if ($ad->price_method == 2)
                         <sub>Per Hour</sub>
@@ -50,10 +50,10 @@
             </td>
             @if ($showCategory)
             <td class="text-center" tabindex="0">
-                <a href="{{ route('module.category.show', $ad->category->slug) }}">{{ $ad->category->name }}</a>
+                <a href="{{ route('module.category.show', $ad->category->slug ?? '') }}">{{ $ad->category->name ?? ''}}</a>
             </td>
             @endif
-            @if ($showCustomer) 
+            @if ($showCustomer)
                 <td class="text-center" tabindex="0">
                     @if(!empty($ad->customer->username))
                     <a href="{{ route('module.customer.show',['customer'=>$ad->customer->username]) }}">
@@ -100,13 +100,13 @@
                             <i class="fas fa-eye text-info"></i> {{ __('view_details') }}
                         </a></li>
 
-                        {{--  
+                        {{--
                             <li>
                                 <a class="dropdown-item" href="{{ route('module.ad.edit', $ad->id) }}">
                                     <i class="fas fa-edit text-success"></i> {{ __('edit_ad') }}
                                 </a>
                             </li>
-                       
+
                     <li><a class="dropdown-item" href="{{ route('module.ad.show_gallery', $ad->id) }}">
                             <i class="fas fa-images text-primary"></i></i> {{ __('ad_gellary') }}
                         </a></li>

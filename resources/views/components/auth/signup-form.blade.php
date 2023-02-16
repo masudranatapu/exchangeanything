@@ -23,7 +23,7 @@
             <form action="{{ route('customer.register') }}" method="POST" onsubmit="return checkForm(this);">
                 @csrf
                 <div class="row">
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="input-field">
                             <input value="{{ old('name') }}" type="text" required placeholder="{{ __('full_name') }}"
                                 name="name" class="@error('name') is-invalid border-danger @enderror" />
@@ -42,8 +42,8 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="col-md-6">
+                    </div> --}}
+                    <div class="col-md-12">
                         <div class="input-field">
                             <input value="{{ old('email') }}" type="email" placeholder="{{ __('email_address') }}"
                                 name="email" class="@error('email') is-invalid border-danger @enderror" />
@@ -52,19 +52,19 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="input-field">
                             <input type="hidden" id="iso2" value="" name="iso2">
                             <input type="hidden" id="code" value="" name="countrycode">
                             <input type="phone_number" name="phone" value="{{ old('phone') }}"
-                                placeholder="Phone No" class="input form-control" autocomplete="off">
+                                placeholder="Phone No" class="input form-control" autocomplete="off"> --}}
                             {{-- <input value="{{ old('phone') }}" id="phone" type="tel" placeholder="{{ __('Phone Number') }}" name="phone[main]" class="input @error('phone') is-invalid border-danger @enderror" /> --}}
-                            @error('phone')
+                            {{-- @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="col-md-12">
+                    </div> --}}
+                    {{-- <div class="col-md-12">
                         @php
                             $towns = DB::table('towns')->orderBy('name')->get();
                         @endphp
@@ -76,7 +76,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- <div class="col-md-6">
                         <div class="input-field">
                             <select name="region_id" id="townn"

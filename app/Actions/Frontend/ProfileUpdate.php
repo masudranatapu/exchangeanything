@@ -11,6 +11,11 @@ class ProfileUpdate
     {
         // dd($request->all());
         $customer->update($request->except('image'));
+
+        if($request->username) {
+            $customer->update(['username' => $request->username]);
+        }
+
         if($request->subscribe) {
             $customer->update(['subscribe' => 1]);
         }else {

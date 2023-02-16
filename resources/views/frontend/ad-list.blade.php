@@ -3,12 +3,22 @@
 @section('title', __('ads'))
 
 @section('content')
-    <section class="section ad-list">
+    <div class="banner banner--three">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="home_banner">
+                    <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true"
+                        :total-ads="$total_ads" :marginTop="124" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section ad-list" style="margin-top: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
                     <div class="list-sidebar">
-                        <div class="product-filter">
+                        {{-- <div class="product-filter">
                             <h3>Product Filters</h3>
                             <span class="close">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -19,11 +29,11 @@
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </span>
-                        </div>
+                        </div> --}}
                         <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm">
                             <div class="accordion list-sidebar__accordion" id="accordionGroup">
-                                <div class="accordion-item list-sidebar__accordion-item category">
-                                    <h2 class="accordion-header list-sidebar__accordion-header">
+                                {{-- <div class="accordion-item list-sidebar__accordion-item category"> --}}
+                                    {{-- <h2 class="accordion-header list-sidebar__accordion-header">
                                         <button class="accordion-button list-sidebar__accordion-button" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#categoryCollapse"
                                             aria-expanded="true" aria-controls="categoryCollapse">
@@ -54,17 +64,17 @@
                                                                     {{ $category->name }}
                                                                     <strong>({{ $cat_count }})</strong>
                                                                 </span>
-                                                                
+
                                                                     <span class="icon icon--plus">
                                                                         <x-svg.plus-light-icon />
                                                                     </span>
-                                                               
-                                                               
+
+
                                                                      <span class="icon icon--minus">
                                                                     <x-svg.minus-icon />
                                                                 </span>
-                                                                
-                                                               
+
+
                                                             </div>
                                                         </h2>
                                                         <div id="{{ Str::slug($category->slug) }}Collapse"
@@ -99,8 +109,8 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> --}}
+                                {{-- </div> --}}
                                 <div class="accordion-item list-sidebar__accordion-item condition">
                                     <h2 class="accordion-header list-sidebar__accordion-header" id="condition">
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
@@ -176,18 +186,18 @@
                                                 </div>
                                             </div>
                                             <!-- <div class="list-sidebar__accordion-inner-body--item">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="condition"
-                                                        id="condition" value="used" onchange="changeFilter()"
-                                                        {{ request('condition') == 'used' ? 'checked' : '' }} />
-                                                    <x-forms.label name="{{ __('used') }}" class="form-check-label"
-                                                        for="condition" />
-                                                </div>
-                                            </div> -->
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="condition"
+                                                            id="condition" value="used" onchange="changeFilter()"
+                                                            {{ request('condition') == 'used' ? 'checked' : '' }} />
+                                                        <x-forms.label name="{{ __('used') }}" class="form-check-label"
+                                                            for="condition" />
+                                                    </div>
+                                                </div> -->
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item list-sidebar__accordion-item price">
+                                <div class="accordion-item list-sidebar__accordion-item price d-none">
                                     <h2 class="accordion-header list-sidebar__accordion-header" id="priceTag">
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#priceCollapse"
@@ -213,7 +223,8 @@
                 <div class="col-xl-9">
                     <div class="ad-list__content row">
                         @forelse ($adlistings as $ad)
-                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6 mb-4"></x-frontend.single-ad>
+                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6 mb-4">
+                            </x-frontend.single-ad>
                         @empty
                             <x-not-found2 message="No ads found" />
                         @endforelse
@@ -240,7 +251,6 @@
     <script src="{{ asset('frontend') }}/js/plugins/wNumb.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/select2/js/select2.min.js"></script>
     <script>
-
         function changeFilter() {
             const slider = document.getElementById('priceRangeSlider')
             const value = slider.noUiSlider.get(true);

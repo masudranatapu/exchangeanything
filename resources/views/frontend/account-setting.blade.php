@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
     @if (auth('customer')->check() &&
-        isset(session('user_plan')->ad_limit) &&
-        session('user_plan')->ad_limit < $settings->free_ad_limit)
+            isset(session('user_plan')->ad_limit) &&
+            session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
@@ -86,6 +86,15 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="input-field">
+                                        <label for="">Username</label>
+                                        <input name="username" value="{{ $user->username }}" type="text"
+                                            placeholder="{{ __('username') }}" id="Fname"
+                                            class="@error('username') is-invalid border-danger @enderror">
+                                        @error('username')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="input-field__group">
                                     <div class="input-field">
@@ -123,8 +132,9 @@
                                 <div class="row mt-1 mb-3">
                                     <div class="col-lg-3">
                                         <div class="form-check">
-                                            <input value="1" name="email_share" type="checkbox" class="form-check-input"
-                                                id="email_share" @if ($user->email_share == 1) checked @endif />
+                                            <input value="1" name="email_share" type="checkbox"
+                                                class="form-check-input" id="email_share"
+                                                @if ($user->email_share == 1) checked @endif />
                                             <x-forms.label name="Share email to public" class="form-check-label"
                                                 for="email_share" />
                                         </div>
@@ -152,10 +162,10 @@
                                 @method('PUT')
                                 <div class="input-field__group">
                                     <div class="input-field">
-                                        <x-forms.label name="current_password" for="cpassword" required="true"/>
-                                        <input name="current_password"  required="" type="password"
-                                            placeholder="{{ __('password') }}"  id="cpassword"
-                                            class="@error('current_password') is-invalid border-danger @enderror" >
+                                        <x-forms.label name="current_password" for="cpassword" required="true" />
+                                        <input name="current_password" required="" type="password"
+                                            placeholder="{{ __('password') }}" id="cpassword"
+                                            class="@error('current_password') is-invalid border-danger @enderror">
                                         @error('current_password')
                                             <span style="font-size: 12px" class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -165,9 +175,10 @@
                                         </span>
                                     </div>
                                     <div class="input-field">
-                                        <x-forms.label name="new_password" for="npassword" required="true"/>
-                                        <input name="password" type="password" required="" placeholder="{{ __('password') }}"
-                                            id="npassword" class="@error('password') is-invalid border-danger @enderror">
+                                        <x-forms.label name="new_password" for="npassword" required="true" />
+                                        <input name="password" type="password" required=""
+                                            placeholder="{{ __('password') }}" id="npassword"
+                                            class="@error('password') is-invalid border-danger @enderror">
                                         @error('password')
                                             <span style="font-size: 12px" class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -178,7 +189,7 @@
                                         </span>
                                     </div>
                                     <div class="input-field">
-                                        <x-forms.label name="confirm_password" for="confirmpass" required="true"/>
+                                        <x-forms.label name="confirm_password" for="confirmpass" required="true" />
                                         <input name="password_confirmation" required="" type="password"
                                             placeholder="{{ __('password') }}" id="confirmpass"
                                             class="@error('password_confirmation') is-invalid border-danger @enderror">

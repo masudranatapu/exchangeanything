@@ -3,7 +3,7 @@
 @section('title', __('Ad Post'))
 
 @section('post-ad-content')
-    @php 
+    @php
         $state = DB::table('towns')->orderBy('name')->get();
         $user = auth('customer')->user();
         $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
@@ -21,53 +21,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label>Category <span class="text-danger">*</span></label>
-                            <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
-                                <option disabled selected>{{ __('select_category') }}</option>
-                                @foreach ($categories as $category)
-                                    <option {{ old('category_id') == $category->id ? 'selected' : '' }}
-                                        value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <label for="">Sub Category </label>
-                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                <option value="" selected>{{ __('select_subcategory') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                        <div class="input-field">
-                            <label for="">Brand <span class="text-danger">*</span></label>
-                            <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                <option value="">{{ __('select_brand') }}</option>
-                                @foreach ($brands as $brand)
-                                    <option {{ old('brand_id') == $brand->id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> -->
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <label>Brand Name <span class="text-danger">*</span></label>
-                            <input value="{{ old('brand_name') }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <label>Model <span class="text-danger">*</span></label>
-                            <input value="{{ old('model') }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="input-field">
                             <label >condition <span class="text-danger">*</span></label>
                             <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
                                 <option value="New">{{ __('new') }}</option>
@@ -79,9 +32,56 @@
                             </select>
                         </div>
                     </div>
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Category <span class="text-danger">*</span></label>
+                            <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
+                                <option disabled selected>{{ __('select_category') }}</option>
+                                @foreach ($categories as $category)
+                                    <option {{ old('category_id') == $category->id ? 'selected' : '' }}
+                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label for="">Sub Category </label>
+                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                <option value="" selected>{{ __('select_subcategory') }}</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                    <!-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label for="">Brand <span class="text-danger">*</span></label>
+                            <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                <option value="">{{ __('select_brand') }}</option>
+                                @foreach ($brands as $brand)
+                                    <option {{ old('brand_id') == $brand->id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> -->
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Brand Name <span class="text-danger">*</span></label>
+                            <input value="{{ old('brand_name') }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                        </div>
+                    </div> --}}
+                </div>
+                <div class="row">
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Model <span class="text-danger">*</span></label>
+                            <input value="{{ old('model') }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                        </div>
+                    </div> --}}
+                </div>
+                <div class="row">
+                    {{-- <div class="col-md-6">
                         <label class="mb-2">Price <span class="text-danger"> * </span> ($) </label>
                         <div class="input-group">
                             <select name="price_method" class="form-control select-bg">
@@ -94,7 +94,7 @@
                             </select>
                             <span class="input-group-text"> $ </span>
                             <input required value="{{ old('price') }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-select">
@@ -106,7 +106,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -115,7 +115,13 @@
                             <!-- <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option disabled selected>{{ __('Select City ') }}</option>
                             </select> -->
-                            <input type="text" name="area_name" value="{{ old('area_name')}}" class="form-control select-bg @error('area_name') border-danger @enderror" placeholder="City name">
+                            <select required name="area_name" id="townn" class="form-control select-bg @error('area_name') border-danger @enderror">
+                                <option value="">Select One</option>
+                                @foreach ($state as $stat)
+                                    <option @if($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="text" name="area_name" value="{{ old('area_name')}}" required class="form-control select-bg @error('area_name') border-danger @enderror" placeholder="City name"> --}}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -147,7 +153,7 @@
                             <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
                             <p style="display: none;" id="charNum">0 characters</p>
                         </div>
-                        <div class="input-field--textarea">
+                        {{-- <div class="input-field--textarea">
                             <label for="">Features</label>
                             <div id="multiple_feature_part">
                                 <div class="row">
@@ -161,7 +167,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="row">
@@ -184,7 +190,7 @@
                         <div class="col-6 col-md-3">
                             <div class="form-check">
                                 <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
-                                <label for="checkfeatured" class="form-check-label">Featured</label>
+                                <label for="checkfeatured" class="form-check-label">Make As Featured </label>
                             </div>
                         </div>
                     @endif
@@ -225,10 +231,10 @@
             maxFiles: 10,
             multiple: true,
         });
-        
+
         $(document).ready(function() {
             // ===== Select2 ===== \\
-            
+
             $('#townn').select2({
                 // theme: 'bootstrap-5',
                 allowClear: Boolean($(this).data('allow-clear')),
@@ -249,7 +255,7 @@
         });
 
     </script>
-    
+
     <script type="text/javascript">
 
         function add_features_field() {

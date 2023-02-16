@@ -7,7 +7,7 @@
                 border-bottom: 1px solid #2b2828;
                 margin-bottom: 29px;
             }
-     </style> 
+     </style>
 <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"
     style="background-color: {{ $settings->dark_mode ? '' : $settings->sidebar_color }}">
     <!-- Brand Logo -->
@@ -17,8 +17,8 @@
 
       <a href="{{ route('home') }}" class="brand_logo">
         <h4 class="text-center site_name">ExchangeAnything</h4>
-     </a> 
-       
+     </a>
+
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
@@ -102,7 +102,7 @@
                                     </ul>
                                 @endif
                             @endif
-                            @if (Module::collections()->has('Category'))
+                            {{-- @if (Module::collections()->has('Category'))
                                 @if (userCan('category.view'))
                                     <ul class="nav nav-treeview">
                                         <x-sidebar-list :linkActive="Route::is('module.category.*') ? true : false"
@@ -119,7 +119,7 @@
                                         </x-sidebar-list>
                                     </ul>
                                 @endif
-                            @endif
+                            @endif --}}
                             <!-- @if (Module::collections()->has('Brand') && userCan('brand.view'))
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('module.brand.*') ? true : false"
@@ -128,7 +128,7 @@
                                     </x-sidebar-list>
                                 </ul>
                             @endif -->
-                            @if (Module::collections()->has('Location'))
+                            {{-- @if (Module::collections()->has('Location'))
                                 @if (userCan('city.view'))
                                     <ul class="nav nav-treeview">
                                         <x-sidebar-list :linkActive="Route::is('module.city.*') ? true : false"
@@ -136,22 +136,23 @@
                                             {{ __('Country') }}
                                         </x-sidebar-list>
                                     </ul>
-                                @endif
+                                @endif--}}
                                 @if (userCan('town.view'))
                                     <ul class="nav nav-treeview">
                                         <x-sidebar-list :linkActive="Route::is('module.town.*') ? true : false"
                                             route="module.town.index" icon="fas fa-circle">
-                                            {{ __('State') }}
+                                            {{ __('City') }}
                                         </x-sidebar-list>
                                     </ul>
                                 @endif
+                                {{--
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('module.area.*') ? true : false"
                                         route="module.area.index" icon="fas fa-circle">
                                         {{ __('City') }}
                                     </x-sidebar-list>
                                 </ul>
-                            @endif
+                            @endif --}}
                         </x-sidebar-dropdown>
                     @endif
                 @endif
@@ -204,7 +205,7 @@
                                         </x-sidebar-list>
                                     </ul>
                                 @endif
-                                
+
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('blog.comment') ? true : false" route="blog.comment" icon="fas fa-circle">
                                         {{ __('Blog Comment') }}
@@ -216,7 +217,7 @@
                 @endif
                  --}}
 
-                
+
 
                 {{-- Testimonial, contact, faqcategory and faq --}}
                 @if (userCan('testimonial.view') || userCan('contact.view') || userCan('faqcategory.view') || userCan('faq.view'))

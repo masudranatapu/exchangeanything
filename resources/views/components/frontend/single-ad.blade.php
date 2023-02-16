@@ -39,7 +39,7 @@
                     @endif
                 </h5>
                 <span class="cards__price-title text--body-3-600">
-                    {{ changeCurrency($ad->price) }}
+                    {{ changeCurrency($ad->price ?? '0') }}
                     @if ($ad->price_method == 2)
                         <sub>Per Hour</sub>
                     @elseif ($ad->price_method == 3)

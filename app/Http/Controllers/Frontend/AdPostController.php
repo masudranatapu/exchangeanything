@@ -89,23 +89,23 @@ class AdPostController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => 'required|min:2|unique:ads,title',
-            'price' => 'required|numeric',
+            // 'price' => 'required|numeric',
             'condition' => 'required',
-            'brand_name' => 'required',
-            'model' => 'required',
-            'category_id' => 'required',
-            'town_id' => 'required',
+            // 'brand_name' => 'required',
+            // 'model' => 'required',
+            // 'category_id' => 'required',
+            // 'town_id' => 'required',
             'area_name' => 'required',
-            'price_method' => 'required',
+            // 'price_method' => 'required',
             // 'subcategory_id' => 'required',
             'description' => 'required|min:150',
             'images' => 'required|max:2048',
         ], [
             'title.required' => 'Ad title name must be required',
-            'town_id.required' => 'Town name must be required',
+            // 'town_id.required' => 'Town name must be required',
             'area_name.required' => 'City name filed must be required',
-            'brand_name.required' => 'Brand name filed must be required',
-            'model.required' => 'Model name filed must be required',
+            // 'brand_name.required' => 'Brand name filed must be required',
+            // 'model.required' => 'Model name filed must be required',
         ]);
 
         if($request->featured) {
@@ -131,7 +131,7 @@ class AdPostController extends Controller
             $ad->web = $request->web;
             $ad->category_id = $request->category_id;
             $ad->subcategory_id = $request->subcategory_id;
-            $ad->town_id = $request->town_id;
+            $ad->town_id = $request->area_name;
             $ad->area_name = $request->area_name;
             $ad->postal_code = $request->postal_code;
             $ad->description = $request->description;
@@ -391,13 +391,13 @@ class AdPostController extends Controller
         // dd($request->all());
         $request->validate([
             'title' => "required|unique:ads,title, $ad->id",
-            'price' => 'required|numeric',
+            // 'price' => 'required|numeric',
             'condition' => 'required',
-            'negotiable' => 'sometimes',
+            // 'negotiable' => 'sometimes',
             // 'category_id' => 'required',
             // 'brand_id' => 'required',
-            'brand_name' => 'required',
-            'model' => 'required',
+            // 'brand_name' => 'required',
+            // 'model' => 'required',
             // 'subcategory_id' => 'required',
             'description' => 'required',
             'area_name' => 'required',
@@ -419,7 +419,7 @@ class AdPostController extends Controller
             'featured' => $checkedfeatured,
             'is_featured' => $isfeatured,
             'web' => $request->web,
-            'town_id' => $request->town_id,
+            'town_id' => $request->area_name,
             'area_name' => $request->area_name,
             'postal_code' => $request->postal_code,
             'description' => $request->description

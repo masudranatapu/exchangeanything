@@ -32,7 +32,7 @@
                             <input required value="{{ $ad->title }}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname" class="@error('title') border-danger @enderror" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="input-select">
                             <label>Category <span class="text-danger">*</span></label>
                             <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
@@ -42,42 +42,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-select">
-                            <label for="">Sub Category</label>
-                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                <option value="" selected>{{ __('select_subcategory') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                        <div class="input-select">
-                            <label for="">Brand</label>
-                            <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('select_brand') }}</option>
-                                @foreach ($brands as $brand)
-                                    <option {{ $brand->id == $ad->brand_id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> -->
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <label>Brand Name <span class="text-danger">*</span></label>
-                            <input value="{{ $adsinfo->brand_name }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-field">
-                            <label>Model <span class="text-danger">*</span></label>
-                            <input value="{{ $ad->model ?? '' }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
-                        </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-6">
                         <div class="input-select">
                             <label >condition <span class="text-danger">*</span></label>
@@ -93,7 +58,42 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Sub Category</label>
+                            <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                <option value="" selected>{{ __('select_subcategory') }}</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                    <!-- <div class="col-md-6">
+                        <div class="input-select">
+                            <label for="">Brand</label>
+                            <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('select_brand') }}</option>
+                                @foreach ($brands as $brand)
+                                    <option {{ $brand->id == $ad->brand_id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> -->
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Brand Name <span class="text-danger">*</span></label>
+                            <input value="{{ $adsinfo->brand_name }}" name="brand_name" type="text" required placeholder="{{ __('Brand Name') }}" class="@error('brand_name') border-danger @enderror" />
+                        </div>
+                    </div> --}}
+                </div>
+                <div class="row">
+                    {{-- <div class="col-md-6">
+                        <div class="input-field">
+                            <label>Model <span class="text-danger">*</span></label>
+                            <input value="{{ $ad->model ?? '' }}" name="model" type="text" required placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                        </div>
+                    </div> --}}
+                </div>
+                <div class="row">
+                    {{-- <div class="col-md-6">
                         <label class="mb-2">Price <span class="text-danger"> * </span> ($) </label>
                         <div class="input-group">
                             <select name="price_method" class="form-control select-bg">
@@ -107,8 +107,8 @@
                             <span class="input-group-text"> $ </span>
                             <input required value="{{ $ad->price }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price" class="form-control select-bg @error('price') border-danger @enderror"/ step="any">
                         </div>
-                    </div>
-                    <div class="col-md-6">
+                    </div> --}}
+                    {{-- <div class="col-md-6">
                         <div class="input-select">
                             <x-forms.label name="State" required="true" />
                             <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
@@ -118,7 +118,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -128,7 +128,13 @@
                                 class="form-control select-bg @error('area_id') border-danger @enderror">
                                 <option value="" disabled>{{ __('Select City') }}</option>
                             </select> -->
-                            <input type="text" name="area_name" value="{{ $adsinfo->area_name }}" class="form-control select-bg  border-danger" placeholder="City name">
+                            <select name="area_name" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <option value="">Select One</option>
+                                @foreach ($state as $stat)
+                                    <option value="{{$stat->id}}" @if($adsinfo->area_name == $stat->id) selected @endif>{{$stat->name}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="text" name="area_name" value="{{ $adsinfo->area_name }}" class="form-control select-bg  border-danger" placeholder="City name"> --}}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -144,7 +150,7 @@
                             <x-forms.label name="ad_description" for="description" required="true" />
                             <textarea onkeyup="countChars(this);" name="description" placeholder="{{ __('Description') }}..." id="description" class="@error('description') border-danger @enderror">{!! $ad->description !!}</textarea>
                         </div>
-                        <div class="input-field--textarea">
+                        {{-- <div class="input-field--textarea">
                             <x-forms.label name="feature" for="feature" />
                             <div id="multiple_feature_part">
                                 <div class="row">
@@ -175,7 +181,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="row">
@@ -286,7 +292,7 @@
 
         $(document).ready(function() {
             // ===== Select2 ===== \\
-            
+
             $('#townn').select2({
                 // theme: 'bootstrap-5',
                 allowClear: Boolean($(this).data('allow-clear')),

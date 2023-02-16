@@ -109,8 +109,8 @@
                                                 <p class="text--body-4">{{ __('plan_name') }} :
                                                     <span>
                                                         @if($userplan->plans_id == 1)
-                                                            Free 
-                                                        @else 
+                                                            Free
+                                                        @else
                                                             {{$plans->name }}
                                                         @endif
                                                     </span>
@@ -127,7 +127,7 @@
                                             <li class="dashboard__benefits-item">
                                                     <i class="fas fa-check-circle" style="color:#108ab1; margin-right: 5px; font-size: 21px;"></i>
                                                     <p class="text--body-3">
-                                                        {{ __('Featured Ads limit is ') }} : {{ $userplan->featured_limit }} 
+                                                        {{ __('Featured Ads limit is ') }} : {{ $userplan->featured_limit }}
                                                     </p>
                                             </li>
                                             <li class="dashboard__benefits-item">
@@ -171,9 +171,9 @@
                                                  <div class="cards__info-top">
                                                      <h6 class="text--body-4 cards__category-title">
                                                          <span class="icon">
-                                                             <i class="{{ $ad->category->icon }}"></i>
+                                                             <i class="{{ $ad->category->icon ?? '' }}"></i>
                                                          </span>
-                                                         {{ $ad->category->name }}
+                                                         {{ $ad->category->name ?? '' }}
                                                      </h6>
                                                      <a href="{{ route('frontend.addetails', $ad->slug) }}"
                                                          class="text--body-3-600 cards__caption-title">
@@ -181,7 +181,8 @@
                                                      </a>
                                                  </div>
                                                  <div class="cards__info-bottom">
-                                                     <span class="cards__price-title text--body-3-600">${{ $ad->price }}
+                                                     <span class="cards__price-title text--body-3-600">
+                                                        $ {{ $ad->price ?? '0' }}
                                                      </span>
                                                      <ul class="edit">
                                                          <li class="edit-icon">

@@ -18,7 +18,7 @@ Route::middleware(['auth:super_admin', 'setlang'])->group(function () {
     });
 
     // Town CRUD
-    Route::prefix('admin/state')->group(function () {
+    Route::prefix('admin/city')->group(function () {
         Route::get('/', [StateController::class, 'index'])->name('module.town.index');
         Route::get('create', [StateController::class, 'create'])->name('module.town.create');
         Route::post('store', [StateController::class, 'store'])->name('module.town.store');
@@ -26,16 +26,16 @@ Route::middleware(['auth:super_admin', 'setlang'])->group(function () {
         Route::put('update/{town}', [StateController::class, 'update'])->name('module.town.update');
         Route::delete('delete/{town}', [StateController::class, 'destroy'])->name('module.town.delete');
     });
-    
-    Route::prefix('admin/city')->group(function () {
-        Route::get('/', [CityController::class, 'index'])->name('module.area.index');
-        Route::get('create', [CityController::class, 'create'])->name('module.area.create');
-        Route::post('store', [CityController::class, 'store'])->name('module.area.store');
-        Route::get('edit/{id}', [CityController::class, 'edit'])->name('module.area.edit');
-        Route::post('update/{id}', [CityController::class, 'update'])->name('module.area.update');
-        Route::get('delete/{id}', [CityController::class, 'destroy'])->name('module.area.delete');
-        Route::get('country-get-ajax/{countryid}', [CityController::class, 'countryGetAjax']);
-    });
+
+    // Route::prefix('admin/city')->group(function () {
+    //     Route::get('/', [CityController::class, 'index'])->name('module.area.index');
+    //     Route::get('create', [CityController::class, 'create'])->name('module.area.create');
+    //     Route::post('store', [CityController::class, 'store'])->name('module.area.store');
+    //     Route::get('edit/{id}', [CityController::class, 'edit'])->name('module.area.edit');
+    //     Route::post('update/{id}', [CityController::class, 'update'])->name('module.area.update');
+    //     Route::get('delete/{id}', [CityController::class, 'destroy'])->name('module.area.delete');
+    //     Route::get('country-get-ajax/{countryid}', [CityController::class, 'countryGetAjax']);
+    // });
 
 });
 

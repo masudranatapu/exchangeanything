@@ -20,7 +20,7 @@
                                 stroke-linejoin="round"></path>
                         </svg>
                     </span>
-                    {{ $ad->category->name }}
+                    {{ $ad->category->name ?? '' }}
                 </h6>
                 <a href="ad-details.html" class="text--body-3-600 cards__caption-title">
                     {{ \Illuminate\Support\Str::limit($ad->title, 25, $end = '...') }}

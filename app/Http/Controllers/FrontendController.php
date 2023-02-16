@@ -261,7 +261,7 @@ class FrontendController extends Controller
                 ->where('id', '!=', $ad->id)
                 ->active()
                 ->latest('id')->take(10)->get());
-            
+
             if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
                 return abort(404);
             } else {
@@ -381,30 +381,34 @@ class FrontendController extends Controller
         }else {
             $time = Carbon::now()->addMonth(1);
         }
-        
+
         $request->validate([
-            'name' => "required",
-            'username' => "required|unique:customers,username",
+            // 'name' => "required",
+            // 'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
-            'phone' => "required",
-            'region_id' => "required",
+            // 'phone' => "required",
+            // 'region_id' => "required",
             'password' => "required|confirmed|min:8|max:50",
         ]);
 
-        $phone = $request->phone;
+        // $phone = $request->phone;
 
         $customer = Customer::create([
-            'code' => generateId(),
-            'name' => $request->name,
-            'web' => $request->web,
-            'username' => $request->username,
+            // 'code' => generateId(),
+            // 'name' => $request->name,
+            // 'web' => $request->web,
+            // 'username' => explode('@', $request->email)[0].rand(1, 999),
             'email' => $request->email,
-            'phone' => $phone,
-            'region_id' => $request->region_id,
-            'country_code' => $request->countrycode,
-            'iso2' => $request->iso2,
+            // 'phone' => $phone,
+            // 'region_id' => $request->region_id,
+            // 'country_code' => $request->countrycode,
+            // 'iso2' => $request->iso2,
             'subscribe' => 1,
             'password' => bcrypt($request->password),
+        ]);
+
+        Customer::where('id', $customer->id)->update([
+            'username' => explode('@', $request->email)[0].$customer->id,
         ]);
 
         $usersubscribe = Customer::where('email', $request->email)->first();
@@ -421,7 +425,7 @@ class FrontendController extends Controller
         } else {
             Email::create(['email' => $request->email]);
         }
-        
+
         UserPlan::insert([
             'customer_id' => $customer->id,
             'plans_id' => $plan->id,

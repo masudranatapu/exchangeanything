@@ -47,7 +47,7 @@ class DashboardController extends Controller
 
 
         $userplan = UserPlan::where('customer_id', $authUser->id)->first();
-        
+
         // bar chart by year
         $bar_chart_datas = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 

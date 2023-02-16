@@ -29,12 +29,12 @@
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('customer') }}</th>
-                                        <td width="80%">{{ $ad->customer->name ?? '' }}</td>
+                                        <td width="80%">{{ $ad->customer->name ?? $ad->customer->username }}</td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('price') }}</th>
                                         <td width="80%">
-                                            $ {{ $ad->price }}
+                                            $ {{ $ad->price ?? 0 }}
                                             <span style="font-size: 15px;">
                                                 @if ($ad->price_method == 2)
                                                     <sub>Per Hour</sub>
@@ -50,45 +50,44 @@
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('category') }}</th>
                                         <td width="80%">{{ $ad->category->name ?? '' }}</td>
-                                    </tr>
-                                    
-                                    <tr class="mb-5">
+                                    </tr> --}}
+                                    {{-- <tr class="mb-5">
                                         @if (!empty($ad->subcategory->name))
                                         <th width="20%">{{ __('subcategory') }}</th>
                                         <td width="80%">{{ $ad->subcategory->name ?? '' }}</td>
                                         @endif
-                                    </tr>
+                                    </tr> --}}
                                     <!-- <tr class="mb-5">
                                         <th width="20%">{{ __('brand') }}</th>
                                         <td width="80%">{{ $ad->brand->name ?? '' }}</td>
                                     </tr> -->
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('Brand Name') }}</th>
                                         <td width="80%">{{ $ad->brand_name ?? ' N/L' }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('location') }}</th>
                                         <td width="80%">{{ $ad->city->name ?? '' }}, {{ $ad->town->name ?? '' }}</td>
                                     </tr>
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('model') }}</th>
                                         <td width="80%">{{ $ad->model ?? '' }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('condition') }}</th>
                                         <td width="80%">{{ ucfirst($ad->condition) ?? '' }}</td>
                                     </tr>
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('authenticity') }}</th>
                                         <td width="80%">{{ ucfirst($ad->authenticity) ?? '' }}</td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('negotiable') }}</th>
                                         <td width="80%">{{ $ad->negotiable ? 'Yes':'No' }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('featured') }}</th>
                                         <td width="80%">{{ $ad->featured ? 'Yes':'No' }}</td>
@@ -106,7 +105,7 @@
                                         <th width="20%">{{ __('description') }}</th>
                                         <td width="80%">{!! $ad->description !!}</td>
                                     </tr>
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('features') }}</th>
                                         <td width="80%">
                                             <ul>
@@ -118,7 +117,7 @@
                                                 @endforelse
                                             </ul>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('galleries') }}</th>
                                         <td width="80%">
