@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="banner banner--three">
-        <div class="row">
+        <div class="row" style="margin-top: 70px;">
             <div class="col-lg-7">
                 <div class="home_banner">
                     <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true"
