@@ -22,7 +22,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('frontend.post.update', $ad->slug) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('frontend.post.update', $ad->slug) }}" method="POST" enctype="multipart/form-data" id="adpostform">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -254,7 +254,7 @@
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">
-                    <button type="submit" class="btn btn--lg text-light">
+                    <button type="submit" class="btn btn--lg text-light" id="adpostsubmitbutton">
                         {{ __('Update') }}
                     </button>
                 </div>
@@ -283,6 +283,24 @@
     <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/fileinput.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/plugins/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
     <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
+    <script>
+        var form = document.getElementById("adpostform");
+        var button = document.getElementById("adpostsubmitbutton");
+
+        $("#adpostsubmitbutton").click(function() {
+
+            $("#adpostsubmitbutton").html(`
+                <span id="">
+                    <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
+                    Ad updateing ...
+                </span>
+            `);
+
+            button.disabled = true;
+
+            form.submit();
+        });
+    </script>
     <script>
         $('.input-images-2').imageUploader({
             maxSize: 10 * 1024 * 1024,

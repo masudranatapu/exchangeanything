@@ -4,25 +4,32 @@
 
 @section('post-ad-content')
     @php
-        $state = DB::table('towns')->orderBy('name')->get();
+        $state = DB::table('towns')
+            ->orderBy('name')
+            ->get();
         $user = auth('customer')->user();
-        $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
+        $user_plan = DB::table('user_plans')
+            ->where('customer_id', auth('customer')->user()->id)
+            ->first();
     @endphp
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
-            <form action="{{ route('frontend.post.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('frontend.post.store') }}" method="POST" enctype="multipart/form-data" id="adpostform">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="input-field">
                             <label for="">Title <span class="text-danger">*</span></label>
-                            <input value="{{ old('title') }}" name="title" type="text" placeholder="{{ __('title') }}" id="adname" class="@error('title') border-danger @enderror" required>
+                            <input value="{{ old('title') }}" name="title" type="text"
+                                placeholder="{{ __('title') }}" id="adname"
+                                class="@error('title') border-danger @enderror" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
-                            <label >condition <span class="text-danger">*</span></label>
-                            <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
+                            <label>condition <span class="text-danger">*</span></label>
+                            <select required name="condition" id="conditionss"
+                                class="form-control select-bg @error('condition') border-danger @enderror">
                                 <option value="New">{{ __('new') }}</option>
                                 <option value="Like New"> {{ __('like_new') }}</option>
                                 <option value="Excellent">{{ __('excellent') }}</option>
@@ -55,16 +62,16 @@
                         </div>
                     </div> --}}
                     <!-- <div class="col-md-6">
-                        <div class="input-field">
-                            <label for="">Brand <span class="text-danger">*</span></label>
-                            <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                <option value="">{{ __('select_brand') }}</option>
-                                @foreach ($brands as $brand)
-                                    <option {{ old('brand_id') == $brand->id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> -->
+                            <div class="input-field">
+                                <label for="">Brand <span class="text-danger">*</span></label>
+                                <select name="brand_id" id="brand" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                    <option value="">{{ __('select_brand') }}</option>
+                                    @foreach ($brands as $brand)
+    <option {{ old('brand_id') == $brand->id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+    @endforeach
+                                </select>
+                            </div>
+                        </div> -->
                     {{-- <div class="col-md-6">
                         <div class="input-field">
                             <label>Brand Name <span class="text-danger">*</span></label>
@@ -102,7 +109,7 @@
                             <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                                 <option value="">Select One</option>
                                 @foreach ($state as $stat)
-                                    <option @if($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
+                                    <option @if ($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -113,12 +120,14 @@
                         <div class="input-select">
                             <label for="">City <span class="text-danger"> * </span></label>
                             <!-- <select name="area_id" id="areaid" class="form-control select-bg @error('area_id') border-danger @enderror">
-                                <option disabled selected>{{ __('Select City ') }}</option>
-                            </select> -->
-                            <select required name="area_name" id="townn" class="form-control select-bg @error('area_name') border-danger @enderror">
+                                    <option disabled selected>{{ __('Select City ') }}</option>
+                                </select> -->
+                            <select required name="area_name" id="townn"
+                                class="form-control select-bg @error('area_name') border-danger @enderror">
                                 <option value="">Select One</option>
                                 @foreach ($state as $stat)
-                                    <option @if($user->region_id == $stat->id) selected @endif value="{{$stat->id}}">{{$stat->name}}</option>
+                                    <option @if ($user->region_id == $stat->id) selected @endif value="{{ $stat->id }}">
+                                        {{ $stat->name }}</option>
                                 @endforeach
                             </select>
                             {{-- <input type="text" name="area_name" value="{{ old('area_name')}}" required class="form-control select-bg @error('area_name') border-danger @enderror" placeholder="City name"> --}}
@@ -127,7 +136,8 @@
                     <div class="col-md-6">
                         <div class="input-select">
                             <label for="">Postal Code</label>
-                            <input type="number" min="1" name="postal_code" value="{{ old('postal_code')}}" class="form-control select-bg" placeholder="Postal code">
+                            <input type="number" min="1" name="postal_code" value="{{ old('postal_code') }}"
+                                class="form-control select-bg" placeholder="Postal code">
                         </div>
                     </div>
                 </div>
@@ -150,7 +160,8 @@
                     <div class="col-md-12">
                         <div class="input-field--textarea">
                             <label for="">Ad description <span class="text-danger">*</span></label>
-                            <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..." id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
+                            <textarea required onkeyup="countChars(this);" name="description" placeholder="{{ __('Descriptions') }}..."
+                                id="description" class="@error('description') border-danger @enderror">{!! old('description') !!}</textarea>
                             <p style="display: none;" id="charNum">0 characters</p>
                         </div>
                         {{-- <div class="input-field--textarea">
@@ -180,23 +191,24 @@
                 </div>
                 <div class="row mt-1">
                     <!-- <div class="col-6 col-md-3">
-                        <div class="form-check">
-                            <input name="negotiable" type="hidden" value="0">
-                                <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="Price_Negotiable" {{ old('negotiable')== "1" ? 'checked' : '' }}/>
-                            <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
-                        </div>
-                    </div> -->
-                    @if($user_plan->featured_limit > 0)
+                            <div class="form-check">
+                                <input name="negotiable" type="hidden" value="0">
+                                    <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="Price_Negotiable" {{ old('negotiable') == '1' ? 'checked' : '' }}/>
+                                <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
+                            </div>
+                        </div> -->
+                    @if ($user_plan->featured_limit > 0)
                         <div class="col-6 col-md-3">
                             <div class="form-check">
-                                <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ old('featured')== "1" ? 'checked' : '' }} />
+                                <input value="1" name="featured" type="checkbox" class="form-check-input"
+                                    id="checkfeatured" {{ old('featured') == '1' ? 'checked' : '' }} />
                                 <label for="checkfeatured" class="form-check-label">Make As Featured </label>
                             </div>
                         </div>
                     @endif
                 </div>
                 <div class="dashboard-post__action-btns">
-                    <button type="submit" class="btn text-white btn--lg">
+                    <button type="submit" class="btn text-white btn--lg" id="adpostsubmitbutton">
                         {{ __('Publish') }}
                     </button>
                 </div>
@@ -210,9 +222,11 @@
         .select2-selection__rendered {
             line-height: 38px !important;
         }
+
         .select2-container .select2-selection--single {
             height: 42px !important;
         }
+
         .select2-selection__arrow {
             height: 38px !important;
         }
@@ -225,6 +239,24 @@
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
     <script src="{{ asset('frontend') }}/js/axios.min.js"></script>
     <script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
+    <script>
+        var form = document.getElementById("adpostform");
+        var button = document.getElementById("adpostsubmitbutton");
+
+        $("#adpostsubmitbutton").click(function() {
+
+            $("#adpostsubmitbutton").html(`
+                <span id="">
+                    <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
+                    Ad publishing ...
+                </span>
+            `);
+
+            button.disabled = true;
+
+            form.submit();
+        });
+    </script>
     <script>
         $('.input-images-2').imageUploader({
             maxSize: 10 * 1024 * 1024,
@@ -253,11 +285,9 @@
                 closeOnSelect: !$(this).attr('multiple'),
             });
         });
-
     </script>
 
     <script type="text/javascript">
-
         function add_features_field() {
             $("#multiple_feature_part").append(`
                 <div class="row removeddiv">
@@ -276,7 +306,6 @@
         $(document).on("click", "#remove_item", function() {
             $(this).parent().parent('div').remove();
         });
-
     </script>
     <script>
         $(document).ready(function() {
@@ -298,7 +327,8 @@
             var strLength = obj.value.length;
 
             if (strLength < 150) {
-                document.getElementById("charNum").innerHTML = '<span style="color: red;">The ad description must be at least 150 characters.</span>';
+                document.getElementById("charNum").innerHTML =
+                    '<span style="color: red;">The ad description must be at least 150 characters.</span>';
             } else {
                 $("#charNum").hide();
             }
@@ -327,7 +357,8 @@
                     $('#ad_subcategory').empty();
                     $.each(res.data, function(key, subcat) {
                         var matched = parseInt(subct_id) === subcat.id ? true : false
-                        $('#ad_subcategory').append( `<option ${matched ? 'selected':''} value="${subcat.id}">${subcat.name}</option>`
+                        $('#ad_subcategory').append(
+                            `<option ${matched ? 'selected':''} value="${subcat.id}">${subcat.name}</option>`
                         );
                     });
                 } else {

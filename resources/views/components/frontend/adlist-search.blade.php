@@ -9,7 +9,7 @@
                     <div class="search__content-item">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
                             <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..." name="keyword"
-                                value="{{ request('keyword', '') }}" required />
+                                value="{{ request('keyword', '') }}" @if (Route::is('frontend.index')) required  @endif>
 
                         </div>
                     </div>
@@ -50,6 +50,7 @@
                                     $town_name = explode(',', request('town'));
                                 @endphp
                                 <select name="town" id="town" style="width: calc(100% - 60px);">
+                                    <option disabled selected>Select City</option>
                                     @foreach ($towns as $town)
                                         <option value="{{ $town->name }}"
                                             {{ in_array($town->name, $town_name) ? 'selected' : '' }}>
