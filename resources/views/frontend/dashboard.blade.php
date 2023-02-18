@@ -182,7 +182,7 @@
                                                  </div>
                                                  <div class="cards__info-bottom">
                                                      <span class="cards__price-title text--body-3-600">
-                                                        $ {{ $ad->price ?? '0' }}
+                                                        For Exchange
                                                      </span>
                                                      <ul class="edit">
                                                          <li class="edit-icon">
