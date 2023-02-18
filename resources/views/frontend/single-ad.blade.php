@@ -55,7 +55,7 @@
             <div class="banner__title text--display-2 animate__animated animate__bounceInDown">
                 {{ $cms->index3_title }}
             </div>
-            
+
             <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="true" :total-ads="$total_ads" :marginTop="124" />
         </div>
     </div> --}}
@@ -83,7 +83,7 @@
                             <x-ad-details.ad-wishlist :id="$ad->id" :price="$ad->price" />
                             {{-- ad contact --}}
                             <x-ad-details.ad-contact :id="$ad->id" :phone="$ad->phone" :name="$ad->customer->username" :callingtime="$ad->estimate_calling_time" :numberShowingPermission="$ad->phone_number_showing_permission" :immediateAccessToNewAds="$immediate_access_to_new_ads" />
-                                
+
                             {{-- ad customer info --}}
                             <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->website_link" :area="$ad->area_name"/>
                         </div>
@@ -122,7 +122,7 @@
     <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/venobox.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
-    
+
     <!-- lightgallery plugins -->
     <script src="{{asset('lightgallery/lightgallery.js')}}"></script>
     <script src="{{asset('lightgallery/thumbnail.js')}}"></script>
@@ -149,7 +149,7 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
-            
+
             // ===== Select2 ===== \\
             $('#town').select2({
                 theme: 'bootstrap-5',
