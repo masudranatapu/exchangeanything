@@ -19,7 +19,7 @@ class FilterController extends Controller
      */
     public function search(Request $request)
     {
-        $query = Ad::activeCategory()->with('city', 'town' , 'category')->active();
+        $query = Ad::where('status', 'active');
 
         if ($request->has('category') && $request->category != null) {
             $category = $request->category;
@@ -36,7 +36,6 @@ class FilterController extends Controller
                 $q->whereIn('slug', $subcategory);
             });
         }
-
         if ($request->has('keyword') && $request->keyword != null) {
             $query->where('title', 'LIKE', "%$request->keyword%");
         }
