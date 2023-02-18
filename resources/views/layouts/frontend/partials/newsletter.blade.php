@@ -1,4 +1,4 @@
-{{-- 
+{{--
     <section class="subscribe bgcolor--g">
         <div class="container">
             <div class="subscribe__content">
@@ -8,7 +8,7 @@
                         {{ $cms->newsletter_content }}
                     </p>
                 </div>
-                
+
             </div>
         </div>
     </section>

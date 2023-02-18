@@ -46,7 +46,7 @@
                 @endif
             </div>
             <div class="cards__info-bottom">
-                <span class="cards__price-title text--body-3-600">{{ changeCurrency($ad->price) }}</span>
+                <span class="cards__price-title">For Exchange</span>
                 {{ $slot }}
             </div>
         </div>

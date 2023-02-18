@@ -38,8 +38,8 @@
                         {{$ad->town->name ?? ''}}
                     @endif
                 </h5>
-                <span class="cards__price-title text--body-3-600">
-                    {{ changeCurrency($ad->price ?? '0') }}
+                <span class="cards__price-title">
+                    For Exchange
                     @if ($ad->price_method == 2)
                         <sub>Per Hour</sub>
                     @elseif ($ad->price_method == 3)

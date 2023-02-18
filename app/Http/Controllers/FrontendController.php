@@ -295,13 +295,14 @@ class FrontendController extends Controller
 
     public function ad_list()
     {
-        $data['adlistings'] = Ad::activeCategory()->with(['category', 'city'])->latest('id')->active()->paginate(21);
+        $data['adlistings'] = Ad::where('status', 'active')->paginate(12);
+        // dd($data['adlistings']);
         $data['categories'] = Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
         })->latest('id')->get();
         $data['cities'] = City::latest()->get();
         $data['towns'] = Town::orderBy('name')->get();
-        $data['adMaxPrice'] = $price = \DB::table('ads')->max('price');
+        $data['adMaxPrice'] = $price = DB::table('ads')->max('price');
         $categories = CategoryResource::collection(Category::active()->latest()->get());
         $data['total_ads'] = Ad::activeCategory()->active()->count();
         return view('frontend.ad-list', $data);

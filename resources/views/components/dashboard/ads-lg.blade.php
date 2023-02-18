@@ -17,7 +17,7 @@
         </div>
         <div class="card-edit__item product-price">
             <span class="text--body-4">
-                {{ changeCurrency($ad->price) }}
+                For Exchange
             </span>
         </div>
         @if (!request()->routeIs('frontend.favourites'))

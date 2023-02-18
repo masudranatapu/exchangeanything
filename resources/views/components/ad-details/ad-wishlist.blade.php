@@ -2,8 +2,8 @@
     @php
         $add = Modules\Ad\Entities\Ad::find($id);
     @endphp
-    <h2 class="text--heading-2">
-        {{ changeCurrency($price) }}
+    <p class="">
+        For Exchange
         @if ($add->negotiable == 1)
             <step style="font-size: 14px;
         font-weight: 300;">Negotiable</step>
@@ -21,7 +21,7 @@
                 <sub>Per Year</sub>
             @endif
         </span>
-    </h2>
+    </p>
 
     <form action="{{ route('frontend.add.wishlist') }}" method="POST">
         @csrf
