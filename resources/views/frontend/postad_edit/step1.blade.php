@@ -292,7 +292,7 @@
             $("#adpostsubmitbutton").html(`
                 <span id="">
                     <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
-                    Ad updateing ...
+                    Ad updating ...
                 </span>
             `);
 
