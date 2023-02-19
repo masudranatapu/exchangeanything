@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
     @if (auth('customer')->check() &&
-        isset(session('user_plan')->ad_limit) &&
-        session('user_plan')->ad_limit < $settings->free_ad_limit)
+            isset(session('user_plan')->ad_limit) &&
+            session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
@@ -46,7 +46,66 @@
             </div>
         </div>
     </div>
-
+    @if ($viewadshistory->count() > 0)
+        <section class="section recent-post">
+            <div class="container">
+                <h2 class="text--heading-1 section__title">{{ __('Recently Views') }}</h2>
+                <div class="row">
+                    @foreach ($viewadshistory as $adshistory)
+                        @php
+                            $ads = Modules\Ad\Entities\Ad::where('id', $adshistory->property_id)->first();
+                        @endphp
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            @php
+                                $area = DB::table('areas')
+                                    ->where('id', $ads->area_id)
+                                    ->first();
+                            @endphp
+                            <div class="card_product">
+                                <div class="card_img">
+                                    <a href="{{ route('frontend.addetails', $ads->slug) }}" class="cards__img-wrapper">
+                                        @if ($ads->thumbnail)
+                                            <img src="{{ asset($ads->thumbnail) }}" alt="{{ $ads->title }}"
+                                                class="img-fluid" />
+                                        @else
+                                            <img src="{{ asset('backend/image/default-ad.png') }}" alt="card-img"
+                                                class="img-fluid" />
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="card_content">
+                                    <h6>
+                                        {{ date('d M , Y', strtotime($ads->created_at)) }}
+                                        <span class="float-end">
+                                            <a href="{{ route('frontend.seller.profile', $ads->customer->username) }}">
+                                                {{ '@' . $ads->customer->username }}
+                                            </a>
+                                        </span>
+                                    </h6>
+                                    <h3>
+                                        <a href="{{ route('frontend.addetails', $ads->slug) }}"
+                                            class="text--body-3-600 cards__caption-title">
+                                            {{ \Illuminate\Support\Str::limit($ads->title, 23, $end = '...') }}
+                                        </a>
+                                    </h3>
+                                    <div class="cards__info-bottom">
+                                        <h5 class="cards__location text--body-4">
+                                            <span class="icon">
+                                                <x-svg.location-icon width="20" height="20" stroke="#0088cc" />
+                                            </span>
+                                            @if ($ads->town)
+                                                {{ $ads->town->name ?? '' }}
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
     <!-- Poupular category Section start  -->
     {{-- <section class="section popular-category">
         <div class="container">
@@ -101,8 +160,8 @@
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
                             <!--  <span class="icon--right">
-                                    <x-svg.right-arrow-icon />
-                                </span> -->
+                                        <x-svg.right-arrow-icon />
+                                    </span> -->
                         </a>
                     </div>
                 @endif
@@ -125,8 +184,8 @@
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
                             <!-- <span class="icon--right">
-                                    <x-svg.right-arrow-icon />
-                                </span> -->
+                                        <x-svg.right-arrow-icon />
+                                    </span> -->
                         </a>
                     </div>
                 @endif

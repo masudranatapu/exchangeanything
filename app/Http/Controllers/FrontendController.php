@@ -148,6 +148,7 @@ class FrontendController extends Controller
         $data['plans'] = $plans;
         $data['total_ads'] = Ad::activeCategory()->active()->count();
         $data['townsandcitys'] = DB::table('towns')->limit(10)->get();
+        $data['viewadshistory'] = DB::table('history_property_browsing')->where('user_agent', $_SERVER['HTTP_USER_AGENT'])->latest()->limit(8)->get();
 
         currentCurrency();
 
