@@ -110,7 +110,7 @@
     <div class="mobile-search-filed">
         <div class="container">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for anything">
+                <input type="text" class="form-control" placeholder="Search ExchangeAnything">
                 <button class="btn btn--lg input-group-text" type="submit">
                     <span class="icon--left">
                         <x-svg.search-icon stroke="#fff" />

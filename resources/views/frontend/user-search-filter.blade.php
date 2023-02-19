@@ -110,7 +110,7 @@
         <div class="container">
              <div class="search-field-wrap">
                 <div class="input-field">
-                    <input type="text" placeholder="Search for anything">
+                    <input type="text" placeholder="Search ExchangeAnything">
                     <span class="icon icon--left">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -156,7 +156,7 @@
         <div class="container">
             <!-- <div class="search-field-wrap">
                 <div class="input-field">
-                    <input type="text" placeholder="Search for anything">
+                    <input type="text" placeholder="Search ExchangeAnything">
                 </div>
                 <div class="search__content-item">
                     <button class="btn btn--lg" type="submit">
@@ -168,7 +168,7 @@
                 </div>
             </div> -->
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for anything">
+                <input type="text" class="form-control" placeholder="Search ExchangeAnything">
                 <button class="btn btn--lg input-group-text" type="submit">
                     <span class="icon--left">
                         <x-svg.search-icon stroke="#fff" />
