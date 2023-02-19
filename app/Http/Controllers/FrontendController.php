@@ -98,7 +98,7 @@ class FrontendController extends Controller
             $q->where('badge', true);
         })->count();
 
-        return view('frontend.index', $data);
+        // return view('frontend.index', $data);
     }
 
 
@@ -124,7 +124,7 @@ class FrontendController extends Controller
         $data['towns'] = Town::orderBy('name')->get();
         $data['total_ads'] = Ad::activeCategory()->active()->count();
 
-        return view('frontend.index_02', $data);
+        // return view('frontend.index_02', $data);
     }
 
     /**
