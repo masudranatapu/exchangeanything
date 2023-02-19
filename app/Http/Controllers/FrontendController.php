@@ -271,7 +271,7 @@ class FrontendController extends Controller
                 $new_history['country_name']    = $brwInfo['geoplugin_countryName'];
                 $new_history['continent_name']  = $brwInfo['geoplugin_continentName'];
                 $new_history['timezone']        = $brwInfo['geoplugin_timezone'];
-                $new_history['created_at']      = $brwInfo['geoplugin_timezone'];
+                $new_history['created_at']      = date('Y-m-d',strtotime($brwInfo['geoplugin_timezone']));
             }
 
             $new_history['property_id'] = $ad->id;
