@@ -3036,7 +3036,7 @@ h2.text--heading-1.section__title {
         padding: 0px;
     }
 
-   
+
     }
 
 @media (max-width: 1199px) {
@@ -6183,10 +6183,15 @@ h2.text--heading-1.section__title {
     }
 
     .banner--three .banner__title {
-        font-size: 28px;
-        line-height: 42px;
+        font-size: 20px;
+        line-height: 27px;
         margin-bottom: 0px;
     }
+
+    .input-group .input-group-text {
+        font-size: 0;
+    }
+
 }
 
 @media -sass-debug-info {
@@ -29874,7 +29879,7 @@ span.category_name i {
      a.navigation-bar__logo.auth_logo {
         position: inherit;
     }
-} 
+}
 
 
 @media screen and (max-width: 550px){

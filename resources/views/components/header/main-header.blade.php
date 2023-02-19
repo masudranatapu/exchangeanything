@@ -110,10 +110,10 @@
                     </li>
 
                     @if ($priceplan_enable)
-                        <li class="menu__item">
+                        {{-- <li class="menu__item">
                             <a href="{{ route('frontend.priceplan') }}"
                                 class="menu__link {{ Route::is('frontend.priceplan') ? 'active' : '' }}">{{ __('pricing') }}</a>
-                        </li>
+                        </li> --}}
                     @endif
                 </div>
                 <a href="{{ route('customer.login') }}"

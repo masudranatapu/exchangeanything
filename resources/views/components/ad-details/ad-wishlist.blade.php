@@ -1,31 +1,6 @@
 <div class="product-item__sidebar-item product-price">
-    @php
-        $add = Modules\Ad\Entities\Ad::find($id);
-    @endphp
-    <p class="">
-        {{-- For Exchange --}}
-        @if ($add->negotiable == 1)
-            <step style="font-size: 14px;
-        font-weight: 300;">Negotiable</step>
-        @endif
-        <span style="font-size: 15px;">
-            @if ($add->price_method == 2)
-                <sub>Per Hour</sub>
-            @elseif ($add->price_method == 3)
-                <sub>Per Day</sub>
-            @elseif ($add->price_method == 4)
-                <sub>Per Week</sub>
-            @elseif ($add->price_method == 5)
-                <sub>Per Month</sub>
-            @elseif ($add->price_method == 6)
-                <sub>Per Year</sub>
-            @endif
-        </span>
-    </p>
-
     <form action="{{ route('frontend.add.wishlist') }}" method="POST">
         @csrf
-
         @if (auth('customer')->check())
             <input type="hidden" name="ad_id" value="{{ $id }}">
             <input type="hidden" name="customer_id" value="{{ auth('customer')->user()->id }}">
