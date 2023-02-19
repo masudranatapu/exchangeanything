@@ -1,4 +1,4 @@
-{{--  
+{{--
 <div class="location-card">
     <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="location-card__img-wrapper">
         <img class="rounded" src="{{ $city->image }}" alt="location">
@@ -18,18 +18,19 @@
 </div>
 --}}
 
- <div class="location_card text-center">
-     <div class="country_flag mb-4">
+<div class="location_card text-center">
+    {{-- <div class="country_flag mb-4">
          <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}">
             <img class="rounded" src="{{ $city->image }}" alt="location">
         </a>
-     </div>
-     <div class="country_name">
-         <h3>{{ $city->name }} <span> ({{ $city->ad_count }}) </span></h3>
-         
-         <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}">
+     </div> --}}
+    @php
+        $totalads = Modules\Ad\Entities\Ad::where('town_id', $city->id)->get();
+    @endphp
+    <div class="country_name">
+        <h3>{{ $city->name }} <span> ({{ $totalads->count() }}) </span></h3>
+        <a href="{{ route('frontend.adlist.search', ['town' => $city->name]) }}">
             {{ __('view_ads') }}
-            
         </a>
-     </div>
- </div>
+    </div>
+</div>

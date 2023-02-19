@@ -84,7 +84,7 @@
                                  <p class="dashboard-card__title" style="font-size: 16px">{{ __('Status') }}:
                                      <span>{{ $userplan->is_active == 1 ? 'Active' : 'Pending' }}</span>
                                  </p>
-                                 @if ($userplan->is_active == 0)
+                                 {{-- @if ($userplan->is_active == 0)
                                      <p>
                                         You will be notified by email as soon as the account has been approved. (Please allow up to 24 hours).
                                     </p>
@@ -100,7 +100,7 @@
                                             </strong>
                                         </a>
                                     </p>
-                                @endif
+                                @endif --}}
                                  <br>
                                 <ul class="dashboard__benefits">
                                     <li class="dashboard__benefits-left">

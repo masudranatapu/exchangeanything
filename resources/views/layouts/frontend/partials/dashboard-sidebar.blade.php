@@ -46,7 +46,7 @@
                         {{ __('post_ads') }}
                     </a>
                 </li>
-            @else 
+            @else
                 <li class="dashboard__nav-item" title="Post an ads">
                     <a data-toggle="tooltip" title="Ads Post Form" href="{{ route('frontend.priceplan') }}"
                         class="dashboard__nav-link {{ request()->routeIs('frontend.post') ? 'active' : '' }}">
@@ -95,7 +95,7 @@
                     @endif
                 </a>
             </li>
-            <li class="dashboard__nav-item" title="Plans billing">
+            {{-- <li class="dashboard__nav-item" title="Plans billing">
                 <a data-toggle="tooltip" title="Your plan & billing information" href="{{ route('frontend.plans-billing') }}"
                     class="dashboard__nav-link  {{ request()->routeIs('frontend.plans-billing') ? 'active' : '' }}">
                     <span class="icon">
@@ -112,7 +112,7 @@
                     </span>
                     {{ __('get_certified') }}
                 </a>
-            </li>
+            </li> --}}
             <li class="dashboard__nav-item" title="Account settings">
                 <a data-toggle="tooltip" title="Customize your account" href="{{ route('frontend.account-setting') }}"
                     class="dashboard__nav-link {{ request()->routeIs('frontend.account-setting') ? 'active' : '' }}">

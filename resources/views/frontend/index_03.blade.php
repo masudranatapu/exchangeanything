@@ -138,13 +138,13 @@
     <x-others.how-it-work />
 
     <!-- popular-loc section start  -->
-    {{-- <section class="section popular-location">
+    <section class="section popular-location">
         <div class="container">
             <h2 class="text--heading-1 section__title">
-                {{ __('popular_location') }}
+                {{ __('Populars Cities') }}
             </h2>
             <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                @foreach ($topCities as $city)
+                @foreach ($townsandcitys as $city)
                     <div class="col">
                         <x-frontend.location.single-popular-location :city="$city">
                         </x-frontend.location.single-popular-location>
@@ -152,7 +152,7 @@
                 @endforeach
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <!-- price-plan section start  -->
     {{-- <section class="section price-plan">

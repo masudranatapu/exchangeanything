@@ -52,8 +52,8 @@
     dir="{{ langDirection() }}">
     <!-- Top bar start  -->
     @if (auth('customer')->check() &&
-        isset(session('user_plan')->ad_limit) &&
-        session('user_plan')->ad_limit < $settings->free_ad_limit)
+            isset(session('user_plan')->ad_limit) &&
+            session('user_plan')->ad_limit < $settings->free_ad_limit)
         @include('layouts.frontend.partials.top-bar')
     @endif
     <!-- Top bar end  -->
@@ -252,17 +252,17 @@
     <script>
         /*         $(document).ready(function () {
 
-                    //Image loader var to use when you need a function from object
-                    var auctionImages = null;
+                        //Image loader var to use when you need a function from object
+                        var auctionImages = null;
 
-                    // Create image loader plugin
-                    var imagesloader = $('[data-type=imagesloader]').imagesloader({
-                    maxFiles: 4
-                    , minSelect: 1
-                    , imagesToLoad: auctionImages
-                    });
+                        // Create image loader plugin
+                        var imagesloader = $('[data-type=imagesloader]').imagesloader({
+                        maxFiles: 4
+                        , minSelect: 1
+                        , imagesToLoad: auctionImages
+                        });
 
-                }); */
+                    }); */
     </script>
     <!-- <script>
         $('#country').on('change', function() {
@@ -276,7 +276,7 @@
                     success: function(data) {
                         var d = $('#town').empty();
                         $('#town').append(
-                        '<option value="" disabled selected> Select Region </option>');
+                            '<option value="" disabled selected> Select Region </option>');
                         $.each(data, function(key, value) {
                             $('#town').append('<option value="' + value.name + '">' + value
                                 .name + '</option>');
@@ -381,10 +381,10 @@
         });
     </script>
     <script>
-        $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
         });
-        </script>
+    </script>
 </body>
 
 </html>

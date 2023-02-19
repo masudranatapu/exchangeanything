@@ -147,6 +147,7 @@ class FrontendController extends Controller
         $data['towns'] = Town::orderBy('name')->get();
         $data['plans'] = $plans;
         $data['total_ads'] = Ad::activeCategory()->active()->count();
+        $data['townsandcitys'] = DB::table('towns')->limit(10)->get();
 
         currentCurrency();
 
@@ -224,14 +225,15 @@ class FrontendController extends Controller
      */
     public function adDetails(Ad $ad)
     {
-        try {
-            //code...
+        try
+        {
             if ($ad->status == 'pending') {
                 if ($ad->customer_id != auth('customer')->id()) {
 
                     abort(404);
                 }
             }
+
             $admin_ads = DB::table('admin_ads')->where('status', 1)->inRandomOrder()->first();
             $verified_seller = Customer::findOrFail($ad->customer_id)->email_verified_at;
             $ad->increment('total_views');
@@ -243,16 +245,53 @@ class FrontendController extends Controller
             $current = Carbon::now();
             $ad_post_day_diff = $ad->created_at->diffInDays($current);
 
-
             $plans_id = UserPlan::where('customer_id', $ad->customer->id)->first()->plans_id;
             $plan = Plan::find($plans_id);
-
 
             if ($plan->immediate_access_to_new_ads == 0 && $ad_post_day_diff < 10) {
 
                 $immediate_access_to_new_ads = 1;
             } else {
                 $immediate_access_to_new_ads = 0;
+            }
+
+            $brwInfo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+
+            $new_history['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $new_history['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+
+             if($brwInfo){
+                $new_history['city']            = $brwInfo['geoplugin_city'];
+                $new_history['region']          = $brwInfo['geoplugin_region'];
+                $new_history['region_code']     = $brwInfo['geoplugin_regionCode'];
+                $new_history['region_name']     = $brwInfo['geoplugin_regionName'];
+                $new_history['area_code']       = $brwInfo['geoplugin_areaCode'];
+                $new_history['country_code']    = $brwInfo['geoplugin_countryCode'];
+                $new_history['country_name']    = $brwInfo['geoplugin_countryName'];
+                $new_history['continent_name']  = $brwInfo['geoplugin_continentName'];
+                $new_history['timezone']        = $brwInfo['geoplugin_timezone'];
+                $new_history['created_at']      = $brwInfo['geoplugin_timezone'];
+            }
+
+            $new_history['property_id'] = $ad->id;
+
+            if(auth('customer')->check()){
+                $new_history['name']        = auth('customer')->user()->name;
+                $new_history['email']       = auth('customer')->user()->email;
+                $new_history['mobile']      = auth('customer')->user()->mobile;
+                $new_history['username']    = auth('customer')->user()->username;
+            }
+
+            $history = DB::table('history_property_browsing')
+                    ->select('id','counter')
+                    ->where(['property_id' => $ad->id, 'ip_address' => $_SERVER['REMOTE_ADDR'] ])
+                    ->first();
+
+            if($history){
+                $counter = $history->counter + 1;
+                DB::table('history_property_browsing')->where('id',$history->id)->update(['counter' => $counter]);
+            }else{
+                DB::table('history_property_browsing')->insert($new_history);
             }
 
             $lists = AdResource::collection(Ad::activeCategory()->select(['id', 'title', 'slug', 'price', 'thumbnail', 'category_id', 'city_id', 'area_id', 'town_id', 'area_name', 'price_method', 'estimate_calling_time'])
@@ -262,12 +301,11 @@ class FrontendController extends Controller
                 ->active()
                 ->latest('id')->take(10)->get());
 
-            if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
-                return abort(404);
-            } else {
-
-                return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'immediate_access_to_new_ads', 'towns', 'total_ads', 'admin_ads'));
-            }
+                if ($ad->status === 'expired' && $ad->customer->id !== auth('customer')->id()) {
+                    return abort(404);
+                }else {
+                    return view('frontend.single-ad', compact('ad', 'lists', 'verified_seller', 'categories', 'immediate_access_to_new_ads', 'towns', 'total_ads', 'admin_ads'));
+                }
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -286,7 +324,7 @@ class FrontendController extends Controller
         })->latest('id')->get();
         $data['cities'] = City::latest()->get();
         $data['towns'] = Town::orderBy('name')->get();
-        $data['adMaxPrice'] = $price = \DB::table('ads')->max('price');
+        $data['adMaxPrice'] = $price = DB::table('ads')->max('price');
         $categories = CategoryResource::collection(Category::active()->latest()->get());
         $data['total_ads'] = Ad::activeCategory()->active()->count();
 
@@ -687,6 +725,7 @@ class FrontendController extends Controller
         $ad->load('galleries');
         return view('frontend.single-ad-gallery', compact('ad'));
     }
+
     // public function adlistSearchAjax($name)
     // {
     //     $cities = City::where('name', $name)->first();

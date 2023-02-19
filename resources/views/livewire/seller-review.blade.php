@@ -1,6 +1,6 @@
 <div>
     <div>
-        @if ($seller->certified_seller == 1 && $seller->certificate_validity > now())
+        {{-- @if ($seller->certified_seller == 1 && $seller->certificate_validity > now()) --}}
             @if ($total != 0)
                 <div class="mb-3">
                     <h5>Total Review: <span style="color:#108AB1">({{ $total }})</span></h5>
@@ -113,17 +113,17 @@
                     </div>
                 @endforeach
             @endif
-        @else
+        {{-- @else
             @if (auth('customer')->check() && auth('customer')->user()->id == $seller->id)
                 <a class="btn" href="{{ route('frontend.getCertified') }}">Please unlock your Ratings & Reviews <i class="fa-solid fa-arrow-right"></i></a>
             @else
                 <h3>
-                    The seller Ratings & Reviews are locked 
+                    The seller Ratings & Reviews are locked
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="#dd1010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
                 </h3>
             @endif
-        @endif
+        @endif --}}
     </div>
 </div>

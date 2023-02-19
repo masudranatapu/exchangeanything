@@ -35,11 +35,11 @@ class AdPostController extends Controller
         $citis = City::orderBy('name', 'asc')->get();
         $authUser = auth('customer')->user();
         $user_plan = DB::table('user_plans')->where('customer_id', auth('customer')->user()->id)->first();
-        if($user_plan->ad_limit > 0){
+        // if($user_plan->ad_limit > 0){
             return view('frontend.postad.step1', compact('categories', 'brands', 'ad', 'authUser', 'citis'));
-        }else {
-            return redirect()->route('frontend.priceplan');
-        }
+        // }else {
+            // return redirect()->route('frontend.priceplan');
+        // }
     }
 
     public function getSubcategory($id)
