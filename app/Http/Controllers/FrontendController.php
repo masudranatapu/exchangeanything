@@ -141,7 +141,7 @@ class FrontendController extends Controller
         $featuredad = AdResource::collection($featured_ad_data);
         $latestAds = AdResource::collection(Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon'])->active()->where('featured', '!=', 1)->take(8)->latest()->get());
 
-        $data['featuredAds'] = Ad::where('featured', 1)->get();
+        $data['featuredAds'] = Ad::where('status', 'active')->get();
         $data['latestAds'] = collectionToResource($latestAds);
         $data['categories'] = collectionToResource($categories);
         $data['towns'] = Town::orderBy('name')->get();
