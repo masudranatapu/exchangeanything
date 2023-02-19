@@ -48,7 +48,9 @@
               <img src="{{ asset($ad->thumbnail) }}" class="rounded me-2" style="width:60px; height: 60px;" alt="image">
               <div class="pro_details">
                     <h2><a href="{{ route('frontend.addetails', $ad->slug) }}">{{$ad->title}}</a></h2>
-                    <span>For Exchange</span>
+                    <span>
+                        {{-- For Exchange --}}
+                    </span>
               </div>
           </div>
        </div>
