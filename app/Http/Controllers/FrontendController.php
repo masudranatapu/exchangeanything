@@ -280,7 +280,7 @@ class FrontendController extends Controller
      */
     public function adList()
     {
-        $data['adlistings'] = Ad::where('featured', 1)->activeCategory()->with(['category', 'city'])->latest('id')->active()->paginate(21);
+        $data['adlistings'] = Ad::where('status', 'active')->paginate(12);
         $data['categories'] = Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
         })->latest('id')->get();

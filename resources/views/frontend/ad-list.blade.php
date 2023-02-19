@@ -176,7 +176,7 @@
                                                         for="condition6" />
                                                 </div>
                                             </div>
-                                            <div class="list-sidebar__accordion-inner-body--item">
+                                            {{-- <div class="list-sidebar__accordion-inner-body--item">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="condition"
                                                         id="condition6" value="Salvage" onchange="changeFilter()"
@@ -184,7 +184,7 @@
                                                     <x-forms.label name="{{ __('Salvage') }}" class="form-check-label"
                                                         for="condition6" />
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <!-- <div class="list-sidebar__accordion-inner-body--item">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="condition"

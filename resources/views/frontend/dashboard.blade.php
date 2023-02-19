@@ -170,10 +170,11 @@
                                              <div class="cards__info">
                                                  <div class="cards__info-top">
                                                      <h6 class="text--body-4 cards__category-title">
-                                                         <span class="icon">
+                                                        {{ date('d M , Y', strtotime($ad->created_at)) }}
+                                                         {{-- <span class="icon">
                                                              <i class="{{ $ad->category->icon ?? '' }}"></i>
                                                          </span>
-                                                         {{ $ad->category->name ?? '' }}
+                                                         {{ $ad->category->name ?? '' }} --}}
                                                      </h6>
                                                      <a href="{{ route('frontend.addetails', $ad->slug) }}"
                                                          class="text--body-3-600 cards__caption-title">
@@ -181,8 +182,8 @@
                                                      </a>
                                                  </div>
                                                  <div class="cards__info-bottom">
-                                                     <span class="cards__price-title text--body-3-600">
-                                                        For Exchange
+                                                     <span class="cards__price-title">
+                                                        {{-- For Exchange --}}
                                                      </span>
                                                      <ul class="edit">
                                                          <li class="edit-icon">

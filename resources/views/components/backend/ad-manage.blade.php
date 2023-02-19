@@ -26,11 +26,11 @@
                 </td>
                 <td class="text-center" tabindex="0">
                     {{ $ad->title }}
-                    @if ($ad->featured)
+                    {{-- @if ($ad->featured)
                         <span class="badge badge-warning">
                             {{ __('featured') }}
                         </span>
-                    @endif
+                    @endif --}}
                 </td>
                 {{-- <td class="text-center" tabindex="0">
                     $ {{ $ad->price ?? 0 }}

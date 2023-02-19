@@ -3,7 +3,7 @@
         $add = Modules\Ad\Entities\Ad::find($id);
     @endphp
     <p class="">
-        For Exchange
+        {{-- For Exchange --}}
         @if ($add->negotiable == 1)
             <step style="font-size: 14px;
         font-weight: 300;">Negotiable</step>

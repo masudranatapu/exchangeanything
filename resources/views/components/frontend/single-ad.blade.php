@@ -3,11 +3,11 @@
         $area = DB::table('areas')->where('id', $ad->area_id)->first();
     @endphp
     <div class="card_product">
-            @if($ad->featured)
-            <div class="featured_tag">
-                <span>Featured</span>
-            </div>
-            @endif
+            {{-- @if($ad->featured)
+                <div class="featured_tag">
+                    <span>Featured</span>
+                </div>
+            @endif --}}
         <div class="card_img">
             <a href="{{ route('frontend.addetails', $ad->slug) }}" class="cards__img-wrapper">
                 @if ($ad->thumbnail)
@@ -19,10 +19,12 @@
         </div>
         <div class="card_content">
             <h6>
-                <span class="icon">
-                    <i class="{{ $ad->category->icon ?? '' }}" style="font-size: 15px"></i>
+                {{ date('d M , Y', strtotime($ad->created_at)) }}
+                <span class="float-end">
+                    <a href="{{ route('frontend.seller.profile', $ad->customer->username) }}">
+                        {{ '@'.$ad->customer->username }}
+                    </a>
                 </span>
-                {{ $ad->category->name ?? '' }}
             </h6>
             <h3>
                 <a href="{{ route('frontend.addetails', $ad->slug) }}" class="text--body-3-600 cards__caption-title">
@@ -39,7 +41,7 @@
                     @endif
                 </h5>
                 <span class="cards__price-title">
-                    For Exchange
+                    {{-- For Exchange --}}
                     @if ($ad->price_method == 2)
                         <sub>Per Hour</sub>
                     @elseif ($ad->price_method == 3)

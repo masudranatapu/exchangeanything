@@ -52,7 +52,7 @@
                                 <option {{ $ad->condition == 'Excellent' ? 'selected' : '' }} value="Excellent"> {{ __('excellent') }}</option>
                                 <option {{ $ad->condition == 'Good' ? 'selected' : '' }} value="Good"> {{ __('good') }}</option>
                                 <option {{ $ad->condition == 'Fair' ? 'selected' : '' }} value="Fair"> {{ __('fair') }}</option>
-                                <option {{ $ad->condition == 'Salvage' ? 'selected' : '' }} value="Salvage"> {{ __('salvage') }}</option>
+                                {{-- <option {{ $ad->condition == 'Salvage' ? 'selected' : '' }} value="Salvage"> {{ __('salvage') }}</option> --}}
                             </select>
                        </div>
                     </div>
@@ -235,7 +235,7 @@
                             <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
                         </div>
                     </div> -->
-                    @if($adsinfo->is_featured == 'yes')
+                    {{-- @if($adsinfo->is_featured == 'yes')
                         <div class="col-6 col-md-3">
                             <div class="form-check">
                                 <input value="1" name="featured" type="checkbox" class="form-check-input" id="checkfeatured" {{ $ad->featured == 1 ? 'checked' : '' }} />
@@ -251,7 +251,7 @@
                                 </div>
                             </div>
                         @endif
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn btn--lg text-light" id="adpostsubmitbutton">

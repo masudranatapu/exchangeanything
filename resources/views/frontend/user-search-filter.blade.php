@@ -7,7 +7,7 @@
                     <!-- search by keyword/title -->
                     <div class="search__content-item">
                         <div class="input-field">
-                            <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..."
+                            <input type="text" placeholder="{{ __('Search ExchangeAnything') }}..."
                                 name="keyword" value="{{ request('keyword', '') }}" />
                             <span class="icon icon--left">
                                 <x-svg.search-icon />
@@ -26,7 +26,7 @@
                               @else
                               <span class="by_location" style="width: calc(100% - 60px);">By Location</span>
                               @endif
-                             {{--  
+                             {{--
                                 <select name="country"  style="width: calc(100% - 60px);">
                                      <option value="" class="d-none">By Location</option>
                                         @foreach ($countries as $country)
@@ -36,7 +36,7 @@
                                         @endforeach
                                 </select>
                             --}}
-                            
+
                             <span class="icon icon--left">
                                 <x-svg.search-location-icon />
                             </span>
@@ -60,15 +60,15 @@
                             </span>
                         </div>
                     </div>
-                     --}} 
-                    
+                     --}}
+
                     <!-- Select Category temprorary disable -->
                     <div class="search__content-item" data-bs-toggle="modal" data-bs-target="#staticBackdropCat">
                         <div class="input-field">
                             <input type="hidden" name="country" value="{{request()->get('country')}}" id="selected_country">
                             <input type="hidden" name="town" value="{{request()->get('town')}}" id="selected_town">
                              <span class="by_location" style="width: calc(100% - 60px);">By Category</span>
-                            {{--  
+                            {{--
                             <select name="category" id="category" style="width: calc(100% - 60px);">
                                 @php
                                     $categories_slug = explode(',', request('category'));
@@ -90,7 +90,7 @@
                             </span>
                         </div>
                     </div>
-                      
+
                     <!-- Search Btn -->
                     <div class="search__content-item">
                         <button class="btn btn--lg" type="submit">
@@ -213,5 +213,5 @@
             closeOnSelect: !$(this).attr('multiple'),
         });
     });
-    
+
 </script>

@@ -31,11 +31,11 @@
                                         <th width="20%">{{ __('customer') }}</th>
                                         <td width="80%">{{ $ad->customer->name ?? $ad->customer->username }}</td>
                                     </tr>
-                                    <tr class="mb-5">
+                                    {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('price') }}</th>
                                         <td width="80%">
                                             For Exchange
-                                            {{-- <span style="font-size: 15px;">
+                                            <span style="font-size: 15px;">
                                                 @if ($ad->price_method == 2)
                                                     <sub>Per Hour</sub>
                                                 @elseif ($ad->price_method == 3)
@@ -47,9 +47,9 @@
                                                 @elseif ($ad->price_method == 6)
                                                     <sub>Per Year</sub>
                                                 @endif
-                                            </span> --}}
+                                            </span>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     {{-- <tr class="mb-5">
                                         <th width="20%">{{ __('category') }}</th>
                                         <td width="80%">{{ $ad->category->name ?? '' }}</td>

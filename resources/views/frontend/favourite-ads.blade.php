@@ -19,14 +19,14 @@
 @endsection
 
 @section('content')
-{{--  
+{{--
     <!-- Banner section start  -->
     <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
             @include('frontend.user-search-filter')
         </div>
     </div>
---}}    
+--}}
     <!-- Banner section end   -->
     <!-- dashboard section start  -->
     <section class="section dashboard">
@@ -77,8 +77,8 @@
                                     <th>{{ __('Ads Image') }}</th>
                                     <th>{{ __('ads') }}</th>
                                     <th>{{ __('date') }}</th>
-                                    <th>{{ __('prices') }}</th>
-                                    <th> {{ __('category') }}</th>
+                                    {{-- <th>{{ __('prices') }}</th> --}}
+                                    {{-- <th> {{ __('category') }}</th> --}}
                                     <th>{{ __('action') }}</th>
                                 </tr>
                             </table>
@@ -199,7 +199,7 @@
                 allowClear: Boolean($(this).data('allow-clear')),
                 closeOnSelect: !$(this).attr('multiple'),
             });
-            
+
             // ===== Select2 ===== \\
             $('#town').select2({
                 theme: 'bootstrap-5',

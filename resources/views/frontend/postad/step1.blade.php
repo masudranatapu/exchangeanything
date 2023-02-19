@@ -35,7 +35,7 @@
                                 <option value="Excellent">{{ __('excellent') }}</option>
                                 <option value="Good"> {{ __('good') }}</option>
                                 <option value="Fair">{{ __('fair') }}</option>
-                                <option value="Salvage"> {{ __('salvage') }}</option>
+                                {{-- <option value="Salvage"> {{ __('salvage') }}</option> --}}
                             </select>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                                 <label for="Price_Negotiable" class="form-check-label">Price Negotiable</label>
                             </div>
                         </div> -->
-                    @if ($user_plan->featured_limit > 0)
+                    {{-- @if ($user_plan->featured_limit > 0)
                         <div class="col-6 col-md-3">
                             <div class="form-check">
                                 <input value="1" name="featured" type="checkbox" class="form-check-input"
@@ -205,7 +205,7 @@
                                 <label for="checkfeatured" class="form-check-label">Make As Featured </label>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="dashboard-post__action-btns">
                     <button type="submit" class="btn text-white btn--lg" id="adpostsubmitbutton">

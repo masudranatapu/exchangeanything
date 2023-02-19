@@ -8,7 +8,7 @@
                     <!-- search by keyword/title -->
                     <div class="search__content-item">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
-                            <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..." name="keyword"
+                            <input type="text" placeholder="{{ __('Search ExchangeAnything') }}..." name="keyword"
                                 value="{{ request('keyword', '') }}" @if (Route::is('frontend.index')) required  @endif>
 
                         </div>

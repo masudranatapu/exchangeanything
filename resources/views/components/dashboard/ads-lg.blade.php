@@ -17,7 +17,7 @@
         </div>
         <div class="card-edit__item product-price">
             <span class="text--body-4">
-                For Exchange
+                {{-- For Exchange --}}
             </span>
         </div>
         @if (!request()->routeIs('frontend.favourites'))
@@ -26,7 +26,7 @@
             </div>
         @else
             <div class="card-edit__item product-status">
-                {{ $ad->category->name }}
+                {{-- {{ $ad->category->name }} --}}
             </div>
         @endif
         <div class="card-edit__item product-action">

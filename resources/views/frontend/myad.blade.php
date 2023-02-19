@@ -54,7 +54,7 @@
                         </div>
                         <div class="header-item">
                             <h6 class="text--body-4-600">
-                                {{ __('prices') }}
+                                {{-- {{ __('prices') }} --}}
                             </h6>
                         </div>
                         <div class="header-item">

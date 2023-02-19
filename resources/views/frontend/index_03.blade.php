@@ -47,23 +47,19 @@
         </div>
     </div>
 
-
-
-    <!-- Banner section end   -->
-
     <!-- Poupular category Section start  -->
-    <section class="section popular-category">
+    {{-- <section class="section popular-category">
         <div class="container">
             <h2 class="text--heading-1 section__title">{{ __('popular_category') }}</h2>
             <div class="row">
                 @foreach ($topCategories as $category)
                     <div class="col-6 col-sm-4 col-lg-4 col-xl-3 col-xxl-2">
                         <div class="category-card">
-                            {{--
+
                             <div class="category-card__icon">
                                 <i class="{{ $category->icon }}" style="font-size: 40px"></i>
                             </div>
-                             --}}
+
 
                             <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm"
                                 class="d-none">
@@ -75,27 +71,26 @@
                             <div class="category-card__view">
                                 <span class="first view-number"> {{ $category->ad_count ?? 0 }}
                                     {{ __('ads') }}</span>
-                                <!-- <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')"
+                                <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')"
                                         class="second view-btn">
                                         {{ __('view_ads') }}
                                         <span class="icon">
                                             <x-svg.right-arrow-icon stroke="#0088cc" />
                                         </span>
-                                    </a> -->
+                                    </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-    </section>
-    <!-- Poupular category Section end  -->
+    </section> --}}
 
-    <!-- featured post Section start  -->
+    {{-- featured post Section start --}}
     @if ($settings->featured_ads_homepage)
         <section class="section recent-post">
             <div class="container">
-                <h2 class="text--heading-1 section__title">{{ __('featured_ads') }}</h2>
+                <h2 class="text--heading-1 section__title">{{ __('Latest Ads') }}</h2>
                 <div class="row">
                     @foreach ($featuredAds as $ad)
                         <x-frontend.single-ad :ad="$ad" className="col-xl-3 col-md-6 mb-4"></x-frontend.single-ad>
@@ -115,7 +110,6 @@
         </section>
     @endif
     <!-- featured post Section end  -->
-
     <!-- recent post Section start  -->
     @if ($settings->regular_ads_homepage)
         <section class="section recent-post">
@@ -139,14 +133,12 @@
             </div>
         </section>
     @endif
-    <!-- recent post Section end  -->
 
     <!-- How to work Section start  -->
     <x-others.how-it-work />
-    <!-- How to work Section end  -->
 
     <!-- popular-loc section start  -->
-    <section class="section popular-location">
+    {{-- <section class="section popular-location">
         <div class="container">
             <h2 class="text--heading-1 section__title">
                 {{ __('popular_location') }}
@@ -160,8 +152,7 @@
                 @endforeach
             </div>
         </div>
-    </section>
-    <!-- popular-loc section end -->
+    </section> --}}
 
     <!-- price-plan section start  -->
     {{-- <section class="section price-plan">
@@ -189,10 +180,6 @@
     @if ($newsletter_enable)
         @include('layouts.frontend.partials.newsletter')
     @endif
-
-
-
-
 @endsection
 
 @section('frontend_script')

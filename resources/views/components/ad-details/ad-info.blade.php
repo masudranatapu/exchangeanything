@@ -1,5 +1,7 @@
 @php
-    $area = DB::table('areas')->where('id', $ad->area_id)->first();
+    $area = DB::table('areas')
+        ->where('id', $ad->area_id)
+        ->first();
 @endphp
 <div class="product-item__ads-info">
     <h2 class="text--heading-2 title">{{ $ad->title }}</h2>
@@ -9,8 +11,12 @@
                 <x-svg.location-icon />
             </span>
             <p class="text--body-3">
-                @if($area) {{$area->city_name}}  , @endif
-                @if($ad->town) {{$ad->town->name ?? ''}} @endif
+                @if ($area)
+                    {{ $area->city_name }} ,
+                @endif
+                @if ($ad->town)
+                    {{ $ad->town->name ?? '' }}
+                @endif
             </p>
         </li>
         <li class="post-details__item">
@@ -25,7 +31,7 @@
             </span>
             <p class="text--body-3">{{ $ad->total_views }} {{ __('viewed') }}</p>
         </li>
-        @if ($ad->featured == 1)
+        {{-- @if ($ad->featured == 1)
             <li class="post-details__item badge badge--warning">
                 <span class="icon ">
                     <x-svg.check-icon width="16" height="16" stroke="#d32323" />
@@ -33,6 +39,6 @@
                 <p class="text--body-3">
                 {{ __('featured') }}</p>
             </li>
-        @endif
+        @endif --}}
     </ul>
 </div>
