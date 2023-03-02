@@ -12,7 +12,6 @@ use App\Http\Controllers\Frontend\SellerDashboardController;
 
 // show website pages
 Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function () {
-
     Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('about', [FrontendController::class, 'about'])->name('about');
     Route::get('faq', [FrontendController::class, 'faq'])->name('faq');
@@ -33,7 +32,6 @@ Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function (
     Route::get('blog', [FrontendController::class, 'blog'])->name('blog');
     Route::get('blog/{blog:slug}', [FrontendController::class, 'singleBlog'])->name('single.blog');
     Route::post('blog/comments/count', [FrontendController::class, 'commentsCount'])->name('comments.create');
-
     //seller dashboard
     Route::controller(SellerDashboardController::class)->group(function () {
         Route::get('/seller/{user:username}', 'profile')->name('seller.profile');
@@ -41,18 +39,13 @@ Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function (
         Route::post('/pre/signup', 'preSignup')->name('pre.signup');
         Route::post('/report', 'report')->name('seller.report');
     });
-
     Route::get('country/to/city/{id}', [FrontendController::class, 'CountryToCity']);
     Route::get('category/to/subcategory/{id}', [FrontendController::class, 'CategoryWiseSubcategory']);
-
     Route::get('adlist-search-ajax/{id}', [FrontendController::class, 'adlistSearchAjax']);
     Route::get('adlist-town-city-ajax/{id}', [FrontendController::class, 'adlistSearchAjaxtowncity']);
-
     // customer dashboard
     Route::prefix('dashboard')->middleware(['auth:customer', 'verified', 'user_is_active'])->group(function () {
-
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
-
         Route::middleware('check.planPurchase')->group(function () {
             // Ad Create
             Route::prefix('post')->middleware(['checkplan', 'check.planPurchase'])->group(function () {
@@ -67,7 +60,6 @@ Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function (
                 Route::get('/step2/back/{slug?}', [AdPostController::class, 'postStep2Back'])->name('post.step2.back');
                 Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
             });
-
             // Ad Edit
             Route::prefix('post')->group(function () {
                 Route::get('/images/{id}/delete', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');
@@ -79,7 +71,6 @@ Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function (
                 Route::put('/step3/{ad:slug}/update', [AdPostController::class, 'updatePostStep3'])->name('post.step3.update');
                 Route::get('/cancel/edit', [AdPostController::class, 'cancelAdPostEdit'])->name('post.cancel.edit');
             });
-
             // Messenger
             Route::get('message/{username?}', [MessangerController::class, 'index'])->name('message');
             Route::post('message/{username}', [MessangerController::class, 'sendMessage'])->name('message.store');
@@ -99,17 +90,12 @@ Route::group(['as' => 'frontend.', 'middleware' => 'user_is_active'], function (
             Route::delete('account-delete/{customer}', [DashboardController::class, 'deleteAccount'])->name('account.delete');
             Route::get('certified_plan', [DashboardController::class, 'getCertified'])->name('getCertified');
             Route::get('certifiedCheckout/{id}', [DashboardController::class, 'certifiedCheckout'])->name('certifiedCheckout');
-
         });
-
         Route::get('expired-plan', [DashboardController::class, 'expiredPlan'])->name('expiredPlan');
-
     });
 });
-
 // Ads Expire Notification Sending
 Route::get('/ads-expire-notification-send', [AdsExpireNotificationController::class, 'sendNotification'])->name('ads.expire.notification.send');
-
 // Verification Routes
 Route::middleware('auth:customer', 'setlang')->group(function () {
     Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');

@@ -303,8 +303,6 @@
     </script>
     <script>
         $('.input-images-2').imageUploader({
-            maxSize: 10 * 1024 * 1024,
-            maxFiles: 10,
             multiple: true,
         });
 

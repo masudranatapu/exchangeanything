@@ -51,7 +51,6 @@ Route::prefix('admin')->middleware(['auth:super_admin', 'setlang'])->group(funct
         Route::put('settings/payment', 'update')->name('settings.payment.update');
         Route::post('settings/payment/status', 'updateStatus')->name('settings.payment.status.update');
     });
-
     //====================Website SEO Setting==============================
     Route::put('/seo', [SettingsController::class, 'updateSeo'])->name('admin.seo.update');
     //====================Website CMS Setting==============================

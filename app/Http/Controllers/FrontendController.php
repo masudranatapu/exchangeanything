@@ -57,7 +57,7 @@ class FrontendController extends Controller
 
         $data['topCategories'] = collectionToResource($topCategories);
         $data['topCities'] = $topCities;
-        $data['totalAds'] = Ad::activeCategory()->active()->count();
+        $data['totalAds'] = DB::table('ads')->count();
 
         if ($home_page == 1) {
             return $this->homePage1($data);

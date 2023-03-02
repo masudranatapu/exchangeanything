@@ -98,8 +98,8 @@ class AdPostController extends Controller
             'area_name' => 'required',
             // 'price_method' => 'required',
             // 'subcategory_id' => 'required',
-            'description' => 'required|min:150',
-            'images' => 'required|max:2048',
+            'description' => 'required',
+            'images' => 'required',
         ], [
             'title.required' => 'Ad title name must be required',
             // 'town_id.required' => 'Town name must be required',
