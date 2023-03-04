@@ -34,11 +34,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/slick.css" />
-    @if (auth('customer')->check() && isset(session('user_plan')->ad_limit) && session('user_plan')->ad_limit < $settings->free_ad_limit)
+    @if (auth('customer')->check() &&
+            isset(session('user_plan')->ad_limit) &&
+            session('user_plan')->ad_limit < $settings->free_ad_limit)
         <style>
             .header--one {
                 top: 50px !important;
             }
+
             .header--fixed {
                 top: 0 !important;
             }
@@ -47,7 +50,6 @@
 @endsection
 
 @section('content')
-
     <!-- Banner section start  -->
     {{-- <div class="banner banner--three" style="background:url('{{ asset('ads/adsbackground.jpg') }}') center center/cover no-repeat;">
         <div class="container">
@@ -74,7 +76,7 @@
                     <x-ad-details.ad-description :description="$ad->description" :features="$ad->adFeatures" />
                 </div>
                 <div class="col-xl-4">
-                    <div class="product-item__sidebar">
+                    <div class="product-item__sidebar" >
                         <span class="toggle-bar">
                             <x-svg.toggle-icon />
                         </span>
@@ -82,10 +84,69 @@
                             {{-- ad wishlist --}}
                             <x-ad-details.ad-wishlist :id="$ad->id" :price="$ad->price" />
                             {{-- ad contact --}}
-                            <x-ad-details.ad-contact :id="$ad->id" :phone="$ad->phone" :name="$ad->customer->username" :callingtime="$ad->estimate_calling_time" :numberShowingPermission="$ad->phone_number_showing_permission" :immediateAccessToNewAds="$immediate_access_to_new_ads" />
+                            <x-ad-details.ad-contact :id="$ad->id" :phone="$ad->phone" :name="$ad->customer->username"
+                                :callingtime="$ad->estimate_calling_time" :numberShowingPermission="$ad->phone_number_showing_permission" :immediateAccessToNewAds="$immediate_access_to_new_ads" />
 
                             {{-- ad customer info --}}
-                            <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->website_link" :area="$ad->area_name"/>
+                            <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city"
+                                :link="$ad->website_link" :area="$ad->area_name" />
+
+                            <div class="product-item__sidebar-item user-details d-block d-lg-none" style="min-height: 500px;">
+                                <h2 class="text--body-1">{{ __('overview') }}</h2>
+                                <ul class="overview-details">
+                                    @if ($ad->condition)
+                                        <li class="overview-details__item">
+                                            <span class="text--body-3 title">{{ __('condition') }}:</span>
+                                            <span class="text--body-3 info">{{ $ad->condition }}</span>
+                                        </li>
+                                    @endif
+                                </ul>
+                                <br>
+                                <h2 class="share-content__title text--body-3">
+                                    <span class="icon">
+                                        <x-svg.share-icon />
+                                    </span>
+                                    {{ __('share_ads') }}
+                                </h2>
+                                <ul class="d-flex">
+                                    <li style="margin-right: 5px;">
+                                        <a target="_blank" href="{{ socialMediaShareLinks(url()->current(), 'whatsapp') }}"
+                                            class="social-link social-link--wa share__link">
+                                            <x-svg.whatsapp-icon />
+                                        </a>
+                                    </li>
+                                    <li style="margin-right: 5px;">
+                                        <a target="_blank" href="{{ socialMediaShareLinks(url()->current(), 'facebook') }}"
+                                            class="social-link social-link--fb share__link">
+                                            <x-svg.facebook-icon fill="#fff" />
+                                        </a>
+                                    </li>
+                                    <li style="margin-right: 5px;">
+                                        <a target="_blank" href="{{ socialMediaShareLinks(url()->current(), 'twitter') }}"
+                                            class="social-link social-link--tw share__link">
+                                            <x-svg.twitter-icon fill="#fff" />
+                                        </a>
+                                    </li>
+                                    <li style="margin-right: 5px;">
+                                        <a target="_blank" href="{{ socialMediaShareLinks(url()->current(), 'linkedin') }}"
+                                            class="social-link social-link--in share__link">
+                                            <x-svg.linkedin-icon />
+                                        </a>
+                                    </li>
+                                    <li style="margin-right: 5px;">
+                                        <a href="{{ socialMediaShareLinks(url()->current(), 'gmail') }}"
+                                            class="social-link social-link--p share__link">
+                                            <x-svg.envelope-icon stroke="#ffffff" />
+                                        </a>
+                                    </li>
+                                    <li style="margin-right: 5px;" onclick="copyToClipboard()" style="cursor: pointer"
+                                        title="{{ __('copy_to_clipboard') }}">
+                                        <a class="social-link social-link--lk share__link">
+                                            <x-svg.link-icon />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">
@@ -124,9 +185,9 @@
     <script src="{{ asset('frontend') }}/js/plugins/select2.min.js"></script>
 
     <!-- lightgallery plugins -->
-    <script src="{{asset('lightgallery/lightgallery.js')}}"></script>
-    <script src="{{asset('lightgallery/thumbnail.js')}}"></script>
-    <script src="{{asset('lightgallery/zoom.js')}}"></script>
+    <script src="{{ asset('lightgallery/lightgallery.js') }}"></script>
+    <script src="{{ asset('lightgallery/thumbnail.js') }}"></script>
+    <script src="{{ asset('lightgallery/zoom.js') }}"></script>
     <script type="text/javascript">
         lightGallery(document.getElementById('lightgallery'), {
             plugins: [lgZoom, lgThumbnail],

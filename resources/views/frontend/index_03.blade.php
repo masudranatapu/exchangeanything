@@ -54,13 +54,11 @@
                     @foreach ($viewadshistory as $adshistory)
                         @php
                             $ads = Modules\Ad\Entities\Ad::where('id', $adshistory->property_id)->first();
+                            $area = DB::table('areas')
+                                    ->where('id', $ads->area_name)
+                                    ->first();
                         @endphp
                         <div class="col-xl-3 col-md-6 mb-4">
-                            @php
-                                $area = DB::table('areas')
-                                    ->where('id', $ads->area_id)
-                                    ->first();
-                            @endphp
                             <div class="card_product">
                                 <div class="card_img">
                                     <a href="{{ route('frontend.addetails', $ads->slug) }}" class="cards__img-wrapper">
@@ -160,8 +158,8 @@
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
                             <!--  <span class="icon--right">
-                                        <x-svg.right-arrow-icon />
-                                    </span> -->
+                                            <x-svg.right-arrow-icon />
+                                        </span> -->
                         </a>
                     </div>
                 @endif
@@ -184,8 +182,8 @@
                         <a href="{{ route('frontend.adlist') }}" class="btn">
                             {{ __('view_all') }}
                             <!-- <span class="icon--right">
-                                        <x-svg.right-arrow-icon />
-                                    </span> -->
+                                            <x-svg.right-arrow-icon />
+                                        </span> -->
                         </a>
                     </div>
                 @endif

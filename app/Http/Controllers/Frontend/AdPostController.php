@@ -115,6 +115,7 @@ class AdPostController extends Controller
         }
 
         DB::beginTransaction();
+
         try {
             $ad = new Ad();
             $ad->title = $request->title;
