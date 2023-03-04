@@ -54,9 +54,6 @@
                     @foreach ($viewadshistory as $adshistory)
                         @php
                             $ads = Modules\Ad\Entities\Ad::where('id', $adshistory->property_id)->first();
-                            $area = DB::table('areas')
-                                    ->where('id', $ads->area_name)
-                                    ->first();
                         @endphp
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card_product">
